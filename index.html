@@ -1819,6 +1819,146 @@
             color: var(--text-muted);
         }
 
+        /* ==================================================== */
+        /* 🕶️ X-RAY / WIREFRAME MODE (SECRET CHEAT: code_1) */
+        /* ==================================================== */
+        body.web-xray-active {
+            position: relative;
+            background-color: #030712 !important;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.09) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.09) 1px, transparent 1px) !important;
+            background-size: 26px 26px !important;
+        }
+
+        /* Wireframe Outlines on EVERYTHING except the terminal and hud */
+        body.web-xray-active *:not(.terminal-overlay):not(.terminal-window):not(.terminal-header):not(.terminal-body):not(.terminal-output):not(.terminal-prompt-line):not(.terminal-prompt-text):not(.terminal-input):not(.terminal-matrix-canvas):not(#xrayHudBadge):not(#xrayHudBadge *) {
+            outline: 1px solid rgba(0, 240, 255, 0.4) !important;
+            outline-offset: -1px;
+        }
+
+        body.web-xray-active nav,
+        body.web-xray-active .hero,
+        body.web-xray-active .feature-card,
+        body.web-xray-active .step-card,
+        body.web-xray-active .stat-card,
+        body.web-xray-active .hof-card,
+        body.web-xray-active .blog-card,
+        body.web-xray-active footer {
+            background: rgba(3, 7, 18, 0.65) !important;
+            border-color: rgba(0, 240, 255, 0.65) !important;
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.18) inset, 0 0 15px rgba(0, 240, 255, 0.25) !important;
+            backdrop-filter: blur(3px) !important;
+        }
+
+        body.web-xray-active h1, 
+        body.web-xray-active h2, 
+        body.web-xray-active h3 {
+            text-shadow: 0 0 12px rgba(0, 240, 255, 0.8) !important;
+            color: #00f0ff !important;
+        }
+
+        body.web-xray-active .feature-card:hover,
+        body.web-xray-active .blog-card:hover,
+        body.web-xray-active .hof-card:hover {
+            outline: 2px solid #00f0ff !important;
+            box-shadow: 0 0 35px rgba(0, 240, 255, 0.4) inset, 0 0 25px rgba(0, 240, 255, 0.5) !important;
+            transform: translateY(-4px);
+        }
+
+        /* Subtle Cyber Scanline Overlay */
+        body.web-xray-active::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(0, 240, 255, 0.03) 0px,
+                rgba(0, 240, 255, 0.03) 2px,
+                transparent 2px,
+                transparent 4px
+            );
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        /* Floating HUD Badge */
+        .xray-hud-badge {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            background: rgba(8, 12, 24, 0.94);
+            border: 1px solid #00f0ff;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.4), inset 0 0 15px rgba(0, 240, 255, 0.2);
+            border-radius: 99px;
+            padding: 8px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 9999;
+            backdrop-filter: blur(10px);
+            animation: xrayHudSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes xrayHudSlideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .xray-pulse-dot {
+            width: 10px;
+            height: 10px;
+            background: #00f0ff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00f0ff;
+            animation: xrayPulse 1.2s infinite ease-in-out;
+        }
+
+        @keyframes xrayPulse {
+            0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 10px #00f0ff; }
+            50% { transform: scale(1.4); opacity: 0.5; box-shadow: 0 0 20px #00f0ff; }
+        }
+
+        .xray-hud-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .xray-hud-text strong {
+            font-size: 12px;
+            color: #00f0ff;
+            letter-spacing: 0.5px;
+        }
+
+        .xray-hud-text small {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+
+        .xray-close-btn {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            line-height: 1;
+            transition: all 0.2s ease;
+        }
+
+        .xray-close-btn:hover {
+            background: #ef4444;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
         @media (max-width: 900px) {
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .hof-grid { grid-template-columns: 1fr; }
@@ -1883,6 +2023,7 @@
                         <a href="#stats" onclick="closeNavDropdown()">📊 Statistiken</a>
                         <a href="#anleitung" onclick="closeNavDropdown()">📖 Anleitung</a>
                         <a href="#smartscreen" onclick="closeNavDropdown()">🛡️ SmartScreen Hilfe</a>
+                        <a href="javascript:void(0);" onclick="openTerminalWithCode('code_1')" style="color: #00f0ff !important; font-weight: 700 !important;">🕶️ X-Ray Mode (code_1)</a>
                         <div class="nav-dropdown-divider"></div>
                         <a href="https://github.com/Timluci09/Schnitzelmod" target="_blank" onclick="closeNavDropdown()">🌐 GitHub Repository</a>
                     </div>
@@ -1911,6 +2052,15 @@
                 <a href="#anleitung" class="btn-secondary">
                     <span>📖</span> Schnell-Start Anleitung
                 </a>
+            </div>
+
+            <div style="margin-top: 16px; margin-bottom: 6px;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 240, 255, 0.07); border: 1px solid rgba(0, 240, 255, 0.35); border-radius: 99px; padding: 6px 16px; font-size: 12px; cursor: pointer; transition: all 0.2s; box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);" onclick="openTerminalWithCode('code_1')" title="Klicke hier, um den X-Ray Cheat auszuführen!">
+                    <span>🕶️</span> 
+                    <span style="color: #cbd5e1;">Geheim-Cheat für die Website:</span> 
+                    <code style="background: rgba(0, 240, 255, 0.2); color: #00f0ff; padding: 2px 8px; border-radius: 6px; font-weight: 800; border: 1px solid #00f0ff;">code_1</code>
+                    <span style="color: var(--cyan); font-weight: bold;">(Im Terminal eingeben ➔ Klick zum Testen)</span>
+                </div>
             </div>
 
             <div class="pills">
@@ -2429,6 +2579,7 @@ Willkommen im Cheat Motor Cyber-Terminal.
 Universal RAM-Engine aktiv • Minecraft 1.20.1 Hook bereit.
 
 Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befehle ein.
+🔥 <span style="color:#00f0ff; font-weight:bold;">GEHEIM-CHEAT:</span> Gib <span style="color:#f59e0b; font-weight:bold;">code_1</span> ein für den 🕶️ X-Ray Wireframe Modus!
                 </div>
                 <div class="terminal-quick-chips" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; padding: 4px 0;">
                     <button class="term-chip-btn" onclick="execFromChip('help')">help</button>
@@ -2438,6 +2589,7 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                     <button class="term-chip-btn" onclick="execFromChip('seeds')">🌍 seeds</button>
                     <button class="term-chip-btn" onclick="execFromChip('plugins')">⚡ plugins</button>
                     <button class="term-chip-btn" onclick="execFromChip('blog')">📖 blog</button>
+                    <button class="term-chip-btn" style="border-color: #00f0ff; color: #00f0ff; font-weight: bold; background: rgba(0, 240, 255, 0.1);" onclick="execFromChip('code_1')">🕶️ code_1</button>
                     <button class="term-chip-btn" onclick="execFromChip('testers')">testers</button>
                     <button class="term-chip-btn" onclick="execFromChip('clear')">clear</button>
                 </div>
@@ -2447,6 +2599,14 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                 </div>
             </div>
         </div>
+    <!-- 🕶️ X-RAY HUD BADGE (TRIGGERED BY 'code_1' IN TERMINAL) -->
+    <div id="xrayHudBadge" class="xray-hud-badge" style="display: none;">
+        <div class="xray-pulse-dot"></div>
+        <div class="xray-hud-text">
+            <strong>🕶️ X-RAY WIREFRAME: AKTIV</strong>
+            <small>[CHEAT CODE_1 INJIZIERT]</small>
+        </div>
+        <button class="xray-close-btn" onclick="toggleWebXRayMode()" title="X-Ray Modus beenden">&times;</button>
     </div>
 
     <!-- SCRIPT FOR COUNTERS, ADMIN PANEL, TERMINAL & STATUS -->
@@ -2788,7 +2948,45 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                 localStorage.removeItem("schnitzelmod_maint_time");
                 localStorage.removeItem("schnitzelmod_hof");
                 localStorage.removeItem("cheatmotor_blog_posts");
+                localStorage.removeItem("cheatmotor_web_xray");
                 location.reload();
+            }
+        };
+
+        // ====================================================
+        // 🕶️ X-RAY / WIREFRAME MODE HANDLER (code_1)
+        // ====================================================
+        let webXRayActive = false;
+
+        function applyWebXRayUI(active) {
+            document.body.classList.toggle("web-xray-active", active);
+            const badge = document.getElementById("xrayHudBadge");
+            if (badge) badge.style.display = active ? "flex" : "none";
+        }
+
+        window.toggleWebXRayMode = function() {
+            webXRayActive = !webXRayActive;
+            localStorage.setItem("cheatmotor_web_xray", webXRayActive ? "true" : "false");
+            applyWebXRayUI(webXRayActive);
+
+            if (webXRayActive) {
+                printTerminalLine(`
+<span style="color:#00f0ff; font-weight:bold;">[!] GEHEIMCODE 'code_1' AKZEPTIERT!</span>
+<span style="color:#10b981;">[⚡] INJIZIERE 🕶️ X-RAY / WIREFRAME MATRIX IN DAS WEB-SYSTEM...</span>
+<span style="color:#00f0ff;">[✓] WIREFRAME-SCANNER: AKTIV</span>
+  ├─ Blueprint Grid: ON
+  ├─ Neon Box-Model Outlines: 1px Solid
+  ├─ Translucent Glass Layer: ACTIVE
+  └─ HTML Layout Scanner: ONLINE
+
+<span style="color:#f59e0b;">💡 Schließe das Terminal oder scrolle durch die Seite, um den X-Ray-Modus zu sehen!
+Tippe erneut 'code_1' ein, um X-Ray wieder auszuschalten.</span>
+`);
+            } else {
+                printTerminalLine(`
+<span style="color:#ef4444; font-weight:bold;">[!] 🕶️ X-RAY / WIREFRAME-MODUS DEAKTIVIERT.</span>
+<span style="color:#94a3b8;">[✓] Normales Standard-Rendering wiederhergestellt.</span>
+`);
             }
         };
 
@@ -2824,6 +3022,7 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             const savedMaintTime = localStorage.getItem("schnitzelmod_maint_time");
             const savedHof = localStorage.getItem("schnitzelmod_hof");
             const savedBlog = localStorage.getItem("cheatmotor_blog_posts");
+            const savedXRay = localStorage.getItem("cheatmotor_web_xray");
 
             if (savedStatus !== null) currentStatus = savedStatus;
             if (savedMessage !== null) currentMessage = savedMessage;
@@ -2839,6 +3038,10 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             }
             if (savedBlog !== null) {
                 try { currentBlogPosts = JSON.parse(savedBlog); } catch(err) {}
+            }
+            if (savedXRay === "true") {
+                webXRayActive = true;
+                applyWebXRayUI(true);
             }
         }
         loadLocalStorageOverrides();
@@ -3280,6 +3483,7 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
   <span style="color:#00f0ff; font-weight:bold;">plugins</span>   - Zeigt beste Server-Plugins für 1.20.1 Story & Performance
   <span style="color:#00f0ff; font-weight:bold;">blog</span>      - Zeigt aktuelle Nullpunkt-Storys & Server-News
   <span style="color:#00f0ff; font-weight:bold;">cheats</span>    - Listet alle Tastenkürzel (F1, F2, F3) auf
+  <span style="color:#a855f7; font-weight:bold;">code_1</span>    - 🕶️ GEHEIM-CHEAT: Schaltet Website X-Ray Wireframe Modus AN/AUS
   <span style="color:#00f0ff; font-weight:bold;">clear</span>     - Bereinigt den Terminal-Bildschirm
   <span style="color:#00f0ff; font-weight:bold;">exit</span>      - Beendet das Terminal
 `);
@@ -3389,6 +3593,8 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                     out += `     <em>"${escapeHtml(p.excerpt)}"</em>\n\n`;
                 });
                 printTerminalLine(out);
+            } else if (cmd === "code_1" || cmd === "code1" || cmd === "code 1" || cmd === "xray" || cmd === "wireframe") {
+                toggleWebXRayMode();
             } else if (cmd === "matrix") {
                 toggleMatrix();
             } else if (cmd === "clear") {
@@ -3401,6 +3607,17 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
         }
 
         window.execFromChip = function(cmd) {
+            termInput.value = cmd;
+            printTerminalLine(`<span style="color:#10b981; font-weight:bold;">root@cheatmotor:~$</span> ${escapeHtml(cmd)}`);
+            handleCommand(cmd.toLowerCase());
+            termBody.scrollTop = termBody.scrollHeight;
+            termInput.value = "";
+            termInput.focus();
+        };
+
+        window.openTerminalWithCode = function(cmd) {
+            if (typeof closeNavDropdown === "function") closeNavDropdown();
+            openTerminal();
             termInput.value = cmd;
             printTerminalLine(`<span style="color:#10b981; font-weight:bold;">root@cheatmotor:~$</span> ${escapeHtml(cmd)}`);
             handleCommand(cmd.toLowerCase());
