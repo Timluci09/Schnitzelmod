@@ -918,6 +918,261 @@
         }
 
         /* ==================================================== */
+        /* 🚧 CYBER-MAINTENANCE SCREEN (WARTUNGSMODUS) */
+        /* ==================================================== */
+        .maintenance-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #0f1629 0%, #050811 100%);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            padding: 20px;
+            backdrop-filter: blur(16px);
+        }
+
+        .maintenance-overlay.active {
+            display: flex;
+        }
+
+        .maintenance-box {
+            background: rgba(15, 20, 32, 0.95);
+            border: 2px solid #f59e0b;
+            box-shadow: 0 0 80px rgba(245, 158, 11, 0.35);
+            border-radius: 24px;
+            max-width: 620px;
+            width: 100%;
+            padding: 44px 36px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hazard-stripes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: repeating-linear-gradient(
+                -45deg,
+                #f59e0b,
+                #f59e0b 14px,
+                #0b0e14 14px,
+                #0b0e14 28px
+            );
+        }
+
+        .maintenance-icon-wrapper {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(245, 158, 11, 0.12);
+            border: 2px solid #f59e0b;
+            border-radius: 50%;
+            box-shadow: 0 0 35px rgba(245, 158, 11, 0.3);
+        }
+
+        .maintenance-icon {
+            font-size: 42px;
+            animation: pulseIcon 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseIcon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.12); }
+        }
+
+        .maintenance-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid #f59e0b;
+            color: #f59e0b;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .maintenance-box h2 {
+            font-size: 28px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .maintenance-desc {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .maintenance-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            background: #080c14;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .meta-label {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .meta-val {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .maintenance-ticker {
+            font-family: 'Consolas', monospace;
+            font-size: 11px;
+            color: var(--emerald);
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .btn-maintenance-admin {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-maintenance-admin:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            box-shadow: 0 0 12px var(--cyan-glow);
+        }
+
+        /* Admin Tabs & Tester List Styles */
+        .admin-nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            overflow-x: auto;
+        }
+
+        .admin-tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .admin-tab-btn:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .admin-tab-btn.active {
+            color: var(--cyan);
+            border-color: rgba(0, 240, 255, 0.4);
+            background: rgba(0, 240, 255, 0.1);
+        }
+
+        .admin-tester-card {
+            background: #080c14;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .admin-tester-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-tester-avatar {
+            font-size: 20px;
+        }
+
+        .admin-tester-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .admin-tester-rank {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        .btn-tester-delete {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #ef4444;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .btn-tester-delete:hover {
+            background: #ef4444;
+            color: #fff;
+        }
+
+        .hof-card.hof-vip {
+            border-color: rgba(0, 240, 255, 0.4);
+            background: linear-gradient(180deg, rgba(0, 240, 255, 0.08) 0%, rgba(15, 20, 32, 0.8) 100%);
+        }
+
+        .hof-card.hof-vip .hof-rank {
+            color: var(--cyan);
+        }
+
+        /* ==================================================== */
         /* 📢 ANNOUNCEMENT EILMELDUNGS-BANNER & KILLSWITCH */
         /* ==================================================== */
         .announcement-banner {
@@ -1527,7 +1782,7 @@
                 <p>Die Tuning-Crew hinter Cheat Motor — Unendliche Flugstunden & Hardcore-Tests.</p>
             </div>
 
-            <div class="hof-grid">
+            <div class="hof-grid" id="hofGrid">
                 <!-- BEN -->
                 <div class="hof-card hof-gold">
                     <div class="hof-rank">🥇 CHEFF-TESTER</div>
@@ -1613,6 +1868,38 @@
         </div>
     </footer>
 
+    <!-- 🚧 CYBER-MAINTENANCE OVERLAY -->
+    <div class="maintenance-overlay" id="maintenanceOverlay">
+        <div class="maintenance-box">
+            <div class="hazard-stripes"></div>
+            <div class="maintenance-icon-wrapper">
+                <div class="maintenance-icon">🚧</div>
+            </div>
+            <div class="maintenance-badge">● KERNEL BOXENSTOPP AKTIV</div>
+            <h2>CHEAT MOTOR IN WARTUNG</h2>
+            <p class="maintenance-desc" id="maintenanceMsgText">Cheat Motor Boxenstopp: Wir führen gerade Tuning- und System-Upgrades durch. Gleich wieder online!</p>
+            
+            <div class="maintenance-meta">
+                <div class="meta-item">
+                    <span class="meta-label">GESCHÄTZTE DAUER</span>
+                    <span class="meta-val" id="maintenanceTimeText">ca. 15 Minuten</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">SYSTEM-STATUS</span>
+                    <span class="meta-val" style="color: #f59e0b;">RAM-TUNING LÄUFT</span>
+                </div>
+            </div>
+
+            <div class="maintenance-ticker">
+                ⚡ DMA Engine 8500 RPM Tuning • 16-Byte Klass Check • Minecraft 1.20.1 Hook Sync
+            </div>
+
+            <div class="maintenance-actions">
+                <button class="btn-maintenance-admin" id="maintenanceAdminBtn">🔒 Admin-Bypass (PIN 6121)</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ADMIN PANEL MODAL -->
     <div class="modal-overlay" id="adminModalOverlay">
         <div class="admin-modal">
@@ -1639,43 +1926,115 @@
                     <button class="modal-close-btn" id="closeAdminBtn2">&times;</button>
                 </div>
 
-                <!-- 1. SYSTEM STATUS -->
-                <div class="form-group">
-                    <label>System-Status auswählen:</label>
-                    <div class="status-choice-group">
-                        <div class="status-choice-btn" id="choiceOnline" onclick="selectStatus('online')">🟢 Online</div>
-                        <div class="status-choice-btn" id="choiceWartung" onclick="selectStatus('wartung')">🟡 Wartung</div>
-                        <div class="status-choice-btn" id="choiceStoerung" onclick="selectStatus('stoerung')">🔴 Störung</div>
+                <!-- ADMIN TABS -->
+                <div class="admin-nav-tabs">
+                    <button class="admin-tab-btn active" id="tabBtnStatus" onclick="switchAdminTab('status')">⚙️ Status & Banner</button>
+                    <button class="admin-tab-btn" id="tabBtnMaintenance" onclick="switchAdminTab('maintenance')">🚧 Wartungsmodus</button>
+                    <button class="admin-tab-btn" id="tabBtnHof" onclick="switchAdminTab('hof')">🏆 Hall of Fame</button>
+                    <button class="admin-tab-btn" id="tabBtnKillswitch" onclick="switchAdminTab('killswitch')">⬇️ Killswitch</button>
+                </div>
+
+                <!-- TAB 1: STATUS & BANNER -->
+                <div id="adminTabContentStatus">
+                    <!-- SYSTEM STATUS -->
+                    <div class="form-group">
+                        <label>System-Status auswählen:</label>
+                        <div class="status-choice-group">
+                            <div class="status-choice-btn" id="choiceOnline" onclick="selectStatus('online')">🟢 Online</div>
+                            <div class="status-choice-btn" id="choiceWartung" onclick="selectStatus('wartung')">🟡 Wartung</div>
+                            <div class="status-choice-btn" id="choiceStoerung" onclick="selectStatus('stoerung')">🔴 Störung</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Status-Nachrichtentext:</label>
+                        <input type="text" id="customStatusInput" class="admin-input" placeholder="z. B. Alle Cheats funktionieren...">
+                    </div>
+
+                    <!-- EILMELDUNG / TOP-BANNER -->
+                    <div class="form-group" style="border-top: 1px solid var(--border); padding-top: 14px; margin-top: 14px;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                            <label style="margin: 0; font-weight: 800; color: #f59e0b;">📢 Eilmeldungs-Top-Banner:</label>
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; color: var(--text-main);">
+                                <input type="checkbox" id="bannerActiveCheckbox" style="accent-color: #f59e0b; width: 16px; height: 16px; cursor: pointer;">
+                                <span>Banner Aktiv</span>
+                            </label>
+                        </div>
+                        <input type="text" id="customBannerInput" class="admin-input" placeholder="z. B. 🔥 ACHTUNG: Neues Update in Vorbereitung!">
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Status-Nachrichtentext:</label>
-                    <input type="text" id="customStatusInput" class="admin-input" placeholder="z. B. Alle Cheats funktionieren...">
+                <!-- TAB 2: WARTUNGSMODUS -->
+                <div id="adminTabContentMaintenance" style="display: none;">
+                    <div class="form-group">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; background: rgba(245, 158, 11, 0.1); border: 1px solid #f59e0b; padding: 12px; border-radius: 10px;">
+                            <div>
+                                <strong style="color: #f59e0b; display: block;">🚧 Vollständiger Cyber-Wartungsmodus:</strong>
+                                <span style="font-size: 11px; color: var(--text-muted);">Sperrt die gesamte Website für normale Besucher.</span>
+                            </div>
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; font-weight: bold; color: #f59e0b;">
+                                <input type="checkbox" id="maintenanceActiveCheckbox" style="accent-color: #f59e0b; width: 18px; height: 18px; cursor: pointer;">
+                                <span>AKTIV</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Wartungs-Nachricht für Besucher:</label>
+                        <textarea id="maintenanceMsgInput" class="admin-input" style="height: 70px; resize: vertical;" placeholder="Nachricht eingeben..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Geschätzte Dauer / Countdown:</label>
+                        <input type="text" id="maintenanceTimeInput" class="admin-input" placeholder="z. B. ca. 15 Minuten oder In Kürze...">
+                    </div>
                 </div>
 
-                <!-- 2. 📢 EILMELDUNG / TOP-BANNER -->
-                <div class="form-group" style="border-top: 1px solid var(--border); padding-top: 14px; margin-top: 14px;">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-                        <label style="margin: 0; font-weight: 800; color: #f59e0b;">📢 Eilmeldungs-Top-Banner:</label>
-                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; color: var(--text-main);">
-                            <input type="checkbox" id="bannerActiveCheckbox" style="accent-color: #f59e0b; width: 16px; height: 16px; cursor: pointer;">
-                            <span>Banner Aktiv</span>
-                        </label>
+                <!-- TAB 3: HALL OF FAME & TESTER -->
+                <div id="adminTabContentHof" style="display: none;">
+                    <label style="font-weight: 800; color: #f59e0b; margin-bottom: 10px; display: block;">🏆 Aktuelle Tester-Crew:</label>
+                    <div id="adminTesterList" style="max-height: 180px; overflow-y: auto; margin-bottom: 16px; padding-right: 4px;"></div>
+
+                    <div style="background: #080c14; border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+                        <label style="font-weight: 800; color: var(--cyan); margin-bottom: 10px; display: block;">➕ Neuen Tester hinzufügen:</label>
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-bottom: 8px;">
+                            <input type="text" id="newTesterName" class="admin-input" placeholder="Name (z. B. Alex)">
+                            <input type="text" id="newTesterAvatar" class="admin-input" value="🏎️" style="text-align: center;" placeholder="Emoji">
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                            <input type="text" id="newTesterRank" class="admin-input" placeholder="Rang (z. B. 🥇 CHEFF-TESTER)">
+                            <select id="newTesterTier" class="admin-input">
+                                <option value="gold">🥇 Gold Tier</option>
+                                <option value="silver">🥈 Silber Tier</option>
+                                <option value="bronze">🥉 Bronze Tier</option>
+                                <option value="vip">💎 VIP Cyan Tier</option>
+                            </select>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                            <input type="text" id="newTesterBadge" class="admin-input" placeholder="Badge (z. B. TURBO-PILOT)">
+                            <input type="text" id="newTesterRecord" class="admin-input" placeholder="Rekord (z. B. Y = 4500)">
+                        </div>
+                        <input type="text" id="newTesterSpecialty" class="admin-input" placeholder="Spezialität (z. B. Crash-Analyst)" style="margin-bottom: 10px;">
+                        <button class="btn-modal-save" id="btnAddTester" style="width: 100%; padding: 8px 12px; font-size: 13px;">➕ Tester zur Hall of Fame hinzufügen</button>
                     </div>
-                    <input type="text" id="customBannerInput" class="admin-input" placeholder="z. B. 🔥 ACHTUNG: Neues Update in Vorbereitung!">
                 </div>
 
-                <!-- 3. ⬇️ DOWNLOAD-KILLSWITCH -->
-                <div class="form-group" style="border-top: 1px solid var(--border); padding-top: 14px; margin-top: 14px;">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-                        <label style="margin: 0; font-weight: 800; color: #ef4444;">⬇️ Download-Killswitch:</label>
-                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; color: var(--text-main);">
-                            <input type="checkbox" id="downloadsDisabledCheckbox" style="accent-color: #ef4444; width: 16px; height: 16px; cursor: pointer;">
-                            <span>Downloads sperren / pausieren</span>
-                        </label>
+                <!-- TAB 4: KILLSWITCH -->
+                <div id="adminTabContentKillswitch" style="display: none;">
+                    <div class="form-group">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; padding: 12px; border-radius: 10px;">
+                            <div>
+                                <strong style="color: #ef4444; display: block;">⬇️ Download-Killswitch:</strong>
+                                <span style="font-size: 11px; color: var(--text-muted);">Deaktiviert sofort alle Download-Buttons weltweit.</span>
+                            </div>
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; font-weight: bold; color: #ef4444;">
+                                <input type="checkbox" id="downloadsDisabledCheckbox" style="accent-color: #ef4444; width: 18px; height: 18px; cursor: pointer;">
+                                <span>GESPERRT</span>
+                            </label>
+                        </div>
+                        <label style="margin-top: 10px;">Grund für die Download-Sperre:</label>
+                        <input type="text" id="downloadDisabledReasonInput" class="admin-input" placeholder="Grund für Sperre (z. B. Wartungsarbeiten / Update wird hochgeladen)">
                     </div>
-                    <input type="text" id="downloadDisabledReasonInput" class="admin-input" placeholder="Grund für Sperre (z. B. Wartungsarbeiten / Update wird hochgeladen)">
                 </div>
 
                 <div class="modal-actions" style="flex-direction: column; gap: 10px; margin-top: 20px;">
@@ -1728,6 +2087,11 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
     <script>
         const ADMIN_PIN = "6121";
 
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return "";
+            return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
         // Current status variables
         let currentStatus = "online";
         let currentMessage = "Alle Trainer-Funktionen betriebsbereit • Minecraft 1.20.1 aktiv";
@@ -1735,6 +2099,42 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
         let currentBannerMessage = "🔥 WICHTIG: Neues Cheat Motor Update in Vorbereitung!";
         let currentDownloadsEnabled = true;
         let currentDownloadDisabledReason = "Wartungsarbeiten / Update wird hochgeladen";
+        let currentMaintenanceMode = false;
+        let currentMaintenanceMessage = "Cheat Motor Boxenstopp: Wir führen gerade Tuning- und System-Upgrades durch. Gleich wieder online!";
+        let currentMaintenanceEstimatedTime = "ca. 15 Minuten";
+
+        let currentHallOfFame = [
+            {
+                rank: "🥇 CHEFF-TESTER",
+                avatar: "🏎️",
+                name: "Ben",
+                badge: "STAGE 3 PILOT",
+                record: "Y = 5.200 (Orbit)",
+                specialty: "Crash-Analyst & Director",
+                status: "🟢 Vollgas im Überleben",
+                tier: "gold"
+            },
+            {
+                rank: "🥈 TLAUNCHER LEGENDE",
+                avatar: "🛡️",
+                name: "Gideon",
+                badge: "FABRIC PIONIER",
+                record: "1. Flug auf TLauncher",
+                specialty: "Überlebenskünstler (0 Tode)",
+                status: "🟢 Dauerhaft in der Luft",
+                tier: "silver"
+            },
+            {
+                rank: "🥉 MASTERMIND",
+                avatar: "⚡",
+                name: "Tim",
+                badge: "LEAD-ENTWICKLER",
+                record: "16-Byte Klass-Validation",
+                specialty: "Universal Memory Engine",
+                status: "🟢 Code getunt & ready",
+                tier: "bronze"
+            }
+        ];
 
         function applyStatusToUI(status, message, bannerActive, bannerMsg, downloadsEnabled, downloadReason) {
             const bar = document.getElementById("liveStatusBar");
@@ -1799,7 +2199,99 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                     heroBtn.onclick = null;
                 }
             }
+
+            applyMaintenanceMode();
+            renderHallOfFame();
         }
+
+        function applyMaintenanceMode() {
+            const overlay = document.getElementById("maintenanceOverlay");
+            const msgEl = document.getElementById("maintenanceMsgText");
+            const timeEl = document.getElementById("maintenanceTimeText");
+            const isAuth = (sessionStorage.getItem("schnitzelmod_admin_auth") === "true");
+
+            if (overlay && msgEl && timeEl) {
+                msgEl.textContent = currentMaintenanceMessage;
+                timeEl.textContent = currentMaintenanceEstimatedTime;
+
+                if (currentMaintenanceMode && !isAuth) {
+                    overlay.classList.add("active");
+                    document.body.style.overflow = "hidden";
+                } else {
+                    overlay.classList.remove("active");
+                    document.body.style.overflow = "";
+                }
+            }
+        }
+
+        const maintenanceAdminBtn = document.getElementById("maintenanceAdminBtn");
+        if (maintenanceAdminBtn) {
+            maintenanceAdminBtn.addEventListener("click", () => {
+                openModal();
+            });
+        }
+
+        function renderHallOfFame() {
+            const grid = document.getElementById("hofGrid");
+            if (!grid) return;
+            grid.innerHTML = "";
+            currentHallOfFame.forEach(t => {
+                const card = document.createElement("div");
+                card.className = "hof-card hof-" + (t.tier || "gold");
+                card.innerHTML = `
+                    <div class="hof-rank">${escapeHtml(t.rank)}</div>
+                    <div class="hof-avatar">${t.avatar || "🏎️"}</div>
+                    <h3>${escapeHtml(t.name)}</h3>
+                    <div class="hof-badge">${escapeHtml(t.badge || "STAGE 3 PILOT")}</div>
+                    <ul class="hof-stats">
+                        <li><span>Rekord / Meilenstein:</span> <strong>${escapeHtml(t.record || "-")}</strong></li>
+                        <li><span>Spezialität:</span> <strong>${escapeHtml(t.specialty || "-")}</strong></li>
+                        <li><span>Status:</span> <strong style="color: var(--emerald);">${escapeHtml(t.status || "🟢 Vollgas im Überleben")}</strong></li>
+                    </ul>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderAdminTesterList() {
+            const list = document.getElementById("adminTesterList");
+            if (!list) return;
+            list.innerHTML = "";
+            currentHallOfFame.forEach((t, idx) => {
+                const item = document.createElement("div");
+                item.className = "admin-tester-card";
+                item.innerHTML = `
+                    <div class="admin-tester-info">
+                        <span class="admin-tester-avatar">${t.avatar || "🏎️"}</span>
+                        <div>
+                            <div class="admin-tester-name">${escapeHtml(t.name)} <span style="font-size:10px; opacity:0.6;">(${escapeHtml(t.badge || "")})</span></div>
+                            <div class="admin-tester-rank">${escapeHtml(t.rank)} • ${escapeHtml(t.record || "")}</div>
+                        </div>
+                    </div>
+                    <button class="btn-tester-delete" onclick="deleteTester(${idx})">🗑️</button>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        window.deleteTester = function(idx) {
+            if (confirm("Tester '" + currentHallOfFame[idx].name + "' wirklich aus der Hall of Fame entfernen?")) {
+                currentHallOfFame.splice(idx, 1);
+                renderAdminTesterList();
+                renderHallOfFame();
+            }
+        };
+
+        window.switchAdminTab = function(tabName) {
+            const tabs = ["status", "maintenance", "hof", "killswitch"];
+            tabs.forEach(t => {
+                const btn = document.getElementById("tabBtn" + t.charAt(0).toUpperCase() + t.slice(1));
+                const content = document.getElementById("adminTabContent" + t.charAt(0).toUpperCase() + t.slice(1));
+                if (btn) btn.className = "admin-tab-btn" + (t === tabName ? " active" : "");
+                if (content) content.style.display = (t === tabName ? "block" : "none");
+            });
+            if (tabName === "hof") renderAdminTesterList();
+        };
 
         const closeBannerBtn = document.getElementById("closeBannerBtn");
         if (closeBannerBtn) {
@@ -1819,6 +2311,11 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                     if (data.bannerMessage) currentBannerMessage = data.bannerMessage;
                     if (data.downloadEnabled !== undefined) currentDownloadsEnabled = data.downloadEnabled;
                     if (data.downloadDisabledReason) currentDownloadDisabledReason = data.downloadDisabledReason;
+                    if (data.maintenanceMode !== undefined) currentMaintenanceMode = data.maintenanceMode;
+                    if (data.maintenanceMessage) currentMaintenanceMessage = data.maintenanceMessage;
+                    if (data.maintenanceEstimatedTime) currentMaintenanceEstimatedTime = data.maintenanceEstimatedTime;
+                    if (data.hallOfFame && Array.isArray(data.hallOfFame)) currentHallOfFame = data.hallOfFame;
+
                     applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
                 }
             })
@@ -1830,12 +2327,24 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                 const savedBannerMsg = localStorage.getItem("schnitzelmod_banner_msg");
                 const savedDl = localStorage.getItem("schnitzelmod_dl_enabled");
                 const savedDlReason = localStorage.getItem("schnitzelmod_dl_reason");
+                const savedMaintMode = localStorage.getItem("schnitzelmod_maint_mode");
+                const savedMaintMsg = localStorage.getItem("schnitzelmod_maint_msg");
+                const savedMaintTime = localStorage.getItem("schnitzelmod_maint_time");
+                const savedHof = localStorage.getItem("schnitzelmod_hof");
+
                 if (savedStatus) currentStatus = savedStatus;
                 if (savedMessage) currentMessage = savedMessage;
                 if (savedBanner !== null) currentBannerActive = (savedBanner === "true");
                 if (savedBannerMsg) currentBannerMessage = savedBannerMsg;
                 if (savedDl !== null) currentDownloadsEnabled = (savedDl === "true");
                 if (savedDlReason) currentDownloadDisabledReason = savedDlReason;
+                if (savedMaintMode !== null) currentMaintenanceMode = (savedMaintMode === "true");
+                if (savedMaintMsg) currentMaintenanceMessage = savedMaintMsg;
+                if (savedMaintTime) currentMaintenanceEstimatedTime = savedMaintTime;
+                if (savedHof) {
+                    try { currentHallOfFame = JSON.parse(savedHof); } catch(err) {}
+                }
+
                 applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
             });
 
@@ -1867,7 +2376,6 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             const step = (timestamp) => {
                 if (!startTimestamp) startTimestamp = timestamp;
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                // Ease-out cubic
                 const ease = 1 - Math.pow(1 - progress, 3);
                 const current = start + (end - start) * ease;
                 obj.textContent = formatFn(current);
@@ -1938,6 +2446,7 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
         function handleLogin() {
             if (passInput.value === ADMIN_PIN) {
                 sessionStorage.setItem("schnitzelmod_admin_auth", "true");
+                applyMaintenanceMode();
                 showControls();
             } else {
                 errorMsg.style.display = "block";
@@ -1960,6 +2469,10 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             document.getElementById("customBannerInput").value = currentBannerMessage;
             document.getElementById("downloadsDisabledCheckbox").checked = !currentDownloadsEnabled;
             document.getElementById("downloadDisabledReasonInput").value = currentDownloadDisabledReason;
+            document.getElementById("maintenanceActiveCheckbox").checked = currentMaintenanceMode;
+            document.getElementById("maintenanceMsgInput").value = currentMaintenanceMessage;
+            document.getElementById("maintenanceTimeInput").value = currentMaintenanceEstimatedTime;
+            renderAdminTesterList();
         }
 
         window.selectStatus = function(type) {
@@ -1977,6 +2490,40 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             }
         };
 
+        // Add Tester Button
+        document.getElementById("btnAddTester").addEventListener("click", () => {
+            const name = document.getElementById("newTesterName").value.trim();
+            if (!name) {
+                alert("Bitte gib einen Namen für den Tester ein!");
+                return;
+            }
+            const avatar = document.getElementById("newTesterAvatar").value.trim() || "🏎️";
+            const rank = document.getElementById("newTesterRank").value.trim() || "🎖️ CHEFF-TESTER";
+            const tier = document.getElementById("newTesterTier").value;
+            const badge = document.getElementById("newTesterBadge").value.trim() || "STAGE 3 PILOT";
+            const record = document.getElementById("newTesterRecord").value.trim() || "Top Pilot";
+            const specialty = document.getElementById("newTesterSpecialty").value.trim() || "Hardcore Tests";
+
+            currentHallOfFame.push({
+                rank: rank,
+                avatar: avatar,
+                name: name,
+                badge: badge,
+                record: record,
+                specialty: specialty,
+                status: "🟢 Vollgas im Überleben",
+                tier: tier
+            });
+
+            document.getElementById("newTesterName").value = "";
+            document.getElementById("newTesterBadge").value = "";
+            document.getElementById("newTesterRecord").value = "";
+            document.getElementById("newTesterSpecialty").value = "";
+
+            renderAdminTesterList();
+            renderHallOfFame();
+        });
+
         saveStatusBtn.addEventListener("click", () => {
             currentStatus = selectedStatus;
             currentMessage = customInput.value.trim() || "Status aktualisiert.";
@@ -1984,13 +2531,20 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             currentBannerMessage = document.getElementById("customBannerInput").value.trim() || "Wichtige Meldung";
             currentDownloadsEnabled = !document.getElementById("downloadsDisabledCheckbox").checked;
             currentDownloadDisabledReason = document.getElementById("downloadDisabledReasonInput").value.trim() || "Wartungsarbeiten / Update wird hochgeladen";
-            
+            currentMaintenanceMode = document.getElementById("maintenanceActiveCheckbox").checked;
+            currentMaintenanceMessage = document.getElementById("maintenanceMsgInput").value.trim() || "Cheat Motor Boxenstopp: Wir führen gerade Tuning- und System-Upgrades durch. Gleich wieder online!";
+            currentMaintenanceEstimatedTime = document.getElementById("maintenanceTimeInput").value.trim() || "ca. 15 Minuten";
+
             localStorage.setItem("schnitzelmod_status", currentStatus);
             localStorage.setItem("schnitzelmod_message", currentMessage);
             localStorage.setItem("schnitzelmod_banner_active", currentBannerActive ? "true" : "false");
             localStorage.setItem("schnitzelmod_banner_msg", currentBannerMessage);
             localStorage.setItem("schnitzelmod_dl_enabled", currentDownloadsEnabled ? "true" : "false");
             localStorage.setItem("schnitzelmod_dl_reason", currentDownloadDisabledReason);
+            localStorage.setItem("schnitzelmod_maint_mode", currentMaintenanceMode ? "true" : "false");
+            localStorage.setItem("schnitzelmod_maint_msg", currentMaintenanceMessage);
+            localStorage.setItem("schnitzelmod_maint_time", currentMaintenanceEstimatedTime);
+            localStorage.setItem("schnitzelmod_hof", JSON.stringify(currentHallOfFame));
 
             applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
             closeModal();
@@ -2003,7 +2557,10 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             currentBannerMessage = document.getElementById("customBannerInput").value.trim() || "Wichtige Meldung";
             currentDownloadsEnabled = !document.getElementById("downloadsDisabledCheckbox").checked;
             currentDownloadDisabledReason = document.getElementById("downloadDisabledReasonInput").value.trim() || "Wartungsarbeiten / Update wird hochgeladen";
-            
+            currentMaintenanceMode = document.getElementById("maintenanceActiveCheckbox").checked;
+            currentMaintenanceMessage = document.getElementById("maintenanceMsgInput").value.trim() || "Cheat Motor Boxenstopp: Wir führen gerade Tuning- und System-Upgrades durch. Gleich wieder online!";
+            currentMaintenanceEstimatedTime = document.getElementById("maintenanceTimeInput").value.trim() || "ca. 15 Minuten";
+
             const statusObj = {
                 status: currentStatus,
                 tag: currentStatus.toUpperCase(),
@@ -2011,14 +2568,18 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                 bannerActive: currentBannerActive,
                 bannerMessage: currentBannerMessage,
                 downloadEnabled: currentDownloadsEnabled,
-                downloadDisabledReason: currentDownloadDisabledReason
+                downloadDisabledReason: currentDownloadDisabledReason,
+                maintenanceMode: currentMaintenanceMode,
+                maintenanceMessage: currentMaintenanceMessage,
+                maintenanceEstimatedTime: currentMaintenanceEstimatedTime,
+                hallOfFame: currentHallOfFame
             };
             const jsonStr = JSON.stringify(statusObj, null, 2);
-            
+
             navigator.clipboard.writeText(jsonStr);
             applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
-            
-            alert("✅ Der Status-Code wurde in deine Zwischenablage kopiert!\n\nAuf der GitHub-Seite musst du nur noch:\n1. Strg + V (Einfügen) drücken\n2. Auf den grünen Button 'Commit changes' klicken!\n\nDann sehen alle Besucher weltweit den neuen Status, das Banner und die Download-Sperre in Echtzeit!");
+
+            alert("✅ Der Status-Code wurde in deine Zwischenablage kopiert!\n\nAuf der GitHub-Seite musst du nur noch:\n1. Strg + V (Einfügen) drücken\n2. Auf den grünen Button 'Commit changes' klicken!\n\nDann sehen alle Besucher weltweit den neuen Status, das Banner, den Wartungsmodus und die Hall of Fame in Echtzeit!");
             window.open("https://github.com/Timluci09/Schnitzelmod/edit/main/status.json", "_blank");
             closeModal();
         });
@@ -2028,6 +2589,7 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             loginView.style.display = "block";
             controlView.style.display = "none";
             passInput.value = "";
+            applyMaintenanceMode();
             closeModal();
         });
 
@@ -2150,14 +2712,11 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                     }
                 }, 120);
             } else if (cmd === "testers" || cmd === "hof") {
-                printTerminalLine(`
-<span style="color:#f59e0b; font-weight:bold;">🏆 CHEAT MOTOR HALL OF FAME:</span>
-  ┌────────────────────────────────────────────────────────┐
-  │ 🥇 <span style="color:#f59e0b; font-weight:bold;">BEN</span>    - Cheff-Tester & Turbo-Pilot (Y=5200 Orbit)    │
-  │ 🥈 <span style="color:#cbd5e1; font-weight:bold;">GIDEON</span> - TLauncher-Legende (0 Tode im Überleben)       │
-  │ 🥉 <span style="color:#00f0ff; font-weight:bold;">TIM</span>    - Mastermind & Memory Engine Architekt         │
-  └────────────────────────────────────────────────────────┘
-`);
+                let out = `\n<span style="color:#f59e0b; font-weight:bold;">🏆 CHEAT MOTOR HALL OF FAME (CREW):</span>\n`;
+                currentHallOfFame.forEach(t => {
+                    out += `  ${t.avatar || "🏎️"} <strong style="color:#00f0ff;">${escapeHtml(t.name)}</strong> [${escapeHtml(t.rank)}] — ${escapeHtml(t.record || "")} (${escapeHtml(t.specialty || "")})\n`;
+                });
+                printTerminalLine(out);
             } else if (cmd === "download") {
                 if (!currentDownloadsEnabled) {
                     printTerminalLine(`<span style="color:#ef4444; font-weight:bold;">[!] DOWNLOAD GESPERRT DURCH ADMIN</span>`);
