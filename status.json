@@ -1,9 +1,44 @@
 {
-  "status": "online",
-  "tag": "ONLINE",
-  "message": "Alle Trainer-Funktionen betriebsbereit • Minecraft 1.20.1 aktiv",
+  "status": "stoerung",
+  "tag": "STOERUNG",
+  "message": "Störung gemeldet: Cheats werden derzeit an neue Version angepasst!",
   "bannerActive": false,
   "bannerMessage": "🔥 WICHTIG: Neues Cheat Motor Update in Vorbereitung!",
   "downloadEnabled": true,
-  "downloadDisabledReason": "Wartungsarbeiten / Update wird hochgeladen"
+  "downloadDisabledReason": "Wartungsarbeiten / Update wird hochgeladen",
+  "maintenanceMode": false,
+  "maintenanceMessage": "Cheat Motor Boxenstopp: Wir führen gerade Tuning- und System-Upgrades durch. Gleich wieder online!",
+  "maintenanceEstimatedTime": "ca. 15 Minuten",
+  "hallOfFame": [
+    {
+      "rank": "🥇 CHEFF-TESTER",
+      "avatar": "🏎️",
+      "name": "Ben",
+      "badge": "STAGE 3 PILOT",
+      "record": "Y = 5.200 (Orbit)",
+      "specialty": "Crash-Analyst & Director",
+      "status": "🟢 Vollgas im Überleben",
+      "tier": "gold"
+    },
+    {
+      "rank": "🥈 TLAUNCHER LEGENDE",
+      "avatar": "🛡️",
+      "name": "Gideon",
+      "badge": "FABRIC PIONIER",
+      "record": "1. Flug auf TLauncher",
+      "specialty": "Überlebenskünstler (0 Tode)",
+      "status": "🟢 Dauerhaft in der Luft",
+      "tier": "silver"
+    },
+    {
+      "rank": "🥉 MASTERMIND",
+      "avatar": "⚡",
+      "name": "Tim",
+      "badge": "LEAD-ENTWICKLER",
+      "record": "16-Byte Klass-Validation",
+      "specialty": "Universal Memory Engine",
+      "status": "🟢 Code getunt & ready",
+      "tier": "bronze"
+    }
+  ]
 }
