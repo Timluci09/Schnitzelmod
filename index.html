@@ -1018,8 +1018,9 @@
                     <input type="text" id="customStatusInput" class="admin-input" placeholder="z. B. Alle Cheats funktionieren...">
                 </div>
 
-                <div class="modal-actions">
-                    <button class="btn-modal-save" id="saveStatusBtn">💾 Status Speichern</button>
+                <div class="modal-actions" style="flex-direction: column; gap: 10px;">
+                    <button class="btn-modal-save" id="saveStatusBtn">💾 Lokal Speichern (Vorschau)</button>
+                    <button class="btn-modal-save" style="background: linear-gradient(135deg, var(--emerald), #059669); color: white;" id="publishGithubBtn">🌐 Für ALLE Besucher live schalten (1 Klick)</button>
                     <button class="btn-modal-logout" id="logoutAdminBtn">Abmelden</button>
                 </div>
             </div>
@@ -1033,12 +1034,6 @@
         // Current status variables
         let currentStatus = "online";
         let currentMessage = "Alle Trainer-Funktionen betriebsbereit • Minecraft 1.20.1 aktiv";
-
-        // Load persisted state from localStorage if exists
-        const savedStatus = localStorage.getItem("schnitzelmod_status");
-        const savedMessage = localStorage.getItem("schnitzelmod_message");
-        if (savedStatus) currentStatus = savedStatus;
-        if (savedMessage) currentMessage = savedMessage;
 
         function applyStatusToUI(status, message) {
             const bar = document.getElementById("liveStatusBar");
@@ -1058,8 +1053,24 @@
             msgEl.textContent = message;
         }
 
-        // Apply on load
-        applyStatusToUI(currentStatus, currentMessage);
+        // Fetch global status from GitHub so ALL visitors see the same status in real-time
+        fetch("https://raw.githubusercontent.com/Timluci09/Schnitzelmod/main/status.json?t=" + new Date().getTime())
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.status) {
+                    currentStatus = data.status;
+                    currentMessage = data.message || currentMessage;
+                    applyStatusToUI(currentStatus, currentMessage);
+                }
+            })
+            .catch(e => {
+                // Fallback to local storage if offline
+                const savedStatus = localStorage.getItem("schnitzelmod_status");
+                const savedMessage = localStorage.getItem("schnitzelmod_message");
+                if (savedStatus) currentStatus = savedStatus;
+                if (savedMessage) currentMessage = savedMessage;
+                applyStatusToUI(currentStatus, currentMessage);
+            });
 
         // Modal Elements
         const overlay = document.getElementById("adminModalOverlay");
@@ -1150,6 +1161,26 @@
             localStorage.setItem("schnitzelmod_message", currentMessage);
 
             applyStatusToUI(currentStatus, currentMessage);
+            closeModal();
+        });
+
+        document.getElementById("publishGithubBtn").addEventListener("click", () => {
+            currentStatus = selectedStatus;
+            currentMessage = customInput.value.trim() || "Status aktualisiert.";
+            
+            const statusObj = {
+                status: currentStatus,
+                tag: currentStatus.toUpperCase(),
+                message: currentMessage
+            };
+            const jsonStr = JSON.stringify(statusObj, null, 2);
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(jsonStr);
+            applyStatusToUI(currentStatus, currentMessage);
+            
+            alert("✅ Der Status-Code wurde in deine Zwischenablage kopiert!\n\nAuf der GitHub-Seite musst du nur noch:\n1. Strg + V (Einfügen) drücken\n2. Auf den grünen Button 'Commit changes' klicken!\n\nDann sehen es alle Besucher weltweit!");
+            window.open("https://github.com/Timluci09/Schnitzelmod/edit/main/status.json", "_blank");
             closeModal();
         });
 
