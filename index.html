@@ -1020,16 +1020,16 @@
         </div>
 
         <!-- ==================================================== -->
-        <!-- ANIMIERTE LIVE-STATISTIKEN COUNTER -->
+        <!-- ANIMIERTE LIVE-STATISTIKEN COUNTER (ECHTE STATS) -->
         <!-- ==================================================== -->
         <section id="stats" class="stats-section">
             <div class="stats-grid">
                 <!-- Stat 1 -->
                 <div class="stat-card">
-                    <div class="stat-icon">🚀</div>
-                    <div class="stat-number" data-target="1850" id="counter1">0</div>
-                    <div class="stat-label">Downloads & Spieler</div>
-                    <div class="stat-desc">Aktiv im Singleplayer</div>
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-number" id="counter1">0</div>
+                    <div class="stat-label">Aktive Beta-Tester</div>
+                    <div class="stat-desc">Tim, Gideon & Freunde im Test</div>
                 </div>
 
                 <!-- Stat 2 -->
@@ -1037,22 +1037,22 @@
                     <div class="stat-icon">⚡</div>
                     <div class="stat-number"><span id="counter2">0.0</span>%</div>
                     <div class="stat-label">CPU-Zusatzlast</div>
-                    <div class="stat-desc">Absolutes Zero-Lag Design</div>
+                    <div class="stat-desc">Auf allen 3 PCs 100% flüssig</div>
                 </div>
 
                 <!-- Stat 3 -->
                 <div class="stat-card">
                     <div class="stat-icon">🎮</div>
-                    <div class="stat-number"><span id="counter3">0</span>%</div>
-                    <div class="stat-label">Singleplayer-Sicher</div>
-                    <div class="stat-desc">Reine RAM-Manipulation</div>
+                    <div class="stat-number"><span id="counter3">0</span> / 3</div>
+                    <div class="stat-label">Systeme Kompatibel</div>
+                    <div class="stat-desc">Vanilla, TLauncher & Fabric 1.20.1</div>
                 </div>
 
                 <!-- Stat 4 -->
                 <div class="stat-card">
                     <div class="stat-icon">⏱️</div>
                     <div class="stat-number">&lt; <span id="counter4">0.0</span>s</div>
-                    <div class="stat-label">Scan-Reaktionszeit</div>
+                    <div class="stat-label">RAM-Scan Zeit</div>
                     <div class="stat-desc">Universal VirtualQueryEx</div>
                 </div>
             </div>
@@ -1250,17 +1250,17 @@
             if (countersAnimated) return;
             countersAnimated = true;
 
-            // Counter 1: Downloads (0 -> 1850+)
-            animateValue("counter1", 0, 1850, 1800, (v) => v.toLocaleString('de-DE') + "+");
+            // Counter 1: Aktive Tester (0 -> 3)
+            animateValue("counter1", 0, 3, 1000, (v) => Math.round(v));
 
-            // Counter 2: CPU (0.0%)
-            animateValue("counter2", 5.0, 0.0, 1500, (v) => v.toFixed(1));
+            // Counter 2: CPU (1.5 -> 0.0%)
+            animateValue("counter2", 1.5, 0.0, 1200, (v) => v.toFixed(1));
 
-            // Counter 3: Safety (0 -> 100%)
-            animateValue("counter3", 0, 100, 1600, (v) => Math.round(v));
+            // Counter 3: Systeme (0 -> 3)
+            animateValue("counter3", 0, 3, 1100, (v) => Math.round(v));
 
-            // Counter 4: Scan time (1.5 -> 0.3s)
-            animateValue("counter4", 2.0, 0.3, 1400, (v) => v.toFixed(1));
+            // Counter 4: Scan time (1.2 -> 0.4s)
+            animateValue("counter4", 1.2, 0.4, 1200, (v) => v.toFixed(1));
         }
 
         function animateValue(id, start, end, duration, formatFn) {
