@@ -6,9 +6,9 @@
   "bannerMessage": "🔥 WICHTIG: Neues Cheat Motor Update in Vorbereitung!",
   "downloadEnabled": true,
   "downloadDisabledReason": "Wartungsarbeiten / Update wird hochgeladen",
-  "maintenanceMode": false,
+  "maintenanceMode": true,
   "maintenanceMessage": "Cheat Motor Boxenstopp: Wir führen gerade Tuning- und System-Upgrades durch. Gleich wieder online!",
-  "maintenanceEstimatedTime": "ca. 2 Minuten",
+  "maintenanceEstimatedTime": "ca. 15 Minuten",
   "hallOfFame": [
     {
       "rank": "🥇 CHEFF-TESTER",
