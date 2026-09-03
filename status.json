@@ -1,14 +1,14 @@
 {
-  "status": "stoerung",
-  "tag": "STOERUNG",
-  "message": "Störung gemeldet: Cheats werden derzeit an neue Version angepasst!",
+  "status": "online",
+  "tag": "ONLINE",
+  "message": "Alle Trainer-Funktionen betriebsbereit • Minecraft 1.20.1 aktiv",
   "bannerActive": false,
   "bannerMessage": "🔥 WICHTIG: Neues Cheat Motor Update in Vorbereitung!",
   "downloadEnabled": true,
   "downloadDisabledReason": "Wartungsarbeiten / Update wird hochgeladen",
   "maintenanceMode": false,
   "maintenanceMessage": "Cheat Motor Boxenstopp: Wir führen gerade Tuning- und System-Upgrades durch. Gleich wieder online!",
-  "maintenanceEstimatedTime": "ca. 15 Minuten",
+  "maintenanceEstimatedTime": "ca. 2 Minuten",
   "hallOfFame": [
     {
       "rank": "🥇 CHEFF-TESTER",
