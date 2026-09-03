@@ -11,16 +11,6 @@
   "maintenanceEstimatedTime": "ca. 15 Minuten",
   "hallOfFame": [
     {
-      "rank": "🥇 CHEFF-TESTER",
-      "avatar": "🏎️",
-      "name": "Ben",
-      "badge": "STAGE 3 PILOT",
-      "record": "Y = 5.200 (Orbit)",
-      "specialty": "Crash-Analyst & Director",
-      "status": "🟢 Vollgas im Überleben",
-      "tier": "gold"
-    },
-    {
       "rank": "🥈 TLAUNCHER LEGENDE",
       "avatar": "🛡️",
       "name": "Gideon",
@@ -31,14 +21,14 @@
       "tier": "silver"
     },
     {
-      "rank": "🥉 MASTERMIND",
-      "avatar": "⚡",
-      "name": "Tim",
-      "badge": "LEAD-ENTWICKLER",
-      "record": "16-Byte Klass-Validation",
-      "specialty": "Universal Memory Engine",
-      "status": "🟢 Code getunt & ready",
-      "tier": "bronze"
+      "rank": "BOSS",
+      "avatar": "🏎️",
+      "name": "Ben",
+      "badge": "Turbo",
+      "record": "4500 Codes aufeinmal",
+      "specialty": "Krasser Entwickler",
+      "status": "🟢 Vollgas im Überleben",
+      "tier": "gold"
     }
   ]
 }
