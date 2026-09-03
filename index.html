@@ -918,6 +918,96 @@
         }
 
         /* ==================================================== */
+        /* 📢 ANNOUNCEMENT EILMELDUNGS-BANNER & KILLSWITCH */
+        /* ==================================================== */
+        .announcement-banner {
+            background: linear-gradient(90deg, rgba(245, 158, 11, 0.25) 0%, rgba(239, 68, 68, 0.25) 100%);
+            border-bottom: 1.5px solid rgba(245, 158, 11, 0.7);
+            color: #f8fafc;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 700;
+            display: none;
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
+            animation: pulseBanner 2.5s infinite;
+        }
+
+        .announcement-banner.active {
+            display: block;
+        }
+
+        @keyframes pulseBanner {
+            0%, 100% { border-bottom-color: rgba(245, 158, 11, 0.7); }
+            50% { border-bottom-color: rgba(239, 68, 68, 0.95); box-shadow: 0 4px 25px rgba(239, 68, 68, 0.35); }
+        }
+
+        .announcement-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .announcement-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 auto;
+        }
+
+        .announcement-badge {
+            background: #ef4444;
+            color: white;
+            padding: 3px 9px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+        }
+
+        .announcement-text {
+            color: #ffffff;
+            letter-spacing: 0.2px;
+        }
+
+        .announcement-close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0 6px;
+            transition: color 0.2s;
+        }
+
+        .announcement-close:hover {
+            color: #fff;
+        }
+
+        /* Deaktivierter Download-Button */
+        .btn-download-disabled {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1.5px dashed rgba(245, 158, 11, 0.6) !important;
+            color: #cbd5e1 !important;
+            cursor: not-allowed !important;
+            box-shadow: none !important;
+            opacity: 0.85;
+            transition: all 0.2s;
+        }
+
+        .btn-download-disabled:hover {
+            transform: none !important;
+            background: rgba(245, 158, 11, 0.1) !important;
+            border-color: var(--amber) !important;
+            color: var(--amber) !important;
+        }
+
+        /* ==================================================== */
         /* 🏆 HALL OF FAME STYLES */
         /* ==================================================== */
         .hof-section {
@@ -1209,6 +1299,17 @@
     <div class="ambient-glow-1"></div>
     <div class="ambient-glow-2"></div>
 
+    <!-- 📢 GLOBALER EILMELDUNGS-BANNER -->
+    <div class="announcement-banner" id="globalAnnouncementBanner">
+        <div class="container announcement-inner">
+            <div class="announcement-content">
+                <span class="announcement-badge" id="announcementBadge">EILMELDUNG</span>
+                <span class="announcement-text" id="announcementMessageText">🔥 WICHTIG: Neues Cheat Motor Update in Vorbereitung!</span>
+            </div>
+            <button class="announcement-close" id="closeBannerBtn" title="Schließen">&times;</button>
+        </div>
+    </div>
+
     <!-- LIVE STATUS TICKER BAR -->
     <div class="status-bar status-online" id="liveStatusBar">
         <div class="container status-inner">
@@ -1239,7 +1340,7 @@
             </div>
             <div style="display: flex; align-items: center; gap: 12px;">
                 <button class="terminal-nav-btn" id="openTerminalBtn">💻 Terminal</button>
-                <a href="https://github.com/Timluci09/Schnitzelmod/raw/main/CheatMotor-v2.0.zip" class="nav-btn">⬇️ Download</a>
+                <a href="https://github.com/Timluci09/Schnitzelmod/raw/main/CheatMotor-v2.0.zip" class="nav-btn" id="navDownloadBtn">⬇️ Download</a>
             </div>
         </div>
     </nav>
@@ -1254,8 +1355,8 @@
             <p>100% geräuschlose Arbeitsspeicher-Steuerung (RAM). Getunte Performance, 0% Lag und kein Ruckeln.</p>
             
             <div class="hero-actions">
-                <a href="https://github.com/Timluci09/Schnitzelmod/raw/main/CheatMotor-v2.0.zip" class="btn-primary">
-                    <span>⬇️</span> Download Cheat Motor (.ZIP)
+                <a href="https://github.com/Timluci09/Schnitzelmod/raw/main/CheatMotor-v2.0.zip" class="btn-primary" id="heroDownloadBtn">
+                    <span>⬇️</span> <span id="heroDownloadBtnText">Download Cheat Motor (.ZIP)</span>
                 </a>
                 <a href="#anleitung" class="btn-secondary">
                     <span>📖</span> Schnell-Start Anleitung
@@ -1499,10 +1600,11 @@
             <!-- Control View -->
             <div id="adminControlView" style="display: none;">
                 <div class="modal-header">
-                    <h3>⚙️ Status-Verwaltung</h3>
+                    <h3>⚙️ Status- & System-Verwaltung</h3>
                     <button class="modal-close-btn" id="closeAdminBtn2">&times;</button>
                 </div>
 
+                <!-- 1. SYSTEM STATUS -->
                 <div class="form-group">
                     <label>System-Status auswählen:</label>
                     <div class="status-choice-group">
@@ -1513,11 +1615,35 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Nachrichtentext auf der Website:</label>
+                    <label>Status-Nachrichtentext:</label>
                     <input type="text" id="customStatusInput" class="admin-input" placeholder="z. B. Alle Cheats funktionieren...">
                 </div>
 
-                <div class="modal-actions" style="flex-direction: column; gap: 10px;">
+                <!-- 2. 📢 EILMELDUNG / TOP-BANNER -->
+                <div class="form-group" style="border-top: 1px solid var(--border); padding-top: 14px; margin-top: 14px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                        <label style="margin: 0; font-weight: 800; color: #f59e0b;">📢 Eilmeldungs-Top-Banner:</label>
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; color: var(--text-main);">
+                            <input type="checkbox" id="bannerActiveCheckbox" style="accent-color: #f59e0b; width: 16px; height: 16px; cursor: pointer;">
+                            <span>Banner Aktiv</span>
+                        </label>
+                    </div>
+                    <input type="text" id="customBannerInput" class="admin-input" placeholder="z. B. 🔥 ACHTUNG: Neues Update in Vorbereitung!">
+                </div>
+
+                <!-- 3. ⬇️ DOWNLOAD-KILLSWITCH -->
+                <div class="form-group" style="border-top: 1px solid var(--border); padding-top: 14px; margin-top: 14px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                        <label style="margin: 0; font-weight: 800; color: #ef4444;">⬇️ Download-Killswitch:</label>
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; color: var(--text-main);">
+                            <input type="checkbox" id="downloadsDisabledCheckbox" style="accent-color: #ef4444; width: 16px; height: 16px; cursor: pointer;">
+                            <span>Downloads sperren / pausieren</span>
+                        </label>
+                    </div>
+                    <input type="text" id="downloadDisabledReasonInput" class="admin-input" placeholder="Grund für Sperre (z. B. Wartungsarbeiten / Update wird hochgeladen)">
+                </div>
+
+                <div class="modal-actions" style="flex-direction: column; gap: 10px; margin-top: 20px;">
                     <button class="btn-modal-save" id="saveStatusBtn">💾 Lokal Speichern (Vorschau)</button>
                     <button class="btn-modal-save" style="background: linear-gradient(135deg, var(--emerald), #059669); color: white;" id="publishGithubBtn">🌐 Für ALLE Besucher live schalten (1 Klick)</button>
                     <button class="btn-modal-logout" id="logoutAdminBtn">Abmelden</button>
@@ -1570,23 +1696,81 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
         // Current status variables
         let currentStatus = "online";
         let currentMessage = "Alle Trainer-Funktionen betriebsbereit • Minecraft 1.20.1 aktiv";
+        let currentBannerActive = false;
+        let currentBannerMessage = "🔥 WICHTIG: Neues Cheat Motor Update in Vorbereitung!";
+        let currentDownloadsEnabled = true;
+        let currentDownloadDisabledReason = "Wartungsarbeiten / Update wird hochgeladen";
 
-        function applyStatusToUI(status, message) {
+        function applyStatusToUI(status, message, bannerActive, bannerMsg, downloadsEnabled, downloadReason) {
             const bar = document.getElementById("liveStatusBar");
             const tag = document.getElementById("statusTag");
             const msgEl = document.getElementById("statusMessageText");
 
-            bar.className = "status-bar status-" + status;
-            
-            if (status === "online") {
-                tag.textContent = "ONLINE";
-            } else if (status === "wartung") {
-                tag.textContent = "WARTUNG";
-            } else if (status === "stoerung") {
-                tag.textContent = "STÖRUNG";
+            if (bar && tag && msgEl) {
+                bar.className = "status-bar status-" + status;
+                if (status === "online") tag.textContent = "ONLINE";
+                else if (status === "wartung") tag.textContent = "WARTUNG";
+                else if (status === "stoerung") tag.textContent = "STÖRUNG";
+                msgEl.textContent = message;
             }
 
-            msgEl.textContent = message;
+            // Apply Announcement Banner
+            const bannerEl = document.getElementById("globalAnnouncementBanner");
+            const bannerTextEl = document.getElementById("announcementMessageText");
+            if (bannerEl && bannerTextEl) {
+                if (bannerActive) {
+                    bannerEl.classList.add("active");
+                    bannerTextEl.textContent = bannerMsg || "🔥 WICHTIGE EILMELDUNG DES CHEAT MOTOR TEAMS!";
+                } else {
+                    bannerEl.classList.remove("active");
+                }
+            }
+
+            // Apply Download Button Lock / Unlock
+            const navBtn = document.getElementById("navDownloadBtn");
+            const heroBtn = document.getElementById("heroDownloadBtn");
+            const heroBtnText = document.getElementById("heroDownloadBtnText");
+
+            if (!downloadsEnabled) {
+                if (navBtn) {
+                    navBtn.classList.add("btn-download-disabled");
+                    navBtn.textContent = "🔒 Pausiert";
+                    navBtn.href = "javascript:void(0);";
+                    navBtn.onclick = (e) => {
+                        e.preventDefault();
+                        alert("⚠️ DOWNLOAD VORÜBERGEHEND PAUSIERT\n\nGrund: " + (downloadReason || "Wartungsarbeiten / Neues Update wird hochgeladen.") + "\n\nBitte versuche es in Kürze erneut!");
+                    };
+                }
+                if (heroBtn) {
+                    heroBtn.classList.add("btn-download-disabled");
+                    heroBtn.href = "javascript:void(0);";
+                    if (heroBtnText) heroBtnText.textContent = "Downloads vorübergehend pausiert";
+                    heroBtn.onclick = (e) => {
+                        e.preventDefault();
+                        alert("⚠️ DOWNLOAD VORÜBERGEHEND PAUSIERT\n\nGrund: " + (downloadReason || "Wartungsarbeiten / Neues Update wird hochgeladen.") + "\n\nBitte versuche es in Kürze erneut!");
+                    };
+                }
+            } else {
+                if (navBtn) {
+                    navBtn.classList.remove("btn-download-disabled");
+                    navBtn.textContent = "⬇️ Download";
+                    navBtn.href = "https://github.com/Timluci09/Schnitzelmod/raw/main/CheatMotor-v2.0.zip";
+                    navBtn.onclick = null;
+                }
+                if (heroBtn) {
+                    heroBtn.classList.remove("btn-download-disabled");
+                    heroBtn.href = "https://github.com/Timluci09/Schnitzelmod/raw/main/CheatMotor-v2.0.zip";
+                    if (heroBtnText) heroBtnText.textContent = "Download Cheat Motor (.ZIP)";
+                    heroBtn.onclick = null;
+                }
+            }
+        }
+
+        const closeBannerBtn = document.getElementById("closeBannerBtn");
+        if (closeBannerBtn) {
+            closeBannerBtn.addEventListener("click", () => {
+                document.getElementById("globalAnnouncementBanner").classList.remove("active");
+            });
         }
 
         // Fetch global status from GitHub so ALL visitors see the same status in real-time
@@ -1596,16 +1780,28 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                 if (data && data.status) {
                     currentStatus = data.status;
                     currentMessage = data.message || currentMessage;
-                    applyStatusToUI(currentStatus, currentMessage);
+                    if (data.bannerActive !== undefined) currentBannerActive = data.bannerActive;
+                    if (data.bannerMessage) currentBannerMessage = data.bannerMessage;
+                    if (data.downloadEnabled !== undefined) currentDownloadsEnabled = data.downloadEnabled;
+                    if (data.downloadDisabledReason) currentDownloadDisabledReason = data.downloadDisabledReason;
+                    applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
                 }
             })
             .catch(e => {
                 // Fallback to local storage if offline
                 const savedStatus = localStorage.getItem("schnitzelmod_status");
                 const savedMessage = localStorage.getItem("schnitzelmod_message");
+                const savedBanner = localStorage.getItem("schnitzelmod_banner_active");
+                const savedBannerMsg = localStorage.getItem("schnitzelmod_banner_msg");
+                const savedDl = localStorage.getItem("schnitzelmod_dl_enabled");
+                const savedDlReason = localStorage.getItem("schnitzelmod_dl_reason");
                 if (savedStatus) currentStatus = savedStatus;
                 if (savedMessage) currentMessage = savedMessage;
-                applyStatusToUI(currentStatus, currentMessage);
+                if (savedBanner !== null) currentBannerActive = (savedBanner === "true");
+                if (savedBannerMsg) currentBannerMessage = savedBannerMsg;
+                if (savedDl !== null) currentDownloadsEnabled = (savedDl === "true");
+                if (savedDlReason) currentDownloadDisabledReason = savedDlReason;
+                applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
             });
 
         // ====================================================
@@ -1725,6 +1921,10 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             controlView.style.display = "block";
             selectStatus(currentStatus);
             customInput.value = currentMessage;
+            document.getElementById("bannerActiveCheckbox").checked = currentBannerActive;
+            document.getElementById("customBannerInput").value = currentBannerMessage;
+            document.getElementById("downloadsDisabledCheckbox").checked = !currentDownloadsEnabled;
+            document.getElementById("downloadDisabledReasonInput").value = currentDownloadDisabledReason;
         }
 
         window.selectStatus = function(type) {
@@ -1736,7 +1936,7 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             if (type === "online" && (customInput.value.includes("Wartung") || customInput.value.includes("Störung"))) {
                 customInput.value = "Alle Trainer-Funktionen betriebsbereit • Minecraft 1.20.1 aktiv";
             } else if (type === "wartung" && customInput.value.includes("betriebsbereit")) {
-                customInput.value = "Wartungsarbeiten: Neues WeMod-Update wird vorbereitet!";
+                customInput.value = "Wartungsarbeiten: Neues Cheat-Motor-Update wird vorbereitet!";
             } else if (type === "stoerung" && customInput.value.includes("betriebsbereit")) {
                 customInput.value = "Störung gemeldet: Cheats werden derzeit an neue Version angepasst!";
             }
@@ -1745,29 +1945,45 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
         saveStatusBtn.addEventListener("click", () => {
             currentStatus = selectedStatus;
             currentMessage = customInput.value.trim() || "Status aktualisiert.";
+            currentBannerActive = document.getElementById("bannerActiveCheckbox").checked;
+            currentBannerMessage = document.getElementById("customBannerInput").value.trim() || "Wichtige Meldung";
+            currentDownloadsEnabled = !document.getElementById("downloadsDisabledCheckbox").checked;
+            currentDownloadDisabledReason = document.getElementById("downloadDisabledReasonInput").value.trim() || "Wartungsarbeiten / Update wird hochgeladen";
             
             localStorage.setItem("schnitzelmod_status", currentStatus);
             localStorage.setItem("schnitzelmod_message", currentMessage);
+            localStorage.setItem("schnitzelmod_banner_active", currentBannerActive ? "true" : "false");
+            localStorage.setItem("schnitzelmod_banner_msg", currentBannerMessage);
+            localStorage.setItem("schnitzelmod_dl_enabled", currentDownloadsEnabled ? "true" : "false");
+            localStorage.setItem("schnitzelmod_dl_reason", currentDownloadDisabledReason);
 
-            applyStatusToUI(currentStatus, currentMessage);
+            applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
             closeModal();
         });
 
         document.getElementById("publishGithubBtn").addEventListener("click", () => {
             currentStatus = selectedStatus;
             currentMessage = customInput.value.trim() || "Status aktualisiert.";
+            currentBannerActive = document.getElementById("bannerActiveCheckbox").checked;
+            currentBannerMessage = document.getElementById("customBannerInput").value.trim() || "Wichtige Meldung";
+            currentDownloadsEnabled = !document.getElementById("downloadsDisabledCheckbox").checked;
+            currentDownloadDisabledReason = document.getElementById("downloadDisabledReasonInput").value.trim() || "Wartungsarbeiten / Update wird hochgeladen";
             
             const statusObj = {
                 status: currentStatus,
                 tag: currentStatus.toUpperCase(),
-                message: currentMessage
+                message: currentMessage,
+                bannerActive: currentBannerActive,
+                bannerMessage: currentBannerMessage,
+                downloadEnabled: currentDownloadsEnabled,
+                downloadDisabledReason: currentDownloadDisabledReason
             };
             const jsonStr = JSON.stringify(statusObj, null, 2);
             
             navigator.clipboard.writeText(jsonStr);
-            applyStatusToUI(currentStatus, currentMessage);
+            applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
             
-            alert("✅ Der Status-Code wurde in deine Zwischenablage kopiert!\n\nAuf der GitHub-Seite musst du nur noch:\n1. Strg + V (Einfügen) drücken\n2. Auf den grünen Button 'Commit changes' klicken!\n\nDann sehen es alle Besucher weltweit!");
+            alert("✅ Der Status-Code wurde in deine Zwischenablage kopiert!\n\nAuf der GitHub-Seite musst du nur noch:\n1. Strg + V (Einfügen) drücken\n2. Auf den grünen Button 'Commit changes' klicken!\n\nDann sehen alle Besucher weltweit den neuen Status, das Banner und die Download-Sperre in Echtzeit!");
             window.open("https://github.com/Timluci09/Schnitzelmod/edit/main/status.json", "_blank");
             closeModal();
         });
@@ -1908,8 +2124,13 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
   └────────────────────────────────────────────────────────┘
 `);
             } else if (cmd === "download") {
-                printTerminalLine(`<span style="color:#10b981;">[↓] Starte Download von CheatMotor-v2.0.zip...</span>`);
-                window.location.href = "https://github.com/Timluci09/Schnitzelmod/raw/main/CheatMotor-v2.0.zip";
+                if (!currentDownloadsEnabled) {
+                    printTerminalLine(`<span style="color:#ef4444; font-weight:bold;">[!] DOWNLOAD GESPERRT DURCH ADMIN</span>`);
+                    printTerminalLine(`<span style="color:#f59e0b;">Grund: ${escapeHtml(currentDownloadDisabledReason)}</span>`);
+                } else {
+                    printTerminalLine(`<span style="color:#10b981;">[↓] Starte Download von CheatMotor-v2.0.zip...</span>`);
+                    window.location.href = "https://github.com/Timluci09/Schnitzelmod/raw/main/CheatMotor-v2.0.zip";
+                }
             } else if (cmd === "cheats") {
                 printTerminalLine(`
 <span style="color:#00f0ff; font-weight:bold;">HOTKEY CHEAT CODES:</span>
