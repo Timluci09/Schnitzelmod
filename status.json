@@ -2,8 +2,8 @@
   "status": "online",
   "tag": "ONLINE",
   "message": "Alle Trainer-Funktionen betriebsbereit • Minecraft 1.20.1 aktiv",
-  "bannerActive": true,
+  "bannerActive": false,
   "bannerMessage": "🔥 WICHTIG: Neues Cheat Motor Update in Vorbereitung!",
-  "downloadEnabled": false,
+  "downloadEnabled": true,
   "downloadDisabledReason": "Wartungsarbeiten / Update wird hochgeladen"
 }
