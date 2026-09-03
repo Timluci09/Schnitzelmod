@@ -917,14 +917,288 @@
             display: none;
         }
 
+        /* ==================================================== */
+        /* 🏆 HALL OF FAME STYLES */
+        /* ==================================================== */
+        .hof-section {
+            margin-bottom: 90px;
+        }
+
+        .hof-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .hof-card {
+            background: var(--bg-card);
+            border: 1.5px solid var(--border);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+        }
+
+        .hof-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .hof-gold {
+            border-color: rgba(245, 158, 11, 0.4);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.08);
+        }
+        .hof-gold:hover {
+            box-shadow: 0 15px 45px rgba(245, 158, 11, 0.25);
+            border-color: var(--amber);
+        }
+
+        .hof-silver {
+            border-color: rgba(148, 163, 184, 0.4);
+            box-shadow: 0 10px 30px rgba(148, 163, 184, 0.08);
+        }
+        .hof-silver:hover {
+            box-shadow: 0 15px 45px rgba(148, 163, 184, 0.25);
+            border-color: #cbd5e1;
+        }
+
+        .hof-bronze {
+            border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.08);
+        }
+        .hof-bronze:hover {
+            box-shadow: 0 15px 45px rgba(0, 240, 255, 0.25);
+            border-color: var(--cyan);
+        }
+
+        .hof-rank {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+
+        .hof-gold .hof-rank { color: var(--amber); }
+        .hof-silver .hof-rank { color: #cbd5e1; }
+        .hof-bronze .hof-rank { color: var(--cyan); }
+
+        .hof-avatar {
+            font-size: 44px;
+            margin-bottom: 12px;
+            display: inline-block;
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.2));
+        }
+
+        .hof-card h3 {
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+
+        .hof-badge {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 99px;
+            margin-bottom: 18px;
+        }
+
+        .hof-gold .hof-badge {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--amber);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+        }
+
+        .hof-silver .hof-badge {
+            background: rgba(148, 163, 184, 0.15);
+            color: #cbd5e1;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+        }
+
+        .hof-bronze .hof-badge {
+            background: rgba(0, 240, 255, 0.15);
+            color: var(--cyan);
+            border: 1px solid rgba(0, 240, 255, 0.35);
+        }
+
+        .hof-stats {
+            list-style: none;
+            text-align: left;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+        }
+
+        .hof-stats li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hof-stats li strong {
+            color: var(--text-main);
+        }
+
+        /* ==================================================== */
+        /* 💻 HACKER TERMINAL STYLES */
+        /* ==================================================== */
+        .terminal-nav-btn {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            color: var(--cyan);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .terminal-nav-btn:hover {
+            background: var(--cyan);
+            color: #07090e;
+            box-shadow: 0 0 16px var(--cyan-glow);
+        }
+
+        .terminal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(14px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .terminal-overlay.active {
+            display: flex;
+        }
+
+        .terminal-window {
+            width: 90%;
+            max-width: 820px;
+            height: 520px;
+            background: #05080e;
+            border: 1.5px solid #00f0ff;
+            border-radius: 14px;
+            box-shadow: 0 0 50px rgba(0, 240, 255, 0.3), inset 0 0 40px rgba(0, 240, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            font-family: 'JetBrains Mono', monospace;
+            position: relative;
+        }
+
+        /* Scanline effect */
+        .terminal-window::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .terminal-header {
+            background: #0c121d;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+            color: var(--cyan);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .terminal-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .terminal-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .terminal-body {
+            flex: 1;
+            padding: 16px 20px;
+            overflow-y: auto;
+            color: #00f0ff;
+            font-size: 13px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        .terminal-output {
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .terminal-prompt-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .terminal-prompt-text {
+            color: #10b981;
+            font-weight: 700;
+        }
+
+        .terminal-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #f8fafc;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .terminal-matrix-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: none;
+            z-index: 0;
+            opacity: 0.2;
+        }
+
         @media (max-width: 900px) {
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .hof-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 40px; }
             .steps { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: 1fr; }
+            .hof-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
             .status-inner { flex-direction: column; align-items: flex-start; }
             .status-choice-group { grid-template-columns: 1fr; }
@@ -958,11 +1232,15 @@
             <div class="nav-links">
                 <a href="#stats">Statistiken</a>
                 <a href="#features">Features</a>
+                <a href="#hall-of-fame">🏆 Crew</a>
                 <a href="#anleitung">Anleitung</a>
                 <a href="#smartscreen">Hilfe</a>
                 <a href="https://github.com/Timluci09/Schnitzelmod" target="_blank">GitHub</a>
             </div>
-            <a href="https://github.com/Timluci09/Schnitzelmod/raw/main/CheatMotor-v2.0.zip" class="nav-btn">⬇️ Download</a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="terminal-nav-btn" id="openTerminalBtn">💻 Terminal</button>
+                <a href="https://github.com/Timluci09/Schnitzelmod/raw/main/CheatMotor-v2.0.zip" class="nav-btn">⬇️ Download</a>
+            </div>
         </div>
     </nav>
 
@@ -1104,6 +1382,57 @@
             </div>
         </section>
 
+        <!-- ==================================================== -->
+        <!-- 🏆 HALL OF FAME DER TESTER -->
+        <!-- ==================================================== -->
+        <section id="hall-of-fame" class="hof-section">
+            <div class="section-title">
+                <h2>🏆 Hall of Fame</h2>
+                <p>Die Tuning-Crew hinter Cheat Motor — Unendliche Flugstunden & Hardcore-Tests.</p>
+            </div>
+
+            <div class="hof-grid">
+                <!-- BEN -->
+                <div class="hof-card hof-gold">
+                    <div class="hof-rank">🥇 CHEFF-TESTER</div>
+                    <div class="hof-avatar">🏎️</div>
+                    <h3>Ben</h3>
+                    <div class="hof-badge">STAGE 3 PILOT</div>
+                    <ul class="hof-stats">
+                        <li><span>Höhenrekord:</span> <strong>Y = 5.200 (Orbit)</strong></li>
+                        <li><span>Spezialität:</span> <strong>Crash-Analyst & Director</strong></li>
+                        <li><span>Status:</span> <strong style="color: var(--emerald);">🟢 Vollgas im Überleben</strong></li>
+                    </ul>
+                </div>
+
+                <!-- GIDEON -->
+                <div class="hof-card hof-silver">
+                    <div class="hof-rank">🥈 TLAUNCHER LEGENDE</div>
+                    <div class="hof-avatar">🛡️</div>
+                    <h3>Gideon</h3>
+                    <div class="hof-badge">FABRIC PIONIER</div>
+                    <ul class="hof-stats">
+                        <li><span>Meilenstein:</span> <strong>1. Flug auf TLauncher</strong></li>
+                        <li><span>Spezialität:</span> <strong>Überlebenskünstler (0 Tode)</strong></li>
+                        <li><span>Status:</span> <strong style="color: var(--emerald);">🟢 Dauerhaft in der Luft</strong></li>
+                    </ul>
+                </div>
+
+                <!-- TIM -->
+                <div class="hof-card hof-bronze">
+                    <div class="hof-rank">🥉 MASTERMIND</div>
+                    <div class="hof-avatar">⚡</div>
+                    <h3>Tim</h3>
+                    <div class="hof-badge">LEAD-ENTWICKLER</div>
+                    <ul class="hof-stats">
+                        <li><span>Erfindung:</span> <strong>16-Byte Klass-Validation</strong></li>
+                        <li><span>Spezialität:</span> <strong>Universal Memory Engine</strong></li>
+                        <li><span>Status:</span> <strong style="color: var(--emerald);">🟢 Code getunt & ready</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <!-- Anleitung -->
         <section id="anleitung">
             <div class="section-title">
@@ -1197,7 +1526,44 @@
         </div>
     </div>
 
-    <!-- SCRIPT FOR COUNTERS, ADMIN PANEL & STATUS -->
+    <!-- ==================================================== -->
+    <!-- 💻 HACKER CYBER-TERMINAL MODAL -->
+    <!-- ==================================================== -->
+    <div class="terminal-overlay" id="terminalModalOverlay">
+        <div class="terminal-window">
+            <canvas class="terminal-matrix-canvas" id="matrixCanvas"></canvas>
+            <div class="terminal-header">
+                <div class="terminal-controls">
+                    <div class="terminal-dot dot-red" id="closeTerminalBtn" title="Schließen"></div>
+                    <div class="terminal-dot dot-yellow" id="clearTerminalBtn" title="Löschen"></div>
+                    <div class="terminal-dot dot-green" id="matrixToggleBtn" title="Matrix-Regen AN/AUS"></div>
+                </div>
+                <div>CHEAT MOTOR CYBER CONSOLE v2.0 [TTY/1]</div>
+                <div style="font-size: 11px; opacity: 0.7;">Tippe 'help'</div>
+            </div>
+            <div class="terminal-body" id="terminalBody">
+                <div class="terminal-output" id="terminalOutput">
+═══════════════════════════════════════════════════════════════════
+  ______  __  __   ______  ______  ______   __    __  ______  ______ 
+ /\  ___\/\ \_\ \ /\  ___\/\  __ \/\__  _\ /\ "-./  \/\  __ \/\__  _\
+ \ \ \___\ \  __ \\ \  __\\ \  __ \/_/\ \/ \ \ \-./\ \ \ \/\ \/_/\ \/
+  \ \_____\ \_\ \_\\ \_____\ \_\ \_\ \ \_\  \ \_\ \ \_\ \_____\ \ \_\
+   \/_____/\/_/\/_/ \/_____/\/_/\/_/  \/_/   \/_/  \/_/\/_____/  \/_/ 
+═══════════════════════════════════════════════════════════════════
+Willkommen im Cheat Motor Cyber-Terminal.
+Universal RAM-Engine aktiv • Minecraft 1.20.1 Hook bereit.
+
+Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befehle ein.
+                </div>
+                <div class="terminal-prompt-line">
+                    <span class="terminal-prompt-text">root@cheatmotor:~$</span>
+                    <input type="text" id="terminalCommandInput" class="terminal-input" autocomplete="off" spellcheck="false">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT FOR COUNTERS, ADMIN PANEL, TERMINAL & STATUS -->
     <script>
         const ADMIN_PIN = "6121";
 
@@ -1421,6 +1787,193 @@
                 openModal();
             }
         });
+
+        /* ==================================================== */
+        /* 💻 HACKER TERMINAL JAVASCRIPT CONTROLLER */
+        /* ==================================================== */
+        const termOverlay = document.getElementById("terminalModalOverlay");
+        const openTermBtn = document.getElementById("openTerminalBtn");
+        const closeTermBtn = document.getElementById("closeTerminalBtn");
+        const clearTermBtn = document.getElementById("clearTerminalBtn");
+        const matrixToggleBtn = document.getElementById("matrixToggleBtn");
+        const termInput = document.getElementById("terminalCommandInput");
+        const termOutput = document.getElementById("terminalOutput");
+        const termBody = document.getElementById("terminalBody");
+        const matrixCanvas = document.getElementById("matrixCanvas");
+
+        function openTerminal() {
+            termOverlay.classList.add("active");
+            setTimeout(() => termInput.focus(), 100);
+        }
+
+        function closeTerminal() {
+            termOverlay.classList.remove("active");
+        }
+
+        function clearTerminal() {
+            termOutput.innerHTML = '<span style="color:#64748b;">Terminal gereinigt. Tippe "help" für Befehle.</span>\n';
+        }
+
+        if (openTermBtn) openTermBtn.addEventListener("click", openTerminal);
+        if (closeTermBtn) closeTermBtn.addEventListener("click", closeTerminal);
+        if (clearTermBtn) clearTermBtn.addEventListener("click", clearTerminal);
+
+        termOverlay.addEventListener("click", (e) => {
+            if (e.target === termOverlay) closeTerminal();
+        });
+
+        // Focus input when clicking anywhere in terminal body
+        termBody.addEventListener("click", () => termInput.focus());
+
+        // Global hotkey: ~ (Tilde) or Ctrl+Shift+T opens terminal
+        document.addEventListener("keydown", (e) => {
+            if ((e.key === "`" || e.key === "~" || (e.ctrlKey && e.shiftKey && (e.key === "T" || e.key === "t"))) && document.activeElement !== passInput) {
+                e.preventDefault();
+                if (termOverlay.classList.contains("active")) {
+                    closeTerminal();
+                } else {
+                    openTerminal();
+                }
+            }
+        });
+
+        // Command execution
+        termInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                const rawCmd = termInput.value.trim();
+                termInput.value = "";
+                if (!rawCmd) return;
+
+                printTerminalLine(`<span style="color:#10b981; font-weight:bold;">root@cheatmotor:~$</span> ${escapeHtml(rawCmd)}`);
+
+                const cmd = rawCmd.toLowerCase();
+                handleCommand(cmd);
+                termBody.scrollTop = termBody.scrollHeight;
+            }
+        });
+
+        function printTerminalLine(html) {
+            termOutput.innerHTML += html + "\n";
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        function handleCommand(cmd) {
+            if (cmd === "help") {
+                printTerminalLine(`
+<span style="color:#f59e0b; font-weight:bold;">VERFÜGBARE BEFEHLE:</span>
+  <span style="color:#00f0ff; font-weight:bold;">status</span>    - Zeigt RAM-Engine Diagnostics & Minecraft Hook
+  <span style="color:#00f0ff; font-weight:bold;">tune</span>      - Führt einen interaktiven RPM-Motortest durch
+  <span style="color:#00f0ff; font-weight:bold;">testers</span>   - Zeigt die Hall of Fame der Beta-Crew (ASCII)
+  <span style="color:#00f0ff; font-weight:bold;">download</span>  - Startet den Download von CheatMotor-v2.0.zip
+  <span style="color:#00f0ff; font-weight:bold;">matrix</span>    - Schaltet den digitalen Matrix-Code-Regen um
+  <span style="color:#00f0ff; font-weight:bold;">cheats</span>    - Listet alle Tastenkürzel (F1, F2, F3) auf
+  <span style="color:#00f0ff; font-weight:bold;">clear</span>     - Bereinigt den Terminal-Bildschirm
+  <span style="color:#00f0ff; font-weight:bold;">exit</span>      - Beendet das Terminal
+`);
+            } else if (cmd === "status") {
+                printTerminalLine(`
+<span style="color:#10b981;">[✓] CHEAT MOTOR KERNEL: ACTIVE</span>
+  ├─ Engine: Universal VirtualQueryEx 64-Bit
+  ├─ Signature: 16-Byte Klass Validation (0x05 / 0x10 IEEE-754)
+  ├─ Minecraft Hook: 1.20.1 (Vanilla, Fabric & TLauncher)
+  ├─ Latenz: &lt; 0.38 ms (Direct Memory Access)
+  ├─ CPU Zusatzlast: 0.00 %
+  └─ Absturzschutz: G1GC Relocation Safe
+`);
+            } else if (cmd === "tune" || cmd === "turbo") {
+                printTerminalLine(`<span style="color:#f59e0b;">[⚙] STARTE LEISTUNGSPRÜFSTAND...</span>`);
+                let rpm = 1000;
+                const interval = setInterval(() => {
+                    rpm += 1500;
+                    const bars = Math.min(20, Math.floor(rpm / 450));
+                    const barStr = "█".repeat(bars) + "-".repeat(20 - bars);
+                    printTerminalLine(`<span style="color:#00f0ff;">DREHZAHL: [${barStr}] ${rpm} RPM</span>`);
+                    termBody.scrollTop = termBody.scrollHeight;
+                    if (rpm >= 8500) {
+                        clearInterval(interval);
+                        printTerminalLine(`<span style="color:#10b981; font-weight:bold;">[🚀] STAGE 3 TURBO ZÜNDUNG ERFOLGREICH! Flugmodus & Speed-Lock auf 100%!</span>\n`);
+                        termBody.scrollTop = termBody.scrollHeight;
+                    }
+                }, 120);
+            } else if (cmd === "testers" || cmd === "hof") {
+                printTerminalLine(`
+<span style="color:#f59e0b; font-weight:bold;">🏆 CHEAT MOTOR HALL OF FAME:</span>
+  ┌────────────────────────────────────────────────────────┐
+  │ 🥇 <span style="color:#f59e0b; font-weight:bold;">BEN</span>    - Cheff-Tester & Turbo-Pilot (Y=5200 Orbit)    │
+  │ 🥈 <span style="color:#cbd5e1; font-weight:bold;">GIDEON</span> - TLauncher-Legende (0 Tode im Überleben)       │
+  │ 🥉 <span style="color:#00f0ff; font-weight:bold;">TIM</span>    - Mastermind & Memory Engine Architekt         │
+  └────────────────────────────────────────────────────────┘
+`);
+            } else if (cmd === "download") {
+                printTerminalLine(`<span style="color:#10b981;">[↓] Starte Download von CheatMotor-v2.0.zip...</span>`);
+                window.location.href = "https://github.com/Timluci09/Schnitzelmod/raw/main/CheatMotor-v2.0.zip";
+            } else if (cmd === "cheats") {
+                printTerminalLine(`
+<span style="color:#00f0ff; font-weight:bold;">HOTKEY CHEAT CODES:</span>
+  [ F1 ] Flug-Modus      - Abheben mit Doppel-Leertaste (Survival)
+  [ F2 ] Turbo-Sprint    - 2.5x Lauf- und Fluggeschwindigkeit
+  [ F3 ] Titan-Panzerung - Unsterblich gegen Lava, Stürze & Monster
+`);
+            } else if (cmd === "matrix") {
+                toggleMatrix();
+            } else if (cmd === "clear") {
+                clearTerminal();
+            } else if (cmd === "exit") {
+                closeTerminal();
+            } else {
+                printTerminalLine(`<span style="color:#ef4444;">Unbekannter Befehl: '${escapeHtml(cmd)}'. Tippe <span style="color:#10b981;">help</span> ein.</span>`);
+            }
+        }
+
+        // Digital Matrix Rain effect
+        let matrixActive = false;
+        let matrixInterval = null;
+
+        function toggleMatrix() {
+            matrixActive = !matrixActive;
+            if (matrixActive) {
+                matrixCanvas.style.display = "block";
+                startMatrix();
+                printTerminalLine(`<span style="color:#10b981;">[MATRIX] Digital Code Rain: AKTIV</span>`);
+            } else {
+                matrixCanvas.style.display = "none";
+                if (matrixInterval) clearInterval(matrixInterval);
+                printTerminalLine(`<span style="color:#64748b;">[MATRIX] Digital Code Rain: DEAKTIVIERT</span>`);
+            }
+        }
+
+        if (matrixToggleBtn) matrixToggleBtn.addEventListener("click", toggleMatrix);
+
+        function startMatrix() {
+            const ctx = matrixCanvas.getContext("2d");
+            matrixCanvas.width = matrixCanvas.offsetWidth;
+            matrixCanvas.height = matrixCanvas.offsetHeight;
+            const letters = "01CHEATMOTOR0101999RAMJVMHOOK";
+            const fontSize = 14;
+            const columns = matrixCanvas.width / fontSize;
+            const drops = [];
+            for (let i = 0; i < columns; i++) drops[i] = 1;
+
+            if (matrixInterval) clearInterval(matrixInterval);
+            matrixInterval = setInterval(() => {
+                ctx.fillStyle = "rgba(5, 8, 14, 0.1)";
+                ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+                ctx.fillStyle = "#00f0ff";
+                ctx.font = fontSize + "px monospace";
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }, 40);
+        }
     </script>
 </body>
 </html>
