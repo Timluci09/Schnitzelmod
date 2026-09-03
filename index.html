@@ -2394,6 +2394,7 @@
                 <div class="modal-actions" style="flex-direction: column; gap: 10px; margin-top: 20px;">
                     <button class="btn-modal-save" id="saveStatusBtn">💾 Lokal Speichern (Vorschau)</button>
                     <button class="btn-modal-save" style="background: linear-gradient(135deg, var(--emerald), #059669); color: white;" id="publishGithubBtn">🌐 Für ALLE Besucher live schalten (1 Klick)</button>
+                    <button class="btn-modal-logout" style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: #94a3b8; padding: 8px;" onclick="resetToGithubState()">🔄 Lokalen Cache leeren &amp; Original von GitHub laden</button>
                     <button class="btn-modal-logout" id="logoutAdminBtn">Abmelden</button>
                 </div>
             </div>
@@ -2751,11 +2752,43 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
         }
 
         window.deleteBlogPost = function(idx) {
-            if (confirm("Beitrag '" + currentBlogPosts[idx].title + "' wirklich löschen?")) {
+            if (!currentBlogPosts || !currentBlogPosts[idx]) return;
+            const postTitle = currentBlogPosts[idx].title;
+            if (confirm("Beitrag '" + postTitle + "' wirklich unwiderruflich löschen?")) {
                 currentBlogPosts.splice(idx, 1);
+                localStorage.setItem("cheatmotor_blog_posts", JSON.stringify(currentBlogPosts));
                 renderAdminBlogList();
                 renderBlogPosts();
-                localStorage.setItem("cheatmotor_blog_posts", JSON.stringify(currentBlogPosts));
+                alert("🗑️ Beitrag '" + postTitle + "' wurde erfolgreich gelöscht und dauerhaft im Browser gespeichert!\n\n💡 Klicke unten auf '🌐 Für ALLE Besucher live schalten (1 Klick)', um die Löschung auch weltweit auf GitHub zu veröffentlichen.");
+            }
+        };
+
+        window.deleteTester = function(idx) {
+            if (!currentHallOfFame || !currentHallOfFame[idx]) return;
+            const testerName = currentHallOfFame[idx].name;
+            if (confirm("Tester '" + testerName + "' wirklich aus der Hall of Fame entfernen?")) {
+                currentHallOfFame.splice(idx, 1);
+                localStorage.setItem("schnitzelmod_hof", JSON.stringify(currentHallOfFame));
+                renderAdminTesterList();
+                renderHallOfFame();
+                alert("🗑️ Tester '" + testerName + "' wurde entfernt und dauerhaft gespeichert!");
+            }
+        };
+
+        window.resetToGithubState = function() {
+            if (confirm("Möchtest du wirklich alle lokalen Entwürfe verwerfen und den Original-Stand von GitHub laden?")) {
+                localStorage.removeItem("schnitzelmod_status");
+                localStorage.removeItem("schnitzelmod_message");
+                localStorage.removeItem("schnitzelmod_banner_active");
+                localStorage.removeItem("schnitzelmod_banner_msg");
+                localStorage.removeItem("schnitzelmod_dl_enabled");
+                localStorage.removeItem("schnitzelmod_dl_reason");
+                localStorage.removeItem("schnitzelmod_maint_mode");
+                localStorage.removeItem("schnitzelmod_maint_msg");
+                localStorage.removeItem("schnitzelmod_maint_time");
+                localStorage.removeItem("schnitzelmod_hof");
+                localStorage.removeItem("cheatmotor_blog_posts");
+                location.reload();
             }
         };
 
@@ -2778,56 +2811,61 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             });
         }
 
-        // Fetch global status from GitHub so ALL visitors see the same status in real-time
+        // 1. Load from localStorage FIRST on startup so user edits never get lost
+        function loadLocalStorageOverrides() {
+            const savedStatus = localStorage.getItem("schnitzelmod_status");
+            const savedMessage = localStorage.getItem("schnitzelmod_message");
+            const savedBanner = localStorage.getItem("schnitzelmod_banner_active");
+            const savedBannerMsg = localStorage.getItem("schnitzelmod_banner_msg");
+            const savedDl = localStorage.getItem("schnitzelmod_dl_enabled");
+            const savedDlReason = localStorage.getItem("schnitzelmod_dl_reason");
+            const savedMaintMode = localStorage.getItem("schnitzelmod_maint_mode");
+            const savedMaintMsg = localStorage.getItem("schnitzelmod_maint_msg");
+            const savedMaintTime = localStorage.getItem("schnitzelmod_maint_time");
+            const savedHof = localStorage.getItem("schnitzelmod_hof");
+            const savedBlog = localStorage.getItem("cheatmotor_blog_posts");
+
+            if (savedStatus !== null) currentStatus = savedStatus;
+            if (savedMessage !== null) currentMessage = savedMessage;
+            if (savedBanner !== null) currentBannerActive = (savedBanner === "true");
+            if (savedBannerMsg !== null) currentBannerMessage = savedBannerMsg;
+            if (savedDl !== null) currentDownloadsEnabled = (savedDl === "true");
+            if (savedDlReason !== null) currentDownloadDisabledReason = savedDlReason;
+            if (savedMaintMode !== null) currentMaintenanceMode = (savedMaintMode === "true");
+            if (savedMaintMsg !== null) currentMaintenanceMessage = savedMaintMsg;
+            if (savedMaintTime !== null) currentMaintenanceEstimatedTime = savedMaintTime;
+            if (savedHof !== null) {
+                try { currentHallOfFame = JSON.parse(savedHof); } catch(err) {}
+            }
+            if (savedBlog !== null) {
+                try { currentBlogPosts = JSON.parse(savedBlog); } catch(err) {}
+            }
+        }
+        loadLocalStorageOverrides();
+        applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
+
+        // 2. Fetch global status from GitHub for any fields that have NOT been modified locally
         fetch("https://raw.githubusercontent.com/Timluci09/Schnitzelmod/main/status.json?t=" + new Date().getTime())
             .then(res => res.json())
             .then(data => {
                 if (data && data.status) {
-                    currentStatus = data.status;
-                    currentMessage = data.message || currentMessage;
-                    if (data.bannerActive !== undefined) currentBannerActive = data.bannerActive;
-                    if (data.bannerMessage) currentBannerMessage = data.bannerMessage;
-                    if (data.downloadEnabled !== undefined) currentDownloadsEnabled = data.downloadEnabled;
-                    if (data.downloadDisabledReason) currentDownloadDisabledReason = data.downloadDisabledReason;
-                    if (data.maintenanceMode !== undefined) currentMaintenanceMode = data.maintenanceMode;
-                    if (data.maintenanceMessage) currentMaintenanceMessage = data.maintenanceMessage;
-                    if (data.maintenanceEstimatedTime) currentMaintenanceEstimatedTime = data.maintenanceEstimatedTime;
-                    if (data.hallOfFame && Array.isArray(data.hallOfFame)) currentHallOfFame = data.hallOfFame;
-                    if (data.blogPosts && Array.isArray(data.blogPosts)) currentBlogPosts = data.blogPosts;
+                    if (localStorage.getItem("schnitzelmod_status") === null) currentStatus = data.status;
+                    if (localStorage.getItem("schnitzelmod_message") === null) currentMessage = data.message || currentMessage;
+                    if (localStorage.getItem("schnitzelmod_banner_active") === null && data.bannerActive !== undefined) currentBannerActive = data.bannerActive;
+                    if (localStorage.getItem("schnitzelmod_banner_msg") === null && data.bannerMessage) currentBannerMessage = data.bannerMessage;
+                    if (localStorage.getItem("schnitzelmod_dl_enabled") === null && data.downloadEnabled !== undefined) currentDownloadsEnabled = data.downloadEnabled;
+                    if (localStorage.getItem("schnitzelmod_dl_reason") === null && data.downloadDisabledReason) currentDownloadDisabledReason = data.downloadDisabledReason;
+                    if (localStorage.getItem("schnitzelmod_maint_mode") === null && data.maintenanceMode !== undefined) currentMaintenanceMode = data.maintenanceMode;
+                    if (localStorage.getItem("schnitzelmod_maint_msg") === null && data.maintenanceMessage) currentMaintenanceMessage = data.maintenanceMessage;
+                    if (localStorage.getItem("schnitzelmod_maint_time") === null && data.maintenanceEstimatedTime) currentMaintenanceEstimatedTime = data.maintenanceEstimatedTime;
+                    if (localStorage.getItem("schnitzelmod_hof") === null && data.hallOfFame && Array.isArray(data.hallOfFame)) currentHallOfFame = data.hallOfFame;
+                    if (localStorage.getItem("cheatmotor_blog_posts") === null && data.blogPosts && Array.isArray(data.blogPosts)) currentBlogPosts = data.blogPosts;
 
                     applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
                 }
             })
             .catch(e => {
-                // Fallback to local storage if offline
-                const savedStatus = localStorage.getItem("schnitzelmod_status");
-                const savedMessage = localStorage.getItem("schnitzelmod_message");
-                const savedBanner = localStorage.getItem("schnitzelmod_banner_active");
-                const savedBannerMsg = localStorage.getItem("schnitzelmod_banner_msg");
-                const savedDl = localStorage.getItem("schnitzelmod_dl_enabled");
-                const savedDlReason = localStorage.getItem("schnitzelmod_dl_reason");
-                const savedMaintMode = localStorage.getItem("schnitzelmod_maint_mode");
-                const savedMaintMsg = localStorage.getItem("schnitzelmod_maint_msg");
-                const savedMaintTime = localStorage.getItem("schnitzelmod_maint_time");
-                const savedHof = localStorage.getItem("schnitzelmod_hof");
-                const savedBlog = localStorage.getItem("cheatmotor_blog_posts");
-
-                if (savedStatus) currentStatus = savedStatus;
-                if (savedMessage) currentMessage = savedMessage;
-                if (savedBanner !== null) currentBannerActive = (savedBanner === "true");
-                if (savedBannerMsg) currentBannerMessage = savedBannerMsg;
-                if (savedDl !== null) currentDownloadsEnabled = (savedDl === "true");
-                if (savedDlReason) currentDownloadDisabledReason = savedDlReason;
-                if (savedMaintMode !== null) currentMaintenanceMode = (savedMaintMode === "true");
-                if (savedMaintMsg) currentMaintenanceMessage = savedMaintMsg;
-                if (savedMaintTime) currentMaintenanceEstimatedTime = savedMaintTime;
-                if (savedHof) {
-                    try { currentHallOfFame = JSON.parse(savedHof); } catch(err) {}
-                }
-                if (savedBlog) {
-                    try { currentBlogPosts = JSON.parse(savedBlog); } catch(err) {}
-                }
-
+                loadLocalStorageOverrides();
                 applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
             });
 
