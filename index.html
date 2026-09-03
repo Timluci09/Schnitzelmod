@@ -268,6 +268,97 @@
             color: var(--cyan);
         }
 
+        /* Nav More... Dropdown */
+        .nav-dropdown-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-more-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .nav-more-btn:hover,
+        .nav-dropdown-wrapper.active .nav-more-btn {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: var(--cyan);
+            color: #fff;
+        }
+
+        .nav-arrow {
+            font-size: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-dropdown-wrapper.active .nav-arrow {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: #0b0f19;
+            border: 1px solid var(--border);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 240, 255, 0.15);
+            border-radius: 14px;
+            padding: 8px;
+            min-width: 200px;
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes dropdownFadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-dropdown-wrapper.active .nav-dropdown-menu {
+            display: flex;
+        }
+
+        .nav-dropdown-menu a {
+            padding: 10px 14px !important;
+            color: #94a3b8 !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            border-radius: 8px;
+            transition: all 0.15s ease !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: rgba(0, 240, 255, 0.1) !important;
+            color: var(--cyan) !important;
+            transform: translateX(4px);
+        }
+
+        .nav-dropdown-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+            margin: 4px 0;
+        }
+
         .nav-btn {
             background: linear-gradient(135deg, var(--cyan), #00b4d8);
             color: #07090e;
@@ -1522,6 +1613,26 @@
             outline: none;
         }
 
+        .term-chip-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #94a3b8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .term-chip-btn:hover {
+            background: rgba(0, 240, 255, 0.15);
+            border-color: var(--cyan);
+            color: var(--cyan);
+            transform: translateY(-1px);
+        }
+
         .terminal-matrix-canvas {
             position: absolute;
             top: 0;
@@ -1532,6 +1643,180 @@
             display: none;
             z-index: 0;
             opacity: 0.2;
+        }
+
+        /* ==================================================== */
+        /* 📖 STORY-BLOG STYLES */
+        /* ==================================================== */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 26px;
+            margin-top: 36px;
+        }
+
+        .blog-card {
+            background: linear-gradient(180deg, rgba(17, 24, 39, 0.7) 0%, rgba(10, 15, 26, 0.9) 100%);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(168, 85, 247, 0.6);
+            box-shadow: 0 20px 45px rgba(168, 85, 247, 0.25);
+        }
+
+        .blog-img-wrap {
+            position: relative;
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            background: #090d16;
+        }
+
+        .blog-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-img-wrap img {
+            transform: scale(1.06);
+        }
+
+        .blog-category-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(10, 15, 26, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .blog-body {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .blog-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .blog-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .blog-excerpt {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .blog-full-content {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.7;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 12px;
+            display: none;
+            white-space: pre-line;
+        }
+
+        .btn-blog-expand {
+            background: transparent;
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            color: #c084fc;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            align-self: flex-start;
+            transition: all 0.2s;
+        }
+
+        .btn-blog-expand:hover {
+            background: rgba(168, 85, 247, 0.15);
+            border-color: #a855f7;
+            color: #fff;
+        }
+
+        /* Admin Blog Post Manager Cards */
+        .admin-blog-card {
+            background: #080c14;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .admin-blog-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .admin-blog-thumb {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #1e293b;
+            flex-shrink: 0;
+        }
+
+        .admin-blog-text {
+            min-width: 0;
+        }
+
+        .admin-blog-title {
+            font-weight: 800;
+            font-size: 13px;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .admin-blog-sub {
+            font-size: 11px;
+            color: var(--text-muted);
         }
 
         @media (max-width: 900px) {
@@ -1586,12 +1871,22 @@
                 <span class="logo-badge">v2.0 PRO</span>
             </a>
             <div class="nav-links">
-                <a href="#stats">Statistiken</a>
                 <a href="#features">Features</a>
+                <a href="#story-blog">📖 Story-Blog</a>
                 <a href="#hall-of-fame">🏆 Crew</a>
-                <a href="#anleitung">Anleitung</a>
-                <a href="#smartscreen">Hilfe</a>
-                <a href="https://github.com/Timluci09/Schnitzelmod" target="_blank">GitHub</a>
+                <div class="nav-dropdown-wrapper" id="navMoreDropdown">
+                    <button class="nav-more-btn" id="navMoreBtn" type="button" aria-haspopup="true" aria-expanded="false">
+                        <span>Mehr...</span>
+                        <span class="nav-arrow">▾</span>
+                    </button>
+                    <div class="nav-dropdown-menu" id="navMoreMenu">
+                        <a href="#stats" onclick="closeNavDropdown()">📊 Statistiken</a>
+                        <a href="#anleitung" onclick="closeNavDropdown()">📖 Anleitung</a>
+                        <a href="#smartscreen" onclick="closeNavDropdown()">🛡️ SmartScreen Hilfe</a>
+                        <div class="nav-dropdown-divider"></div>
+                        <a href="https://github.com/Timluci09/Schnitzelmod" target="_blank" onclick="closeNavDropdown()">🌐 GitHub Repository</a>
+                    </div>
+                </div>
             </div>
             <div style="display: flex; align-items: center; gap: 12px;">
                 <button class="terminal-nav-btn" id="openTerminalBtn">💻 Terminal</button>
@@ -1824,6 +2119,23 @@
             </div>
         </section>
 
+        <!-- ==================================================== -->
+        <!-- 📖 STORY-BLOG & NULLPUNKT-CHRONIKEN -->
+        <!-- ==================================================== -->
+        <section id="story-blog" class="blog-section" style="margin: 80px 0;">
+            <div class="section-title">
+                <div style="display: inline-block; background: rgba(168, 85, 247, 0.15); border: 1px solid #a855f7; color: #c084fc; font-size: 11px; font-weight: 800; padding: 4px 14px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 12px;">
+                    🔮 OFFIZIELLE SERVER-CHRONIKEN &amp; LORE
+                </div>
+                <h2>📖 Story-Blog &amp; Nullpunkt-News</h2>
+                <p>Aktuelle Kapitel, Server-Ereignisse, Götter-Kriege und Entwickler-Logs direkt von Ben &amp; Team.</p>
+            </div>
+
+            <div class="blog-grid" id="blogGrid">
+                <!-- Dynamisch gerenderte Beiträge via JavaScript -->
+            </div>
+        </section>
+
         <!-- Anleitung -->
         <section id="anleitung">
             <div class="section-title">
@@ -1932,6 +2244,7 @@
                     <button class="admin-tab-btn" id="tabBtnMaintenance" onclick="switchAdminTab('maintenance')">🚧 Wartungsmodus</button>
                     <button class="admin-tab-btn" id="tabBtnHof" onclick="switchAdminTab('hof')">🏆 Hall of Fame</button>
                     <button class="admin-tab-btn" id="tabBtnKillswitch" onclick="switchAdminTab('killswitch')">⬇️ Killswitch</button>
+                    <button class="admin-tab-btn" id="tabBtnBlog" onclick="switchAdminTab('blog')">📖 Story-Blog Editor</button>
                 </div>
 
                 <!-- TAB 1: STATUS & BANNER -->
@@ -2037,6 +2350,47 @@
                     </div>
                 </div>
 
+                <!-- TAB 5: STORY-BLOG EDITOR -->
+                <div id="adminTabContentBlog" style="display: none;">
+                    <label style="font-weight: 800; color: #c084fc; margin-bottom: 10px; display: block;">📖 Aktuelle Story- &amp; Nullpunkt-Beiträge:</label>
+                    <div id="adminBlogList" style="max-height: 180px; overflow-y: auto; margin-bottom: 16px; padding-right: 4px;"></div>
+
+                    <div style="background: #080c14; border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+                        <label style="font-weight: 800; color: var(--cyan); margin-bottom: 10px; display: block;">➕ Neuen Blog-Beitrag verfassen:</label>
+                        
+                        <div class="form-group" style="margin-bottom: 8px;">
+                            <input type="text" id="newBlogTitle" class="admin-input" placeholder="Titel (z. B. Kapitel 2: Der Nullpunkt bricht auf)">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                            <select id="newBlogCategory" class="admin-input">
+                                <option value="🔮 Nullpunkt-Story">🔮 Nullpunkt-Story</option>
+                                <option value="⚡ Live-Event">⚡ Live-Event</option>
+                                <option value="⚔️ Götter-Krieg">⚔️ Götter-Krieg</option>
+                                <option value="🛠️ Update / Devlog">🛠️ Update / Devlog</option>
+                                <option value="📢 Ankündigung">📢 Ankündigung</option>
+                            </select>
+                            <input type="text" id="newBlogAuthor" class="admin-input" value="Ben (Story-Director)" placeholder="Autor">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 8px;">
+                            <input type="text" id="newBlogImage" class="admin-input" placeholder="Bild-URL (z. B. https://... oder leer lassen für Standard-Bild)">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 8px;">
+                            <textarea id="newBlogExcerpt" class="admin-input" style="height: 48px; resize: vertical;" placeholder="Kurze Teaser-Zusammenfassung (1-2 Sätze)..."></textarea>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <textarea id="newBlogContent" class="admin-input" style="height: 80px; resize: vertical;" placeholder="Vollständige Geschichte / Text des Beitrags..."></textarea>
+                        </div>
+
+                        <button class="btn-modal-save" id="btnAddBlogPost" style="width: 100%; padding: 10px 14px; font-size: 13px; background: linear-gradient(135deg, #a855f7, #6366f1); color: white;">
+                            ➕ Beitrag im Story-Blog veröffentlichen
+                        </button>
+                    </div>
+                </div>
+
                 <div class="modal-actions" style="flex-direction: column; gap: 10px; margin-top: 20px;">
                     <button class="btn-modal-save" id="saveStatusBtn">💾 Lokal Speichern (Vorschau)</button>
                     <button class="btn-modal-save" style="background: linear-gradient(135deg, var(--emerald), #059669); color: white;" id="publishGithubBtn">🌐 Für ALLE Besucher live schalten (1 Klick)</button>
@@ -2074,6 +2428,17 @@ Willkommen im Cheat Motor Cyber-Terminal.
 Universal RAM-Engine aktiv • Minecraft 1.20.1 Hook bereit.
 
 Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befehle ein.
+                </div>
+                <div class="terminal-quick-chips" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; padding: 4px 0;">
+                    <button class="term-chip-btn" onclick="execFromChip('help')">help</button>
+                    <button class="term-chip-btn" onclick="execFromChip('status')">status</button>
+                    <button class="term-chip-btn" onclick="execFromChip('tune')">tune</button>
+                    <button class="term-chip-btn" onclick="execFromChip('theme')">🎨 theme</button>
+                    <button class="term-chip-btn" onclick="execFromChip('seeds')">🌍 seeds</button>
+                    <button class="term-chip-btn" onclick="execFromChip('plugins')">⚡ plugins</button>
+                    <button class="term-chip-btn" onclick="execFromChip('blog')">📖 blog</button>
+                    <button class="term-chip-btn" onclick="execFromChip('testers')">testers</button>
+                    <button class="term-chip-btn" onclick="execFromChip('clear')">clear</button>
                 </div>
                 <div class="terminal-prompt-line">
                     <span class="terminal-prompt-text">root@cheatmotor:~$</span>
@@ -2133,6 +2498,29 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                 specialty: "Universal Memory Engine",
                 status: "🟢 Code getunt & ready",
                 tier: "bronze"
+            }
+        ];
+
+        let currentBlogPosts = [
+            {
+                id: "post-1",
+                title: "Kapitel 1: Das Erwachen des Nullpunkts",
+                category: "🔮 Nullpunkt-Story",
+                author: "Ben (Story-Director)",
+                date: "03. Sept 2026",
+                imageUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&auto=format&fit=crop&q=80",
+                excerpt: "Tief in den Bergen hat sich ein unberechenbarer Riss geöffnet. Violetter Rauch und Gravitations-Wellen erfassen die Minecraft-Welt.",
+                content: "Tief in den Felsen der Oberwelt hat sich ein violetter Riss geöffnet. Seltsame Energiestrahlen schießen in den Himmel und der Nullpunkt pulsiert unaufhörlich. Wir haben Cheat Motor entwickelt, um die Gravitations-Verzerrungen zu überwinden und den Riss zu erforschen.\n\nAlle Spieler auf dem Server werden gebeten, ihre Basen abzusichern. Das erste Live-Event naht!"
+            },
+            {
+                id: "post-2",
+                title: "Götter-Erscheinung: Zephyrus zerschmettert die Arena",
+                category: "⚡ Götter-Krieg",
+                author: "Ben & Gideon",
+                date: "02. Sept 2026",
+                imageUrl: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=900&auto=format&fit=crop&q=80",
+                excerpt: "Gewaltige Blitze haben den Bergkamm gespalten. Die ersten Götter-Artefakte wurden im Survival-Modus gesichtet.",
+                content: "Zephyrus hat seine Donnerklinge in den Fels geschlagen. Wer sich der Fraktion der Stürme anschließt, erhält göttliche Sprungkraft und Kettenblitze.\n\nWir testen aktuell die neuen Fähigkeiten im Survival – erste Videos und Gameplay-Ausschnitte folgen in Kürze!"
             }
         ];
 
@@ -2202,6 +2590,7 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
 
             applyMaintenanceMode();
             renderHallOfFame();
+            renderBlogPosts();
         }
 
         function applyMaintenanceMode() {
@@ -2282,8 +2671,96 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             }
         };
 
+        // ====================================================
+        // 📖 STORY-BLOG FUNCTIONS
+        // ====================================================
+        function renderBlogPosts() {
+            const grid = document.getElementById("blogGrid");
+            if (!grid) return;
+            grid.innerHTML = "";
+
+            if (!currentBlogPosts || currentBlogPosts.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-muted);">Noch keine Blog-Beiträge vorhanden. Erstelle den ersten Post im Admin-Panel (PIN 6121)!</div>`;
+                return;
+            }
+
+            currentBlogPosts.forEach((post, idx) => {
+                const card = document.createElement("div");
+                card.className = "blog-card";
+                const img = post.imageUrl || "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&auto=format&fit=crop&q=80";
+                
+                card.innerHTML = `
+                    <div class="blog-img-wrap">
+                        <img src="${escapeHtml(img)}" alt="${escapeHtml(post.title)}" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&auto=format&fit=crop&q=80'">
+                        <span class="blog-category-badge">${escapeHtml(post.category || "🔮 Story")}</span>
+                    </div>
+                    <div class="blog-body">
+                        <div class="blog-meta">
+                            <span>📅 ${escapeHtml(post.date || "Heute")}</span>
+                            <span>•</span>
+                            <span>👤 ${escapeHtml(post.author || "Ben")}</span>
+                        </div>
+                        <h3 class="blog-title">${escapeHtml(post.title)}</h3>
+                        <p class="blog-excerpt">${escapeHtml(post.excerpt || post.content || "")}</p>
+                        <div class="blog-full-content" id="blogFullContent_${idx}">${escapeHtml(post.content || "")}</div>
+                        <button class="btn-blog-expand" onclick="toggleBlogContent(${idx}, this)">📖 Ganze Story lesen</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        window.toggleBlogContent = function(idx, btn) {
+            const el = document.getElementById("blogFullContent_" + idx);
+            if (!el) return;
+            if (el.style.display === "block") {
+                el.style.display = "none";
+                btn.textContent = "📖 Ganze Story lesen";
+            } else {
+                el.style.display = "block";
+                btn.textContent = "▲ Schließen";
+            }
+        };
+
+        function renderAdminBlogList() {
+            const list = document.getElementById("adminBlogList");
+            if (!list) return;
+            list.innerHTML = "";
+
+            if (!currentBlogPosts || currentBlogPosts.length === 0) {
+                list.innerHTML = `<div style="font-size:12px; color:var(--text-muted); text-align:center; padding:10px;">Keine Beiträge vorhanden.</div>`;
+                return;
+            }
+
+            currentBlogPosts.forEach((p, idx) => {
+                const item = document.createElement("div");
+                item.className = "admin-blog-card";
+                const img = p.imageUrl || "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&auto=format&fit=crop&q=80";
+                item.innerHTML = `
+                    <div class="admin-blog-info">
+                        <img src="${escapeHtml(img)}" class="admin-blog-thumb" alt="Thumb" onerror="this.style.display='none'">
+                        <div class="admin-blog-text">
+                            <div class="admin-blog-title">${escapeHtml(p.title)}</div>
+                            <div class="admin-blog-sub">${escapeHtml(p.category)} • ${escapeHtml(p.author)} (${escapeHtml(p.date)})</div>
+                        </div>
+                    </div>
+                    <button onclick="deleteBlogPost(${idx})" style="background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #ef4444; border-radius: 6px; padding: 4px 8px; cursor: pointer; font-size: 11px;">🗑️</button>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        window.deleteBlogPost = function(idx) {
+            if (confirm("Beitrag '" + currentBlogPosts[idx].title + "' wirklich löschen?")) {
+                currentBlogPosts.splice(idx, 1);
+                renderAdminBlogList();
+                renderBlogPosts();
+                localStorage.setItem("cheatmotor_blog_posts", JSON.stringify(currentBlogPosts));
+            }
+        };
+
         window.switchAdminTab = function(tabName) {
-            const tabs = ["status", "maintenance", "hof", "killswitch"];
+            const tabs = ["status", "maintenance", "hof", "killswitch", "blog"];
             tabs.forEach(t => {
                 const btn = document.getElementById("tabBtn" + t.charAt(0).toUpperCase() + t.slice(1));
                 const content = document.getElementById("adminTabContent" + t.charAt(0).toUpperCase() + t.slice(1));
@@ -2291,6 +2768,7 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                 if (content) content.style.display = (t === tabName ? "block" : "none");
             });
             if (tabName === "hof") renderAdminTesterList();
+            if (tabName === "blog") renderAdminBlogList();
         };
 
         const closeBannerBtn = document.getElementById("closeBannerBtn");
@@ -2315,6 +2793,7 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                     if (data.maintenanceMessage) currentMaintenanceMessage = data.maintenanceMessage;
                     if (data.maintenanceEstimatedTime) currentMaintenanceEstimatedTime = data.maintenanceEstimatedTime;
                     if (data.hallOfFame && Array.isArray(data.hallOfFame)) currentHallOfFame = data.hallOfFame;
+                    if (data.blogPosts && Array.isArray(data.blogPosts)) currentBlogPosts = data.blogPosts;
 
                     applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
                 }
@@ -2331,6 +2810,7 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                 const savedMaintMsg = localStorage.getItem("schnitzelmod_maint_msg");
                 const savedMaintTime = localStorage.getItem("schnitzelmod_maint_time");
                 const savedHof = localStorage.getItem("schnitzelmod_hof");
+                const savedBlog = localStorage.getItem("cheatmotor_blog_posts");
 
                 if (savedStatus) currentStatus = savedStatus;
                 if (savedMessage) currentMessage = savedMessage;
@@ -2343,6 +2823,9 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                 if (savedMaintTime) currentMaintenanceEstimatedTime = savedMaintTime;
                 if (savedHof) {
                     try { currentHallOfFame = JSON.parse(savedHof); } catch(err) {}
+                }
+                if (savedBlog) {
+                    try { currentBlogPosts = JSON.parse(savedBlog); } catch(err) {}
                 }
 
                 applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
@@ -2400,6 +2883,32 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             }, { threshold: 0.2 });
             observer.observe(statsSection);
         }
+
+        // Nav More Dropdown Handler
+        const navMoreBtn = document.getElementById("navMoreBtn");
+        const navMoreDropdown = document.getElementById("navMoreDropdown");
+
+        if (navMoreBtn && navMoreDropdown) {
+            navMoreBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const isOpen = navMoreDropdown.classList.toggle("active");
+                navMoreBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            });
+
+            document.addEventListener("click", (e) => {
+                if (!navMoreDropdown.contains(e.target)) {
+                    navMoreDropdown.classList.remove("active");
+                    navMoreBtn.setAttribute("aria-expanded", "false");
+                }
+            });
+        }
+
+        window.closeNavDropdown = function() {
+            if (navMoreDropdown) {
+                navMoreDropdown.classList.remove("active");
+                if (navMoreBtn) navMoreBtn.setAttribute("aria-expanded", "false");
+            }
+        };
 
         // Modal Elements
         const overlay = document.getElementById("adminModalOverlay");
@@ -2524,6 +3033,50 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             renderHallOfFame();
         });
 
+        // Add Blog Post Handler
+        const btnAddBlogPost = document.getElementById("btnAddBlogPost");
+        if (btnAddBlogPost) {
+            btnAddBlogPost.addEventListener("click", () => {
+                const title = document.getElementById("newBlogTitle").value.trim();
+                const category = document.getElementById("newBlogCategory").value;
+                const author = document.getElementById("newBlogAuthor").value.trim() || "Ben (Story-Director)";
+                const image = document.getElementById("newBlogImage").value.trim() || "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&auto=format&fit=crop&q=80";
+                const excerpt = document.getElementById("newBlogExcerpt").value.trim();
+                const content = document.getElementById("newBlogContent").value.trim();
+
+                if (!title || !content) {
+                    alert("Bitte gib mindestens einen Titel und den Text für den Blog-Beitrag ein!");
+                    return;
+                }
+
+                const now = new Date();
+                const months = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sept", "Okt", "Nov", "Dez"];
+                const dateStr = String(now.getDate()).padStart(2, "0") + ". " + months[now.getMonth()] + " " + now.getFullYear();
+
+                const newPost = {
+                    id: "post-" + Date.now(),
+                    title: title,
+                    category: category,
+                    author: author,
+                    date: dateStr,
+                    imageUrl: image,
+                    excerpt: excerpt || (content.length > 140 ? content.substring(0, 140) + "..." : content),
+                    content: content
+                };
+
+                currentBlogPosts.unshift(newPost);
+                renderAdminBlogList();
+                renderBlogPosts();
+                localStorage.setItem("cheatmotor_blog_posts", JSON.stringify(currentBlogPosts));
+
+                document.getElementById("newBlogTitle").value = "";
+                document.getElementById("newBlogImage").value = "";
+                document.getElementById("newBlogExcerpt").value = "";
+                document.getElementById("newBlogContent").value = "";
+                alert("✅ Neuer Beitrag '" + title + "' wurde erfolgreich im Story-Blog veröffentlicht!");
+            });
+        }
+
         saveStatusBtn.addEventListener("click", () => {
             currentStatus = selectedStatus;
             currentMessage = customInput.value.trim() || "Status aktualisiert.";
@@ -2545,6 +3098,7 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
             localStorage.setItem("schnitzelmod_maint_msg", currentMaintenanceMessage);
             localStorage.setItem("schnitzelmod_maint_time", currentMaintenanceEstimatedTime);
             localStorage.setItem("schnitzelmod_hof", JSON.stringify(currentHallOfFame));
+            localStorage.setItem("cheatmotor_blog_posts", JSON.stringify(currentBlogPosts));
 
             applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
             closeModal();
@@ -2572,14 +3126,15 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                 maintenanceMode: currentMaintenanceMode,
                 maintenanceMessage: currentMaintenanceMessage,
                 maintenanceEstimatedTime: currentMaintenanceEstimatedTime,
-                hallOfFame: currentHallOfFame
+                hallOfFame: currentHallOfFame,
+                blogPosts: currentBlogPosts
             };
             const jsonStr = JSON.stringify(statusObj, null, 2);
 
             navigator.clipboard.writeText(jsonStr);
             applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
 
-            alert("✅ Der Status-Code wurde in deine Zwischenablage kopiert!\n\nAuf der GitHub-Seite musst du nur noch:\n1. Strg + V (Einfügen) drücken\n2. Auf den grünen Button 'Commit changes' klicken!\n\nDann sehen alle Besucher weltweit den neuen Status, das Banner, den Wartungsmodus und die Hall of Fame in Echtzeit!");
+            alert("✅ Der Status-Code wurde in deine Zwischenablage kopiert!\n\nAuf der GitHub-Seite musst du nur noch:\n1. Strg + V (Einfügen) drücken\n2. Auf den grünen Button 'Commit changes' klicken!\n\nDann sehen alle Besucher weltweit den neuen Status, das Banner, den Wartungsmodus, die Hall of Fame und alle Story-Blog-Beiträge in Echtzeit!");
             window.open("https://github.com/Timluci09/Schnitzelmod/edit/main/status.json", "_blank");
             closeModal();
         });
@@ -2682,6 +3237,10 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
   <span style="color:#00f0ff; font-weight:bold;">testers</span>   - Zeigt die Hall of Fame der Beta-Crew (ASCII)
   <span style="color:#00f0ff; font-weight:bold;">download</span>  - Startet den Download von CheatMotor-v2.0.zip
   <span style="color:#00f0ff; font-weight:bold;">matrix</span>    - Schaltet den digitalen Matrix-Code-Regen um
+  <span style="color:#00f0ff; font-weight:bold;">theme &lt;name&gt;</span>  - Wechselt Terminal-Farbe (matrix, cyber, blood, retro, gold, default)
+  <span style="color:#00f0ff; font-weight:bold;">seeds</span>     - Zeigt krasse Minecraft 1.20.1 Welten-Seeds mit Koordinaten
+  <span style="color:#00f0ff; font-weight:bold;">plugins</span>   - Zeigt beste Server-Plugins für 1.20.1 Story & Performance
+  <span style="color:#00f0ff; font-weight:bold;">blog</span>      - Zeigt aktuelle Nullpunkt-Storys & Server-News
   <span style="color:#00f0ff; font-weight:bold;">cheats</span>    - Listet alle Tastenkürzel (F1, F2, F3) auf
   <span style="color:#00f0ff; font-weight:bold;">clear</span>     - Bereinigt den Terminal-Bildschirm
   <span style="color:#00f0ff; font-weight:bold;">exit</span>      - Beendet das Terminal
@@ -2725,6 +3284,58 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                     printTerminalLine(`<span style="color:#10b981;">[↓] Starte Download von CheatMotor-v2.0.zip...</span>`);
                     window.location.href = "https://github.com/Timluci09/Schnitzelmod/raw/main/CheatMotor-v2.0.zip";
                 }
+            } else if (cmd === "theme" || cmd.startsWith("theme ")) {
+                const parts = cmd.split(" ");
+                if (parts.length === 1) {
+                    printTerminalLine(`
+<span style="color:#f59e0b; font-weight:bold;">🎨 VERFÜGBARE TERMINAL-FARBTHEMEN:</span>
+  Tippe z. B.: <span style="color:#00f0ff; font-weight:bold;">theme matrix</span>
+
+  • <span style="color:#10b981; font-weight:bold;">theme matrix</span>  - Giftgrün / Klassischer Hacker-Look
+  • <span style="color:#00f0ff; font-weight:bold;">theme cyber</span>   - Neon Cyan &amp; Pink (Cyberpunk Night City)
+  • <span style="color:#ef4444; font-weight:bold;">theme blood</span>   - Crimson Alarmrot (Gefahr-Modus)
+  • <span style="color:#f59e0b; font-weight:bold;">theme retro</span>   - Phosphor Amber (Fallout 1984 CRT Monitor)
+  • <span style="color:#fbbf24; font-weight:bold;">theme gold</span>    - Ben's Cheff-Tester VIP Gold Edition
+  • <span style="color:#94a3b8; font-weight:bold;">theme default</span> - Standard Cheat Motor Dark Slate
+`);
+                } else {
+                    applyTerminalTheme(parts[1]);
+                }
+            } else if (cmd === "seeds") {
+                printTerminalLine(`
+<span style="color:#f59e0b; font-weight:bold;">🌍 KRASSESTE MINECRAFT 1.20.1 SEEDS (Story &amp; Survival):</span>
+
+<span style="color:#00f0ff; font-weight:bold;">1. DER KRATER-OLYMP // Götter-Festung</span>
+  ├─ <strong style="color:#fff;">Seed:</strong> <span style="color:#10b981; font-weight:bold;">-7360672562458547898</span>
+  ├─ <strong style="color:#fff;">Koordinaten:</strong> Spawn (X: 50, Z: -120)
+  └─ <strong style="color:#fff;">Highlight:</strong> Vollständiger Ring aus Eis-Gipfeln &amp; Kirschblüten um einen Krater-See mit 3 Dörfern!
+
+<span style="color:#00f0ff; font-weight:bold;">2. DER VERSUNKENE TITAN // Ancient City Schlucht</span>
+  ├─ <strong style="color:#fff;">Seed:</strong> <span style="color:#10b981; font-weight:bold;">-5452296065507425712</span>
+  ├─ <strong style="color:#fff;">Koordinaten:</strong> X: 110, Y: -45, Z: 80
+  └─ <strong style="color:#fff;">Highlight:</strong> Eine 120-Block Megaschlucht direkt am Spawn führt geradezu in eine gewaltige Tiefenstadt!
+
+<span style="color:#00f0ff; font-weight:bold;">3. DIE WÜSTEN-OASE // 2 Tempel + Außenposten</span>
+  ├─ <strong style="color:#fff;">Seed:</strong> <span style="color:#10b981; font-weight:bold;">5690368567451203875</span>
+  ├─ <strong style="color:#fff;">Koordinaten:</strong> X: 200, Z: -150
+  └─ <strong style="color:#fff;">Highlight:</strong> Badlands-Canyon trifft Wüste: 2 Wüstentempel, Pillager Outpost &amp; 3 Dörfer in Sichtweite!
+
+<span style="color:#00f0ff; font-weight:bold;">4. ENDPORTAL AM SPAWN // Stronghold Brunnen</span>
+  ├─ <strong style="color:#fff;">Seed:</strong> <span style="color:#10b981; font-weight:bold;">-326011403434312</span>
+  ├─ <strong style="color:#fff;">Koordinaten:</strong> X: 0, Y: -20, Z: 10
+  └─ <strong style="color:#fff;">Highlight:</strong> Grabe dich im Spawn-Dorf-Brunnen 15 Blöcke nach unten direkt in den Stronghold Portalraum!
+`);
+            } else if (cmd === "plugins") {
+                printTerminalLine(`
+<span style="color:#f59e0b; font-weight:bold;">⚡ EMPFOHLENE PLUGINS FÜR MINECRAFT 1.20.1 (Paper / Purpur):</span>
+
+  ├─ <strong style="color:#00f0ff;">ItemsAdder / Oraxen:</strong> Eigene 3D-Modelle, Götter-Waffen &amp; Partikel (ohne Mods!)
+  ├─ <strong style="color:#00f0ff;">MythicMobs:</strong> Epische Custom-Bosse mit Blitz-Attacken, Phasen &amp; Sounds
+  ├─ <strong style="color:#00f0ff;">Citizens 2 + Sentinel:</strong> Lebendige NPCs für Story-Dialoge, Wachen &amp; Quests
+  ├─ <strong style="color:#00f0ff;">Chunky:</strong> Generiert Chunks vorab (0% Server-Lag beim Fliegen mit Cheat Motor!)
+  ├─ <strong style="color:#00f0ff;">ViaVersion:</strong> Ermöglicht Spielern mit allen MC-Versionen (1.16-1.21) beizutreten
+  └─ <strong style="color:#00f0ff;">WorldGuard + ExtraFlags:</strong> Schützt Spawns, Tempel &amp; Nullpunkt-Zonen
+`);
             } else if (cmd === "cheats") {
                 printTerminalLine(`
 <span style="color:#00f0ff; font-weight:bold;">AKTIVE HOTKEY CHEATS (Cheat Motor v2.0):</span>
@@ -2732,6 +3343,14 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
   [ F2 ] No Hunger         - 🔧 Wird noch verbessert
   [ F3 ] Reines Erze-X-Ray - ⚠️ BUG — BALD KOMMT ES!
 `);
+            } else if (cmd === "blog" || cmd === "story" || cmd === "news") {
+                let out = `\n<span style="color:#c084fc; font-weight:bold;">📖 AKTUELLE STORY- &amp; NULLPUNKT-BEITRÄGE:</span>\n`;
+                currentBlogPosts.forEach((p, i) => {
+                    out += `  <strong style="color:#f59e0b;">#${i+1}</strong> <span style="color:#00f0ff;">[${escapeHtml(p.category)}]</span> <strong style="color:#fff;">${escapeHtml(p.title)}</strong>\n`;
+                    out += `     Von ${escapeHtml(p.author)} am ${escapeHtml(p.date)}\n`;
+                    out += `     <em>"${escapeHtml(p.excerpt)}"</em>\n\n`;
+                });
+                printTerminalLine(out);
             } else if (cmd === "matrix") {
                 toggleMatrix();
             } else if (cmd === "clear") {
@@ -2742,6 +3361,82 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
                 printTerminalLine(`<span style="color:#ef4444;">Unbekannter Befehl: '${escapeHtml(cmd)}'. Tippe <span style="color:#10b981;">help</span> ein.</span>`);
             }
         }
+
+        window.execFromChip = function(cmd) {
+            termInput.value = cmd;
+            printTerminalLine(`<span style="color:#10b981; font-weight:bold;">root@cheatmotor:~$</span> ${escapeHtml(cmd)}`);
+            handleCommand(cmd.toLowerCase());
+            termBody.scrollTop = termBody.scrollHeight;
+            termInput.value = "";
+            termInput.focus();
+        };
+
+        function applyTerminalTheme(theme) {
+            const win = document.querySelector(".terminal-window");
+            const promptEl = document.querySelector(".terminal-prompt-text");
+            if (!win) return;
+
+            theme = (theme || "").toLowerCase().trim();
+            localStorage.setItem("cheatmotor_term_theme", theme);
+
+            if (theme === "matrix") {
+                win.style.background = "#030a05";
+                win.style.borderColor = "#10b981";
+                win.style.boxShadow = "0 0 50px rgba(16, 185, 129, 0.4)";
+                win.style.color = "#10b981";
+                if (promptEl) promptEl.style.color = "#00ff66";
+                matrixRainColor = "#10b981";
+                printTerminalLine(`<span style="color:#10b981; font-weight:bold;">[✓] THEME GEWECHSELT: Matrix Green (Hacker Pure)</span>\n`);
+            } else if (theme === "cyber") {
+                win.style.background = "#080c1d";
+                win.style.borderColor = "#00f0ff";
+                win.style.boxShadow = "0 0 50px rgba(0, 240, 255, 0.4), 0 0 20px rgba(255, 0, 127, 0.25)";
+                win.style.color = "#e2e8f0";
+                if (promptEl) promptEl.style.color = "#00f0ff";
+                matrixRainColor = "#00f0ff";
+                printTerminalLine(`<span style="color:#00f0ff; font-weight:bold;">[✓] THEME GEWECHSELT: Cyberpunk Neon (Cyan &amp; Pink)</span>\n`);
+            } else if (theme === "blood") {
+                win.style.background = "#140407";
+                win.style.borderColor = "#ef4444";
+                win.style.boxShadow = "0 0 50px rgba(239, 68, 68, 0.45)";
+                win.style.color = "#fca5a5";
+                if (promptEl) promptEl.style.color = "#ef4444";
+                matrixRainColor = "#ef4444";
+                printTerminalLine(`<span style="color:#ef4444; font-weight:bold;">[✓] THEME GEWECHSELT: Blood Alert (Red Horizon)</span>\n`);
+            } else if (theme === "retro") {
+                win.style.background = "#140c03";
+                win.style.borderColor = "#f59e0b";
+                win.style.boxShadow = "0 0 50px rgba(245, 158, 11, 0.4)";
+                win.style.color = "#fef3c7";
+                if (promptEl) promptEl.style.color = "#f59e0b";
+                matrixRainColor = "#f59e0b";
+                printTerminalLine(`<span style="color:#f59e0b; font-weight:bold;">[✓] THEME GEWECHSELT: Retro Amber (Fallout 1984 CRT Monitor)</span>\n`);
+            } else if (theme === "gold") {
+                win.style.background = "#141005";
+                win.style.borderColor = "#fbbf24";
+                win.style.boxShadow = "0 0 60px rgba(251, 191, 36, 0.5)";
+                win.style.color = "#fef08a";
+                if (promptEl) promptEl.style.color = "#fbbf24";
+                matrixRainColor = "#fbbf24";
+                printTerminalLine(`<span style="color:#fbbf24; font-weight:bold;">[👑] THEME GEWECHSELT: Ben's VIP Gold (Cheff-Tester Edition)</span>\n`);
+            } else {
+                win.style.background = "#070a12";
+                win.style.borderColor = "var(--border)";
+                win.style.boxShadow = "0 25px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 240, 255, 0.15)";
+                win.style.color = "#f8fafc";
+                if (promptEl) promptEl.style.color = "#10b981";
+                matrixRainColor = "#10b981";
+                printTerminalLine(`<span style="color:#94a3b8;">[✓] Standard Cheat Motor Theme wiederhergestellt.</span>\n`);
+            }
+        }
+
+        // Apply saved theme on startup if present
+        window.addEventListener("DOMContentLoaded", () => {
+            const savedTheme = localStorage.getItem("cheatmotor_term_theme");
+            if (savedTheme && savedTheme !== "default") {
+                setTimeout(() => applyTerminalTheme(savedTheme), 200);
+            }
+        });
 
         // Digital Matrix Rain effect
         let matrixActive = false;
