@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schnitzelmod — WeMod 2.0 Minecraft Trainer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #0a0d14;
+            --bg-card: #111622;
+            --bg-card-hover: #161c2c;
+            --cyan: #00e5ff;
+            --cyan-glow: rgba(0, 229, 255, 0.35);
+            --emerald: #10b981;
+            --emerald-glow: rgba(16, 185, 129, 0.35);
+            --amber: #f59e0b;
+            --amber-glow: rgba(245, 158, 11, 0.3);
+            --red: #ef4444;
+            --red-glow: rgba(239, 68, 68, 0.35);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(0, 229, 255, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Ambient background glow */
+        .ambient-glow {
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, rgba(16, 185, 129, 0.06) 40%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 13, 20, 0.85);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--cyan), var(--emerald));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 0 16px var(--cyan-glow);
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-badge {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--amber);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+
+        .nav-btn {
+            background: var(--cyan);
+            color: #0b0e14;
+            padding: 8px 18px;
+            border-radius: 99px;
+            font-weight: 700;
+            font-size: 13px;
+            text-decoration: none;
+            box-shadow: 0 0 16px var(--cyan-glow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 24px rgba(0, 229, 255, 0.6);
+        }
+
+        /* LIVE STATUS TICKER BAR */
+        .status-bar {
+            padding: 10px 0;
+            font-size: 13px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .status-bar.status-online {
+            background: rgba(16, 185, 129, 0.08);
+            border-color: rgba(16, 185, 129, 0.25);
+            color: #a7f3d0;
+        }
+
+        .status-bar.status-wartung {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: rgba(245, 158, 11, 0.3);
+            color: #fde68a;
+        }
+
+        .status-bar.status-stoerung {
+            background: rgba(239, 68, 68, 0.12);
+            border-color: rgba(239, 68, 68, 0.35);
+            color: #fca5a5;
+        }
+
+        .status-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-pulse-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulseEffect 1.8s infinite;
+        }
+
+        .status-online .status-pulse-dot {
+            background: var(--emerald);
+            box-shadow: 0 0 10px var(--emerald);
+        }
+
+        .status-wartung .status-pulse-dot {
+            background: var(--amber);
+            box-shadow: 0 0 10px var(--amber);
+        }
+
+        .status-stoerung .status-pulse-dot {
+            background: var(--red);
+            box-shadow: 0 0 10px var(--red);
+        }
+
+        @keyframes pulseEffect {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        .status-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .status-online .status-tag {
+            background: rgba(16, 185, 129, 0.2);
+            color: #6ee7b7;
+        }
+
+        .status-wartung .status-tag {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fcd34d;
+        }
+
+        .status-stoerung .status-tag {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        .status-text {
+            color: var(--text-main);
+        }
+
+        .admin-trigger-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .admin-trigger-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-main);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 70px 0 50px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--emerald);
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 54px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 40%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto 36px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--cyan), #00b4d8);
+            color: #0b0e14;
+            font-size: 16px;
+            font-weight: 800;
+            padding: 16px 36px;
+            border-radius: 14px;
+            text-decoration: none;
+            box-shadow: 0 0 30px var(--cyan-glow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 45px rgba(0, 229, 255, 0.7);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            font-size: 16px;
+            font-weight: 700;
+            padding: 16px 28px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+
+        /* Pill tags */
+        .pills {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--emerald);
+        }
+
+        /* App Mockup */
+        .mockup-wrapper {
+            margin: 50px auto 90px;
+            max-width: 820px;
+            background: var(--bg-card);
+            border: 1.5px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 229, 255, 0.1);
+        }
+
+        .mockup-header {
+            background: #0d121c;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mockup-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .mockup-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #10b981; }
+
+        .mockup-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .mockup-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--emerald);
+            font-weight: 700;
+        }
+
+        .mockup-body {
+            padding: 28px;
+        }
+
+        .cheat-preview-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            background: linear-gradient(90deg, rgba(0, 229, 255, 0.05) 0%, transparent 100%);
+        }
+
+        .cheat-info h3 {
+            font-size: 16px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cheat-key {
+            background: rgba(0, 229, 255, 0.15);
+            color: var(--cyan);
+            border: 1px solid var(--cyan);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .cheat-info p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .toggle-switch-demo {
+            width: 52px;
+            height: 28px;
+            background: var(--cyan);
+            border-radius: 99px;
+            position: relative;
+            box-shadow: 0 0 14px var(--cyan-glow);
+        }
+
+        .toggle-knob {
+            width: 22px;
+            height: 22px;
+            background: #0b0e14;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            right: 3px;
+        }
+
+        /* Features Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 90px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08);
+        }
+
+        .card-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Steps */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 90px;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .step-num {
+            font-size: 36px;
+            font-weight: 900;
+            color: rgba(0, 229, 255, 0.3);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 12px;
+        }
+
+        .step-card h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* SmartScreen FAQ Box */
+        .faq-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(17, 22, 34, 1) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 18px;
+            padding: 32px;
+            margin-bottom: 90px;
+        }
+
+        .faq-box h3 {
+            color: var(--amber);
+            font-size: 20px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .faq-box p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .faq-steps {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #f1f5f9;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--cyan);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* ADMIN MODAL */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .admin-modal {
+            background: #111622;
+            border: 1.5px solid var(--cyan);
+            box-shadow: 0 0 50px rgba(0, 229, 255, 0.25);
+            border-radius: 18px;
+            width: 100%;
+            max-width: 480px;
+            padding: 32px;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .modal-header h3 {
+            font-size: 20px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--cyan);
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--text-main);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .admin-input {
+            width: 100%;
+            background: #090c14;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: var(--text-main);
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .admin-input:focus {
+            border-color: var(--cyan);
+        }
+
+        .status-choice-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .status-choice-btn {
+            background: #090c14;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .status-choice-btn.selected-online {
+            border-color: var(--emerald);
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--emerald);
+        }
+
+        .status-choice-btn.selected-wartung {
+            border-color: var(--amber);
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--amber);
+        }
+
+        .status-choice-btn.selected-stoerung {
+            border-color: var(--red);
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--red);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn-modal-save {
+            flex: 1;
+            background: var(--cyan);
+            color: #0b0e14;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 0 16px var(--cyan-glow);
+        }
+
+        .btn-modal-logout {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .admin-error-msg {
+            color: var(--red);
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 8px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 38px; }
+            .steps { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .status-inner { flex-direction: column; align-items: flex-start; }
+            .status-choice-group { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-glow"></div>
+
+    <!-- LIVE STATUS TICKER BAR -->
+    <div class="status-bar status-online" id="liveStatusBar">
+        <div class="container status-inner">
+            <div class="status-left">
+                <span class="status-pulse-dot" id="statusPulseDot"></span>
+                <span class="status-tag" id="statusTag">ONLINE</span>
+                <span class="status-text" id="statusMessageText">Alle Trainer-Funktionen betriebsbereit • Minecraft 1.20.1 aktiv</span>
+            </div>
+            <button class="admin-trigger-btn" id="openAdminBtn">⚙️ Admin-Panel</button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon">⚡</div>
+                <div class="logo-text">Schnitzelmod</div>
+                <span class="logo-badge">v2.0 BETA</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#anleitung">Anleitung</a>
+                <a href="#smartscreen">Hilfe</a>
+                <a href="https://github.com/Timluci09/Schnitzelmod" target="_blank">GitHub</a>
+            </div>
+            <a href="https://github.com/Timluci09/Schnitzelmod/raw/main/WeMod2-v2.0-BETA.zip" class="nav-btn">⬇️ Download</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-badge">
+                <span>🟢</span> Minecraft 1.20.1 • Fabric, Forge & TLauncher Ready
+            </div>
+            <h1>Der ultimative Trainer für Minecraft Singleplayer</h1>
+            <p>100% geräuschlose Arbeitsspeicher-Steuerung (RAM). Keine Chat-Befehle, keine Makros, 0% Lag und kein Ruckeln.</p>
+            
+            <div class="hero-actions">
+                <a href="https://github.com/Timluci09/Schnitzelmod/raw/main/WeMod2-v2.0-BETA.zip" class="btn-primary">
+                    <span>⬇️</span> Download v2.0 BETA (.ZIP)
+                </a>
+                <a href="#anleitung" class="btn-secondary">
+                    <span>📖</span> Schnell-Start Anleitung
+                </a>
+            </div>
+
+            <div class="pills">
+                <div class="pill"><span class="pill-dot"></span> TLauncher Ready</div>
+                <div class="pill"><span class="pill-dot"></span> Fabric 1.20.1</div>
+                <div class="pill"><span class="pill-dot"></span> Forge 1.20.1</div>
+                <div class="pill"><span class="pill-dot"></span> 0.0% CPU-Last</div>
+                <div class="pill"><span class="pill-dot"></span> 1-Klick Auto-Updater</div>
+            </div>
+        </section>
+
+        <!-- App Preview -->
+        <div class="mockup-wrapper">
+            <div class="mockup-header">
+                <div class="mockup-dots">
+                    <div class="mockup-dot dot-red"></div>
+                    <div class="mockup-dot dot-yellow"></div>
+                    <div class="mockup-dot dot-green"></div>
+                </div>
+                <div class="mockup-title">WeMod 2.0 [BETA] — Spiele-Trainer Studio</div>
+                <div class="mockup-status">
+                    <span class="pill-dot"></span> Verbunden: Minecraft 1.20.1
+                </div>
+            </div>
+            <div class="mockup-body">
+                <div class="cheat-preview-card">
+                    <div class="cheat-info">
+                        <h3>Flug-Modus (Speicher-Lock) <span class="cheat-key">F1</span></h3>
+                        <p>Schaltet echtes Fliegen (Doppel-Leertaste) direkt im JVM-RAM frei. Funktioniert im Überleben ohne Chat-Rechte.</p>
+                    </div>
+                    <div class="toggle-switch-demo">
+                        <div class="toggle-knob"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <section id="features">
+            <div class="section-title">
+                <h2>Warum Schnitzelmod?</h2>
+                <p>Von Grund auf für maximale Performance und absolute Zuverlässigkeit entwickelt.</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🦅</div>
+                    <h3>Echter Kreativ-Flugmodus (F1)</h3>
+                    <p>Fliege frei durch deine Überlebenswelt. Einfach Taste <code>F1</code> drücken und im Spiel zweimal schnell die Leertaste antippen oder gedrückt halten.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Zero Lag & 0% CPU</h3>
+                    <p>Keine dauerhaften GB-Scans. Dank unserer schnellen 16-Byte-Klass-Validierung bleibt dein Spiel zu 100% flüssig und ruckelfrei.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🎮</div>
+                    <h3>TLauncher, Fabric & Forge</h3>
+                    <p>Egal ob du über das normale Minecraft, Fabric-Mods oder TLauncher spielst: Die Universal VirtualQueryEx Memory Engine findet deine Spielfigur automatisch.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔄</div>
+                    <h3>1-Klick In-App Updater</h3>
+                    <p>Nie wieder manuell ZIP-Dateien aus dem Browser laden. Klicke in WeMod einfach auf <code>🔄 Updates</code> ➔ <code>⚡ 1-Klick Update & Neustart</code>!</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🤫</div>
+                    <h3>100% Lautlos im Speicher</h3>
+                    <p>Kein einziger Chat-Befehl wird getippt. Deine Tastatur und dein Chat bleiben völlig unberührt.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔓</div>
+                    <h3>Open Source auf GitHub</h3>
+                    <p>Vollständig transparent, sicher und für die gesamte Community kostenlos verfügbar.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Anleitung -->
+        <section id="anleitung">
+            <div class="section-title">
+                <h2>In 3 Schritten startklar</h2>
+                <p>Kinderleichte Installation ohne komplizierte Einrichtung.</p>
+            </div>
+
+            <div class="steps">
+                <div class="step-card">
+                    <div class="step-num">01</div>
+                    <h3>ZIP herunterladen</h3>
+                    <p>Lade die Datei <code>WeMod2-v2.0-BETA.zip</code> herunter und entpacke sie auf deinem PC.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-num">02</div>
+                    <h3>Minecraft starten</h3>
+                    <p>Starte Minecraft 1.20.1 (Vanilla, Fabric oder Forge) und gehe in deine Einzelspieler-Welt.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-num">03</div>
+                    <h3>WeMod starten & Fliegen</h3>
+                    <p>Doppelklicke auf <code>Start-WeMod2.bat</code>, drücke <code>F1</code> und hebe mit Doppel-Leertaste ab!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SmartScreen Help -->
+        <section id="smartscreen" class="faq-box">
+            <h3>🛡️ Windows warnt beim ersten Start? (Fehlalarm)</h3>
+            <p>Jedes Cheat-Programm und jeder Memory-Trainer greift direkt auf den RAM zu. Da Schnitzelmod ein neues Open-Source-Projekt ohne teures Firmen-Zertifikat ist, stuft Windows Defender es vorsorglich als „Unbekannte App“ ein.</p>
+            <div class="faq-steps">
+                👉 Klicke im blauen Windows-Fenster auf: <strong>„Weitere Informationen“</strong> ➔ <strong>„Trotzdem ausführen“</strong>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Schnitzelmod WeMod 2.0 • Entwickelt von <a href="https://github.com/Timluci09" target="_blank">Timluci09</a> • Open Source auf <a href="https://github.com/Timluci09/Schnitzelmod" target="_blank">GitHub</a></p>
+        </div>
+    </footer>
+
+    <!-- ADMIN PANEL MODAL -->
+    <div class="modal-overlay" id="adminModalOverlay">
+        <div class="admin-modal">
+            <!-- Login View -->
+            <div id="adminLoginView">
+                <div class="modal-header">
+                    <h3>🔒 Admin-Anmeldung</h3>
+                    <button class="modal-close-btn" id="closeAdminBtn1">&times;</button>
+                </div>
+                <div class="form-group">
+                    <label>Admin-Passwort eingeben:</label>
+                    <input type="password" id="adminPasswordInput" class="admin-input" placeholder="Passwort..." autofocus>
+                    <div class="admin-error-msg" id="adminErrorMsg">❌ Falsches Passwort! Bitte erneut versuchen.</div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-modal-save" id="submitLoginBtn">Anmelden</button>
+                </div>
+            </div>
+
+            <!-- Control View -->
+            <div id="adminControlView" style="display: none;">
+                <div class="modal-header">
+                    <h3>⚙️ Status-Verwaltung</h3>
+                    <button class="modal-close-btn" id="closeAdminBtn2">&times;</button>
+                </div>
+
+                <div class="form-group">
+                    <label>System-Status auswählen:</label>
+                    <div class="status-choice-group">
+                        <div class="status-choice-btn" id="choiceOnline" onclick="selectStatus('online')">🟢 Online</div>
+                        <div class="status-choice-btn" id="choiceWartung" onclick="selectStatus('wartung')">🟡 Wartung</div>
+                        <div class="status-choice-btn" id="choiceStoerung" onclick="selectStatus('stoerung')">🔴 Störung</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Nachrichtentext auf der Website:</label>
+                    <input type="text" id="customStatusInput" class="admin-input" placeholder="z. B. Alle Cheats funktionieren...">
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn-modal-save" id="saveStatusBtn">💾 Status Speichern</button>
+                    <button class="btn-modal-logout" id="logoutAdminBtn">Abmelden</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT FOR ADMIN PANEL & STATUS -->
+    <script>
+        const ADMIN_PIN = "6121";
+
+        // Current status variables
+        let currentStatus = "online";
+        let currentMessage = "Alle Trainer-Funktionen betriebsbereit • Minecraft 1.20.1 aktiv";
+
+        // Load persisted state from localStorage if exists
+        const savedStatus = localStorage.getItem("schnitzelmod_status");
+        const savedMessage = localStorage.getItem("schnitzelmod_message");
+        if (savedStatus) currentStatus = savedStatus;
+        if (savedMessage) currentMessage = savedMessage;
+
+        function applyStatusToUI(status, message) {
+            const bar = document.getElementById("liveStatusBar");
+            const tag = document.getElementById("statusTag");
+            const msgEl = document.getElementById("statusMessageText");
+
+            bar.className = "status-bar status-" + status;
+            
+            if (status === "online") {
+                tag.textContent = "ONLINE";
+            } else if (status === "wartung") {
+                tag.textContent = "WARTUNG";
+            } else if (status === "stoerung") {
+                tag.textContent = "STÖRUNG";
+            }
+
+            msgEl.textContent = message;
+        }
+
+        // Apply on load
+        applyStatusToUI(currentStatus, currentMessage);
+
+        // Modal Elements
+        const overlay = document.getElementById("adminModalOverlay");
+        const openBtn = document.getElementById("openAdminBtn");
+        const closeBtn1 = document.getElementById("closeAdminBtn1");
+        const closeBtn2 = document.getElementById("closeAdminBtn2");
+        const loginView = document.getElementById("adminLoginView");
+        const controlView = document.getElementById("adminControlView");
+        const passInput = document.getElementById("adminPasswordInput");
+        const errorMsg = document.getElementById("adminErrorMsg");
+        const submitLoginBtn = document.getElementById("submitLoginBtn");
+        const saveStatusBtn = document.getElementById("saveStatusBtn");
+        const logoutAdminBtn = document.getElementById("logoutAdminBtn");
+        const customInput = document.getElementById("customStatusInput");
+
+        let selectedStatus = currentStatus;
+
+        function openModal() {
+            overlay.classList.add("active");
+            passInput.value = "";
+            errorMsg.style.display = "none";
+            if (sessionStorage.getItem("schnitzelmod_admin_auth") === "true") {
+                showControls();
+            } else {
+                loginView.style.display = "block";
+                controlView.style.display = "none";
+                setTimeout(() => passInput.focus(), 100);
+            }
+        }
+
+        function closeModal() {
+            overlay.classList.remove("active");
+        }
+
+        openBtn.addEventListener("click", openModal);
+        closeBtn1.addEventListener("click", closeModal);
+        closeBtn2.addEventListener("click", closeModal);
+
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) closeModal();
+        });
+
+        // Login Handler
+        function handleLogin() {
+            if (passInput.value === ADMIN_PIN) {
+                sessionStorage.setItem("schnitzelmod_admin_auth", "true");
+                showControls();
+            } else {
+                errorMsg.style.display = "block";
+                passInput.value = "";
+                passInput.focus();
+            }
+        }
+
+        submitLoginBtn.addEventListener("click", handleLogin);
+        passInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") handleLogin();
+        });
+
+        function showControls() {
+            loginView.style.display = "none";
+            controlView.style.display = "block";
+            selectStatus(currentStatus);
+            customInput.value = currentMessage;
+        }
+
+        window.selectStatus = function(type) {
+            selectedStatus = type;
+            document.getElementById("choiceOnline").className = "status-choice-btn" + (type === "online" ? " selected-online" : "");
+            document.getElementById("choiceWartung").className = "status-choice-btn" + (type === "wartung" ? " selected-wartung" : "");
+            document.getElementById("choiceStoerung").className = "status-choice-btn" + (type === "stoerung" ? " selected-stoerung" : "");
+
+            // Pre-fill smart default messages if user hasn't typed custom
+            if (type === "online" && (customInput.value.includes("Wartung") || customInput.value.includes("Störung"))) {
+                customInput.value = "Alle Trainer-Funktionen betriebsbereit • Minecraft 1.20.1 aktiv";
+            } else if (type === "wartung" && customInput.value.includes("betriebsbereit")) {
+                customInput.value = "Wartungsarbeiten: Neues WeMod-Update wird vorbereitet!";
+            } else if (type === "stoerung" && customInput.value.includes("betriebsbereit")) {
+                customInput.value = "Störung gemeldet: Cheats werden derzeit an neue Version angepasst!";
+            }
+        };
+
+        saveStatusBtn.addEventListener("click", () => {
+            currentStatus = selectedStatus;
+            currentMessage = customInput.value.trim() || "Status aktualisiert.";
+            
+            localStorage.setItem("schnitzelmod_status", currentStatus);
+            localStorage.setItem("schnitzelmod_message", currentMessage);
+
+            applyStatusToUI(currentStatus, currentMessage);
+            closeModal();
+        });
+
+        logoutAdminBtn.addEventListener("click", () => {
+            sessionStorage.removeItem("schnitzelmod_admin_auth");
+            loginView.style.display = "block";
+            controlView.style.display = "none";
+            passInput.value = "";
+            closeModal();
+        });
+
+        // Secret Hotkey Ctrl + Shift + A
+        document.addEventListener("keydown", (e) => {
+            if (e.ctrlKey && e.shiftKey && (e.key === "A" || e.key === "a")) {
+                e.preventDefault();
+                openModal();
+            }
+        });
+    </script>
+</body>
+</html>
