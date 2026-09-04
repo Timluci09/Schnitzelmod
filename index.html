@@ -923,6 +923,123 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
+        
+        /* ==================================================== */
+        /* 🔮 3D NULLPUNKT-KERN CHAMBER */
+        /* ==================================================== */
+        .nullpunkt-core-chamber {
+            background: radial-gradient(circle at 50% 40%, rgba(239, 68, 68, 0.12) 0%, rgba(5, 8, 16, 0.95) 75%);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 18px;
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.2), inset 0 0 25px rgba(239, 68, 68, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .core-chamber-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .core-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #ef4444;
+            letter-spacing: 0.5px;
+        }
+
+        .core-pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ef4444;
+            animation: coreDotPulse 1.2s infinite ease-in-out;
+        }
+
+        @keyframes coreDotPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.5; }
+        }
+
+        .core-freq-badge {
+            font-family: 'Consolas', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            color: #c084fc;
+            background: rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .core-canvas-wrap {
+            width: 100%;
+            height: 140px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 10px;
+            background: rgba(3, 4, 10, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        #nullpunkt3DCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .core-overlay-hint {
+            position: absolute;
+            bottom: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.45);
+            pointer-events: none;
+            transition: all 0.2s ease;
+            text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+        }
+
+        .core-canvas-wrap:hover .core-overlay-hint {
+            color: #ef4444;
+            text-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+        }
+
+        .core-telemetry-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(239, 68, 68, 0.15);
+            text-align: center;
+        }
+
+        .core-stat small {
+            display: block;
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 0.4px;
+            margin-bottom: 2px;
+        }
+
+        .core-stat strong {
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+
         /* ==================================================== */
         /* 🍱 BENTO-GRID 2.0 (FEATURES & STATS) */
         /* ==================================================== */
@@ -1097,6 +1214,14 @@
             position: relative;
         }
 
+                /* ==================================================== */
+        /* 📖 CINEMATIC STORY-BLOG HUB 2.0 (REMASTERED) */
+        /* ==================================================== */
+        .story-hub-section {
+            position: relative;
+            z-index: 1;
+        }
+
         .blog-filter-bar {
             display: flex;
             align-items: center;
@@ -1126,7 +1251,7 @@
         }
 
         .filter-chip.active {
-            background: rgba(168, 85, 247, 0.18);
+            background: rgba(168, 85, 247, 0.2);
             border-color: var(--purple);
             color: #fff;
             box-shadow: 0 0 20px rgba(168, 85, 247, 0.35);
@@ -1134,91 +1259,208 @@
 
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 28px;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 32px;
+            width: 100%;
+        }
+
+        /* Centered Showcase for single post or featured article */
+        .blog-grid.single-post-grid {
+            display: flex;
+            justify-content: center;
+        }
+
+        .blog-grid.single-post-grid .blog-card {
+            max-width: 920px;
+            width: 100%;
         }
 
         .blog-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
         }
 
         .blog-card:hover {
-            border-color: rgba(168, 85, 247, 0.45);
+            border-color: rgba(168, 85, 247, 0.5);
             transform: translateY(-6px);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 30px rgba(168, 85, 247, 0.25);
+            box-shadow: 0 24px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(168, 85, 247, 0.3);
         }
 
+        .featured-story-card {
+            border-color: rgba(168, 85, 247, 0.45);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(168, 85, 247, 0.25);
+        }
+
+        /* Adaptive Image Container with Ambient Backdrop Blur */
         .blog-img-wrap {
             width: 100%;
-            height: 220px;
             position: relative;
             overflow: hidden;
-            background: #0b111e;
+            background: #050812;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.25);
+            aspect-ratio: 16 / 9;
+            min-height: 280px;
+            max-height: 500px;
         }
 
-        .blog-img-wrap img {
+        .blog-img-backdrop {
+            position: absolute;
+            top: -25px; left: -25px; right: -25px; bottom: -25px;
+            background-size: cover;
+            background-position: center;
+            filter: blur(32px) brightness(0.35) saturate(1.5);
+            opacity: 0.85;
+            transform: scale(1.15);
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+
+        .blog-card:hover .blog-img-backdrop {
+            opacity: 1;
+            filter: blur(28px) brightness(0.42) saturate(1.7);
+        }
+
+        /* Uncropped foreground image */
+        .blog-img-main {
+            position: relative;
+            z-index: 2;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+            object-fit: contain; /* Full image visible, zero cropping! */
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.8));
         }
 
-        .blog-card:hover .blog-img-wrap img {
-            transform: scale(1.05);
+        .blog-card:hover .blog-img-main {
+            transform: scale(1.025);
         }
 
-        .blog-category-badge {
+        .blog-img-badges {
             position: absolute;
             top: 14px;
             left: 14px;
-            background: rgba(9, 14, 26, 0.85);
-            border: 1px solid rgba(168, 85, 247, 0.5);
-            color: #e9d5ff;
-            font-size: 11px;
+            right: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .blog-category-badge {
+            background: rgba(8, 12, 24, 0.9);
+            border: 1px solid rgba(168, 85, 247, 0.7);
+            color: #f3e8ff;
+            font-size: 11.5px;
             font-weight: 800;
+            padding: 5px 14px;
+            border-radius: 99px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 14px rgba(168, 85, 247, 0.35);
+            letter-spacing: 0.3px;
+        }
+
+        .blog-readtime-badge {
+            background: rgba(8, 12, 24, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #c084fc;
+            font-size: 11px;
+            font-weight: 700;
             padding: 4px 12px;
             border-radius: 99px;
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
 
+        .blog-img-zoom-hint {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            z-index: 4;
+            background: rgba(5, 8, 18, 0.88);
+            border: 1px solid rgba(0, 240, 255, 0.6);
+            color: #00f0ff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(8px);
+            transition: all 0.25s ease;
+            pointer-events: none;
+            box-shadow: 0 0 18px rgba(0, 240, 255, 0.3);
+        }
+
+        .blog-card:hover .blog-img-zoom-hint {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .blog-body {
-            padding: 24px;
+            padding: 28px;
             display: flex;
             flex-direction: column;
             flex: 1;
+            background: linear-gradient(180deg, rgba(13, 19, 33, 0.85) 0%, rgba(8, 12, 22, 0.95) 100%);
         }
 
         .blog-meta {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 12px;
+            gap: 12px;
+            font-size: 12.5px;
             color: var(--text-muted);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-weight: 600;
+            flex-wrap: wrap;
+        }
+
+        .blog-meta-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .blog-meta-author {
+            color: #e2e8f0;
+            font-weight: 700;
         }
 
         .blog-title {
-            font-size: 20px;
-            font-weight: 800;
+            font-size: 24px;
+            font-weight: 900;
             color: #fff;
-            line-height: 1.3;
-            margin-bottom: 12px;
+            line-height: 1.35;
+            margin-bottom: 14px;
+            letter-spacing: -0.3px;
+        }
+
+        .featured-story-card .blog-title {
+            font-size: 28px;
+            background: linear-gradient(135deg, #ffffff 40%, #e9d5ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .blog-excerpt {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 18px;
+            font-size: 14.5px;
+            color: #94a3b8;
+            line-height: 1.7;
+            margin-bottom: 20px;
             flex: 1;
         }
 
@@ -1226,10 +1468,10 @@
             display: none;
             font-size: 14px;
             color: #e2e8f0;
-            line-height: 1.7;
-            padding-top: 16px;
+            line-height: 1.75;
+            padding-top: 18px;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             animation: fadeIn 0.3s ease;
         }
 
@@ -1238,33 +1480,70 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .blog-actions-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: auto;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
         .btn-blog-expand {
-            background: rgba(168, 85, 247, 0.12);
-            border: 1px solid rgba(168, 85, 247, 0.35);
-            color: #e9d5ff;
-            padding: 10px 18px;
-            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.18), rgba(99, 102, 241, 0.22));
+            border: 1px solid rgba(168, 85, 247, 0.45);
+            color: #f3e8ff;
+            padding: 10px 20px;
+            border-radius: 12px;
             font-size: 13px;
             font-weight: 800;
             cursor: pointer;
-            transition: all 0.2s ease;
-            align-self: flex-start;
+            transition: all 0.25s ease;
             font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-blog-expand:hover {
-            background: var(--purple);
+            background: linear-gradient(135deg, #a855f7, #6366f1);
             color: #fff;
-            box-shadow: 0 0 20px var(--purple-glow);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .btn-blog-zoom {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: var(--text-muted);
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 12.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-blog-zoom:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            background: rgba(0, 240, 255, 0.08);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
         }
 
         /* Rich Story formatting inside blog cards & reader */
         .blog-story-box {
-            padding: 12px 16px;
-            border-radius: 10px;
-            margin: 14px 0;
-            font-size: 13px;
-            line-height: 1.6;
+            padding: 14px 18px;
+            border-radius: 12px;
+            margin: 16px 0;
+            font-size: 13.5px;
+            line-height: 1.65;
             text-align: left;
         }
 
@@ -1289,32 +1568,171 @@
         .blog-quote {
             border-left: 4px solid #00f0ff;
             background: rgba(0, 240, 255, 0.05);
-            margin: 14px 0;
-            padding: 12px 18px;
+            margin: 16px 0;
+            padding: 14px 20px;
             font-style: italic;
             color: #e2e8f0;
-            border-radius: 0 10px 10px 0;
+            border-radius: 0 12px 12px 0;
             font-size: 13.5px;
-            line-height: 1.6;
+            line-height: 1.65;
             text-align: left;
         }
 
         .blog-cmd-box {
             background: #030712;
             border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 8px;
-            padding: 10px 14px;
-            margin: 12px 0;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin: 14px 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Consolas', monospace;
             font-size: 12px;
             color: #00f0ff;
             box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.05);
             word-break: break-all;
             text-align: left;
         }
+
+        /* Empty State */
+        .blog-empty-state {
+            text-align: center;
+            padding: 50px 30px;
+            background: rgba(13, 19, 33, 0.65);
+            border: 1px dashed rgba(168, 85, 247, 0.35);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .blog-empty-icon {
+            font-size: 46px;
+            margin-bottom: 14px;
+            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.4));
+        }
+
+        .blog-empty-state h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .blog-empty-state p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        /* 🖼️ STORY IMAGE FULLSCREEN LIGHTBOX */
+        .story-lightbox-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(2, 4, 10, 0.94);
+            backdrop-filter: blur(16px);
+            z-index: 2000000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .story-lightbox-overlay.active {
+            display: flex;
+        }
+
+        .story-lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 26px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 2000002;
+        }
+
+        .story-lightbox-close:hover {
+            background: var(--red);
+            border-color: var(--red);
+            transform: rotate(90deg);
+        }
+
+        .story-lightbox-box {
+            max-width: 92vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: zoomInLight 0.25s ease;
+            position: relative;
+            z-index: 2000001;
+        }
+
+        @keyframes zoomInLight {
+            from { transform: scale(0.92); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .story-lightbox-box img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 16px;
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 45px rgba(168, 85, 247, 0.35);
+        }
+
+        .story-lightbox-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 14px;
+            padding: 0 6px;
+            gap: 16px;
+        }
+
+        .story-lightbox-title {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 800;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .story-lightbox-btn {
+            background: rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            color: #e9d5ff;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .story-lightbox-btn:hover {
+            background: var(--purple);
+            color: #fff;
+        }
+
 
         /* ==================================================== */
         /* 🏆 HALL OF FAME 2.0 */
@@ -2423,6 +2841,173 @@
             50% { transform: scale(1.5); opacity: 0.4; box-shadow: 0 0 25px #c084fc; }
         }
 
+        
+        /* ==================================================== */
+        /* ☠️ STORY-EVENT: NULLPUNKT GEHACKT / VOID-CORRUPTION */
+        /* ==================================================== */
+        body.world-corrupted-active {
+            --cyan: #ef4444 !important;
+            --cyan-glow: rgba(239, 68, 68, 0.5) !important;
+            --purple: #a855f7 !important;
+            --purple-glow: rgba(168, 85, 247, 0.45) !important;
+            --emerald: #ef4444 !important;
+            background-color: #050207 !important;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(239, 68, 68, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.14) 0%, transparent 50%),
+                linear-gradient(rgba(239, 68, 68, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(239, 68, 68, 0.04) 1px, transparent 1px) !important;
+        }
+
+        body.world-corrupted-active::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(239, 68, 68, 0.035) 0px,
+                rgba(239, 68, 68, 0.035) 2px,
+                transparent 2px,
+                transparent 4px
+            );
+            pointer-events: none;
+            z-index: 9997;
+            animation: corruptedScanlines 0.15s infinite;
+        }
+
+        @keyframes corruptedScanlines {
+            0%, 100% { opacity: 0.85; }
+            50% { opacity: 0.95; }
+        }
+
+        body.world-corrupted-active .cyber-nav,
+        body.world-corrupted-active .bento-card,
+        body.world-corrupted-active .blog-card,
+        body.world-corrupted-active .hof-card,
+        body.world-corrupted-active .step-card,
+        body.world-corrupted-active .mockup-wrapper {
+            border-color: rgba(239, 68, 68, 0.45) !important;
+            box-shadow: 0 0 35px rgba(239, 68, 68, 0.2), 0 15px 35px rgba(0, 0, 0, 0.8) !important;
+        }
+
+        body.world-corrupted-active .bento-card:hover,
+        body.world-corrupted-active .blog-card:hover {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 45px rgba(239, 68, 68, 0.45) !important;
+        }
+
+        body.world-corrupted-active .hero-title,
+        body.world-corrupted-active .section-header h2 {
+            animation: chromaticGlitch 4.5s infinite;
+        }
+
+        @keyframes chromaticGlitch {
+            0%, 93%, 100% {
+                text-shadow: none;
+                transform: none;
+            }
+            94% {
+                text-shadow: 3px 0 #ef4444, -3px 0 #a855f7;
+                transform: translate(-1.5px, 1px);
+            }
+            96% {
+                text-shadow: -3px 0 #ef4444, 3px 0 #00f0ff;
+                transform: translate(1.5px, -1px);
+            }
+            98% {
+                text-shadow: 2px 0 #ef4444, -2px 0 #a855f7;
+                transform: none;
+            }
+        }
+
+        body.world-corrupted-active .hero-badge {
+            background: rgba(239, 68, 68, 0.15) !important;
+            border-color: #ef4444 !important;
+            color: #fca5a5 !important;
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.35) !important;
+        }
+
+        body.world-corrupted-active .status-corrupted {
+            background: rgba(239, 68, 68, 0.25) !important;
+            border: 1px solid #ef4444 !important;
+            color: #ef4444 !important;
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.5) !important;
+        }
+
+        body.world-corrupted-active .status-pulse-dot {
+            background: #ef4444 !important;
+            box-shadow: 0 0 12px #ef4444 !important;
+        }
+
+        /* ☠️ CORRUPTED HUD BADGE */
+        .corrupted-hud-badge {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(18, 4, 8, 0.94);
+            border: 1.5px solid #ef4444;
+            box-shadow: 0 0 35px rgba(239, 68, 68, 0.5), inset 0 0 20px rgba(239, 68, 68, 0.2);
+            border-radius: 16px;
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            z-index: 9999;
+            backdrop-filter: blur(12px);
+            animation: corruptedSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes corruptedSlideUp {
+            from { transform: translateY(60px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .corrupted-pulse-dot {
+            width: 12px;
+            height: 12px;
+            background: #ef4444;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #ef4444;
+            animation: corruptedPulse 1s infinite ease-in-out;
+            flex-shrink: 0;
+        }
+
+        @keyframes corruptedPulse {
+            0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 12px #ef4444; }
+            50% { transform: scale(1.5); opacity: 0.4; box-shadow: 0 0 25px #ef4444; }
+        }
+
+        .corrupted-hud-title {
+            font-size: 13px;
+            font-weight: 900;
+            color: #ef4444;
+            letter-spacing: 0.5px;
+        }
+
+        .corrupted-hud-sub {
+            font-size: 11px;
+            color: #fca5a5;
+        }
+
+        .corrupted-hud-btn {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .corrupted-hud-btn:hover {
+            background: #ef4444;
+            color: #000;
+            box-shadow: 0 0 12px #ef4444;
+        }
+
+
         /* Responsive Breakpoints */
         @media (max-width: 1024px) {
             .hero-split { grid-template-columns: 1fr; text-align: center; }
@@ -2450,9 +3035,10 @@
     </style>
 </head>
 
-<body>
+<body class="world-corrupted-active">
     <div class="ambient-glow-1"></div>
     <div class="ambient-glow-2"></div>
+    <canvas id="voidParticleCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9998;"></canvas>
 
     <!-- 📢 GLOBALER EILMELDUNGS-BANNER -->
     <div class="announcement-banner" id="globalAnnouncementBanner">
@@ -2516,7 +3102,7 @@
             <div class="hero-content">
                 <div class="hero-badge">
                     <span class="status-pulse-dot" style="background: var(--emerald); box-shadow: 0 0 10px var(--emerald);"></span>
-                    <span>Minecraft 1.20.1 Ready • Fabric, Forge & TLauncher</span>
+                    <span id="heroBadgeText">Minecraft 1.20.1 Ready • Fabric, Forge & TLauncher</span>
                 </div>
                 <h1 class="hero-title">
                     Der High-Performance Trainer für Minecraft Singleplayer
@@ -2579,6 +3165,36 @@
                         </div>
                     </div>
                     <div class="mockup-body">
+                        <!-- 🔮 3D INTERAKTIVER NULLPUNKT-KERN -->
+                        <div class="nullpunkt-core-chamber">
+                            <div class="core-chamber-header">
+                                <div class="core-status-pill">
+                                    <span class="core-pulse-dot"></span>
+                                    <span>NULLPUNKT-KERN: 100% KORRUMPIERT</span>
+                                </div>
+                                <div class="core-freq-badge">9.999 THz</div>
+                            </div>
+                            <div class="core-canvas-wrap" id="coreCanvasWrap" title="Klicke den Kern für eine Energie-Schockwelle!">
+                                <canvas id="nullpunkt3DCanvas"></canvas>
+                                <div class="core-overlay-hint">🔮 Klicke den Kern für Energie-Schockwelle</div>
+                            </div>
+                            <div class="core-telemetry-row">
+                                <div class="core-stat">
+                                    <small>INSTABILITÄT</small>
+                                    <strong style="color: #ef4444;" id="coreInstabilityVal">99.8% [KRITISCH]</strong>
+                                </div>
+                                <div class="core-stat">
+                                    <small>ENTITY 0xNULL</small>
+                                    <strong style="color: #c084fc;">SIGNAL LOCKED</strong>
+                                </div>
+                                <div class="core-stat">
+                                    <small>GRAVITATION</small>
+                                    <strong style="color: #f59e0b;">0.00 G [ZERO-G]</strong>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <!-- Cheat 1: F1 -->
                         <div class="cheat-preview-card active-card">
                             <div class="cheat-info">
@@ -2612,11 +3228,11 @@
                         <div class="mockup-telemetry">
                             <div class="telemetry-item">
                                 <span class="telemetry-label">DREHZAHL PRÜFSTAND</span>
-                                <span class="telemetry-val" style="color: var(--cyan);">8500 RPM [STAGE 3]</span>
+                                <span class="telemetry-val" id="heroRpmVal" style="color: var(--cyan);">8500 RPM [STAGE 3]</span>
                             </div>
                             <div class="telemetry-item">
                                 <span class="telemetry-label">DMA LATENZ</span>
-                                <span class="telemetry-val" style="color: var(--emerald);">&lt; 0.38 ms</span>
+                                <span class="telemetry-val" id="heroLatencyVal" style="color: var(--emerald);">&lt; 0.38 ms</span>
                             </div>
                         </div>
                     </div>
@@ -2716,6 +3332,8 @@
                 <button class="filter-chip active" onclick="filterBlogCategory('all', this)">Alle Beiträge</button>
                 <button class="filter-chip" onclick="filterBlogCategory('🔮 Nullpunkt-Story', this)">🔮 Nullpunkt-Story</button>
                 <button class="filter-chip" onclick="filterBlogCategory('⚡ Götter-Krieg', this)">⚡ Götter-Krieg</button>
+                <button class="filter-chip" onclick="filterBlogCategory('📢 Ankündigung', this)">📢 Ankündigungen</button>
+                <button class="filter-chip" onclick="filterBlogCategory('⚡ Live-Event', this)">⚡ Live-Events</button>
                 <button class="filter-chip" onclick="filterBlogCategory('🏎️ Test-Bericht', this)">🏎️ Test-Berichte</button>
             </div>
 
@@ -2896,7 +3514,21 @@
                             </label>
                         </div>
                         <input type="text" id="customBannerInput" class="admin-input" placeholder="z. B. 🔥 ACHTUNG: Neues Update in Vorbereitung!">
-                    <button type="button" class="btn-modal-save" style="width: 100%; margin-top: 14px;" onclick="saveAllAdminSettings()">💾 Status &amp; Banner speichern</button>
+                    
+                    <!-- ☠️ STORY-EVENT: NULLPUNKT GEHACKT -->
+                    <div class="form-group" style="background: rgba(239, 68, 68, 0.12); border: 1.5px solid #ef4444; padding: 14px; border-radius: 12px; margin-top: 16px;">
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div>
+                                <strong style="color: #ef4444; font-size: 13px; display: block;">☠️ Story-Event: Nullpunkt gehackt (Void-Corruption)</strong>
+                                <span style="font-size: 11px; color: #fca5a5;">Schaltet die Website in den blutroten Glitch-Look mit Entity 0xNULL Alarm.</span>
+                            </div>
+                            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: bold; color: #ef4444;">
+                                <input type="checkbox" id="corruptedEventCheckbox" checked disabled style="accent-color: #ef4444; width: 18px; height: 18px; cursor: not-allowed;">
+                                <span>🔒 DAUERHAFT AKTIV</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-modal-save" style="width: 100%; margin-top: 14px;" onclick="saveAllAdminSettings()">💾 Status, Event &amp; Banner speichern</button>
                     </div>
                 </div>
 
@@ -3117,6 +3749,32 @@ Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befeh
     </div>
 
     
+    
+    <!-- ☠️ CORRUPTED WORLD / NULLPUNKT EVENT HUD BADGE -->
+    <div id="corruptedHudBadge" class="corrupted-hud-badge">
+        <div class="corrupted-pulse-dot"></div>
+        <div class="corrupted-hud-content">
+            <div class="corrupted-hud-title">☠️ LORE-EVENT: NULLPUNKT GEKAPERT</div>
+            <div class="corrupted-hud-sub">Entity 0xNULL Infiltration • Tippe 'hack_status' im Terminal</div>
+        </div>
+        <div class="corrupted-hud-actions" style="display: flex; gap: 8px; align-items: center;">
+            <button class="corrupted-hud-btn" onclick="openTerminalWithCode('hack_status')">💻 Terminal</button>
+            <span style="font-size: 10px; color: #ef4444; font-weight: 800; letter-spacing: 0.5px; background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; padding: 2px 8px; border-radius: 4px;">🔒 DAUERHAFT</span>
+        </div>
+    </div>
+
+    <!-- 🖼️ STORY-BLOG IMAGE FULLSCREEN LIGHTBOX -->
+    <div class="story-lightbox-overlay" id="storyLightboxOverlay" onclick="closeStoryLightbox(event)">
+        <button class="story-lightbox-close" onclick="closeStoryLightbox()">&times;</button>
+        <div class="story-lightbox-box">
+            <img id="storyLightboxImg" src="" alt="Story Vollbild">
+            <div class="story-lightbox-bar">
+                <span id="storyLightboxTitle" class="story-lightbox-title"></span>
+                <a id="storyLightboxLink" href="" target="_blank" class="story-lightbox-btn">↗ Original in neuem Tab</a>
+            </div>
+        </div>
+    </div>
+
 <!-- SCRIPT FOR COUNTERS, ADMIN PANEL, TERMINAL & STATUS -->
     <script>
         const ADMIN_PIN = "6121";
@@ -3441,33 +4099,82 @@ function renderBlogPosts() {
             grid.innerHTML = "";
 
             if (!currentBlogPosts || currentBlogPosts.length === 0) {
-                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-muted);">Noch keine Blog-Beiträge vorhanden. Erstelle den ersten Post im Admin-Panel!</div>`;
+                grid.className = "blog-grid single-post-grid";
+                grid.innerHTML = `
+                    <div class="blog-empty-state">
+                        <div class="blog-empty-icon">📖</div>
+                        <h3>Noch keine Story-Beiträge vorhanden</h3>
+                        <p>Erstelle den ersten Post im Admin-Panel unter dem Reiter "Story-Blog Editor", um die Chroniken zu starten!</p>
+                        <button class="btn-modal-save" style="margin-top: 16px; padding: 8px 18px; font-size: 13px;" onclick="openModal()">⚙️ Admin-Panel öffnen</button>
+                    </div>
+                `;
                 return;
             }
 
-            const filteredPosts = (!currentBlogFilter || currentBlogFilter === "all") ? currentBlogPosts : currentBlogPosts.filter(p => (p.category || "").includes(currentBlogFilter.replace(/[^a-zA-Z0-9äöüÄÖÜ]/g, "").trim()) || (p.category || "") === currentBlogFilter);
+            const filteredPosts = (!currentBlogFilter || currentBlogFilter === "all")
+                ? currentBlogPosts
+                : currentBlogPosts.filter(p => {
+                    if (!p.category) return false;
+                    const cleanFilter = currentBlogFilter.replace(/[^a-zA-Z0-9äöüÄÖÜ]/g, "").toLowerCase();
+                    const cleanCat = p.category.replace(/[^a-zA-Z0-9äöüÄÖÜ]/g, "").toLowerCase();
+                    return cleanCat.includes(cleanFilter) || cleanFilter.includes(cleanCat);
+                });
+
+            if (filteredPosts.length === 0) {
+                grid.className = "blog-grid single-post-grid";
+                grid.innerHTML = `
+                    <div class="blog-empty-state">
+                        <div class="blog-empty-icon">🔍</div>
+                        <h3>Keine Beiträge in dieser Kategorie gefunden</h3>
+                        <p>Unter "${escapeHtml(currentBlogFilter)}" wurden noch keine Einträge verfasst.</p>
+                        <button class="filter-chip active" style="margin-top: 14px;" onclick="filterBlogCategory('all', document.querySelector('.blog-filter-bar .filter-chip'))">Alle Beiträge anzeigen</button>
+                    </div>
+                `;
+                return;
+            }
+
+            if (filteredPosts.length === 1) {
+                grid.className = "blog-grid single-post-grid";
+            } else {
+                grid.className = "blog-grid";
+            }
+
             filteredPosts.forEach((post, idx) => {
-                const card = document.createElement("div");
-                card.className = "blog-card";
+                const card = document.createElement("article");
+                card.className = "blog-card" + (filteredPosts.length === 1 ? " featured-story-card" : "");
                 const img = post.imageUrl || "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&auto=format&fit=crop&q=80";
-                
+                const readTime = calcReadTime(post.content || post.excerpt);
+
                 card.innerHTML = `
-                    <div class="blog-img-wrap">
-                        <img src="${escapeHtml(img)}" alt="${escapeHtml(post.title)}" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&auto=format&fit=crop&q=80'">
-                        <span class="blog-category-badge">${escapeHtml(post.category || "🔮 Story")}</span>
+                    <div class="blog-img-wrap" onclick="openStoryLightbox('${escapeHtml(img)}', '${escapeHtml(post.title)}')">
+                        <div class="blog-img-backdrop" style="background-image: url('${escapeHtml(img)}');"></div>
+                        <img class="blog-img-main" src="${escapeHtml(img)}" alt="${escapeHtml(post.title)}" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&auto=format&fit=crop&q=80'">
+                        <div class="blog-img-badges">
+                            <span class="blog-category-badge">${escapeHtml(post.category || "🔮 Story")}</span>
+                            <span class="blog-readtime-badge">⏱️ ${escapeHtml(readTime)}</span>
+                        </div>
+                        <div class="blog-img-zoom-hint">
+                            <span>🔍 Bild in Vollbild öffnen</span>
+                        </div>
                     </div>
                     <div class="blog-body">
                         <div class="blog-meta">
-                            <span>📅 ${escapeHtml(post.date || "Heute")}</span>
+                            <span class="blog-meta-item">📅 ${escapeHtml(post.date || "Heute")}</span>
                             <span>•</span>
-                            <span>👤 ${escapeHtml(post.author || "Ben")}</span>
-                            <span>•</span>
-                            <span style="color: #c084fc; font-weight: 600;">⏱️ ${calcReadTime(post.content || post.excerpt)}</span>
+                            <span class="blog-meta-item blog-meta-author">👤 ${escapeHtml(post.author || "Ben")}</span>
                         </div>
                         <h3 class="blog-title">${escapeHtml(post.title)}</h3>
                         <p class="blog-excerpt">${escapeHtml(post.excerpt || post.content || "")}</p>
                         <div class="blog-full-content" id="blogFullContent_${idx}">${formatStoryContent(post.content || post.excerpt || "")}</div>
-                        <button class="btn-blog-expand" onclick="toggleBlogContent(${idx}, this)">📖 Ganze Story lesen</button>
+                        <div class="blog-actions-bar">
+                            <button class="btn-blog-expand" onclick="toggleBlogContent(${idx}, this)">
+                                <span class="expand-icon">📖</span>
+                                <span class="expand-text">Ganze Story lesen</span>
+                            </button>
+                            <button class="btn-blog-zoom" onclick="openStoryLightbox('${escapeHtml(img)}', '${escapeHtml(post.title)}')">
+                                🔍 Bild vergrößern
+                            </button>
+                        </div>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -3477,14 +4184,49 @@ function renderBlogPosts() {
         window.toggleBlogContent = function(idx, btn) {
             const el = document.getElementById("blogFullContent_" + idx);
             if (!el) return;
+            const textSpan = btn.querySelector(".expand-text");
+            const iconSpan = btn.querySelector(".expand-icon");
             if (el.style.display === "block") {
                 el.style.display = "none";
-                btn.textContent = "📖 Ganze Story lesen";
+                if (textSpan) textSpan.textContent = "Ganze Story lesen";
+                else btn.textContent = "📖 Ganze Story lesen";
+                if (iconSpan) iconSpan.textContent = "📖";
             } else {
                 el.style.display = "block";
-                btn.textContent = "▲ Schließen";
+                if (textSpan) textSpan.textContent = "Story einklappen";
+                else btn.textContent = "▲ Story einklappen";
+                if (iconSpan) iconSpan.textContent = "▲";
             }
         };
+
+        window.openStoryLightbox = function(imgSrc, title) {
+            const overlay = document.getElementById("storyLightboxOverlay");
+            const img = document.getElementById("storyLightboxImg");
+            const titleEl = document.getElementById("storyLightboxTitle");
+            const linkEl = document.getElementById("storyLightboxLink");
+            if (!overlay || !img) return;
+
+            img.src = imgSrc;
+            if (titleEl) titleEl.textContent = title || "Story-Bild";
+            if (linkEl) linkEl.href = imgSrc;
+            overlay.classList.add("active");
+            document.body.style.overflow = "hidden";
+        };
+
+        window.closeStoryLightbox = function(e) {
+            if (e && e.target && e.target.tagName === "IMG") return;
+            const overlay = document.getElementById("storyLightboxOverlay");
+            if (overlay) {
+                overlay.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+        };
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                closeStoryLightbox();
+            }
+        });
 
         function renderAdminBlogList() {
             const list = document.getElementById("adminBlogList");
@@ -3520,6 +4262,12 @@ function renderBlogPosts() {
             if (confirm("Beitrag '" + postTitle + "' wirklich unwiderruflich löschen?")) {
                 currentBlogPosts.splice(idx, 1);
                 localStorage.setItem("cheatmotor_blog_posts", JSON.stringify(currentBlogPosts));
+            const eventChkVal = document.getElementById("corruptedEventCheckbox");
+            if (eventChkVal) {
+                worldCorruptedActive = eventChkVal.checked;
+                localStorage.setItem("schnitzelmod_event_corrupted", worldCorruptedActive ? "true" : "false");
+                applyCorruptedWorldUI(worldCorruptedActive);
+            }
                 renderAdminBlogList();
                 renderBlogPosts();
                 alert("🗑️ Beitrag '" + postTitle + "' wurde erfolgreich gelöscht und dauerhaft im Browser gespeichert!\n\n💡 Klicke unten auf '🌐 Für ALLE Besucher live schalten (1 Klick)', um die Löschung auch weltweit auf GitHub zu veröffentlichen.");
@@ -3595,6 +4343,68 @@ Tippe erneut 'code_1' ein, um X-Ray wieder auszuschalten.</span>
         };
 
         // ====================================================
+        
+        // ====================================================
+        // ☠️ STORY-EVENT: NULLPUNKT GEHACKT / VOID CORRUPTION
+        // ====================================================
+        let worldCorruptedActive = true; // Permanently locked by Entity 0xNULL
+
+        function applyCorruptedWorldUI(active) {
+            active = true; // Permanent mode: cannot be removed
+            document.body.classList.add("world-corrupted-active");
+            const badge = document.getElementById("corruptedHudBadge");
+            if (badge) badge.style.display = "flex";
+
+            const heroBadgeText = document.getElementById("heroBadgeText");
+            const statusTag = document.getElementById("statusTag");
+            const liveStatusBar = document.getElementById("liveStatusBar");
+            const rpmVal = document.getElementById("heroRpmVal");
+            const latencyVal = document.getElementById("heroLatencyVal");
+            const banner = document.getElementById("globalAnnouncementBanner");
+            const bannerMsg = document.getElementById("announcementMessageText");
+
+            if (active) {
+                if (heroBadgeText) heroBadgeText.textContent = "☠️ SYSTEM COMPROMISED • ENTITY 0xNULL AKTIV";
+                if (statusTag) statusTag.textContent = "☠️ GEKAPERT";
+                if (liveStatusBar) liveStatusBar.className = "status-bar status-corrupted nav-status-capsule";
+                if (rpmVal) {
+                    rpmVal.textContent = "9.999 RPM [OVERHEAT]";
+                    rpmVal.style.color = "#ef4444";
+                }
+                if (latencyVal) {
+                    latencyVal.textContent = "ERR: 666 ms [VOID]";
+                    latencyVal.style.color = "#ef4444";
+                }
+                if (banner && bannerMsg && !localStorage.getItem("schnitzelmod_banner_msg")) {
+                    banner.classList.add("active");
+                    bannerMsg.textContent = "🚨 ALARMSTUFE OMEGA: Der Server-Nullpunkt wurde gehackt! Entity 0xNULL hat die Realität verzerrt.";
+                }
+            } else {
+                if (heroBadgeText) heroBadgeText.textContent = "Minecraft 1.20.1 Ready • Fabric, Forge & TLauncher";
+                if (rpmVal) {
+                    rpmVal.textContent = "8500 RPM [STAGE 3]";
+                    rpmVal.style.color = "var(--cyan)";
+                }
+                if (latencyVal) {
+                    latencyVal.textContent = "< 0.38 ms";
+                    latencyVal.style.color = "var(--emerald)";
+                }
+                applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
+            }
+        }
+
+        window.toggleCorruptedWorldMode = function(forcedState) {
+            worldCorruptedActive = true;
+            applyCorruptedWorldUI(true);
+            const eventChk = document.getElementById("corruptedEventCheckbox");
+            if (eventChk) eventChk.checked = true;
+
+            printTerminalLine(`
+<span style="color:#ef4444; font-weight:bold;">[☠️] ZUGRIFF VERWEIGERT: DAS EVENT IST PERMANENT!</span>
+<span style="color:#fca5a5;">Entity 0xNULL: "Der Nullpunkt wurde dauerhaft versiegelt. Es gibt kein Zurück mehr!"</span>
+`);
+        };
+
         // 🌀 NULLPUNKT ANTI-GRAVITY HANDLER (code_2)
         // ====================================================
         let webAntiGravityActive = false;
@@ -3689,6 +4499,14 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 webAntiGravityActive = true;
                 applyWebAntiGravityUI(true);
             }
+            const savedCorrupted = localStorage.getItem("schnitzelmod_event_corrupted");
+            if (savedCorrupted !== null) {
+                worldCorruptedActive = (savedCorrupted === "true");
+            } else {
+                // Default to true for current live event!
+                worldCorruptedActive = true;
+            }
+            applyCorruptedWorldUI(worldCorruptedActive);
         }
         loadLocalStorageOverrides();
         applyStatusToUI(currentStatus, currentMessage, currentBannerActive, currentBannerMessage, currentDownloadsEnabled, currentDownloadDisabledReason);
@@ -3868,6 +4686,8 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             document.getElementById("maintenanceActiveCheckbox").checked = currentMaintenanceMode;
             document.getElementById("maintenanceMsgInput").value = currentMaintenanceMessage;
             document.getElementById("maintenanceTimeInput").value = currentMaintenanceEstimatedTime;
+            const eventChk = document.getElementById("corruptedEventCheckbox");
+            if (eventChk) eventChk.checked = worldCorruptedActive;
             renderAdminTesterList();
         }
 
@@ -4154,6 +4974,10 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
   <span style="color:#00f0ff; font-weight:bold;">cheats</span>    - Listet alle Tastenkürzel (F1, F2, F3) auf
   <span style="color:#00f0ff; font-weight:bold;">code_1</span>    - 🕶️ GEHEIM-CHEAT: Schaltet Website X-Ray Wireframe Modus AN/AUS
   <span style="color:#c084fc; font-weight:bold;">code_2</span>    - 🌀 GEHEIM-CHEAT: Schaltet Nullpunkt Schwerelosigkeit (0.00 G) AN/AUS
+  <span style="color:#ef4444; font-weight:bold;">hack_status</span> - ☠️ Zeigt den Infiltrations-Status von Entity 0xNULL
+  <span style="color:#ef4444; font-weight:bold;">secret_coords</span> - ⚡ Entschlüsselt geheime Nether-Koordinaten für das Live-Event
+  <span style="color:#ef4444; font-weight:bold;">restore_core</span> - ⚙️ Versucht den Nullpunkt-Kern gegen Entity 0xNULL zu reinigen
+  <span style="color:#ef4444; font-weight:bold;">code_null</span>  - ☠️ Schaltet den Nullpunkt-Hacked Modus manuell AN/AUS
   <span style="color:#00f0ff; font-weight:bold;">clear</span>     - Bereinigt den Terminal-Bildschirm
   <span style="color:#00f0ff; font-weight:bold;">exit</span>      - Beendet das Terminal
 `);
@@ -4263,6 +5087,36 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                     out += `     <em>"${escapeHtml(p.excerpt)}"</em>\n\n`;
                 });
                 printTerminalLine(out);
+            } else if (cmd === "hack_status" || cmd === "status_hack" || cmd === "infiltration") {
+                printTerminalLine(`
+<span style="color:#ef4444; font-weight:bold;">[☠️] ENTITY 0xNULL INFILTRATION SCAN:</span>
+  ├─ Status: <span style="color:#ef4444; font-weight:bold;">FEINDLICHE ÜBERNAHME PERMANENT</span>
+  ├─ Nullpunkt Kern: <span style="color:#ef4444; font-weight:bold;">100% KORRUMPIERT (Überhitzung 9.999 RPM)</span>
+  ├─ Infizierte Chunks: 89.4% aller Server-Sektoren
+  ├─ Signal-Ursprung: <span style="color:#c084fc; font-weight:bold;">X: 1337 / Y: 12 / Z: -420</span> (Nether-Riss)
+  ├─ Schutzschilde: <span style="color:#ef4444; font-weight:bold;">IRREVERSIBEL DURCHBROCHEN</span>
+  └─ Bedrohungsstufe: <span style="color:#ef4444; font-weight:bold;">OMEGA (Dauerhaft versiegelt)</span>
+
+<span style="color:#f59e0b;">💡 Tippe 'secret_coords' für geheime Minecraft-Koordinaten!</span>
+`);
+            } else if (cmd === "secret_coords" || cmd === "coords" || cmd === "koordinaten") {
+                printTerminalLine(`
+<span style="color:#c084fc; font-weight:bold;">[⚡] DECODIERE ENTITY 0xNULL SERVER-LOGS...</span>
+<span style="color:#10b981; font-weight:bold;">[✓] GEHEIME EVENT-KOORDINATEN ENTSCHLÜSSELT:</span>
+  ├─ Dimension: Nether / Nullpunkt-Zwischenraum
+  ├─ Ziel-Koordinaten: <span style="color:#00f0ff; font-weight:bold;">X = 1337 | Y = 12 | Z = -420</span>
+  ├─ Schutz-Empfehlung: Netherit-Rüstung + Cheat Motor F1 (Flug-Modus)
+  ├─ Missions-Ziel: Finde das Relikt des Nullpunkts in der brennenden Festung!
+  └─ Belohnung auf dem Server: Exklusiver Götter-Loot &amp; Event-Titel
+
+<span style="color:#f59e0b;">Teile diese Koordinaten mit deiner Crew oder erforsche das Gebiet allein!</span>
+`);
+            } else if (cmd === "restore_core" || cmd === "code_null" || cmd === "event_corrupt" || cmd === "event_corrupt off" || cmd === "reset_event") {
+                printTerminalLine(`
+<span style="color:#ef4444; font-weight:bold;">[☠️] ZUGRIFF VERWEIGERT: NULLPUNKT PERMANENT KORRUMPIERT!</span>
+<span style="color:#fca5a5;">Entity 0xNULL: "Ihr dachtet, ihr könnt mich entfernen? Das System gehört jetzt mir. Für immer!"</span>
+<span style="color:#94a3b8;">(Dieser Zustand ist vom Server-Administrator dauerhaft aktiviert.)</span>
+`);
             } else if (cmd === "code_1" || cmd === "code1" || cmd === "code 1" || cmd === "xray" || cmd === "wireframe") {
                 toggleWebXRayMode();
             } else if (cmd === "code_2" || cmd === "code2" || cmd === "code 2" || cmd === "antigravity" || cmd === "gravity" || cmd === "zerog") {
@@ -4388,7 +5242,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             const ctx = matrixCanvas.getContext("2d");
             matrixCanvas.width = matrixCanvas.offsetWidth;
             matrixCanvas.height = matrixCanvas.offsetHeight;
-            const letters = "01CHEATMOTOR0101999RAMJVMHOOK";
+            const letters = (typeof worldCorruptedActive !== "undefined" && worldCorruptedActive) ? "☠⚡01NULLVOID0xNULLOVERFLOW᚛᚜ERR666" : "01CHEATMOTOR0101999RAMJVMHOOK";
             const fontSize = 14;
             const columns = matrixCanvas.width / fontSize;
             const drops = [];
@@ -4398,7 +5252,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             matrixInterval = setInterval(() => {
                 ctx.fillStyle = "rgba(5, 8, 14, 0.1)";
                 ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-                ctx.fillStyle = "#00f0ff";
+                ctx.fillStyle = (typeof worldCorruptedActive !== "undefined" && worldCorruptedActive) ? "#ef4444" : "#00f0ff";
                 ctx.font = fontSize + "px monospace";
 
                 for (let i = 0; i < drops.length; i++) {
@@ -4411,6 +5265,375 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 }
             }, 40);
         }
+        /* ==================================================== */
+                /* ==================================================== */
+        /* 🔮 3D INTERAKTIVER NULLPUNKT-KERN CANVAS ENGINE */
+        /* ==================================================== */
+        (function init3DNullpunktCore() {
+            const canvas = document.getElementById("nullpunkt3DCanvas");
+            const wrap = document.getElementById("coreCanvasWrap");
+            if (!canvas || !wrap) return;
+
+            const ctx = canvas.getContext("2d");
+            let dpr = window.devicePixelRatio || 1;
+            let width, height, centerX, centerY, radius;
+
+            function resize() {
+                width = wrap.clientWidth;
+                height = wrap.clientHeight;
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                ctx.scale(dpr, dpr);
+                centerX = width / 2;
+                centerY = height / 2;
+                radius = Math.min(width, height) * 0.38;
+            }
+            resize();
+            window.addEventListener("resize", resize);
+
+            let rotX = 0.3;
+            let rotY = 0.4;
+            let rotZ = 0;
+            let targetRotX = 0.3;
+            let targetRotY = 0.4;
+            let mouseOver = false;
+
+            // Shockwave ripples
+            const shockwaves = [];
+            // Orbiting void sparks
+            const orbitSparks = [];
+            for (let i = 0; i < 28; i++) {
+                orbitSparks.push({
+                    dist: Math.random() * 25 + radius * 0.8,
+                    angle: Math.random() * Math.PI * 2,
+                    speed: (Math.random() * 0.04 + 0.02) * (Math.random() > 0.5 ? 1 : -1),
+                    yOffset: (Math.random() - 0.5) * 20,
+                    size: Math.random() * 2.2 + 1,
+                    color: Math.random() > 0.4 ? "#ef4444" : (Math.random() > 0.5 ? "#c084fc" : "#00f0ff")
+                });
+            }
+
+            wrap.addEventListener("mousemove", (e) => {
+                mouseOver = true;
+                const rect = wrap.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / width - 0.5;
+                const y = (e.clientY - rect.top) / height - 0.5;
+                targetRotY = x * 2.5;
+                targetRotX = -y * 2.5;
+            });
+
+            wrap.addEventListener("mouseleave", () => {
+                mouseOver = false;
+            });
+
+            wrap.addEventListener("click", (e) => {
+                shockwaves.push({
+                    radius: radius * 0.3,
+                    maxRadius: Math.max(width, height) * 0.85,
+                    alpha: 1.0,
+                    color: Math.random() > 0.5 ? "#ef4444" : "#c084fc"
+                });
+
+                // Spawn burst of sparks
+                for (let i = 0; i < 16; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    orbitSparks.push({
+                        dist: radius * 0.3,
+                        angle: angle,
+                        speed: (Math.random() * 0.08 + 0.04),
+                        yOffset: (Math.random() - 0.5) * 30,
+                        size: Math.random() * 3 + 1.5,
+                        color: "#ffffff"
+                    });
+                }
+
+                const instVal = document.getElementById("coreInstabilityVal");
+                if (instVal) {
+                    instVal.textContent = "100.0% [DISCHARGE!]";
+                    setTimeout(() => {
+                        if (instVal) instVal.textContent = "99.8% [KRITISCH]";
+                    }, 800);
+                }
+            });
+
+            function render() {
+                ctx.clearRect(0, 0, width, height);
+
+                // Smooth rotation interpolation
+                if (mouseOver) {
+                    rotX += (targetRotX - rotX) * 0.08;
+                    rotY += (targetRotY - rotY) * 0.08;
+                } else {
+                    rotY += 0.015;
+                    rotX = Math.sin(rotY * 0.5) * 0.25;
+                    rotZ += 0.008;
+                }
+
+                // 1. Draw Shockwaves
+                for (let i = shockwaves.length - 1; i >= 0; i--) {
+                    const sw = shockwaves[i];
+                    sw.radius += 4.5;
+                    sw.alpha *= 0.94;
+                    ctx.save();
+                    ctx.strokeStyle = sw.color;
+                    ctx.globalAlpha = Math.max(0, sw.alpha);
+                    ctx.lineWidth = 2.5;
+                    ctx.shadowColor = sw.color;
+                    ctx.shadowBlur = 15;
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, sw.radius, 0, Math.PI * 2);
+                    ctx.stroke();
+                    ctx.restore();
+                    if (sw.alpha <= 0.02) shockwaves.splice(i, 1);
+                }
+
+                // 2. Draw 3D Gimbal Rings (Gimbal Ring Math)
+                function draw3DRing(ringRadius, angleX, angleY, angleZ, color, strokeWidth) {
+                    ctx.save();
+                    ctx.strokeStyle = color;
+                    ctx.lineWidth = strokeWidth;
+                    ctx.shadowColor = color;
+                    ctx.shadowBlur = 10;
+                    ctx.beginPath();
+
+                    const points = 60;
+                    for (let i = 0; i <= points; i++) {
+                        const theta = (i / points) * Math.PI * 2;
+                        // 3D circle in XY plane
+                        let px = Math.cos(theta) * ringRadius;
+                        let py = Math.sin(theta) * ringRadius;
+                        let pz = 0;
+
+                        // Rotate X
+                        let y1 = py * Math.cos(angleX) - pz * Math.sin(angleX);
+                        let z1 = py * Math.sin(angleX) + pz * Math.cos(angleX);
+
+                        // Rotate Y
+                        let x2 = px * Math.cos(angleY) + z1 * Math.sin(angleY);
+                        let z2 = -px * Math.sin(angleY) + z1 * Math.cos(angleY);
+
+                        // Rotate Z
+                        let x3 = x2 * Math.cos(angleZ) - y1 * Math.sin(angleZ);
+                        let y3 = x2 * Math.sin(angleZ) + y1 * Math.cos(angleZ);
+
+                        // Perspective projection
+                        const fov = 320;
+                        const scale = fov / (fov + z2 + 80);
+                        const sx = centerX + x3 * scale;
+                        const sy = centerY + y3 * scale;
+
+                        if (i === 0) ctx.moveTo(sx, sy);
+                        else ctx.lineTo(sx, sy);
+                    }
+                    ctx.closePath();
+                    ctx.stroke();
+
+                    // Node spark at 12 o'clock and 6 o'clock
+                    ctx.fillStyle = "#fff";
+                    ctx.beginPath();
+                    ctx.arc(centerX + Math.cos(angleY) * ringRadius * 0.9, centerY + Math.sin(angleX) * ringRadius * 0.9, 2.5, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+
+                // Ring 1 (Outer Crimson Ring)
+                draw3DRing(radius, rotX, rotY, rotZ, "rgba(239, 68, 68, 0.75)", 2);
+                // Ring 2 (Middle Void Purple Ring)
+                draw3DRing(radius * 0.85, rotX + 0.8, -rotY * 1.3, rotZ + 0.5, "rgba(168, 85, 247, 0.85)", 1.5);
+                // Ring 3 (Inner Cyan/White Ring)
+                draw3DRing(radius * 0.7, -rotX * 1.2, rotY * 0.9, -rotZ, "rgba(0, 240, 255, 0.7)", 1.2);
+
+                // 3. Central Energy Sphere (Pulsating Void Orb)
+                const pulse = Math.sin(Date.now() * 0.005) * 3;
+                const orbR = radius * 0.42 + pulse;
+
+                // Outer Corona Glow
+                const corona = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, orbR * 1.8);
+                corona.addColorStop(0, "rgba(255, 255, 255, 0.95)");
+                corona.addColorStop(0.2, "rgba(239, 68, 68, 0.8)");
+                corona.addColorStop(0.6, "rgba(147, 51, 234, 0.4)");
+                corona.addColorStop(1, "rgba(0, 0, 0, 0)");
+
+                ctx.save();
+                ctx.fillStyle = corona;
+                ctx.shadowColor = "#ef4444";
+                ctx.shadowBlur = 24;
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, orbR * 1.8, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Black Hole Event Horizon in core
+                ctx.fillStyle = "#030207";
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, orbR * 0.6, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Energy Core Ring
+                ctx.strokeStyle = "#fff";
+                ctx.lineWidth = 2;
+                ctx.shadowColor = "#00f0ff";
+                ctx.shadowBlur = 12;
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, orbR * 0.55, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.restore();
+
+                // 4. Orbiting Swarm Sparks
+                for (let i = 0; i < orbitSparks.length; i++) {
+                    const s = orbitSparks[i];
+                    s.angle += s.speed;
+                    const sx = centerX + Math.cos(s.angle) * s.dist;
+                    const sy = centerY + Math.sin(s.angle) * (s.dist * 0.45) + s.yOffset;
+
+                    ctx.save();
+                    ctx.fillStyle = s.color;
+                    ctx.shadowColor = s.color;
+                    ctx.shadowBlur = 6;
+                    ctx.beginPath();
+                    ctx.arc(sx, sy, s.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+
+                requestAnimationFrame(render);
+            }
+
+            requestAnimationFrame(render);
+        })();
+
+        /* ⚡ VOID-GLITCH MAUS-SCHWEIF PARTIKEL-ENGINE */
+        /* ==================================================== */
+        (function initVoidParticleTrail() {
+            const canvas = document.getElementById("voidParticleCanvas");
+            if (!canvas) return;
+            const ctx = canvas.getContext("2d");
+
+            let width = (canvas.width = window.innerWidth);
+            let height = (canvas.height = window.innerHeight);
+
+            window.addEventListener("resize", () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            const particles = [];
+            const maxParticles = 90;
+            const colors = [
+                "#ef4444", "#dc2626", "#f87171", // Blood Red
+                "#a855f7", "#c084fc", "#7e22ce", // Void Purple
+                "#00f0ff"                         // Rare Cyber Spark
+            ];
+            const runes = ["☠", "⚡", "0", "1", "᚛", "᚜", "x", "Ø"];
+
+            let isLoopRunning = false;
+            let lastMouseX = -100;
+            let lastMouseY = -100;
+
+            class VoidParticle {
+                constructor(x, y, isBurst = false) {
+                    this.x = x + (Math.random() - 0.5) * (isBurst ? 16 : 8);
+                    this.y = y + (Math.random() - 0.5) * (isBurst ? 16 : 8);
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = isBurst ? (Math.random() * 4.5 + 2) : (Math.random() * 2 + 0.5);
+                    this.vx = Math.cos(angle) * speed;
+                    this.vy = Math.sin(angle) * speed - (isBurst ? 0 : 0.8);
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                    this.size = Math.random() * 3.5 + 1.5;
+                    this.life = 1.0;
+                    this.decay = Math.random() * 0.025 + 0.018;
+                    const typeRoll = Math.random();
+                    if (typeRoll < 0.15) {
+                        this.type = "glyph";
+                        this.char = runes[Math.floor(Math.random() * runes.length)];
+                    } else if (typeRoll < 0.40) {
+                        this.type = "pixel";
+                    } else {
+                        this.type = "spark";
+                    }
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.vx *= 0.96;
+                    this.vy *= 0.96;
+                    this.life -= this.decay;
+                }
+
+                draw() {
+                    if (this.life <= 0) return;
+                    ctx.save();
+                    ctx.globalAlpha = Math.max(0, this.life);
+
+                    if (this.type === "glyph") {
+                        ctx.font = Math.round(this.size * 3.5) + "px monospace";
+                        ctx.fillStyle = this.color;
+                        ctx.shadowColor = this.color;
+                        ctx.shadowBlur = 8;
+                        ctx.fillText(this.char, this.x, this.y);
+                    } else if (this.type === "pixel") {
+                        ctx.fillStyle = this.color;
+                        ctx.shadowColor = this.color;
+                        ctx.shadowBlur = 6;
+                        const s = this.size * this.life * 1.5;
+                        ctx.fillRect(this.x - s / 2, this.y - s / 2, s, s);
+                    } else {
+                        ctx.fillStyle = this.color;
+                        ctx.shadowColor = this.color;
+                        ctx.shadowBlur = 10;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size * this.life, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                    ctx.restore();
+                }
+            }
+
+            function spawnParticles(x, y, count = 2, isBurst = false) {
+                for (let i = 0; i < count; i++) {
+                    if (particles.length >= maxParticles) {
+                        particles.shift();
+                    }
+                    particles.push(new VoidParticle(x, y, isBurst));
+                }
+                if (!isLoopRunning) {
+                    isLoopRunning = true;
+                    requestAnimationFrame(renderLoop);
+                }
+            }
+
+            function renderLoop() {
+                ctx.clearRect(0, 0, width, height);
+
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const p = particles[i];
+                    p.update();
+                    p.draw();
+                    if (p.life <= 0) {
+                        particles.splice(i, 1);
+                    }
+                }
+
+                if (particles.length > 0) {
+                    requestAnimationFrame(renderLoop);
+                } else {
+                    isLoopRunning = false;
+                }
+            }
+
+            window.addEventListener("mousemove", (e) => {
+                const dist = Math.hypot(e.clientX - lastMouseX, e.clientY - lastMouseY);
+                if (dist > 6) {
+                    spawnParticles(e.clientX, e.clientY, 2);
+                    lastMouseX = e.clientX;
+                    lastMouseY = e.clientY;
+                }
+            });
+
+            window.addEventListener("click", (e) => {
+                spawnParticles(e.clientX, e.clientY, 14, true);
+            });
+        })();
     </script>
 </body>
 </html>
