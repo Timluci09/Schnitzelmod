@@ -4,7 +4,7 @@
   "message": "Alle Trainer-Funktionen betriebsbereit • Minecraft 1.20.1 aktiv",
   "bannerActive": false,
   "bannerMessage": "🔥 WICHTIG: Neues Cheat Motor Update in Vorbereitung!",
-  "downloadEnabled": true,
+  "downloadEnabled": false,
   "downloadDisabledReason": "Wartungsarbeiten / Update wird hochgeladen",
   "maintenanceMode": false,
   "maintenanceMessage": "Cheat Motor Boxenstopp: Wir führen gerade Tuning- und System-Upgrades durch. Gleich wieder online!",
