@@ -257,6 +257,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            white-space: nowrap;
         }
 
         .nav-link:hover {
@@ -284,6 +285,7 @@
             gap: 5px;
             transition: all 0.2s ease;
             font-family: inherit;
+            white-space: nowrap;
         }
 
         .nav-more-btn:hover,
@@ -3032,6 +3034,911 @@
             .nav-inner { justify-content: space-between; }
         }
 
+        /* ==================================================== */
+        /* 🪪 CUSTOM NULLPUNKT-HACKER-AUSWEIS (ID-KARTE) STYLES */
+        /* ==================================================== */
+        .hacker-id-section {
+            padding: 80px 0 100px;
+            position: relative;
+            scroll-margin-top: 90px;
+        }
+
+        .id-generator-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 36px;
+            align-items: start;
+            margin-top: 36px;
+        }
+
+        /* Left: Control Card */
+        .id-controls-card {
+            background: rgba(13, 20, 36, 0.78);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+            position: relative;
+        }
+
+        .id-controls-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 20px;
+            margin-bottom: 24px;
+        }
+
+        .id-deck-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .id-deck-icon {
+            font-size: 24px;
+            filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.6));
+        }
+
+        .id-deck-title h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.3px;
+        }
+
+        .id-deck-subtitle {
+            font-size: 11px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--cyan);
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .id-status-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .id-status-pill::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+            animation: pulse-dot 1.5s infinite;
+        }
+
+        /* Preset Row */
+        .id-form-row {
+            margin-bottom: 20px;
+        }
+
+        .id-row-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .id-preset-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .preset-pill {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .preset-pill:hover {
+            background: rgba(0, 240, 255, 0.15);
+            border-color: rgba(0, 240, 255, 0.4);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .preset-pill.preset-rnd {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(0, 240, 255, 0.2));
+            border-color: rgba(168, 85, 247, 0.4);
+            color: #f3e8ff;
+        }
+
+        .preset-pill.preset-rnd:hover {
+            border-color: #00f0ff;
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+        }
+
+        /* Form Inputs */
+        .id-inputs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .id-input-group {
+            margin-bottom: 20px;
+        }
+
+        .id-input-group label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+
+        .id-input-hint {
+            font-size: 11px;
+            font-weight: 500;
+            color: #64748b;
+        }
+
+        .id-input-with-action {
+            display: flex;
+            gap: 8px;
+        }
+
+        .id-input, .id-select {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 14px;
+            color: #fff;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .id-input:focus, .id-select:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .id-input-action-btn {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border-radius: 10px;
+            padding: 0 14px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .id-input-action-btn:hover {
+            background: rgba(0, 240, 255, 0.2);
+            border-color: var(--cyan);
+            transform: rotate(180deg);
+        }
+
+        /* Class Selector Grid */
+        .id-classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .id-class-item {
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 10px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+
+        .id-class-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(30, 41, 59, 0.75);
+            transform: translateY(-2px);
+        }
+
+        .id-class-item.active {
+            border-color: var(--class-color, var(--cyan));
+            background: rgba(0, 240, 255, 0.12);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+        }
+
+        .id-class-item[data-class="turbo"] { --class-color: #00f0ff; }
+        .id-class-item[data-class="turbo"].active {
+            border-color: #00f0ff;
+            background: rgba(0, 240, 255, 0.14);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+        }
+
+        .id-class-item[data-class="architekt"] { --class-color: #10b981; }
+        .id-class-item[data-class="architekt"].active {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.14);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+        }
+
+        .id-class-item[data-class="goetter"] { --class-color: #f59e0b; }
+        .id-class-item[data-class="goetter"].active {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.14);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.25);
+        }
+
+        .id-class-item[data-class="void"] { --class-color: #a855f7; }
+        .id-class-item[data-class="void"].active {
+            border-color: #a855f7;
+            background: rgba(168, 85, 247, 0.14);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+        }
+
+        .id-class-item[data-class="chaos"] { --class-color: #ef4444; }
+        .id-class-item[data-class="chaos"].active {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.14);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.25);
+        }
+
+        .class-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .class-meta strong {
+            display: block;
+            font-size: 13px;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .class-meta small {
+            font-size: 10px;
+            color: #94a3b8;
+            display: block;
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Clearance Header */
+        .id-clearance-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .id-clearance-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            color: #f59e0b;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        /* Sliders */
+        .id-sliders-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .id-slider-box {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            padding: 10px 14px;
+        }
+
+        .slider-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 12px;
+            color: #cbd5e1;
+        }
+
+        .slider-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 12px;
+            color: var(--cyan);
+        }
+
+        .id-range {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+
+        .id-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--cyan);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--cyan);
+            transition: transform 0.15s;
+        }
+
+        .id-range::-webkit-slider-thumb:hover {
+            transform: scale(1.25);
+        }
+
+        /* Actions Bar */
+        .id-actions-bar {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 12px;
+            margin-top: 26px;
+        }
+
+        .id-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 18px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .id-btn-primary {
+            background: linear-gradient(135deg, #00f0ff 0%, #0099ff 100%);
+            color: #030712;
+            box-shadow: 0 8px 24px rgba(0, 240, 255, 0.35);
+        }
+
+        .id-btn-primary:hover {
+            box-shadow: 0 12px 32px rgba(0, 240, 255, 0.55);
+            transform: translateY(-2px);
+        }
+
+        .id-btn-secondary {
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #f8fafc;
+        }
+
+        .id-btn-secondary:hover {
+            background: rgba(88, 101, 242, 0.25);
+            border-color: #5865f2;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(88, 101, 242, 0.3);
+        }
+
+        /* ==================================================== */
+        /* RIGHT: 3D HOLOGRAPHIC BADGE PREVIEW */
+        /* ==================================================== */
+        .id-card-display {
+            position: sticky;
+            top: 100px;
+        }
+
+        .id-card-viewport {
+            perspective: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0 20px;
+        }
+
+        .cyber-id-badge {
+            --card-accent: #00f0ff;
+            --card-glow: rgba(0, 240, 255, 0.35);
+            width: 100%;
+            max-width: 480px;
+            min-height: 290px;
+            background: linear-gradient(145deg, rgba(10, 16, 32, 0.96) 0%, rgba(5, 8, 18, 0.98) 100%);
+            border: 2px solid var(--card-accent);
+            border-radius: 20px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.85),
+                0 0 35px var(--card-glow),
+                inset 0 0 20px rgba(255, 255, 255, 0.03);
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out, border-color 0.4s ease, box-shadow 0.4s ease;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        /* Class-specific Badge Glows */
+        .cyber-id-badge[data-class="turbo"] {
+            --card-accent: #00f0ff;
+            --card-glow: rgba(0, 240, 255, 0.35);
+        }
+        .cyber-id-badge[data-class="architekt"] {
+            --card-accent: #10b981;
+            --card-glow: rgba(16, 185, 129, 0.35);
+        }
+        .cyber-id-badge[data-class="goetter"] {
+            --card-accent: #f59e0b;
+            --card-glow: rgba(245, 158, 11, 0.35);
+        }
+        .cyber-id-badge[data-class="void"] {
+            --card-accent: #a855f7;
+            --card-glow: rgba(168, 85, 247, 0.35);
+        }
+        .cyber-id-badge[data-class="chaos"] {
+            --card-accent: #ef4444;
+            --card-glow: rgba(239, 68, 68, 0.4);
+        }
+
+        /* Hologram Glare & Scanlines */
+        .badge-holo-glare {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle 320px at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.22), transparent 70%);
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            opacity: 0.85;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+
+        .badge-scanlines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.18),
+                rgba(0, 0, 0, 0.18) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            pointer-events: none;
+            opacity: 0.7;
+            z-index: 11;
+        }
+
+        .badge-bg-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 100% 0%, var(--card-glow) 0%, transparent 45%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 20px 20px, 20px 20px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Badge Top Row */
+        .badge-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+            padding-bottom: 14px;
+            margin-bottom: 16px;
+        }
+
+        .badge-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge-logo-icon {
+            font-size: 24px;
+            filter: drop-shadow(0 0 8px var(--card-accent));
+        }
+
+        .badge-sys-title {
+            font-size: 14px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+        }
+
+        .badge-sys-sub {
+            font-size: 9px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--card-accent);
+            letter-spacing: 0.8px;
+            margin-top: 2px;
+        }
+
+        /* Gold Cyber Chip */
+        .badge-chip {
+            width: 42px;
+            height: 32px;
+            background: linear-gradient(135deg, #d97706 0%, #fbbf24 50%, #b45309 100%);
+            border-radius: 6px;
+            position: relative;
+            box-shadow: 
+                0 0 10px rgba(251, 191, 36, 0.4),
+                inset 0 0 4px rgba(0, 0, 0, 0.5);
+            border: 1px solid #78350f;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .chip-core {
+            position: absolute;
+            inset: 6px 10px;
+            border: 1px solid #78350f;
+            border-radius: 3px;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .chip-pin {
+            position: absolute;
+            background: #78350f;
+        }
+        .chip-pin.pin-1 {
+            width: 100%;
+            height: 1px;
+            top: 50%;
+            left: 0;
+        }
+        .chip-pin.pin-2 {
+            height: 100%;
+            width: 1px;
+            left: 50%;
+            top: 0;
+        }
+
+        /* Badge Agent Row */
+        .badge-agent-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 18px;
+        }
+
+        .badge-skin-wrap {
+            position: relative;
+            width: 82px;
+            height: 82px;
+            flex-shrink: 0;
+            border-radius: 14px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--card-accent);
+            box-shadow: 0 0 18px var(--card-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .badge-skin-img {
+            width: 72px;
+            height: 72px;
+            object-fit: cover;
+            image-rendering: pixelated;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .badge-clearance-tag {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.85);
+            color: var(--card-accent);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 800;
+            text-align: center;
+            padding: 2px 0;
+            letter-spacing: 0.5px;
+            border-top: 1px solid var(--card-accent);
+        }
+
+        .badge-agent-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .badge-serial-line {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .badge-uid {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-live-dot {
+            width: 5px;
+            height: 5px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #10b981;
+        }
+
+        .badge-live-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: #10b981;
+            font-weight: 700;
+        }
+
+        .badge-name {
+            font-size: 22px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            text-shadow: 0 0 14px var(--card-glow);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .badge-callsign {
+            font-size: 11px;
+            font-style: italic;
+            color: #cbd5e1;
+            margin-top: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .badge-class-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--card-accent);
+            padding: 3px 10px;
+            border-radius: 999px;
+            margin-top: 6px;
+        }
+
+        .pill-ico {
+            font-size: 12px;
+        }
+
+        .pill-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        /* Badge Stats Grid */
+        .badge-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 14px;
+            position: relative;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+        }
+
+        .badge-stat-box .stat-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #94a3b8;
+            margin-bottom: 4px;
+        }
+
+        .badge-stat-box .stat-top strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .badge-stat-box .stat-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .badge-stat-box .stat-fill {
+            height: 100%;
+            background: var(--card-accent);
+            border-radius: 999px;
+            box-shadow: 0 0 8px var(--card-accent);
+            transition: width 0.3s ease;
+        }
+
+        /* Badge Bottom Row */
+        .badge-bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            padding-top: 6px;
+        }
+
+        .badge-barcode-wrap {
+            flex: 1;
+        }
+
+        .badge-barcode {
+            height: 22px;
+            width: 170px;
+            background: repeating-linear-gradient(
+                90deg,
+                #fff,
+                #fff 2px,
+                transparent 2px,
+                transparent 4px,
+                #fff 4px,
+                #fff 5px,
+                transparent 5px,
+                transparent 7px,
+                #fff 7px,
+                #fff 10px,
+                transparent 10px,
+                transparent 12px,
+                #fff 12px,
+                #fff 13px,
+                transparent 13px,
+                transparent 15px
+            );
+            opacity: 0.85;
+            border-radius: 2px;
+        }
+
+        .badge-barcode-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: #64748b;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .badge-stamp {
+            border: 2px dashed var(--card-accent);
+            border-radius: 8px;
+            padding: 4px 8px;
+            text-align: center;
+            transform: rotate(-3deg);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .stamp-box {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .stamp-box span {
+            font-size: 8px;
+            font-weight: 700;
+            color: #94a3b8;
+            letter-spacing: 1px;
+        }
+
+        .stamp-box strong {
+            font-size: 10px;
+            font-weight: 900;
+            color: var(--card-accent);
+            letter-spacing: 0.5px;
+            margin: 2px 0;
+        }
+
+        .stamp-box small {
+            font-size: 7px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #64748b;
+        }
+
+        .id-tilt-hint {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        /* Cyber Toast */
+        .cyber-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(40px);
+            background: rgba(10, 15, 30, 0.95);
+            border: 1px solid var(--cyan);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.4);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 99999;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+
+        .cyber-toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsive Layout for ID-Section */
+        @media (max-width: 960px) {
+            .id-generator-layout {
+                grid-template-columns: 1fr;
+            }
+            .id-card-display {
+                position: relative;
+                top: 0;
+            }
+            .id-actions-bar {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -3070,6 +3977,7 @@
                             <span class="nav-arrow">▾</span>
                         </button>
                         <div class="nav-dropdown-menu" id="navMoreMenu">
+                            <a href="#hacker-id" onclick="closeNavDropdown()">🪪 ID-Karte Generator</a>
                             <a href="#stats" onclick="closeNavDropdown()">📊 Statistiken</a>
                             <a href="#anleitung" onclick="closeNavDropdown()">📖 Anleitung</a>
                             <a href="#smartscreen" onclick="closeNavDropdown()">🛡️ SmartScreen Hilfe</a>
@@ -3360,6 +4268,267 @@
         </section>
 
         <!-- ==================================================== -->
+        <!-- 🪪 CUSTOM NULLPUNKT-HACKER-AUSWEIS (ID-KARTE) -->
+        <!-- ==================================================== -->
+        <section id="hacker-id" class="hacker-id-section">
+            <div class="section-header">
+                <span class="section-badge badge-cyan">NULLPUNKT-DIVISION // CLEARANCE</span>
+                <h2>🪪 Dein offizieller Hacker-Ausweis</h2>
+                <p>Erstelle deinen personalisierten Cheat-Motor Clearance-Ausweis mit deinem Minecraft-Skin, Attribut-Matrix &amp; 3D-Hologramm.</p>
+            </div>
+
+            <div class="id-generator-layout">
+                <!-- Left: Control Deck -->
+                <div class="id-controls-card">
+                    <div class="id-controls-top">
+                        <div class="id-deck-title">
+                            <span class="id-deck-icon">⚙️</span>
+                            <div>
+                                <h3>Ausweis-Konfigurator</h3>
+                                <p class="id-deck-subtitle">DMA KERNEL v2.0 // AGENT REGISTRATION</p>
+                            </div>
+                        </div>
+                        <span class="id-status-pill">SYS::READY</span>
+                    </div>
+
+                    <!-- Crew Presets -->
+                    <div class="id-form-row">
+                        <span class="id-row-label">⚡ Schnell-Presets:</span>
+                        <div class="id-preset-pills">
+                            <button type="button" class="preset-pill" onclick="applyHackerPreset('ben')">🏎️ Ben</button>
+                            <button type="button" class="preset-pill" onclick="applyHackerPreset('tim')">🕶️ Tim</button>
+                            <button type="button" class="preset-pill" onclick="applyHackerPreset('gideon')">⚡ Gideon</button>
+                            <button type="button" class="preset-pill" onclick="applyHackerPreset('null')">☣️ 0xNULL</button>
+                            <button type="button" class="preset-pill preset-rnd" onclick="randomizeHackerId()">🎲 Zufall</button>
+                        </div>
+                    </div>
+
+                    <!-- Form Inputs -->
+                    <div class="id-inputs-grid">
+                        <div class="id-input-group">
+                            <label for="idPlayerName">
+                                <span>👤 Minecraft-Spielername</span>
+                                <span class="id-input-hint" id="skinHint">Skin wird geladen</span>
+                            </label>
+                            <div class="id-input-with-action">
+                                <input type="text" id="idPlayerName" class="id-input" value="Entity_0xNULL" placeholder="z.B. Tim, Ben..." autocomplete="off" spellcheck="false" oninput="onUsernameChange(this.value)">
+                                <button type="button" class="id-input-action-btn" onclick="reloadMinecraftSkin()" title="Skin aktualisieren">🔄</button>
+                            </div>
+                        </div>
+
+                        <div class="id-input-group">
+                            <label for="idCallsign">
+                                <span>🏷️ Callsign / Motto</span>
+                            </label>
+                            <input type="text" id="idCallsign" class="id-input" value="NULLPUNKT PROTOCOL OPERATIVE" placeholder="Dein Spruch oder Titel..." autocomplete="off" oninput="updateIdCallsign(this.value)">
+                        </div>
+                    </div>
+
+                    <!-- Hacker Class Select -->
+                    <div class="id-input-group">
+                        <label><span>🛡️ Hacker-Klasse &amp; Division</span></label>
+                        <div class="id-classes-grid" id="idClassesGrid">
+                            <button type="button" class="id-class-item active" data-class="turbo" onclick="selectHackerClass('turbo')">
+                                <span class="class-icon">🏎️</span>
+                                <div class="class-meta">
+                                    <strong>Turbo-Pilot</strong>
+                                    <small>Bens Schüler • Y=5200</small>
+                                </div>
+                            </button>
+                            <button type="button" class="id-class-item" data-class="architekt" onclick="selectHackerClass('architekt')">
+                                <span class="class-icon">🕶️</span>
+                                <div class="class-meta">
+                                    <strong>Memory-Architekt</strong>
+                                    <small>Tims Crew • DMA-Root</small>
+                                </div>
+                            </button>
+                            <button type="button" class="id-class-item" data-class="goetter" onclick="selectHackerClass('goetter')">
+                                <span class="class-icon">⚡</span>
+                                <div class="class-meta">
+                                    <strong>Götter-Kämpfer</strong>
+                                    <small>Zephyrus • Blitz-Schlag</small>
+                                </div>
+                            </button>
+                            <button type="button" class="id-class-item" data-class="void" onclick="selectHackerClass('void')">
+                                <span class="class-icon">☣️</span>
+                                <div class="class-meta">
+                                    <strong>Void-Infiltrator</strong>
+                                    <small>Entity 0xNULL • Glitch</small>
+                                </div>
+                            </button>
+                            <button type="button" class="id-class-item" data-class="chaos" onclick="selectHackerClass('chaos')">
+                                <span class="class-icon">🩸</span>
+                                <div class="class-meta">
+                                    <strong>Chaos-Breaker</strong>
+                                    <small>Roter Kristall • Exploit</small>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Clearance Level -->
+                    <div class="id-input-group">
+                        <div class="id-clearance-header">
+                            <label for="idClearance"><span>🔑 Sicherheitsfreigabe (Clearance)</span></label>
+                            <span class="id-clearance-badge" id="idClearanceBadge">LEVEL 5 • ROOT</span>
+                        </div>
+                        <select id="idClearance" class="id-select" onchange="onClearanceChange(this.value)">
+                            <option value="5" selected>Level 5 — ROOT KERNEL OMNIPOTENZ</option>
+                            <option value="4">Level 4 — Nullpunkt-Wächter</option>
+                            <option value="3">Level 3 — DMA-Speicher-Architekt</option>
+                            <option value="2">Level 2 — Hex-Byte Operator</option>
+                            <option value="1">Level 1 — Void-Rekrut</option>
+                        </select>
+                    </div>
+
+                    <!-- Live Sliders -->
+                    <div class="id-input-group">
+                        <label><span>📊 Cyber-Attribute &amp; Overclock</span></label>
+                        <div class="id-sliders-list">
+                            <div class="id-slider-box">
+                                <div class="slider-head">
+                                    <span>🚀 Flug-Geschwindigkeit</span>
+                                    <span class="slider-val" id="dispSpeed">420 km/h</span>
+                                </div>
+                                <input type="range" id="sliderSpeed" class="id-range" min="50" max="800" value="420" oninput="onStatChange()">
+                            </div>
+                            <div class="id-slider-box">
+                                <div class="slider-head">
+                                    <span>🔮 Nullpunkt-Resistenz</span>
+                                    <span class="slider-val" id="dispResist">98%</span>
+                                </div>
+                                <input type="range" id="sliderResist" class="id-range" min="10" max="100" value="98" oninput="onStatChange()">
+                            </div>
+                            <div class="id-slider-box">
+                                <div class="slider-head">
+                                    <span>⚡ RAM-Overclock</span>
+                                    <span class="slider-val" id="dispClock">8.4 GHz</span>
+                                </div>
+                                <input type="range" id="sliderClock" class="id-range" min="20" max="99" value="84" oninput="onStatChange()">
+                            </div>
+                            <div class="id-slider-box">
+                                <div class="slider-head">
+                                    <span>🕶️ DMA-Bypass Rate</span>
+                                    <span class="slider-val" id="dispBypass">99.8%</span>
+                                </div>
+                                <input type="range" id="sliderBypass" class="id-range" min="800" max="1000" value="998" oninput="onStatChange()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="id-actions-bar">
+                        <button type="button" class="id-btn id-btn-primary" onclick="downloadHackerCardPng()">
+                            <span>📸</span> Ausweis herunterladen (PNG)
+                        </button>
+                        <button type="button" class="id-btn id-btn-secondary" onclick="copyDiscordBio()">
+                            <span>📋</span> Discord-Bio kopieren
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: 3D Hologram Badge Card -->
+                <div class="id-card-display">
+                    <div class="id-card-viewport" id="idCardViewport">
+                        <div class="cyber-id-badge" id="cyberIdBadge" data-class="turbo">
+                            <div class="badge-holo-glare" id="badgeHoloGlare"></div>
+                            <div class="badge-scanlines"></div>
+                            <div class="badge-bg-pattern"></div>
+
+                            <!-- Badge Top Bar -->
+                            <div class="badge-top-row">
+                                <div class="badge-brand">
+                                    <span class="badge-logo-icon">⚙️</span>
+                                    <div>
+                                        <div class="badge-sys-title">CHEAT MOTOR 2.0</div>
+                                        <div class="badge-sys-sub">NULLPUNKT SPECIAL OPERATIONS</div>
+                                    </div>
+                                </div>
+                                <div class="badge-chip">
+                                    <div class="chip-pin pin-1"></div>
+                                    <div class="chip-pin pin-2"></div>
+                                    <div class="chip-core"></div>
+                                </div>
+                            </div>
+
+                            <!-- Badge Main Body -->
+                            <div class="badge-agent-row">
+                                <div class="badge-skin-wrap">
+                                    <div class="badge-skin-ring"></div>
+                                    <img id="badgeSkinImg" class="badge-skin-img" src="https://mc-heads.net/avatar/Entity_0xNULL/128" alt="Skin" crossorigin="anonymous">
+                                    <span class="badge-clearance-tag" id="badgeClearanceTag">LEVEL 5</span>
+                                </div>
+                                <div class="badge-agent-info">
+                                    <div class="badge-serial-line">
+                                        <span class="badge-uid" id="badgeUid">UID: 0xNULL-9842</span>
+                                        <span class="badge-live-dot"></span>
+                                        <span class="badge-live-text">DMA OK</span>
+                                    </div>
+                                    <div class="badge-name" id="badgeName">Entity_0xNULL</div>
+                                    <div class="badge-callsign" id="badgeCallsign">"NULLPUNKT PROTOCOL OPERATIVE"</div>
+                                    <div class="badge-class-pill" id="badgeClassPill">
+                                        <span class="pill-ico" id="badgeClassIco">🏎️</span>
+                                        <span class="pill-name" id="badgeClassName">TURBO-PILOT</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Badge Telemetry / Stats -->
+                            <div class="badge-stats-grid">
+                                <div class="badge-stat-box">
+                                    <div class="stat-top">
+                                        <span>SPEED</span>
+                                        <strong id="badgeStatSpeed">420 km/h</strong>
+                                    </div>
+                                    <div class="stat-bar"><div class="stat-fill" id="badgeBarSpeed" style="width: 52%;"></div></div>
+                                </div>
+                                <div class="badge-stat-box">
+                                    <div class="stat-top">
+                                        <span>RESIST</span>
+                                        <strong id="badgeStatResist">98%</strong>
+                                    </div>
+                                    <div class="stat-bar"><div class="stat-fill" id="badgeBarResist" style="width: 98%;"></div></div>
+                                </div>
+                                <div class="badge-stat-box">
+                                    <div class="stat-top">
+                                        <span>OVERCLOCK</span>
+                                        <strong id="badgeStatClock">8.4 GHz</strong>
+                                    </div>
+                                    <div class="stat-bar"><div class="stat-fill" id="badgeBarClock" style="width: 84%;"></div></div>
+                                </div>
+                                <div class="badge-stat-box">
+                                    <div class="stat-top">
+                                        <span>BYPASS</span>
+                                        <strong id="badgeStatBypass">99.8%</strong>
+                                    </div>
+                                    <div class="stat-bar"><div class="stat-fill" id="badgeBarBypass" style="width: 99%;"></div></div>
+                                </div>
+                            </div>
+
+                            <!-- Badge Bottom Bar -->
+                            <div class="badge-bottom-row">
+                                <div class="badge-barcode-wrap">
+                                    <div class="badge-barcode"></div>
+                                    <div class="badge-barcode-val" id="badgeBarcodeVal">0x7F91 4821 0041 8492</div>
+                                </div>
+                                <div class="badge-stamp">
+                                    <div class="stamp-box">
+                                        <span>VERIFIED</span>
+                                        <strong>DMA ROOT</strong>
+                                        <small>2026 REV 2</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="id-tilt-hint">
+                        <span>✨ Bewege die Maus über die Karte für 3D-Hologramm &amp; Reflexion</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================================================== -->
         <!-- 🛡️ ANLEITUNG & SMARTSCREEN GUIDE -->
         <!-- ==================================================== -->
         <section id="anleitung" class="guide-section">
@@ -3412,6 +4581,7 @@
                 <a href="#features">Features</a>
                 <a href="#story-blog">Story-Blog</a>
                 <a href="#hall-of-fame">Crew</a>
+                <a href="#hacker-id">ID-Karte</a>
                 <a href="https://github.com/Timluci09/Schnitzelmod" target="_blank">GitHub</a>
             </div>
             <p class="footer-disclaimer">
@@ -5632,6 +6802,720 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
 
             window.addEventListener("click", (e) => {
                 spawnParticles(e.clientX, e.clientY, 14, true);
+            });
+        })();
+
+        /* ==================================================== */
+        /* 🪪 CUSTOM NULLPUNKT-HACKER-AUSWEIS (LOGIK & 3D TILT) */
+        /* ==================================================== */
+        (function() {
+            const HACKER_CLASSES = {
+                turbo: {
+                    id: "turbo",
+                    name: "TURBO-PILOT",
+                    icon: "🏎️",
+                    desc: "Bens Schüler • Y=5200",
+                    color: "#00f0ff",
+                    glow: "rgba(0, 240, 255, 0.4)",
+                    uidPrefix: "TURBO"
+                },
+                architekt: {
+                    id: "architekt",
+                    name: "MEMORY-ARCHITEKT",
+                    icon: "🕶️",
+                    desc: "Tims Crew • DMA-Root",
+                    color: "#10b981",
+                    glow: "rgba(16, 185, 129, 0.4)",
+                    uidPrefix: "ARCH"
+                },
+                goetter: {
+                    id: "goetter",
+                    name: "GÖTTER-KÄMPFER",
+                    icon: "⚡",
+                    desc: "Zephyrus • Blitz-Schlag",
+                    color: "#f59e0b",
+                    glow: "rgba(245, 158, 11, 0.4)",
+                    uidPrefix: "ZEPH"
+                },
+                void: {
+                    id: "void",
+                    name: "VOID-INFILTRATOR",
+                    icon: "☣️",
+                    desc: "Entity 0xNULL • Glitch",
+                    color: "#a855f7",
+                    glow: "rgba(168, 85, 247, 0.4)",
+                    uidPrefix: "VOID"
+                },
+                chaos: {
+                    id: "chaos",
+                    name: "CHAOS-BREAKER",
+                    icon: "🩸",
+                    desc: "Roter Kristall • Exploit",
+                    color: "#ef4444",
+                    glow: "rgba(239, 68, 68, 0.4)",
+                    uidPrefix: "CHAOS"
+                }
+            };
+
+            let currentClass = "turbo";
+            let skinDebounceTimer = null;
+
+            // DOM Elements
+            const cardEl = document.getElementById("cyberIdBadge");
+            const glareEl = document.getElementById("badgeHoloGlare");
+            const viewportEl = document.getElementById("idCardViewport");
+            const skinImg = document.getElementById("badgeSkinImg");
+            const skinHint = document.getElementById("skinHint");
+
+            // Toast Helper
+            window.showCyberToast = function(msg) {
+                let toast = document.getElementById("cyberToast");
+                if (!toast) {
+                    toast = document.createElement("div");
+                    toast.id = "cyberToast";
+                    toast.className = "cyber-toast";
+                    document.body.appendChild(toast);
+                }
+                toast.innerHTML = msg;
+                toast.classList.add("show");
+                clearTimeout(toast._timeout);
+                toast._timeout = setTimeout(() => {
+                    toast.classList.remove("show");
+                }, 3500);
+            };
+
+            // Username Change Handler
+            window.onUsernameChange = function(val) {
+                const cleanName = val.trim() || "Unbekannt";
+                document.getElementById("badgeName").textContent = cleanName;
+                updateUid(cleanName);
+
+                clearTimeout(skinDebounceTimer);
+                if (skinHint) skinHint.textContent = "Skin wird geladen...";
+
+                skinDebounceTimer = setTimeout(() => {
+                    fetchMinecraftSkin(cleanName);
+                }, 400);
+            };
+
+            window.reloadMinecraftSkin = function() {
+                const name = document.getElementById("idPlayerName").value.trim() || "Steve";
+                fetchMinecraftSkin(name);
+                showCyberToast("🔄 Skin wird neu synchronisiert...");
+            };
+
+            function fetchMinecraftSkin(username) {
+                if (!skinImg) return;
+                const clean = encodeURIComponent(username.trim());
+                const targetUrl = "https://mc-heads.net/avatar/" + clean + "/128";
+
+                const testImg = new Image();
+                testImg.crossOrigin = "anonymous";
+                testImg.onload = function() {
+                    skinImg.src = targetUrl;
+                    if (skinHint) skinHint.textContent = "✓ Skin aktiv";
+                };
+                testImg.onerror = function() {
+                    // Fallback to stylized dark cyber avatar
+                    skinImg.src = "https://mc-heads.net/avatar/MHF_Steve/128";
+                    if (skinHint) skinHint.textContent = "✓ Standard-Skin";
+                };
+                testImg.src = targetUrl;
+            }
+
+            // Callsign
+            window.updateIdCallsign = function(val) {
+                const callsign = val.trim() || "NULLPUNKT OPERATIVE";
+                document.getElementById("badgeCallsign").textContent = '"' + callsign + '"';
+            };
+
+            // Class Selection
+            window.selectHackerClass = function(classId) {
+                if (!HACKER_CLASSES[classId]) return;
+                currentClass = classId;
+                const info = HACKER_CLASSES[classId];
+
+                // Update UI Buttons
+                document.querySelectorAll(".id-class-item").forEach(btn => {
+                    btn.classList.toggle("active", btn.getAttribute("data-class") === classId);
+                });
+
+                // Update Card Theme
+                if (cardEl) {
+                    cardEl.setAttribute("data-class", classId);
+                }
+
+                // Update Class Pill
+                document.getElementById("badgeClassIco").textContent = info.icon;
+                document.getElementById("badgeClassName").textContent = info.name;
+
+                // Update UID prefix
+                const name = document.getElementById("idPlayerName").value.trim() || "0xNULL";
+                updateUid(name);
+            };
+
+            // Clearance Level
+            window.onClearanceChange = function(val) {
+                const levelNames = {
+                    "5": "LEVEL 5 • ROOT",
+                    "4": "LEVEL 4 • WÄCHTER",
+                    "3": "LEVEL 3 • ARCHITEKT",
+                    "2": "LEVEL 2 • OPERATOR",
+                    "1": "LEVEL 1 • REKRUT"
+                };
+                const tagNames = {
+                    "5": "ROOT",
+                    "4": "LVL 4",
+                    "3": "LVL 3",
+                    "2": "LVL 2",
+                    "1": "LVL 1"
+                };
+
+                const clearanceBadge = document.getElementById("idClearanceBadge");
+                if (clearanceBadge) clearanceBadge.textContent = levelNames[val] || "LEVEL 5";
+
+                const clearanceTag = document.getElementById("badgeClearanceTag");
+                if (clearanceTag) clearanceTag.textContent = tagNames[val] || "ROOT";
+            };
+
+            // Stats Update
+            window.onStatChange = function() {
+                const speed = document.getElementById("sliderSpeed").value;
+                const resist = document.getElementById("sliderResist").value;
+                const clock = (document.getElementById("sliderClock").value / 10).toFixed(1);
+                const bypass = (document.getElementById("sliderBypass").value / 10).toFixed(1);
+
+                // Update Control Texts
+                document.getElementById("dispSpeed").textContent = speed + " km/h";
+                document.getElementById("dispResist").textContent = resist + "%";
+                document.getElementById("dispClock").textContent = clock + " GHz";
+                document.getElementById("dispBypass").textContent = bypass + "%";
+
+                // Update Card Texts
+                document.getElementById("badgeStatSpeed").textContent = speed + " km/h";
+                document.getElementById("badgeStatResist").textContent = resist + "%";
+                document.getElementById("badgeStatClock").textContent = clock + " GHz";
+                document.getElementById("badgeStatBypass").textContent = bypass + "%";
+
+                // Update Card Progress Bars
+                const speedPct = Math.min(100, Math.round(((speed - 50) / 750) * 100));
+                const resistPct = resist;
+                const clockPct = Math.min(100, Math.round(((clock - 2.0) / 7.9) * 100));
+                const bypassPct = Math.min(100, Math.round(((bypass - 80) / 20) * 100));
+
+                document.getElementById("badgeBarSpeed").style.width = speedPct + "%";
+                document.getElementById("badgeBarResist").style.width = resistPct + "%";
+                document.getElementById("badgeBarClock").style.width = clockPct + "%";
+                document.getElementById("badgeBarBypass").style.width = bypassPct + "%";
+            };
+
+            function updateUid(name) {
+                const info = HACKER_CLASSES[currentClass] || HACKER_CLASSES.turbo;
+                let hash = 0;
+                for (let i = 0; i < name.length; i++) {
+                    hash = ((hash << 5) - hash) + name.charCodeAt(i);
+                    hash |= 0;
+                }
+                const hex = Math.abs(hash).toString(16).toUpperCase().padStart(4, "0").substring(0, 4);
+                const uid = `UID: 0x${info.uidPrefix}-${hex}`;
+                document.getElementById("badgeUid").textContent = uid;
+
+                // Barcode Hash
+                const barHash = `0x7F91 ${hex} 0041 ${Math.abs(hash * 3).toString(16).toUpperCase().padStart(4, "0").substring(0, 4)}`;
+                document.getElementById("badgeBarcodeVal").textContent = barHash;
+            }
+
+            // Presets
+            const PRESETS = {
+                ben: {
+                    name: "Ben_Turbo",
+                    callsign: "Y=5200 WARP GESCHWINDIGKEIT",
+                    classId: "turbo",
+                    clearance: "5",
+                    speed: 780,
+                    resist: 92,
+                    clock: 95,
+                    bypass: 999
+                },
+                tim: {
+                    name: "Tim_Architekt",
+                    callsign: "DMA ROOT KERNEL ARCHITEKT",
+                    classId: "architekt",
+                    clearance: "5",
+                    speed: 460,
+                    resist: 98,
+                    clock: 99,
+                    bypass: 1000
+                },
+                gideon: {
+                    name: "Gideon_Zeph",
+                    callsign: "ZEPHYRUS GÖTTER-KRIEGER",
+                    classId: "goetter",
+                    clearance: "5",
+                    speed: 560,
+                    resist: 99,
+                    clock: 92,
+                    bypass: 996
+                },
+                null: {
+                    name: "Entity_0xNULL",
+                    callsign: "DER VOID BLICKT ZURÜCK",
+                    classId: "void",
+                    clearance: "5",
+                    speed: 666,
+                    resist: 100,
+                    clock: 96,
+                    bypass: 999
+                }
+            };
+
+            window.applyHackerPreset = function(presetKey) {
+                const p = PRESETS[presetKey];
+                if (!p) return;
+
+                document.getElementById("idPlayerName").value = p.name;
+                document.getElementById("idCallsign").value = p.callsign;
+                document.getElementById("idClearance").value = p.clearance;
+                document.getElementById("sliderSpeed").value = p.speed;
+                document.getElementById("sliderResist").value = p.resist;
+                document.getElementById("sliderClock").value = p.clock;
+                document.getElementById("sliderBypass").value = p.bypass;
+
+                window.onUsernameChange(p.name);
+                window.updateIdCallsign(p.callsign);
+                window.selectHackerClass(p.classId);
+                window.onClearanceChange(p.clearance);
+                window.onStatChange();
+
+                showCyberToast(`⚡ Preset <strong>${p.name}</strong> angewendet!`);
+            };
+
+            window.randomizeHackerId = function() {
+                const randomNames = [
+                    "Vortex_Runner", "Cyber_Ghost", "Shadow_Byte", "Glitch_Zero",
+                    "Quantum_Pulse", "Hex_Master", "Echo_Void", "Root_Destroyer"
+                ];
+                const randomCallsigns = [
+                    "Bypassing Reality itself", "Im Schatten der Chunks",
+                    "Gegen die Götter unbesiegt", "Memory Leak im Kosmos",
+                    "Flug ohne Grenzen", "Nullpunkt synchronisiert"
+                ];
+                const classKeys = Object.keys(HACKER_CLASSES);
+
+                const rndName = randomNames[Math.floor(Math.random() * randomNames.length)];
+                const rndCallsign = randomCallsigns[Math.floor(Math.random() * randomCallsigns.length)];
+                const rndClass = classKeys[Math.floor(Math.random() * classKeys.length)];
+                const rndClearance = String(Math.floor(Math.random() * 3) + 3); // Level 3-5
+
+                const rndSpeed = Math.floor(Math.random() * 600) + 150;
+                const rndResist = Math.floor(Math.random() * 30) + 70;
+                const rndClock = Math.floor(Math.random() * 50) + 49;
+                const rndBypass = Math.floor(Math.random() * 100) + 900;
+
+                document.getElementById("idPlayerName").value = rndName;
+                document.getElementById("idCallsign").value = rndCallsign;
+                document.getElementById("idClearance").value = rndClearance;
+                document.getElementById("sliderSpeed").value = rndSpeed;
+                document.getElementById("sliderResist").value = rndResist;
+                document.getElementById("sliderClock").value = rndClock;
+                document.getElementById("sliderBypass").value = rndBypass;
+
+                window.onUsernameChange(rndName);
+                window.updateIdCallsign(rndCallsign);
+                window.selectHackerClass(rndClass);
+                window.onClearanceChange(rndClearance);
+                window.onStatChange();
+
+                showCyberToast(`🎲 Neuer Zufalls-Hacker <strong>${rndName}</strong> generiert!`);
+            };
+
+            // 3D Perspective Tilt on Mouse Movement
+            if (viewportEl && cardEl) {
+                viewportEl.addEventListener("mousemove", (e) => {
+                    const rect = cardEl.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const normX = (x - centerX) / centerX;
+                    const normY = (y - centerY) / centerY;
+
+                    const rotY = normX * 12;
+                    const rotX = -normY * 12;
+
+                    cardEl.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+
+                    if (glareEl) {
+                        glareEl.style.setProperty("--glare-x", `${((normX + 1) * 50).toFixed(1)}%`);
+                        glareEl.style.setProperty("--glare-y", `${((normY + 1) * 50).toFixed(1)}%`);
+                        glareEl.style.opacity = "0.9";
+                    }
+                });
+
+                viewportEl.addEventListener("mouseleave", () => {
+                    cardEl.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+                    if (glareEl) {
+                        glareEl.style.opacity = "0.3";
+                    }
+                });
+
+                viewportEl.addEventListener("mouseenter", () => {
+                    if (glareEl) glareEl.style.opacity = "0.9";
+                });
+            }
+
+            // Copy Discord Bio
+            window.copyDiscordBio = function() {
+                const name = document.getElementById("idPlayerName").value.trim() || "Agent";
+                const callsign = document.getElementById("idCallsign").value.trim() || "NULLPUNKT OPERATIVE";
+                const info = HACKER_CLASSES[currentClass] || HACKER_CLASSES.turbo;
+                const clearance = document.getElementById("idClearance").options[document.getElementById("idClearance").selectedIndex].text;
+                const speed = document.getElementById("dispSpeed").textContent;
+                const resist = document.getElementById("dispResist").textContent;
+                const clock = document.getElementById("dispClock").textContent;
+                const bypass = document.getElementById("dispBypass").textContent;
+                const uid = document.getElementById("badgeUid").textContent;
+
+                const discordText = 
+`\`\`\`asciidoc
+╔══════════════════════════════════════════════════════╗
+║ 🪪 CHEAT MOTOR 2.0 // NULLPUNKT-HACKER-AUSWEIS       ║
+╠══════════════════════════════════════════════════════╣
+║ 👤 Agent: ${name}
+║ 🏷️ Callsign: "${callsign}"
+║ 🛡️ Division: ${info.name} (${info.icon})
+║ 🔑 Clearance: ${clearance}
+║ ⚡ Hardware: ${clock} RAM Overclock
+║ 🚀 Attribute: Flug ${speed} • Resistenz ${resist}
+║ 🕶️ DMA Bypass: ${bypass}
+║ 🔐 UID: ${uid} • [DMA-VERIFIED]
+╚══════════════════════════════════════════════════════╝
+\`\`\``;
+
+                navigator.clipboard.writeText(discordText).then(() => {
+                    showCyberToast("📋 <strong>Discord-Ausweis</strong> in die Zwischenablage kopiert!");
+                }).catch(() => {
+                    showCyberToast("Fehler beim Kopieren — Bitte manuell markieren.");
+                });
+            };
+
+            // High-Resolution PNG Canvas Export
+            window.downloadHackerCardPng = function() {
+                showCyberToast("📸 Rendere hochauflösenden Ausweis (PNG)...");
+
+                const canvas = document.createElement("canvas");
+                canvas.width = 1000;
+                canvas.height = 600;
+                const ctx = canvas.getContext("2d");
+
+                const name = document.getElementById("idPlayerName").value.trim() || "Agent";
+                const callsign = document.getElementById("idCallsign").value.trim() || "NULLPUNKT OPERATIVE";
+                const info = HACKER_CLASSES[currentClass] || HACKER_CLASSES.turbo;
+                const clearanceTag = document.getElementById("badgeClearanceTag").textContent;
+                const speed = document.getElementById("dispSpeed").textContent;
+                const resist = document.getElementById("dispResist").textContent;
+                const clock = document.getElementById("dispClock").textContent;
+                const bypass = document.getElementById("dispBypass").textContent;
+                const uid = document.getElementById("badgeUid").textContent;
+                const barcodeHash = document.getElementById("badgeBarcodeVal").textContent;
+
+                // 1. Background Card Shape
+                ctx.save();
+                function roundRect(ctx, x, y, w, h, r) {
+                    ctx.beginPath();
+                    ctx.moveTo(x + r, y);
+                    ctx.lineTo(x + w - r, y);
+                    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+                    ctx.lineTo(x + w, y + h - r);
+                    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+                    ctx.lineTo(x + r, y + h);
+                    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+                    ctx.lineTo(x, y + r);
+                    ctx.quadraticCurveTo(x, y, x + r, y);
+                    ctx.closePath();
+                }
+
+                roundRect(ctx, 30, 30, 940, 540, 32);
+                ctx.clip();
+
+                // Dark Cyber Gradient Background
+                const bgGrad = ctx.createLinearGradient(30, 30, 970, 570);
+                bgGrad.addColorStop(0, "#0a1020");
+                bgGrad.addColorStop(0.5, "#060914");
+                bgGrad.addColorStop(1, "#03050a");
+                ctx.fillStyle = bgGrad;
+                ctx.fillRect(30, 30, 940, 540);
+
+                // Ambient Radial Glow
+                const glowGrad = ctx.createRadialGradient(850, 100, 10, 850, 100, 450);
+                glowGrad.addColorStop(0, info.glow);
+                glowGrad.addColorStop(1, "transparent");
+                ctx.fillStyle = glowGrad;
+                ctx.fillRect(30, 30, 940, 540);
+
+                // Grid pattern
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.03)";
+                ctx.lineWidth = 1;
+                for (let x = 30; x < 970; x += 40) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 30);
+                    ctx.lineTo(x, 570);
+                    ctx.stroke();
+                }
+                for (let y = 30; y < 570; y += 40) {
+                    ctx.beginPath();
+                    ctx.moveTo(30, y);
+                    ctx.lineTo(970, y);
+                    ctx.stroke();
+                }
+
+                // Watermark text in background
+                ctx.fillStyle = "rgba(255, 255, 255, 0.025)";
+                ctx.font = "900 48px 'JetBrains Mono', monospace";
+                ctx.fillText("NULLPUNKT // DEPT OF COLLAPSE", 120, 320);
+
+                // Border Outline
+                ctx.restore();
+                ctx.save();
+                roundRect(ctx, 30, 30, 940, 540, 32);
+                ctx.strokeStyle = info.color;
+                ctx.lineWidth = 4;
+                ctx.shadowColor = info.color;
+                ctx.shadowBlur = 24;
+                ctx.stroke();
+                ctx.restore();
+
+                // 2. Header: Logo & Chip
+                ctx.save();
+                ctx.fillStyle = "#ffffff";
+                ctx.font = "800 24px 'Plus Jakarta Sans', sans-serif";
+                ctx.fillText("⚙️ CHEAT MOTOR 2.0", 70, 85);
+
+                ctx.fillStyle = info.color;
+                ctx.font = "700 13px 'JetBrains Mono', monospace";
+                ctx.fillText("NULLPUNKT SPECIAL OPERATIONS // DIVISION 0xNULL", 72, 108);
+
+                // Cyber Chip (Gold)
+                const chipX = 860, chipY = 60, chipW = 75, chipH = 55;
+                ctx.fillStyle = "#d97706";
+                roundRect(ctx, chipX, chipY, chipW, chipH, 8);
+                ctx.fill();
+                ctx.strokeStyle = "#78350f";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                ctx.fillStyle = "#fbbf24";
+                ctx.fillRect(chipX + 8, chipY + 8, chipW - 16, chipH - 16);
+                ctx.strokeStyle = "#92400e";
+                ctx.strokeRect(chipX + 22, chipY + 14, 30, 26);
+
+                // Header Divider Line
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(70, 135);
+                ctx.lineTo(930, 135);
+                ctx.stroke();
+                ctx.restore();
+
+                // 3. Avatar Section
+                ctx.save();
+                const avX = 70, avY = 165, avSize = 135;
+                roundRect(ctx, avX, avY, avSize, avSize, 20);
+                ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+                ctx.fill();
+                ctx.strokeStyle = info.color;
+                ctx.lineWidth = 3;
+                ctx.shadowColor = info.color;
+                ctx.shadowBlur = 15;
+                ctx.stroke();
+                ctx.restore();
+
+                // Draw Avatar Image if loaded
+                try {
+                    if (skinImg && skinImg.complete && skinImg.naturalWidth > 0) {
+                        ctx.save();
+                        roundRect(ctx, avX + 6, avY + 6, avSize - 12, avSize - 12, 16);
+                        ctx.clip();
+                        ctx.drawImage(skinImg, avX + 6, avY + 6, avSize - 12, avSize - 12);
+                        ctx.restore();
+                    } else {
+                        throw new Error("fallback");
+                    }
+                } catch(e) {
+                    // Fallback stylized icon
+                    ctx.save();
+                    ctx.fillStyle = info.color;
+                    ctx.font = "60px sans-serif";
+                    ctx.textAlign = "center";
+                    ctx.fillText("👤", avX + avSize / 2, avY + avSize / 2 + 20);
+                    ctx.restore();
+                }
+
+                // Avatar Clearance Banner
+                ctx.save();
+                ctx.fillStyle = "rgba(0, 0, 0, 0.9)";
+                ctx.fillRect(avX, avY + avSize - 26, avSize, 26);
+                ctx.strokeStyle = info.color;
+                ctx.lineWidth = 1;
+                ctx.strokeRect(avX, avY + avSize - 26, avSize, 26);
+                ctx.fillStyle = info.color;
+                ctx.font = "800 12px 'JetBrains Mono', monospace";
+                ctx.textAlign = "center";
+                ctx.fillText(clearanceTag, avX + avSize / 2, avY + avSize - 8);
+                ctx.restore();
+
+                // 4. Identity Info
+                ctx.save();
+                const infoX = 235;
+                // UID & DMA Badge
+                ctx.fillStyle = "#94a3b8";
+                ctx.font = "700 15px 'JetBrains Mono', monospace";
+                ctx.fillText(uid, infoX, 185);
+
+                ctx.fillStyle = "#10b981";
+                ctx.font = "800 13px 'JetBrains Mono', monospace";
+                ctx.fillText("● DMA OK", infoX + 260, 185);
+
+                // Name
+                ctx.fillStyle = "#ffffff";
+                ctx.font = "900 36px 'Plus Jakarta Sans', sans-serif";
+                ctx.shadowColor = info.color;
+                ctx.shadowBlur = 14;
+                ctx.fillText(name, infoX, 230);
+                ctx.shadowBlur = 0;
+
+                // Callsign
+                ctx.fillStyle = "#cbd5e1";
+                ctx.font = "italic 16px 'Plus Jakarta Sans', sans-serif";
+                ctx.fillText('"' + callsign + '"', infoX, 260);
+
+                // Class Pill
+                roundRect(ctx, infoX, 276, 220, 32, 16);
+                ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+                ctx.fill();
+                ctx.strokeStyle = info.color;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+
+                ctx.fillStyle = "#ffffff";
+                ctx.font = "800 14px 'JetBrains Mono', monospace";
+                ctx.fillText(`${info.icon} ${info.name}`, infoX + 16, 298);
+                ctx.restore();
+
+                // 5. Stats Matrix Container
+                ctx.save();
+                const boxX = 70, boxY = 330, boxW = 860, boxH = 120;
+                roundRect(ctx, boxX, boxY, boxW, boxH, 16);
+                ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+                ctx.fill();
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                const stats = [
+                    { label: "SPEED", val: speed, pct: Math.min(100, Math.round(((parseInt(speed) - 50) / 750) * 100)) },
+                    { label: "RESIST", val: resist, pct: parseInt(resist) },
+                    { label: "OVERCLOCK", val: clock, pct: Math.min(100, Math.round(((parseFloat(clock) - 2.0) / 7.9) * 100)) },
+                    { label: "BYPASS", val: bypass, pct: Math.min(100, Math.round(((parseFloat(bypass) - 80) / 20) * 100)) }
+                ];
+
+                stats.forEach((st, idx) => {
+                    const colX = boxX + 24 + (idx * 210);
+                    const colY = boxY + 36;
+
+                    ctx.fillStyle = "#94a3b8";
+                    ctx.font = "700 13px 'JetBrains Mono', monospace";
+                    ctx.fillText(st.label, colX, colY);
+
+                    ctx.fillStyle = "#ffffff";
+                    ctx.font = "800 14px 'JetBrains Mono', monospace";
+                    ctx.textAlign = "right";
+                    ctx.fillText(st.val, colX + 180, colY);
+                    ctx.textAlign = "left";
+
+                    // Progress Track
+                    roundRect(ctx, colX, colY + 12, 180, 8, 4);
+                    ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
+                    ctx.fill();
+
+                    // Progress Fill
+                    const fillW = Math.max(10, Math.round((st.pct / 100) * 180));
+                    roundRect(ctx, colX, colY + 12, fillW, 8, 4);
+                    ctx.fillStyle = info.color;
+                    ctx.shadowColor = info.color;
+                    ctx.shadowBlur = 8;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                });
+                ctx.restore();
+
+                // 6. Barcode & Official Seal
+                ctx.save();
+                // Barcode simulation
+                const bX = 70, bY = 480;
+                ctx.fillStyle = "#ffffff";
+                let currBX = bX;
+                const barPattern = [3, 2, 5, 2, 1, 4, 2, 6, 3, 2, 4, 1, 3, 5, 2, 4, 2, 1, 5, 3, 2, 6, 2, 3, 4, 2];
+                for (let i = 0; i < barPattern.length; i++) {
+                    const w = barPattern[i];
+                    ctx.fillRect(currBX, bY, w, 32);
+                    currBX += w + (i % 2 === 0 ? 3 : 2);
+                }
+
+                ctx.fillStyle = "#64748b";
+                ctx.font = "600 13px 'JetBrains Mono', monospace";
+                ctx.fillText(barcodeHash, bX, bY + 52);
+
+                // Official Seal Stamp
+                const stampX = 760, stampY = 475;
+                ctx.save();
+                ctx.translate(stampX + 75, stampY + 28);
+                ctx.rotate(-4 * Math.PI / 180);
+                roundRect(ctx, -75, -28, 150, 56, 8);
+                ctx.strokeStyle = info.color;
+                ctx.lineWidth = 2;
+                ctx.setLineDash([4, 4]);
+                ctx.stroke();
+
+                ctx.fillStyle = "#94a3b8";
+                ctx.font = "800 10px 'JetBrains Mono', monospace";
+                ctx.textAlign = "center";
+                ctx.fillText("OFFICIAL CLEARANCE", 0, -10);
+
+                ctx.fillStyle = info.color;
+                ctx.font = "900 14px 'JetBrains Mono', monospace";
+                ctx.fillText("DMA ROOT VERIFIED", 0, 8);
+
+                ctx.fillStyle = "#64748b";
+                ctx.font = "700 9px 'JetBrains Mono', monospace";
+                ctx.fillText("2026 // KERNEL v2.0", 0, 22);
+                ctx.restore();
+
+                ctx.restore();
+
+                // Export to PNG & Trigger Download
+                try {
+                    const dataUrl = canvas.toDataURL("image/png");
+                    const a = document.createElement("a");
+                    a.href = dataUrl;
+                    a.download = `Nullpunkt-ID-${name.replace(/[^a-zA-Z0-9_-]/g, "_")}.png`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    showCyberToast(`📸 Ausweis für <strong>${name}</strong> erfolgreich als PNG gespeichert!`);
+                } catch(err) {
+                    console.error("Canvas export error:", err);
+                    showCyberToast("Fehler beim Erzeugen des PNG-Bildes.");
+                }
+            };
+
+            // Initial startup
+            window.addEventListener("DOMContentLoaded", () => {
+                window.onStatChange();
+                updateUid("Entity_0xNULL");
             });
         })();
     </script>
