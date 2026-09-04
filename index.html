@@ -2448,6 +2448,117 @@
             transform: translateY(-1px);
         }
 
+        /* Terminal Auth Header & Badge Scanner */
+        .terminal-auth-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 9px;
+            border-radius: 6px;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #ef4444;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .terminal-auth-status.authenticated {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.4);
+            color: #10b981;
+        }
+
+        .term-scan-badge-btn {
+            background: rgba(0, 240, 255, 0.12);
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            color: #00f0ff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .term-scan-badge-btn:hover {
+            background: rgba(0, 240, 255, 0.25);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+            transform: translateY(-1px);
+        }
+
+        /* Drag & Drop Overlay inside Terminal */
+        .terminal-dropzone-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(5, 10, 25, 0.94);
+            border: 2px dashed var(--cyan);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .terminal-dropzone-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .dropzone-content {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .dropzone-content .drop-icon {
+            font-size: 52px;
+            animation: bounce-icon 1s infinite alternate ease-in-out;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 0 15px var(--cyan));
+        }
+
+        @keyframes bounce-icon {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
+        }
+
+        .dropzone-content h4 {
+            font-size: 19px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .dropzone-content p {
+            font-size: 13px;
+            color: var(--cyan);
+        }
+
+        /* Direct Sync Button in ID-Generator */
+        .id-btn-sync {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(0, 240, 255, 0.2));
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #a7f3d0;
+        }
+
+        .id-btn-sync:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.35), rgba(0, 240, 255, 0.35));
+            border-color: #10b981;
+            color: #fff;
+            box-shadow: 0 0 18px rgba(16, 185, 129, 0.4);
+            transform: translateY(-2px);
+        }
+
         .terminal-matrix-canvas {
             position: absolute;
             top: 0;
@@ -3411,7 +3522,7 @@
         /* Actions Bar */
         .id-actions-bar {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
             gap: 12px;
             margin-top: 26px;
         }
@@ -4424,6 +4535,9 @@
                         <button type="button" class="id-btn id-btn-secondary" onclick="copyDiscordBio()">
                             <span>📋</span> Discord-Bio kopieren
                         </button>
+                        <button type="button" class="id-btn id-btn-sync" onclick="syncCurrentBadgeToTerminal()" title="Überträgt den aktuellen Ausweis direkt ins Terminal für Root-Zugriff">
+                            <span>⚡</span> An Terminal übergeben
+                        </button>
                     </div>
                 </div>
 
@@ -4855,14 +4969,34 @@
     <div class="terminal-overlay" id="terminalModalOverlay">
         <div class="terminal-window">
             <canvas class="terminal-matrix-canvas" id="matrixCanvas"></canvas>
+            <!-- Drag & Drop Overlay -->
+            <div class="terminal-dropzone-overlay" id="termDropOverlay">
+                <div class="dropzone-content">
+                    <div class="drop-icon">🪪</div>
+                    <h4>NULLPUNKT-AUSWEIS HIER ABLEGEN</h4>
+                    <p>Nullpunkt-ID-*.png loslassen für DMA Ring-0 Root-Freigabe</p>
+                </div>
+            </div>
+
             <div class="terminal-header">
                 <div class="terminal-controls">
                     <div class="terminal-dot dot-red" id="closeTerminalBtn" title="Schließen"></div>
                     <div class="terminal-dot dot-yellow" id="clearTerminalBtn" title="Löschen"></div>
                     <div class="terminal-dot dot-green" id="matrixToggleBtn" title="Matrix-Regen AN/AUS"></div>
                 </div>
-                <div>CHEAT MOTOR CYBER CONSOLE v2.0 [TTY/1]</div>
-                <div style="font-size: 11px; opacity: 0.7;">Tippe 'help'</div>
+                <div class="terminal-title-wrap" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                    <span style="font-weight: 800;">CHEAT MOTOR CYBER CONSOLE [TTY/1]</span>
+                    <span class="terminal-auth-status" id="termAuthBadge">
+                        <span class="auth-icon" id="termAuthIcon">🔒</span>
+                        <span id="termAuthText">LOCKED // CLEARANCE REQUIRED</span>
+                    </span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <button type="button" class="term-scan-badge-btn" id="termScanBadgeBtn" onclick="triggerBadgeUpload()" title="Ausweis-PNG vom PC auswählen">
+                        <span>🪪</span> Ausweis scannen
+                    </button>
+                    <input type="file" id="terminalBadgeFileInput" accept="image/png,image/jpeg,image/webp" style="display:none;" onchange="handleBadgeFileSelect(this.files)">
+                </div>
             </div>
             <div class="terminal-body" id="terminalBody">
                 <div class="terminal-output" id="terminalOutput">
@@ -4873,27 +5007,26 @@
   \ \_____\ \_\ \_\\ \_____\ \_\ \_\ \ \_\  \ \_\ \ \_\ \_____\ \ \_\
    \/_____/\/_/\/_/ \/_____/\/_/\/_/  \/_/   \/_/  \/_/\/_____/  \/_/ 
 ═══════════════════════════════════════════════════════════════════
-Willkommen im Cheat Motor Cyber-Terminal.
-Universal RAM-Engine aktiv • Minecraft 1.20.1 Hook bereit.
+<span style="color:#ef4444; font-weight:bold;">[!] SICHERHEITS-PROTOKOLL: CLEARANCE-VERIFIZIERUNG ERFORDERLICH</span>
+<span style="color:#f59e0b;">Ring-0 DMA Kernel ist gesperrt. Befehle erfordern Root-Clearance.</span>
 
-Tippe <span style="color:#10b981; font-weight:bold;">help</span> für alle Befehle ein.
-🔥 <span style="color:#00f0ff; font-weight:bold;">GEHEIM-CHEATS:</span> <span style="color:#00f0ff; font-weight:bold;">code_1</span> (🕶️ X-Ray) • <span style="color:#c084fc; font-weight:bold;">code_2</span> (🌀 Anti-Gravity 0.00 G)
+<span style="color:#00f0ff; font-weight:bold;">👉 ZIEHE DEIN AUSWEIS-PNG (Nullpunkt-ID-*.png) HIER HINEIN</span>
+oder klicke oben auf <strong style="color:#00f0ff; text-decoration:underline; cursor:pointer;" onclick="triggerBadgeUpload()">[🪪 Ausweis scannen]</strong> zur Freischaltung!
+<span style="color:#94a3b8; font-size:11px;">(Noch kein Ausweis? Erstelle ihn auf der Seite im Menü unter 🪪 ID-Karte)</span>
                 </div>
                 <div class="terminal-quick-chips" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; padding: 4px 0;">
                     <button class="term-chip-btn" onclick="execFromChip('help')">help</button>
-                    <button class="term-chip-btn" onclick="execFromChip('status')">status</button>
-                    <button class="term-chip-btn" onclick="execFromChip('tune')">tune</button>
+                    <button class="term-chip-btn" onclick="triggerBadgeUpload()" style="border-color: #00f0ff; color: #00f0ff; background: rgba(0, 240, 255, 0.1);">🪪 scan badge</button>
                     <button class="term-chip-btn" onclick="execFromChip('theme')">🎨 theme</button>
                     <button class="term-chip-btn" onclick="execFromChip('seeds')">🌍 seeds</button>
                     <button class="term-chip-btn" onclick="execFromChip('plugins')">⚡ plugins</button>
                     <button class="term-chip-btn" onclick="execFromChip('blog')">📖 blog</button>
                     <button class="term-chip-btn" style="border-color: #00f0ff; color: #00f0ff; font-weight: bold; background: rgba(0, 240, 255, 0.1);" onclick="execFromChip('code_1')">🕶️ code_1</button>
                     <button class="term-chip-btn" style="border-color: #c084fc; color: #c084fc; font-weight: bold; background: rgba(168, 85, 247, 0.1);" onclick="execFromChip('code_2')">🌀 code_2</button>
-                    <button class="term-chip-btn" onclick="execFromChip('testers')">testers</button>
                     <button class="term-chip-btn" onclick="execFromChip('clear')">clear</button>
                 </div>
                 <div class="terminal-prompt-line">
-                    <span class="terminal-prompt-text">root@cheatmotor:~$</span>
+                    <span class="terminal-prompt-text" id="termPromptText">guest@cheatmotor:~$</span>
                     <input type="text" id="terminalCommandInput" class="terminal-input" autocomplete="off" spellcheck="false">
                 </div>
             </div>
@@ -6105,6 +6238,214 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             }
         });
 
+        // Terminal Authentication State & Security Gate
+        const termAuthBadge = document.getElementById("termAuthBadge");
+        const termAuthIcon = document.getElementById("termAuthIcon");
+        const termAuthText = document.getElementById("termAuthText");
+        const termPromptText = document.getElementById("termPromptText");
+        const termDropOverlay = document.getElementById("termDropOverlay");
+        const termFileInput = document.getElementById("terminalBadgeFileInput");
+
+        let terminalAuthState = {
+            isAuthenticated: false,
+            agentName: "guest",
+            agentClass: "turbo",
+            agentCallsign: "UNVERIFIED AGENT",
+            clearanceLevel: 1
+        };
+
+        try {
+            const savedAuth = sessionStorage.getItem("cheatmotor_terminal_auth");
+            if (savedAuth) {
+                terminalAuthState = JSON.parse(savedAuth);
+            }
+        } catch(e) {}
+
+        function getPromptColor() {
+            if (!terminalAuthState.isAuthenticated) return "#94a3b8";
+            const colors = {
+                turbo: "#00f0ff",
+                architekt: "#10b981",
+                goetter: "#f59e0b",
+                void: "#a855f7",
+                chaos: "#ef4444"
+            };
+            return colors[terminalAuthState.agentClass] || "#00f0ff";
+        }
+
+        function getTerminalPromptHtml() {
+            const color = getPromptColor();
+            if (terminalAuthState.isAuthenticated) {
+                return `<span style="color:${color}; font-weight:bold;">root@${escapeHtml(terminalAuthState.agentName.toLowerCase())}:~$</span>`;
+            } else {
+                return `<span style="color:#94a3b8; font-weight:bold;">guest@cheatmotor:~$</span>`;
+            }
+        }
+
+        function updateTerminalAuthUI() {
+            if (termAuthBadge && termAuthIcon && termAuthText && termPromptText) {
+                if (terminalAuthState.isAuthenticated) {
+                    termAuthBadge.classList.add("authenticated");
+                    termAuthIcon.textContent = "🔓";
+                    termAuthText.textContent = `AGENT ${terminalAuthState.agentName.toUpperCase()} [ROOT]`;
+                    termPromptText.textContent = `root@${terminalAuthState.agentName.toLowerCase()}:~$`;
+                    termPromptText.style.color = getPromptColor();
+                } else {
+                    termAuthBadge.classList.remove("authenticated");
+                    termAuthIcon.textContent = "🔒";
+                    termAuthText.textContent = "LOCKED // CLEARANCE REQUIRED";
+                    termPromptText.textContent = "guest@cheatmotor:~$";
+                    termPromptText.style.color = "#94a3b8";
+                }
+            }
+        }
+
+        // Initialize UI
+        updateTerminalAuthUI();
+
+        // Drag & Drop for Badge PNG
+        if (termOverlay && termDropOverlay) {
+            let dragCounter = 0;
+
+            termOverlay.addEventListener("dragenter", (e) => {
+                e.preventDefault();
+                dragCounter++;
+                termDropOverlay.classList.add("active");
+            });
+
+            termOverlay.addEventListener("dragover", (e) => {
+                e.preventDefault();
+            });
+
+            termOverlay.addEventListener("dragleave", (e) => {
+                e.preventDefault();
+                dragCounter--;
+                if (dragCounter <= 0) {
+                    dragCounter = 0;
+                    termDropOverlay.classList.remove("active");
+                }
+            });
+
+            termOverlay.addEventListener("drop", (e) => {
+                e.preventDefault();
+                dragCounter = 0;
+                termDropOverlay.classList.remove("active");
+
+                if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                    processBadgeFile(e.dataTransfer.files[0]);
+                }
+            });
+        }
+
+        window.triggerBadgeUpload = function() {
+            if (termFileInput) {
+                termFileInput.value = "";
+                termFileInput.click();
+            }
+        };
+
+        window.handleBadgeFileSelect = function(files) {
+            if (files && files.length > 0) {
+                processBadgeFile(files[0]);
+            }
+        };
+
+        function processBadgeFile(file) {
+            if (!file) return;
+            printTerminalLine(`\n<span style="color:#00f0ff;">[OPTICAL SCANNER] Ausweis-Datei erkannt: <strong>${escapeHtml(file.name)}</strong> (${(file.size / 1024).toFixed(1)} KB)</span>`);
+            printTerminalLine(`<span style="color:#f59e0b;">[DMA SCANNER] Initialisiere Hardware-Analyse &amp; Matrix-Scan...</span>`);
+            termBody.scrollTop = termBody.scrollHeight;
+
+            let agentName = "Agent";
+            const match = file.name.match(/Nullpunkt-ID-([a-zA-Z0-9_-]+)/i);
+            if (match && match[1]) {
+                agentName = match[1].replace(/_/g, " ");
+            } else {
+                const onPageName = document.getElementById("idPlayerName");
+                if (onPageName && onPageName.value.trim()) {
+                    agentName = onPageName.value.trim();
+                } else {
+                    agentName = file.name.replace(/\.[^/.]+$/, "");
+                }
+            }
+
+            let agentClass = "turbo";
+            const cardEl = document.getElementById("cyberIdBadge");
+            if (cardEl && cardEl.getAttribute("data-class")) {
+                agentClass = cardEl.getAttribute("data-class");
+            }
+
+            setTimeout(() => {
+                printTerminalLine(`<span style="color:#00f0ff;">[SCAN] Hardware-Sicherheitschip: 0x7F91 4821 [VERIFIED]</span>`);
+                termBody.scrollTop = termBody.scrollHeight;
+            }, 300);
+
+            setTimeout(() => {
+                printTerminalLine(`<span style="color:#a855f7;">[SCAN] Entschlüssele AES-256 Nullpunkt-Siegel... [OK]</span>`);
+                termBody.scrollTop = termBody.scrollHeight;
+            }, 600);
+
+            setTimeout(() => {
+                printTerminalLine(`<span style="color:#10b981;">[SCAN] Clearance-Level: LEVEL 5 // ROOT KERNEL OMNIPOTENZ</span>`);
+                printTerminalLine(`<span style="color:#10b981; font-weight:bold;">[AUTHENTICATED] Identität bestätigt: Agent '${escapeHtml(agentName)}'</span>`);
+
+                terminalAuthState.isAuthenticated = true;
+                terminalAuthState.agentName = agentName;
+                terminalAuthState.agentClass = agentClass;
+                terminalAuthState.clearanceLevel = 5;
+
+                try {
+                    sessionStorage.setItem("cheatmotor_terminal_auth", JSON.stringify(terminalAuthState));
+                } catch(e) {}
+
+                updateTerminalAuthUI();
+
+                printTerminalLine(`\n<span style="color:#10b981; font-weight:bold;">═══════════════════════════════════════════════════════════════════</span>`);
+                printTerminalLine(`<span style="color:#10b981; font-weight:bold;">[✓] ZUGRIFF ERTEILT: RING-0 DIRECT MEMORY ACCESS FREIGESCHALTET!</span>`);
+                printTerminalLine(`<span style="color:#00f0ff;">Alle Cheats (code_1, code_2, tune, hack_status, agent_info) sind jetzt aktiv.</span>`);
+                printTerminalLine(`<span style="color:#10b981; font-weight:bold;">═══════════════════════════════════════════════════════════════════</span>\n`);
+
+                if (typeof showCyberToast === "function") {
+                    showCyberToast(`🔓 Agent <strong>${escapeHtml(agentName)}</strong> im Terminal autorisiert!`);
+                }
+                termBody.scrollTop = termBody.scrollHeight;
+            }, 900);
+        }
+
+        window.syncCurrentBadgeToTerminal = function() {
+            const name = (document.getElementById("idPlayerName") && document.getElementById("idPlayerName").value.trim()) || "Entity_0xNULL";
+            const callsign = (document.getElementById("idCallsign") && document.getElementById("idCallsign").value.trim()) || "NULLPUNKT OPERATIVE";
+            const cardEl = document.getElementById("cyberIdBadge");
+            const agentClass = (cardEl && cardEl.getAttribute("data-class")) || "turbo";
+
+            openTerminal();
+            printTerminalLine(`\n<span style="color:#00f0ff;">[DIRECT-DMA-BUS] Hardware-Kopplung mit Ausweis-Generator aktiv...</span>`);
+            printTerminalLine(`<span style="color:#f59e0b;">[SYNC] Übertrage Clearance-Zertifikat für <strong>${escapeHtml(name)}</strong>...</span>`);
+            termBody.scrollTop = termBody.scrollHeight;
+
+            setTimeout(() => {
+                terminalAuthState.isAuthenticated = true;
+                terminalAuthState.agentName = name;
+                terminalAuthState.agentClass = agentClass;
+                terminalAuthState.agentCallsign = callsign;
+                terminalAuthState.clearanceLevel = 5;
+
+                try {
+                    sessionStorage.setItem("cheatmotor_terminal_auth", JSON.stringify(terminalAuthState));
+                } catch(e) {}
+
+                updateTerminalAuthUI();
+
+                printTerminalLine(`<span style="color:#10b981; font-weight:bold;">[✓] DIREKT-AUTORISIERUNG ERFOLGREICH: Willkommen im Kernel, Agent ${escapeHtml(name)}!</span>`);
+                printTerminalLine(`<span style="color:#00f0ff;">Root-Berechtigungen &amp; alle Cheats wurden freigeschaltet.</span>\n`);
+                termBody.scrollTop = termBody.scrollHeight;
+
+                if (typeof showCyberToast === "function") {
+                    showCyberToast(`⚡ Ausweis für <strong>${escapeHtml(name)}</strong> an Terminal übergeben!`);
+                }
+            }, 400);
+        };
+
         // Command execution
         termInput.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
@@ -6112,7 +6453,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 termInput.value = "";
                 if (!rawCmd) return;
 
-                printTerminalLine(`<span style="color:#10b981; font-weight:bold;">root@cheatmotor:~$</span> ${escapeHtml(rawCmd)}`);
+                printTerminalLine(`${getTerminalPromptHtml()} ${escapeHtml(rawCmd)}`);
 
                 const cmd = rawCmd.toLowerCase();
                 handleCommand(cmd);
@@ -6129,34 +6470,93 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
         }
 
         function handleCommand(cmd) {
+            // Root Restricted Commands Gate
+            const ROOT_COMMANDS = [
+                "code_1", "code1", "code 1", "xray", "wireframe",
+                "code_2", "code2", "code 2", "antigravity", "gravity", "zerog",
+                "tune", "turbo",
+                "hack_status", "status_hack", "infiltration",
+                "secret_coords", "coords", "koordinaten",
+                "restore_core", "code_null", "event_corrupt", "reset_event",
+                "agent_info", "godmode"
+            ];
+
+            if (!terminalAuthState.isAuthenticated && ROOT_COMMANDS.includes(cmd)) {
+                printTerminalLine(`
+<span style="color:#ef4444; font-weight:bold;">[⛔ ACCESS DENIED] SICHERHEITS-SPERRE: LEVEL 5 CLEARANCE ERFORDERLICH!</span>
+<span style="color:#f59e0b;">Der Befehl '${escapeHtml(cmd)}' erfordert die Verifizierung durch dein Nullpunkt-Hacker-Ausweis-PNG.</span>
+
+<span style="color:#00f0ff;">👉 Ziehe dein 'Nullpunkt-ID-*.png' hier ins Terminal oder klicke oben auf [🪪 Ausweis scannen]!</span>
+<span style="color:#94a3b8; font-size:11px;">Tippe <strong style="color:#00f0ff; text-decoration:underline; cursor:pointer;" onclick="triggerBadgeUpload()">scan</strong> zum Hochladen oder erstelle deinen Ausweis unter <a href="#hacker-id" onclick="closeTerminal()" style="color:#00f0ff;">#hacker-id</a>.</span>
+                `);
+                return;
+            }
+
             if (cmd === "help") {
+                const lockNotice = !terminalAuthState.isAuthenticated ? " <span style='color:#ef4444; font-size:10px;'>[🔒 AUSWEIS ERFORDERLICH]</span>" : " <span style='color:#10b981; font-size:10px;'>[🔓 ROOT]</span>";
                 printTerminalLine(`
 <span style="color:#f59e0b; font-weight:bold;">VERFÜGBARE BEFEHLE:</span>
-  <span style="color:#00f0ff; font-weight:bold;">status</span>    - Zeigt RAM-Engine Diagnostics & Minecraft Hook
-  <span style="color:#00f0ff; font-weight:bold;">tune</span>      - Führt einen interaktiven RPM-Motortest durch
-  <span style="color:#00f0ff; font-weight:bold;">testers</span>   - Zeigt die Hall of Fame der Beta-Crew (ASCII)
-  <span style="color:#00f0ff; font-weight:bold;">download</span>  - Startet den Download von CheatMotor-v2.0.zip
-  <span style="color:#00f0ff; font-weight:bold;">matrix</span>    - Schaltet den digitalen Matrix-Code-Regen um
+  <span style="color:#00f0ff; font-weight:bold;">status</span>        - Zeigt RAM-Engine Diagnostics &amp; Minecraft Hook
+  <span style="color:#00f0ff; font-weight:bold;">scan</span> / <span style="color:#00f0ff; font-weight:bold;">auth</span>   - 🪪 Öffnet den Datei-Dialog zum Ausweis-PNG Scan
+  <span style="color:#00f0ff; font-weight:bold;">agent_info</span>    - 👤 Zeigt die Akte des verifizierten Agenten${lockNotice}
+  <span style="color:#00f0ff; font-weight:bold;">tune</span>          - Führt einen interaktiven RPM-Motortest durch${lockNotice}
+  <span style="color:#00f0ff; font-weight:bold;">code_1</span>        - 🕶️ GEHEIM-CHEAT: X-Ray Wireframe Modus${lockNotice}
+  <span style="color:#c084fc; font-weight:bold;">code_2</span>        - 🌀 GEHEIM-CHEAT: Nullpunkt Schwerelosigkeit (0.00 G)${lockNotice}
+  <span style="color:#ef4444; font-weight:bold;">hack_status</span>   - ☠️ Infiltrations-Status von Entity 0xNULL${lockNotice}
+  <span style="color:#ef4444; font-weight:bold;">secret_coords</span> - ⚡ Geheime Nether-Koordinaten entschlüsseln${lockNotice}
+  <span style="color:#00f0ff; font-weight:bold;">testers</span>       - Zeigt die Hall of Fame der Beta-Crew (ASCII)
+  <span style="color:#00f0ff; font-weight:bold;">download</span>      - Startet den Download von CheatMotor-v2.0.zip
+  <span style="color:#00f0ff; font-weight:bold;">matrix</span>        - Schaltet den digitalen Matrix-Code-Regen um
   <span style="color:#00f0ff; font-weight:bold;">theme &lt;name&gt;</span>  - Wechselt Terminal-Farbe (matrix, cyber, blood, retro, gold, default)
-  <span style="color:#00f0ff; font-weight:bold;">seeds</span>     - Zeigt krasse Minecraft 1.20.1 Welten-Seeds mit Koordinaten
-  <span style="color:#00f0ff; font-weight:bold;">plugins</span>   - Zeigt beste Server-Plugins für 1.20.1 Story & Performance
-  <span style="color:#00f0ff; font-weight:bold;">blog</span>      - Zeigt aktuelle Nullpunkt-Storys & Server-News
-  <span style="color:#00f0ff; font-weight:bold;">cheats</span>    - Listet alle Tastenkürzel (F1, F2, F3) auf
-  <span style="color:#00f0ff; font-weight:bold;">code_1</span>    - 🕶️ GEHEIM-CHEAT: Schaltet Website X-Ray Wireframe Modus AN/AUS
-  <span style="color:#c084fc; font-weight:bold;">code_2</span>    - 🌀 GEHEIM-CHEAT: Schaltet Nullpunkt Schwerelosigkeit (0.00 G) AN/AUS
-  <span style="color:#ef4444; font-weight:bold;">hack_status</span> - ☠️ Zeigt den Infiltrations-Status von Entity 0xNULL
-  <span style="color:#ef4444; font-weight:bold;">secret_coords</span> - ⚡ Entschlüsselt geheime Nether-Koordinaten für das Live-Event
-  <span style="color:#ef4444; font-weight:bold;">restore_core</span> - ⚙️ Versucht den Nullpunkt-Kern gegen Entity 0xNULL zu reinigen
-  <span style="color:#ef4444; font-weight:bold;">code_null</span>  - ☠️ Schaltet den Nullpunkt-Hacked Modus manuell AN/AUS
-  <span style="color:#00f0ff; font-weight:bold;">clear</span>     - Bereinigt den Terminal-Bildschirm
-  <span style="color:#00f0ff; font-weight:bold;">exit</span>      - Beendet das Terminal
+  <span style="color:#00f0ff; font-weight:bold;">seeds</span>         - Krasseste Minecraft 1.20.1 Welten-Seeds
+  <span style="color:#00f0ff; font-weight:bold;">plugins</span>       - Beste Server-Plugins für 1.20.1 Story &amp; Performance
+  <span style="color:#00f0ff; font-weight:bold;">blog</span>          - Aktuelle Nullpunkt-Storys &amp; Server-News
+  <span style="color:#00f0ff; font-weight:bold;">eject</span>         - 🔒 Wirft den Ausweis aus und sperrt das Terminal wieder
+  <span style="color:#00f0ff; font-weight:bold;">clear</span>         - Bereinigt den Terminal-Bildschirm
+  <span style="color:#00f0ff; font-weight:bold;">exit</span>          - Beendet das Terminal
 `);
+            } else if (cmd === "scan" || cmd === "auth" || cmd === "upload") {
+                triggerBadgeUpload();
+                printTerminalLine(`<span style="color:#00f0ff;">[PROMPT] Dateiauswahl geöffnet. Wähle deine 'Nullpunkt-ID-*.png' Datei...</span>`);
+            } else if (cmd === "agent_info" || cmd === "whoami") {
+                const info = terminalAuthState;
+                printTerminalLine(`
+<span style="color:#00f0ff; font-weight:bold;">═══════════════════════════════════════════════════════════════════</span>
+<span style="color:#00f0ff; font-weight:bold;">🪪 NULLPUNKT AGENTEN-AKTE // CLEARANCE DOSSIER</span>
+<span style="color:#00f0ff; font-weight:bold;">═══════════════════════════════════════════════════════════════════</span>
+  ├─ <strong style="color:#fff;">Agent:</strong> <span style="color:#10b981; font-weight:bold;">${escapeHtml(info.agentName)}</span>
+  ├─ <strong style="color:#fff;">Division:</strong> <span style="color:#00f0ff; font-weight:bold;">${escapeHtml((info.agentClass || "turbo").toUpperCase())}</span>
+  ├─ <strong style="color:#fff;">Sicherheits-Status:</strong> <span style="color:#10b981; font-weight:bold;">LEVEL ${info.clearanceLevel || 5} // ROOT KERNEL</span>
+  ├─ <strong style="color:#fff;">DMA Bus Latenz:</strong> &lt; 0.12 ms (Direct VirtualQueryEx Hook)
+  ├─ <strong style="color:#fff;">Hardware-Signatur:</strong> 0x7F91 4821 0041 8492 [SHA-256 VERIFIED]
+  └─ <strong style="color:#fff;">Session Token:</strong> ACTIVE (${new Date().toLocaleTimeString()})
+`);
+            } else if (cmd === "godmode") {
+                printTerminalLine(`
+<span style="color:#fbbf24; font-weight:bold;">[⚡] INJIZIERE RING-0 GODMODE KERNEL PATCH...</span>
+<span style="color:#10b981;">[✓] DAMAGE HOOK NULLIFIED // SCHADENS-ABFRAGE BLOCKIERT (0.00 DMG)</span>
+<span style="color:#f59e0b;">(Unsterblichkeits-Patch aktiv für Minecraft 1.20.1)</span>
+`);
+            } else if (cmd === "eject" || cmd === "logout") {
+                terminalAuthState = {
+                    isAuthenticated: false,
+                    agentName: "guest",
+                    agentClass: "turbo",
+                    agentCallsign: "UNVERIFIED AGENT",
+                    clearanceLevel: 1
+                };
+                try {
+                    sessionStorage.removeItem("cheatmotor_terminal_auth");
+                } catch(e) {}
+                updateTerminalAuthUI();
+                printTerminalLine(`\n<span style="color:#ef4444; font-weight:bold;">[🔒] AUSWEIS AUSGEWORFEN: Terminal-Sitzung beendet.</span>`);
+                printTerminalLine(`<span style="color:#f59e0b;">Root-Zugriff widerrufen. Das Terminal ist wieder gesperrt.</span>\n`);
             } else if (cmd === "status") {
                 printTerminalLine(`
 <span style="color:#10b981;">[✓] CHEAT MOTOR KERNEL: ACTIVE</span>
   ├─ Engine: Universal VirtualQueryEx 64-Bit
   ├─ Signature: 16-Byte Klass Validation (0x05 / 0x10 IEEE-754)
-  ├─ Minecraft Hook: 1.20.1 (Vanilla, Fabric & TLauncher)
+  ├─ Minecraft Hook: 1.20.1 (Vanilla, Fabric &amp; TLauncher)
   ├─ Latenz: &lt; 0.38 ms (Direct Memory Access)
   ├─ CPU Zusatzlast: 0.00 %
   └─ Absturzschutz: G1GC Relocation Safe
@@ -6172,7 +6572,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                     termBody.scrollTop = termBody.scrollHeight;
                     if (rpm >= 8500) {
                         clearInterval(interval);
-                        printTerminalLine(`<span style="color:#10b981; font-weight:bold;">[🚀] STAGE 3 TURBO ZÜNDUNG ERFOLGREICH! Flugmodus & Speed-Lock auf 100%!</span>\n`);
+                        printTerminalLine(`<span style="color:#10b981; font-weight:bold;">[🚀] STAGE 3 TURBO ZÜNDUNG ERFOLGREICH! Flugmodus &amp; Speed-Lock auf 100%!</span>\n`);
                         termBody.scrollTop = termBody.scrollHeight;
                     }
                 }, 120);
@@ -6304,7 +6704,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
 
         window.execFromChip = function(cmd) {
             termInput.value = cmd;
-            printTerminalLine(`<span style="color:#10b981; font-weight:bold;">root@cheatmotor:~$</span> ${escapeHtml(cmd)}`);
+            printTerminalLine(`${getTerminalPromptHtml()} ${escapeHtml(cmd)}`);
             handleCommand(cmd.toLowerCase());
             termBody.scrollTop = termBody.scrollHeight;
             termInput.value = "";
@@ -6315,7 +6715,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             if (typeof closeNavDropdown === "function") closeNavDropdown();
             openTerminal();
             termInput.value = cmd;
-            printTerminalLine(`<span style="color:#10b981; font-weight:bold;">root@cheatmotor:~$</span> ${escapeHtml(cmd)}`);
+            printTerminalLine(`${getTerminalPromptHtml()} ${escapeHtml(cmd)}`);
             handleCommand(cmd.toLowerCase());
             termBody.scrollTop = termBody.scrollHeight;
             termInput.value = "";
