@@ -2,9 +2,9 @@
   "status": "online",
   "tag": "ONLINE",
   "message": "Alle Trainer-Funktionen betriebsbereit • Minecraft 1.20.1 aktiv",
-  "bannerActive": false,
+  "bannerActive": true,
   "bannerMessage": "🔥 WICHTIG: Neues Cheat Motor Update in Vorbereitung!",
-  "downloadEnabled": true,
+  "downloadEnabled": false,
   "downloadDisabledReason": "Wartungsarbeiten / Update wird hochgeladen",
   "maintenanceMode": false,
   "maintenanceMessage": "Cheat Motor Boxenstopp: Wir führen gerade Tuning- und System-Upgrades durch. Gleich wieder online!",
@@ -43,35 +43,24 @@
   ],
   "blogPosts": [
     {
-      "id": "post-corrupted-event",
-      "title": "🚨 NOTFALL: Der Nullpunkt ist gefallen – Entity 0xNULL übernimmt!",
-      "category": "⚡ Götter-Krieg",
-      "author": "Schatten-Archiv (0xNULL)",
-      "date": "04. Sept 2026",
-      "imageUrl": "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1200&auto=format&fit=crop&q=80",
-      "excerpt": "Die Barrieren sind gebrochen. Ein unberechenbarer Schatten-Hacker hat die Cheat Motor Telemetrie übernommen und den Server-Kern infiziert.",
-      "content": "⚠️ **SYSTEM-INFILTRATION BESTÄTIGT:**\n\nEine feindliche Entität namens **Entity 0xNULL** hat sich Zugriff auf die Kern-Struktur des Nullpunkts verschafft. Die Cheat-Motor-Verbindungen schlagen bei 9.999 RPM in den roten Bereich aus.\n\n<div class=\"blog-story-box box-nullpunkt\">\n  🔮 <strong>NULLPUNKT-ANOMALIE:</strong> Alle Welten-Koordinaten wurden verzerrt. Das Epizentrum befindet sich im Nether bei <code>X: 1337, Y: 12, Z: -420</code>!\n</div>\n\n<blockquote class=\"blog-quote\">\n  ⚡ \"Ihr glaubtet, eure Cheats machen euch unbesiegbar? Der Nullpunkt gehorcht jetzt mir. Findet mich, bevor die Welt auf 0 zurückgesetzt wird!\" — Entity 0xNULL\n</blockquote>\n\n<div class=\"blog-cmd-box\">\n  <code>/tellraw @a {\"text\":\"[0xNULL]: Die Dunkelheit hat begonnen. Rettet euren Spawn!\",\"color\":\"dark_red\"}</code>\n</div>\n\n<div class=\"blog-story-box box-warning\">\n  ⚠️ <strong>ANWEISUNG AN ALLE SPIELER:</strong> Rüstet euch mit Netherit aus und nutzt F1 (Flug-Modus), um die Risse im Nether zu schließen!"
+      "id": "post-1788561482375",
+      "title": "Die Rückkehr",
+      "category": "⚡ Live-Event",
+      "author": "???",
+      "date": "05. Sept 2026",
+      "imageUrl": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&auto=format&fit=crop&q=80",
+      "excerpt": "Demnächst wird eine neue welt und neue möglichkeit erschaffen",
+      "content": "Demnächst wird eine neue welt und neue möglichkeit erschaffen\nmit hilfe von spielern und denn Göttern aus 2023/24/25"
     },
     {
-      "id": "post-1",
-      "title": "Kapitel 1: Das Erwachen des Nullpunkts",
-      "category": "🔮 Nullpunkt-Story",
+      "id": "post-1788466539966",
+      "title": "RESET!",
+      "category": "📢 Ankündigung",
       "author": "Ben (Story-Director)",
       "date": "03. Sept 2026",
-      "imageUrl": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&auto=format&fit=crop&q=80",
-      "excerpt": "Tief in den Bergen hat sich ein unberechenbarer Riss geöffnet. Violetter Rauch und Gravitations-Wellen erfassen die Minecraft-Welt.",
-      "content": "Tief in den Felsen der Oberwelt hat sich ein violetter Riss geöffnet. Seltsame Energiestrahlen schießen in den Himmel und der Nullpunkt pulsiert unaufhörlich. Wir haben Cheat Motor entwickelt, um die Gravitations-Verzerrungen zu überwinden und den Riss zu erforschen.\n\nAlle Spieler auf dem Server werden gebeten, ihre Basen abzusichern. Das erste Live-Event naht!"
-    },
-    {
-      "id": "post-2",
-      "title": "Götter-Erscheinung: Zephyrus zerschmettert die Arena",
-      "category": "⚡ Götter-Krieg",
-      "author": "Ben & Gideon",
-      "date": "02. Sept 2026",
-      "imageUrl": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=900&auto=format&fit=crop&q=80",
-      "excerpt": "Gewaltige Blitze haben den Bergkamm gespalten. Die ersten Götter-Artefakte wurden im Survival-Modus gesichtet.",
-      "content": "Zephyrus hat seine Donnerklinge in den Fels geschlagen. Wer sich der Fraktion der Stürme anschließt, erhält göttliche Sprungkraft und Kettenblitze.\n\nWir testen aktuell die neuen Fähigkeiten im Survival – erste Videos und Gameplay-Ausschnitte folgen in Kürze!"
+      "imageUrl": "https://cdn.discordapp.com/attachments/1539604855004463134/1539615932199075850/ChatGPT_Image_19._Aug._2026_13_55_54.png?ex=6a9abd12&is=6a996b92&hm=8afb73bacf0125fb0c68eeb67c48e880f88566b5010a97c073a00f19d577cb0a&",
+      "excerpt": "Zurücksetzen vom server!",
+      "content": "Der Server wird sich bald zurücksetzen somit auch die welt und story MEHR INFOS BALD!"
     }
-  ],
-  "corruptedEvent": true
+  ]
 }
