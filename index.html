@@ -6249,6 +6249,438 @@
             border-bottom: 1px solid rgba(233, 84, 32, 0.3);
         }
 
+        
+        /* ==========================================================================
+           🛍️ LINUX SOFTWARE-CENTER (SYNAPTIC / APP-STORE) STYLING
+           ========================================================================== */
+        .store-window-layout {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            height: 100%;
+            background: rgba(10, 16, 26, 0.98);
+        }
+        .store-sidebar {
+            background: rgba(6, 10, 18, 0.9);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .store-sidebar-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 8px;
+            margin-top: 8px;
+        }
+        .store-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: #cbd5e1;
+            font-size: 12.5px;
+            cursor: pointer;
+            transition: all 0.15s;
+            user-select: none;
+        }
+        .store-nav-item:hover, .store-nav-item.active {
+            background: rgba(0, 240, 255, 0.15);
+            color: #fff;
+            box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.2);
+        }
+        .store-nav-badge {
+            margin-left: auto;
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 99px;
+            color: #94a3b8;
+        }
+        .store-main-area {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .store-top-bar {
+            padding: 10px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            background: rgba(15, 23, 42, 0.4);
+        }
+        .store-search-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 5px 12px;
+            flex: 1;
+            max-width: 340px;
+        }
+        .store-search-wrap input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 12px;
+            outline: none;
+            width: 100%;
+            font-family: inherit;
+        }
+        .store-stats-badge {
+            font-size: 11px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+        .store-packages-grid {
+            padding: 16px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 14px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .pkg-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .pkg-card:hover {
+            border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 240, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        .pkg-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .pkg-icon {
+            font-size: 26px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .pkg-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .pkg-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #f1f5f9;
+            font-family: 'JetBrains Mono', monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .pkg-meta {
+            font-size: 10.5px;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+        .pkg-desc {
+            font-size: 11.5px;
+            color: #cbd5e1;
+            line-height: 1.4;
+            flex: 1;
+        }
+        .pkg-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            gap: 8px;
+        }
+        .pkg-rating {
+            font-size: 11px;
+            color: #fbbf24;
+        }
+        .pkg-btn-install {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.25) 0%, rgba(16, 185, 129, 0.25) 100%);
+            border: 1px solid #00f0ff;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .pkg-btn-install:hover {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.45) 0%, rgba(16, 185, 129, 0.45) 100%);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+        }
+        .pkg-btn-installed {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #10b981;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .pkg-toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 32px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .pkg-toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .pkg-toggle-slider {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 99px;
+            transition: 0.2s;
+        }
+        .pkg-toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 12px;
+            width: 12px;
+            left: 3px;
+            bottom: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: 0.2s;
+        }
+        .pkg-toggle-switch input:checked + .pkg-toggle-slider {
+            background: #10b981;
+        }
+        .pkg-toggle-switch input:checked + .pkg-toggle-slider:before {
+            transform: translateX(14px);
+        }
+
+        /* APT Terminal Log Overlay */
+        .apt-log-modal {
+            position: absolute;
+            inset: 0;
+            background: rgba(4, 8, 16, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            color: #10b981;
+        }
+        .apt-log-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .apt-log-body {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            line-height: 1.5;
+        }
+        .apt-log-progress {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 99px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .apt-log-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00f0ff, #10b981);
+            transition: width 0.3s ease;
+        }
+
+        /* ==========================================================================
+           ⚙️ GNOME TWEAKS // DESKTOP-CUSTOMIZER STYLING
+           ========================================================================== */
+        .tweaks-window-layout {
+            display: grid;
+            grid-template-columns: 190px 1fr;
+            height: 100%;
+            background: rgba(10, 16, 26, 0.98);
+        }
+        .tweaks-sidebar {
+            background: rgba(6, 10, 18, 0.9);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .tweaks-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: #cbd5e1;
+            font-size: 12.5px;
+            cursor: pointer;
+            transition: all 0.15s;
+            user-select: none;
+        }
+        .tweaks-nav-item:hover, .tweaks-nav-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        .tweaks-content-area {
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .tweaks-section-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #f1f5f9;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .wallpaper-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px;
+        }
+        .wallpaper-card {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .wallpaper-card:hover {
+            transform: scale(1.03);
+            border-color: rgba(0, 240, 255, 0.5);
+        }
+        .wallpaper-card.active {
+            border-color: #00f0ff;
+            box-shadow: 0 0 16px rgba(0, 240, 255, 0.4);
+        }
+        .wallpaper-preview {
+            height: 65px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        .wallpaper-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #cbd5e1;
+            padding: 6px 4px;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .accent-color-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .accent-color-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .accent-color-btn:hover {
+            transform: scale(1.15);
+        }
+        .accent-color-btn.active {
+            border-color: #fff;
+            box-shadow: 0 0 14px currentColor;
+        }
+        .tweaks-setting-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+        }
+        .tweaks-row-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .tweaks-row-label {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+        .tweaks-row-sub {
+            font-size: 11px;
+            color: #94a3b8;
+        }
+        .tweaks-slider-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tweaks-slider-wrap input[type="range"] {
+            accent-color: var(--cyan);
+            cursor: pointer;
+        }
+
         /* Nautilus File Manager Styling */
         .nautilus-window-layout {
             display: grid;
@@ -11756,6 +12188,14 @@ drwxr-xr-x 2 agent agent 4096 Sep  5 16:40 <span style="color:#00f0ff; font-weig
                         <span>🗺️</span>
                         <div><strong>Dorf-Minimap</strong><small>Nullpunkt &amp; Gebäude</small></div>
                     </div>
+                    <div class="start-item" onclick="cheatosOpenWindow('store'); cheatosToggleStartMenu();">
+                        <span>🛍️</span>
+                        <div><strong>Software-Center</strong><small>Pakete, Cheats &amp; Shader</small></div>
+                    </div>
+                    <div class="start-item" onclick="cheatosOpenWindow('tweaks'); cheatosToggleStartMenu();">
+                        <span>⚙️</span>
+                        <div><strong>GNOME-Tweaks</strong><small>Wallpaper, Farben &amp; Effekte</small></div>
+                    </div>
                 </div>
                 <div class="start-footer">
                     <button class="start-btn-reboot" onclick="cheatosReboot(); cheatosToggleStartMenu();">🔄 Kernel Reboot</button>
@@ -11792,6 +12232,14 @@ drwxr-xr-x 2 agent agent 4096 Sep  5 16:40 <span style="color:#00f0ff; font-weig
             <div class="dock-item" id="dockItemAudio" onclick="cheatosToggleWindow('audio')" title="Musik-Player (Rhythmbox / CyberSynth)">
                 <div class="dock-running-dot"></div>
                 <span>🎵</span>
+            </div>
+            <div class="dock-item" id="dockItemStore" onclick="cheatosToggleWindow('store')" title="Software-Center (Synaptic Paketmanager)">
+                <div class="dock-running-dot"></div>
+                <span>🛍️</span>
+            </div>
+            <div class="dock-item" id="dockItemTweaks" onclick="cheatosToggleWindow('tweaks')" title="GNOME-Tweaks (Desktop-Customizer)">
+                <div class="dock-running-dot"></div>
+                <span>⚙️</span>
             </div>
             <div class="dock-separator"></div>
             <div class="dock-item" onclick="toggleDistroTheme()" title="Distro wechseln (Kali / Ubuntu)">
@@ -11850,6 +12298,14 @@ drwxr-xr-x 2 agent agent 4096 Sep  5 16:40 <span style="color:#00f0ff; font-weig
             <div class="cheatos-icon" onclick="cheatosToggleWindow('audio')" title="Synthwave Cyber Audio Player">
                 <div class="icon-img-wrap"><span class="icon-glyph">🎵</span></div>
                 <span class="icon-label">CyberAudio.desktop</span>
+            </div>
+            <div class="cheatos-icon" onclick="cheatosToggleWindow('store')" title="Software-Center (Paketmanager)">
+                <div class="icon-img-wrap"><span class="icon-glyph">🛍️</span></div>
+                <span class="icon-label">Software.desktop</span>
+            </div>
+            <div class="cheatos-icon" onclick="cheatosToggleWindow('tweaks')" title="GNOME-Tweaks (Einstellungen)">
+                <div class="icon-img-wrap"><span class="icon-glyph">⚙️</span></div>
+                <span class="icon-label">Tweaks.desktop</span>
             </div>
         </div>
 
@@ -12186,6 +12642,210 @@ drwxr-xr-x 2 agent agent 4096 Sep  5 16:40 <span style="color:#00f0ff; font-weig
                     </div>
                 </div>
             </div>
+        
+            <!-- Window 7: 🛍️ Software-Center Window -->
+            <div class="cheatos-window" id="cheatosWinStore" style="top: 55px; left: 160px; width: 750px; height: 520px; display: none;">
+                <div class="cheatos-win-header" onmousedown="cheatosStartDrag(event, 'store')" ontouchstart="cheatosStartDrag(event, 'store')">
+                    <div class="win-title"><span class="win-ico">🛍️</span> SOFTWARE-CENTER // SYNAPTIC REPOSITORY [APT 2.7]</div>
+                    <div class="win-controls">
+                        <button class="win-btn win-minimize" onclick="cheatosMinimizeWindow('store')">—</button>
+                        <button class="win-btn win-maximize" onclick="cheatosMaximizeWindow('store')">⛶</button>
+                        <button class="win-btn win-close" onclick="cheatosCloseWindow('store')">✕</button>
+                    </div>
+                </div>
+                <div class="cheatos-win-body" style="height: calc(100% - 36px);">
+                    <div class="store-window-layout">
+                        <!-- Store Sidebar -->
+                        <div class="store-sidebar">
+                            <div class="store-sidebar-title">Kategorien</div>
+                            <div class="store-nav-item active" onclick="storeFilterCategory('all')">
+                                <span>🔥</span> Alle Pakete <span class="store-nav-badge" id="badgeAllCount">7</span>
+                            </div>
+                            <div class="store-nav-item" onclick="storeFilterCategory('cheats')">
+                                <span>⚡</span> Cheats &amp; DMA <span class="store-nav-badge">4</span>
+                            </div>
+                            <div class="store-nav-item" onclick="storeFilterCategory('shaders')">
+                                <span>🎨</span> Grafik &amp; Shader <span class="store-nav-badge">1</span>
+                            </div>
+                            <div class="store-nav-item" onclick="storeFilterCategory('radar')">
+                                <span>🛡️</span> Radar &amp; Tools <span class="store-nav-badge">2</span>
+                            </div>
+                            <div class="store-nav-item" onclick="storeFilterCategory('installed')">
+                                <span>📦</span> Installiert <span class="store-nav-badge" id="badgeInstalledCount">3</span>
+                            </div>
+                        </div>
+
+                        <!-- Store Main Area -->
+                        <div class="store-main-area">
+                            <div class="store-top-bar">
+                                <div class="store-search-wrap">
+                                    <span>🔍</span>
+                                    <input type="text" id="storeSearchInput" placeholder="Pakete durchsuchen (z.B. dma, radar, shader)..." oninput="storeSearchPackages(this.value)">
+                                </div>
+                                <div class="store-stats-badge" id="storeRepoStatus">● REPO: ONLINE (RING-0 KERNEL)</div>
+                            </div>
+                            
+                            <!-- Packages Grid -->
+                            <div class="store-packages-grid" id="storePackagesGrid">
+                                <!-- Rendered dynamically via JS -->
+                            </div>
+
+                            <!-- APT Terminal Log Modal Overlay -->
+                            <div class="apt-log-modal" id="aptLogModal" style="display: none;">
+                                <div class="apt-log-header">
+                                    <span id="aptLogTitle">⚡ APT PACKAGE MANAGER // INJECTION PROCESS</span>
+                                    <button class="win-btn win-close" onclick="closeAptLogModal()">✕</button>
+                                </div>
+                                <div class="apt-log-body" id="aptLogBody"></div>
+                                <div class="apt-log-progress">
+                                    <div class="apt-log-progress-fill" id="aptLogProgress"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Window 8: ⚙️ GNOME Tweaks // Desktop-Customizer Window -->
+            <div class="cheatos-window" id="cheatosWinTweaks" style="top: 65px; left: 240px; width: 680px; height: 500px; display: none;">
+                <div class="cheatos-win-header" onmousedown="cheatosStartDrag(event, 'tweaks')" ontouchstart="cheatosStartDrag(event, 'tweaks')">
+                    <div class="win-title"><span class="win-ico">⚙️</span> GNOME-TWEAKS // DESKTOP-CUSTOMIZER</div>
+                    <div class="win-controls">
+                        <button class="win-btn win-minimize" onclick="cheatosMinimizeWindow('tweaks')">—</button>
+                        <button class="win-btn win-maximize" onclick="cheatosMaximizeWindow('tweaks')">⛶</button>
+                        <button class="win-btn win-close" onclick="cheatosCloseWindow('tweaks')">✕</button>
+                    </div>
+                </div>
+                <div class="cheatos-win-body" style="height: calc(100% - 36px);">
+                    <div class="tweaks-window-layout">
+                        <!-- Tweaks Sidebar -->
+                        <div class="tweaks-sidebar">
+                            <div class="tweaks-nav-item active" onclick="tweaksSwitchTab('wallpaper')">
+                                <span>🖼️</span> Hintergrund
+                            </div>
+                            <div class="tweaks-nav-item" onclick="tweaksSwitchTab('appearance')">
+                                <span>🎨</span> Akzentfarben
+                            </div>
+                            <div class="tweaks-nav-item" onclick="tweaksSwitchTab('effects')">
+                                <span>✨</span> Effekte
+                            </div>
+                            <div class="tweaks-nav-item" onclick="tweaksSwitchTab('about')">
+                                <span>ℹ️</span> System-Info
+                            </div>
+                        </div>
+
+                        <!-- Tweaks Content Area -->
+                        <div class="tweaks-content-area" id="tweaksContentArea">
+                            <!-- Tab: Wallpaper -->
+                            <div class="tweaks-tab-content" id="tweaksTabWallpaper">
+                                <div class="tweaks-section-title"><span>🖼️</span> Desktop-Hintergrundbild wählen</div>
+                                <div class="wallpaper-cards-grid">
+                                    <div class="wallpaper-card active" id="wpCardMatrix" onclick="setDesktopWallpaper('matrix')">
+                                        <div class="wallpaper-preview" style="background: radial-gradient(circle, #022026 0%, #03060f 100%);">🌌</div>
+                                        <div class="wallpaper-label">Matrix Grid</div>
+                                    </div>
+                                    <div class="wallpaper-card" id="wpCardKali" onclick="setDesktopWallpaper('kali')">
+                                        <div class="wallpaper-preview" style="background: radial-gradient(circle at 75% 30%, #0f1d38 0%, #060a14 70%, #020408 100%);">🐉</div>
+                                        <div class="wallpaper-label">Kali Dragon</div>
+                                    </div>
+                                    <div class="wallpaper-card" id="wpCardUbuntu" onclick="setDesktopWallpaper('ubuntu')">
+                                        <div class="wallpaper-preview" style="background: linear-gradient(135deg, #2c001e 0%, #77216f 60%, #5e2750 100%);">🟠</div>
+                                        <div class="wallpaper-label">Ubuntu Noble</div>
+                                    </div>
+                                    <div class="wallpaper-card" id="wpCardSynthwave" onclick="setDesktopWallpaper('synthwave')">
+                                        <div class="wallpaper-preview" style="background: linear-gradient(180deg, #0d0221 0%, #291244 60%, #441144 100%);">🌆</div>
+                                        <div class="wallpaper-label">Synthwave</div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <div class="tweaks-setting-row">
+                                        <div class="tweaks-row-info">
+                                            <div class="tweaks-row-label">Eigenes Bild hochladen</div>
+                                            <div class="tweaks-row-sub">Unterstützt PNG, JPG, WebP (bleibt lokal im Browser gespeichert)</div>
+                                        </div>
+                                        <label class="pkg-btn-install" style="cursor: pointer;">
+                                            <span>📁 Datei wählen</span>
+                                            <input type="file" id="tweaksCustomWpInput" accept="image/*" style="display: none;" onchange="handleCustomWallpaperUpload(event)">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab: Appearance / Accents -->
+                            <div class="tweaks-tab-content" id="tweaksTabAppearance" style="display: none;">
+                                <div class="tweaks-section-title"><span>🎨</span> Akzentfarbe des Systems</div>
+                                <div class="accent-color-row">
+                                    <button class="accent-color-btn active" style="background: #10b981; color: #10b981;" onclick="setDesktopAccent('#10b981', 'Emerald Safe')" title="Emerald Safe (100% Anti-Virus)"></button>
+                                    <button class="accent-color-btn" style="background: #00f0ff; color: #00f0ff;" onclick="setDesktopAccent('#00f0ff', 'Kali Cyan')" title="Kali Cyan (DMA Engine)"></button>
+                                    <button class="accent-color-btn" style="background: #e95420; color: #e95420;" onclick="setDesktopAccent('#e95420', 'Ubuntu Orange')" title="Ubuntu Orange"></button>
+                                    <button class="accent-color-btn" style="background: #a855f7; color: #a855f7;" onclick="setDesktopAccent('#a855f7', 'Cyber Purple')" title="Cyber Purple"></button>
+                                    <button class="accent-color-btn" style="background: #ef4444; color: #ef4444;" onclick="setDesktopAccent('#ef4444', 'Root Red')" title="Root Red"></button>
+                                </div>
+                                <div style="margin-top: 14px;">
+                                    <div class="tweaks-setting-row">
+                                        <div class="tweaks-row-info">
+                                            <div class="tweaks-row-label">Aktives Farb-Profil</div>
+                                            <div class="tweaks-row-sub" id="tweaksActiveAccentText">Emerald Safe (#10b981)</div>
+                                        </div>
+                                        <span style="font-size: 11px; color: #10b981; font-weight: 700;">✓ LIVE AKTIV</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab: Effects -->
+                            <div class="tweaks-tab-content" id="tweaksTabEffects" style="display: none;">
+                                <div class="tweaks-section-title"><span>✨</span> Visuelle Effekte &amp; Performance</div>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <div class="tweaks-setting-row">
+                                        <div class="tweaks-row-info">
+                                            <div class="tweaks-row-label">Matrix Canvas-Animation</div>
+                                            <div class="tweaks-row-sub">Animierte Hintergrund-Linien &amp; Partikel (Ausschalten spart Akku)</div>
+                                        </div>
+                                        <label class="pkg-toggle-switch">
+                                            <input type="checkbox" id="tweakToggleCanvas" checked onchange="toggleCanvasAnimation(this.checked)">
+                                            <span class="pkg-toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="tweaks-setting-row">
+                                        <div class="tweaks-row-info">
+                                            <div class="tweaks-row-label">CRT Retro-Scanlines</div>
+                                            <div class="tweaks-row-sub">Subtiler Röhrenmonitor-Scanline-Effekt</div>
+                                        </div>
+                                        <label class="pkg-toggle-switch">
+                                            <input type="checkbox" id="tweakToggleScanlines" onchange="toggleScanlinesEffect(this.checked)">
+                                            <span class="pkg-toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="tweaks-setting-row">
+                                        <div class="tweaks-row-info">
+                                            <div class="tweaks-row-label">Fenster-Hintergrundunschärfe (Backdrop-Blur)</div>
+                                            <div class="tweaks-row-sub">Stärke des Glas-Effekts anpassen</div>
+                                        </div>
+                                        <div class="tweaks-slider-wrap">
+                                            <input type="range" min="0" max="30" value="18" id="tweakBlurSlider" oninput="setWindowBlur(this.value)">
+                                            <span id="tweakBlurValue" style="font-size: 11px; color: #94a3b8; font-family: monospace;">18px</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab: About -->
+                            <div class="tweaks-tab-content" id="tweaksTabAbout" style="display: none;">
+                                <div class="tweaks-section-title"><span>ℹ️</span> CheatLinux System-Spezifikationen</div>
+                                <div style="display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #94a3b8; line-height: 1.6;">
+                                    <div><strong style="color: #fff;">OS:</strong> CheatLinux 6.8.0-kali-amd64 (x86_64)</div>
+                                    <div><strong style="color: #fff;">Desktop:</strong> GNOME 46.0 Shell (Wayland/X11 Hybrid)</div>
+                                    <div><strong style="color: #fff;">Host:</strong> WeMod2 WebMotor Kernel v2.0</div>
+                                    <div><strong style="color: #fff;">Security:</strong> 100.0% Clean (Entity 0xNULL Neutralized)</div>
+                                    <div><strong style="color: #fff;">Speicher-Engine:</strong> Ring-0 DMA Direct Memory Access (Latenz &lt; 0.12ms)</div>
+                                    <div><strong style="color: #fff;">Paketmanager:</strong> APT 2.7.14 // Synaptic WebStore</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- Desktop Taskbar -->
@@ -12287,7 +12947,9 @@ drwxr-xr-x 2 agent agent 4096 Sep  5 16:40 <span style="color:#00f0ff; font-weig
             telemetry: { el: document.getElementById("cheatosWinTelemetry"), title: "Telemetrie", icon: "📈", open: false, minimized: false, maximized: false },
             notes: { el: document.getElementById("cheatosWinNotes"), title: "CheatNotes", icon: "📝", open: false, minimized: false, maximized: false },
             audio: { el: document.getElementById("cheatosWinAudio"), title: "CyberAudio", icon: "🎵", open: false, minimized: false, maximized: false },
-            minimap: { el: document.getElementById("cheatosWinMinimap"), title: "Minimap", icon: "🗺️", open: false, minimized: false, maximized: false }
+            minimap: { el: document.getElementById("cheatosWinMinimap"), title: "Minimap", icon: "🗺️", open: false, minimized: false, maximized: false },
+            store: { el: document.getElementById("cheatosWinStore"), title: "Software", icon: "🛍️", open: false, minimized: false, maximized: false },
+            tweaks: { el: document.getElementById("cheatosWinTweaks"), title: "Tweaks", icon: "⚙️", open: false, minimized: false, maximized: false }
         };
 
         let topZIndex = 200;
@@ -12315,6 +12977,7 @@ drwxr-xr-x 2 agent agent 4096 Sep  5 16:40 <span style="color:#00f0ff; font-weig
             cheatosSyncIdStats();
             cheatosUpdateTaskbar();
             cheatosFocusWindow('terminal');
+            initCustomizerPreferences();
             cheatosUpdateDockState('terminal');
             startClock();
             startTelemetryOscilloscope();
@@ -12468,7 +13131,9 @@ drwxr-xr-x 2 agent agent 4096 Sep  5 16:40 <span style="color:#00f0ff; font-weig
                 idCard: "dockItemIdCard",
                 telemetry: "dockItemTelemetry",
                 notes: "dockItemNotes",
-                audio: "dockItemAudio"
+                audio: "dockItemAudio",
+                store: "dockItemStore",
+                tweaks: "dockItemTweaks"
             };
 
             Object.keys(dockMap).forEach(k => {
@@ -12954,6 +13619,404 @@ drwxr-xr-x 2 agent agent 4096 Sep  5 16:40 <span style="color:#00f0ff; font-weig
                 requestAnimationFrame(draw);
             }
             draw();
+        }
+
+        
+        // =========================================================================
+        // 🛍️ LINUX SOFTWARE-CENTER // SYNAPTIC REPOSITORY ENGINE
+        // =========================================================================
+        const STORE_PACKAGES = [
+            {
+                id: "dma-flight",
+                name: "dma-flight-engine.deb",
+                version: "2.4.1",
+                size: "4.2 MB",
+                category: "cheats",
+                icon: "✈️",
+                title: "Ring-0 DMA Flugmodus & High-Speed",
+                desc: "Erlaubt freies Schweben und High-Speed Flug ohne Hunger-Verbrauch via Ring-0 Kernel Memory Injection.",
+                rating: "★★★★★ 4.9 (1.4k)",
+                installed: true,
+                active: true,
+                hotkey: "F1"
+            },
+            {
+                id: "nullpunkt-radar",
+                name: "nullpunkt-radar-hud.pkg",
+                version: "1.8.0",
+                size: "12.1 MB",
+                category: "radar",
+                icon: "🗺️",
+                title: "Dorf-Minimap Satelliten-HUD",
+                desc: "Echtzeit-Kartenoverlay mit Radar-Sweep, Dorf-POI Markern und Nullpunkt-Ortung im Spiel.",
+                rating: "★★★★★ 5.0 (2.1k)",
+                installed: true,
+                active: true,
+                hotkey: "M"
+            },
+            {
+                id: "hunger-bypass",
+                name: "infinite-hunger-lock.deb",
+                version: "3.0.0",
+                size: "1.5 MB",
+                category: "cheats",
+                icon: "🍖",
+                title: "No-Hunger & Sättigungs-Lock",
+                desc: "Friert den Hungerbalken bei 20/20 ein. Dauerhaftes Sprinten und Bauen ohne Nahrungssorgen.",
+                rating: "★★★★☆ 4.8 (890)",
+                installed: true,
+                active: true,
+                hotkey: "F2"
+            },
+            {
+                id: "optifine-shaders",
+                name: "optifine-cyber-shaders.rpm",
+                version: "5.1.2",
+                size: "48.6 MB",
+                category: "shaders",
+                icon: "🎨",
+                title: "Reines Erze X-Ray & Cyber Shaders",
+                desc: "Macht Stein und Netherrack durchsichtig für Diamanten, Debris und antike Schätze im Wireframe-Modus.",
+                rating: "★★★★★ 4.9 (3.4k)",
+                installed: false,
+                active: false,
+                hotkey: "F3"
+            },
+            {
+                id: "auto-totem",
+                name: "auto-totem-matrix.deb",
+                version: "1.2.0",
+                size: "2.8 MB",
+                category: "cheats",
+                icon: "🛡️",
+                title: "0-Tick Auto-Totem & Unsterblichkeit",
+                desc: "Erkennt tödlichen Fall- oder PvP-Schaden in &lt;1ms und rüstet Totems automatisch aus dem Inventar nach.",
+                rating: "★★★★★ 5.0 (940)",
+                installed: false,
+                active: false,
+                hotkey: "F4"
+            },
+            {
+                id: "speed-bridge",
+                name: "speedbridge-macro.deb",
+                version: "2.0.4",
+                size: "850 KB",
+                category: "cheats",
+                icon: "🌉",
+                title: "GodBridge & SafeWalk Algorithmus",
+                desc: "Verhindert versehentliches Herunterfallen von Kanten und setzt Blöcke mit maximaler Klickrate.",
+                rating: "★★★★☆ 4.7 (720)",
+                installed: false,
+                active: false,
+                hotkey: "F5"
+            },
+            {
+                id: "portal-teleport",
+                name: "nether-portal-teleport.deb",
+                version: "4.0.0",
+                size: "3.4 MB",
+                category: "radar",
+                icon: "🌀",
+                title: "Instant Nullpunkt-Teleport",
+                desc: "Beam-Algorithmus zu den exakten Dorf-Koordinaten (X: 1337 Y: 12 Z: -420) mit Zero-Chunk-Loading.",
+                rating: "★★★★★ 4.9 (1.1k)",
+                installed: false,
+                active: false,
+                hotkey: "T"
+            }
+        ];
+
+        let currentStoreCategory = 'all';
+        let currentStoreSearch = '';
+
+        window.storeRenderPackages = function() {
+            const grid = document.getElementById("storePackagesGrid");
+            if (!grid) return;
+
+            let filtered = STORE_PACKAGES.filter(pkg => {
+                const matchesCat = (currentStoreCategory === 'all') || 
+                                   (currentStoreCategory === 'installed' && pkg.installed) || 
+                                   (pkg.category === currentStoreCategory);
+                const matchesSearch = !currentStoreSearch || 
+                                     pkg.name.toLowerCase().includes(currentStoreSearch.toLowerCase()) || 
+                                     pkg.title.toLowerCase().includes(currentStoreSearch.toLowerCase()) || 
+                                     pkg.desc.toLowerCase().includes(currentStoreSearch.toLowerCase());
+                return matchesCat && matchesSearch;
+            });
+
+            grid.innerHTML = "";
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #94a3b8; padding: 40px; font-size: 13px;">🔍 Keine passenden Pakete im Repository gefunden.</div>';
+                return;
+            }
+
+            filtered.forEach(pkg => {
+                const card = document.createElement("div");
+                card.className = "pkg-card";
+                card.innerHTML = `
+                    <div class="pkg-header">
+                        <div class="pkg-icon">${pkg.icon}</div>
+                        <div class="pkg-info">
+                            <div class="pkg-name" title="${pkg.name}">${pkg.name}</div>
+                            <div class="pkg-meta">v${pkg.version} • ${pkg.size} • [Hotkey: ${pkg.hotkey}]</div>
+                        </div>
+                    </div>
+                    <div class="pkg-desc">${pkg.desc}</div>
+                    <div class="pkg-footer">
+                        <div class="pkg-rating">${pkg.rating}</div>
+                        <div>
+                            ${pkg.installed ? `
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span class="pkg-btn-installed">✓ Aktiv</span>
+                                    <label class="pkg-toggle-switch" title="Cheat-Modul an/aus">
+                                        <input type="checkbox" ${pkg.active ? 'checked' : ''} onchange="storeToggleModule('${pkg.id}', this.checked)">
+                                        <span class="pkg-toggle-slider"></span>
+                                    </label>
+                                </div>
+                            ` : `
+                                <button class="pkg-btn-install" onclick="storeInstallPackage('${pkg.id}')">
+                                    <span>⬇️ Installieren</span>
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Update badges
+            const allBadge = document.getElementById("badgeAllCount");
+            const installedBadge = document.getElementById("badgeInstalledCount");
+            if (allBadge) allBadge.textContent = STORE_PACKAGES.length;
+            if (installedBadge) installedBadge.textContent = STORE_PACKAGES.filter(p => p.installed).length;
+        };
+
+        window.storeFilterCategory = function(cat) {
+            currentStoreCategory = cat;
+            document.querySelectorAll('.store-sidebar .store-nav-item').forEach(it => it.classList.remove('active'));
+            if (event && event.currentTarget) event.currentTarget.classList.add('active');
+            storeRenderPackages();
+        };
+
+        window.storeSearchPackages = function(val) {
+            currentStoreSearch = val.trim();
+            storeRenderPackages();
+        };
+
+        window.storeToggleModule = function(pkgId, isChecked) {
+            const pkg = STORE_PACKAGES.find(p => p.id === pkgId);
+            if (!pkg) return;
+            pkg.active = isChecked;
+            if (typeof showCyberToast === "function") {
+                showCyberToast(`⚙️ Modul <strong>${pkg.name}</strong>: ${isChecked ? '<span style="color:#10b981">AKTIVIERT</span>' : '<span style="color:#ef4444">DEAKTIVIERT</span>'}`);
+            }
+        };
+
+        window.storeInstallPackage = function(pkgId) {
+            const pkg = STORE_PACKAGES.find(p => p.id === pkgId);
+            if (!pkg) return;
+
+            const modal = document.getElementById("aptLogModal");
+            const body = document.getElementById("aptLogBody");
+            const progress = document.getElementById("aptLogProgress");
+            const title = document.getElementById("aptLogTitle");
+
+            if (!modal || !body || !progress) return;
+            modal.style.display = "flex";
+            body.innerHTML = "";
+            progress.style.width = "0%";
+            if (title) title.textContent = `⚡ APT INSTALL: ${pkg.name} [v${pkg.version}]`;
+
+            const logs = [
+                `$ sudo apt-get install -y ${pkg.name}`,
+                `[sudo] Passwort für agent: ••••••••`,
+                `Paketlisten werden gelesen… Fertig`,
+                `Abhängigkeitsbaum wird aufgebaut… Fertig`,
+                `Hole:1 http://repo.nullpunkt.local/kali cheatlinux/main ${pkg.name} [${pkg.size}]`,
+                `Entpacke ${pkg.name} (v${pkg.version})…`,
+                `DMA-Injektor: Modul an Ring-0 Kernel anhängen… OK`,
+                `Richte ${pkg.name} ein…`,
+                `✓ Status: Modul erfolgreich installiert und mit CheatMotor synchronisiert!`
+            ];
+
+            let step = 0;
+            const timer = setInterval(() => {
+                if (step < logs.length) {
+                    const line = document.createElement("div");
+                    line.textContent = logs[step];
+                    if (step === 0) line.style.color = "#00f0ff";
+                    if (step === logs.length - 1) line.style.color = "#10b981";
+                    body.appendChild(line);
+                    body.scrollTop = body.scrollHeight;
+
+                    step++;
+                    progress.style.width = Math.round((step / logs.length) * 100) + "%";
+                } else {
+                    clearInterval(timer);
+                    pkg.installed = true;
+                    pkg.active = true;
+                    storeRenderPackages();
+                    if (typeof showCyberToast === "function") {
+                        showCyberToast(`📦 <strong>${pkg.name}</strong> erfolgreich installiert!`);
+                    }
+                    setTimeout(() => {
+                        modal.style.display = "none";
+                    }, 800);
+                }
+            }, 180);
+        };
+
+        window.closeAptLogModal = function() {
+            const modal = document.getElementById("aptLogModal");
+            if (modal) modal.style.display = "none";
+        };
+
+        // =========================================================================
+        // ⚙️ GNOME TWEAKS // DESKTOP-CUSTOMIZER ENGINE
+        // =========================================================================
+        window.currentWallpaper = 'matrix';
+        window.currentAccent = '#10b981';
+
+        window.tweaksSwitchTab = function(tabName) {
+            document.querySelectorAll('.tweaks-sidebar .tweaks-nav-item').forEach(it => it.classList.remove('active'));
+            if (event && event.currentTarget) event.currentTarget.classList.add('active');
+
+            const tabs = ['wallpaper', 'appearance', 'effects', 'about'];
+            tabs.forEach(t => {
+                const el = document.getElementById('tweaksTab' + t.charAt(0).toUpperCase() + t.slice(1));
+                if (el) el.style.display = (t === tabName) ? 'block' : 'none';
+            });
+        };
+
+        window.setDesktopWallpaper = function(wpKey, customUrl) {
+            const dt = document.getElementById("cheatOsDesktop");
+            const bgCanvas = document.getElementById("cheatosBgCanvas");
+            const gridOverlay = document.querySelector(".cheatos-grid-overlay");
+            if (!dt) return;
+
+            window.currentWallpaper = wpKey;
+            document.querySelectorAll('.wallpaper-card').forEach(c => c.classList.remove('active'));
+
+            if (wpKey === 'matrix') {
+                dt.style.background = "#03060f";
+                if (bgCanvas) bgCanvas.style.display = "block";
+                if (gridOverlay) gridOverlay.style.display = "block";
+                const card = document.getElementById("wpCardMatrix");
+                if (card) card.classList.add("active");
+            } else if (wpKey === 'kali') {
+                dt.style.background = "radial-gradient(circle at 75% 30%, #0f1d38 0%, #060a14 70%, #020408 100%)";
+                if (bgCanvas) bgCanvas.style.display = "none";
+                if (gridOverlay) gridOverlay.style.display = "block";
+                const card = document.getElementById("wpCardKali");
+                if (card) card.classList.add("active");
+            } else if (wpKey === 'ubuntu') {
+                dt.style.background = "linear-gradient(135deg, #2c001e 0%, #77216f 60%, #5e2750 100%)";
+                if (bgCanvas) bgCanvas.style.display = "none";
+                if (gridOverlay) gridOverlay.style.display = "none";
+                const card = document.getElementById("wpCardUbuntu");
+                if (card) card.classList.add("active");
+            } else if (wpKey === 'synthwave') {
+                dt.style.background = "linear-gradient(180deg, #0d0221 0%, #291244 60%, #441144 100%)";
+                if (bgCanvas) bgCanvas.style.display = "none";
+                if (gridOverlay) gridOverlay.style.display = "block";
+                const card = document.getElementById("wpCardSynthwave");
+                if (card) card.classList.add("active");
+            } else if (wpKey === 'custom' && customUrl) {
+                dt.style.background = `url('${customUrl}') center/cover no-repeat`;
+                if (bgCanvas) bgCanvas.style.display = "none";
+                if (gridOverlay) gridOverlay.style.display = "none";
+            }
+
+            localStorage.setItem("cheatlinux_wallpaper", wpKey);
+            if (wpKey === 'custom' && customUrl) {
+                try { localStorage.setItem("cheatlinux_custom_wp", customUrl); } catch(e) {}
+            }
+            if (typeof showCyberToast === "function") {
+                showCyberToast(`🖼️ Hintergrundbild geändert: <strong>${wpKey.toUpperCase()}</strong>`);
+            }
+        };
+
+        window.handleCustomWallpaperUpload = function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const dataUrl = e.target.result;
+                setDesktopWallpaper('custom', dataUrl);
+            };
+            reader.readAsDataURL(file);
+        };
+
+        window.setDesktopAccent = function(colorHex, name) {
+            window.currentAccent = colorHex;
+            const dt = document.getElementById("cheatOsDesktop");
+            if (dt) {
+                dt.style.setProperty('--linux-accent', colorHex);
+                dt.style.setProperty('--dock-dot', colorHex);
+            }
+
+            document.querySelectorAll('.accent-color-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('title') && btn.getAttribute('title').includes(name));
+            });
+
+            const text = document.getElementById("tweaksActiveAccentText");
+            if (text) text.textContent = `${name} (${colorHex})`;
+
+            localStorage.setItem("cheatlinux_accent", colorHex);
+            localStorage.setItem("cheatlinux_accent_name", name);
+
+            if (typeof showCyberToast === "function") {
+                showCyberToast(`🎨 Akzentfarbe geändert zu: <strong style="color:${colorHex}">${name}</strong>`);
+            }
+        };
+
+        window.toggleCanvasAnimation = function(enabled) {
+            const canvas = document.getElementById("cheatosBgCanvas");
+            if (canvas) canvas.style.display = enabled ? "block" : "none";
+            localStorage.setItem("cheatlinux_canvas_anim", enabled ? "true" : "false");
+        };
+
+        window.toggleScanlinesEffect = function(enabled) {
+            const grid = document.querySelector(".cheatos-grid-overlay");
+            if (grid) {
+                if (enabled) grid.style.backgroundImage = "repeating-linear-gradient(0deg, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0.2) 1px, transparent 1px, transparent 2px)";
+                else grid.style.backgroundImage = "";
+            }
+            localStorage.setItem("cheatlinux_scanlines", enabled ? "true" : "false");
+        };
+
+        window.setWindowBlur = function(val) {
+            const blurVal = document.getElementById("tweakBlurValue");
+            if (blurVal) blurVal.textContent = val + "px";
+            document.querySelectorAll('.cheatos-window').forEach(w => {
+                w.style.backdropFilter = `blur(${val}px)`;
+            });
+            localStorage.setItem("cheatlinux_window_blur", val);
+        };
+
+        // Initialize user preferences from localStorage on boot
+        function initCustomizerPreferences() {
+            storeRenderPackages();
+            const savedWp = localStorage.getItem("cheatlinux_wallpaper") || "matrix";
+            const customUrl = localStorage.getItem("cheatlinux_custom_wp");
+            if (savedWp === 'custom' && customUrl) {
+                setDesktopWallpaper('custom', customUrl);
+            } else if (savedWp !== 'matrix') {
+                setDesktopWallpaper(savedWp);
+            }
+
+            const savedAccent = localStorage.getItem("cheatlinux_accent");
+            const savedAccentName = localStorage.getItem("cheatlinux_accent_name") || "Custom";
+            if (savedAccent) {
+                setDesktopAccent(savedAccent, savedAccentName);
+            }
+
+            const savedBlur = localStorage.getItem("cheatlinux_window_blur");
+            if (savedBlur) {
+                const slider = document.getElementById("tweakBlurSlider");
+                if (slider) slider.value = savedBlur;
+                setWindowBlur(savedBlur);
+            }
         }
 
         // Global Shortcut: Esc closes CheatOS
