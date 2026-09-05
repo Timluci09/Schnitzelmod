@@ -2959,17 +2959,17 @@
         /* ☠️ STORY-EVENT: NULLPUNKT GEHACKT / VOID-CORRUPTION */
         /* ==================================================== */
         body.world-corrupted-active {
-            --cyan: #ef4444 !important;
-            --cyan-glow: rgba(239, 68, 68, 0.5) !important;
+            --cyan: #00f0ff !important;
+            --cyan-glow: rgba(0, 240, 255, 0.35) !important;
             --purple: #a855f7 !important;
-            --purple-glow: rgba(168, 85, 247, 0.45) !important;
-            --emerald: #ef4444 !important;
-            background-color: #050207 !important;
+            --purple-glow: rgba(168, 85, 247, 0.35) !important;
+            --emerald: #00ff66 !important;
+            background-color: #060913 !important;
             background-image: 
-                radial-gradient(circle at 20% 20%, rgba(239, 68, 68, 0.12) 0%, transparent 45%),
-                radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.14) 0%, transparent 50%),
-                linear-gradient(rgba(239, 68, 68, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(239, 68, 68, 0.04) 1px, transparent 1px) !important;
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 102, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 80% 80%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
+                linear-gradient(rgba(0, 255, 102, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 102, 0.02) 1px, transparent 1px) !important;
         }
 
         body.world-corrupted-active::after {
@@ -2978,19 +2978,20 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background: repeating-linear-gradient(
                 to bottom,
-                rgba(239, 68, 68, 0.035) 0px,
-                rgba(239, 68, 68, 0.035) 2px,
+                rgba(0, 255, 102, 0.008) 0px,
+                rgba(0, 255, 102, 0.008) 2px,
                 transparent 2px,
                 transparent 4px
             );
             pointer-events: none;
             z-index: 9997;
-            animation: corruptedScanlines 0.15s infinite;
+            opacity: 0.25;
+            animation: corruptedScanlines 0.2s infinite;
         }
 
         @keyframes corruptedScanlines {
-            0%, 100% { opacity: 0.85; }
-            50% { opacity: 0.95; }
+            0%, 100% { opacity: 0.25; }
+            50% { opacity: 0.35; }
         }
 
         body.world-corrupted-active .cyber-nav,
@@ -2999,67 +3000,174 @@
         body.world-corrupted-active .hof-card,
         body.world-corrupted-active .step-card,
         body.world-corrupted-active .mockup-wrapper {
-            border-color: rgba(239, 68, 68, 0.45) !important;
-            box-shadow: 0 0 35px rgba(239, 68, 68, 0.2), 0 15px 35px rgba(0, 0, 0, 0.8) !important;
+            border-color: rgba(255, 255, 255, 0.08) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 18px rgba(0, 255, 102, 0.12) !important;
         }
 
         body.world-corrupted-active .bento-card:hover,
         body.world-corrupted-active .blog-card:hover {
-            border-color: #ef4444 !important;
-            box-shadow: 0 0 45px rgba(239, 68, 68, 0.45) !important;
+            border-color: #00ff66 !important;
+            box-shadow: 0 0 35px rgba(0, 255, 102, 0.35) !important;
         }
 
         body.world-corrupted-active .hero-title,
-        body.world-corrupted-active .section-header h2 {
-            animation: chromaticGlitch 4.5s infinite;
+        body.world-corrupted-active .section-header h2,
+        body.world-corrupted-active .logo-text,
+        body.world-corrupted-active .id-deck-title h3,
+        .cyber-glitch-text {
+            animation: cyberWarfareGlitch 8s infinite ease-in-out;
+            position: relative;
         }
 
-        @keyframes chromaticGlitch {
-            0%, 93%, 100% {
+        @keyframes cyberWarfareGlitch {
+            0%, 98%, 100% {
                 text-shadow: none;
-                transform: none;
+                transform: translate(0);
+                clip-path: none;
             }
-            94% {
-                text-shadow: 3px 0 #ef4444, -3px 0 #a855f7;
-                transform: translate(-1.5px, 1px);
+            99% {
+                text-shadow: 1.5px 0 #00ff66, -1.5px 0 #00f0ff;
+                transform: translate(-0.5px, 0.5px);
             }
-            96% {
-                text-shadow: -3px 0 #ef4444, 3px 0 #00f0ff;
-                transform: translate(1.5px, -1px);
+        }
+
+        /* ==========================================================================
+           ALL-ELEMENTS CYBER-GLITCH ENGINE: BUTTONS, TEXTS, CARDS (98% NORMALISIERT)
+           ========================================================================== */
+
+        /* 1. BUTTONS & INTERACTIVE ELEMENTS GLITCH */
+        .btn, .btn-primary, .btn-secondary, .btn-cyber,
+        .terminal-nav-btn, .badge-action-btn, .corrupted-hud-btn, .counter-attack-btn,
+        .cheat-chip, .id-btn-primary, .id-btn-secondary, .sync-skin-btn, .id-preset-btn,
+        .badge-export-actions button, .nav-status-capsule, .nav-links a {
+            position: relative;
+            animation: cyberButtonJitter 8s infinite ease-in-out;
+        }
+
+        /* Staggered button twitch delays */
+        .btn:nth-child(2n), .cheat-chip:nth-child(2n), .badge-action-btn:nth-child(2n), .nav-links a:nth-child(2n) {
+            animation-delay: 2.5s;
+        }
+        .btn:nth-child(3n), .cheat-chip:nth-child(3n), .badge-action-btn:nth-child(3n), .nav-links a:nth-child(3n) {
+            animation-delay: 5s;
+        }
+
+        @keyframes cyberButtonJitter {
+            0%, 98%, 100% {
+                transform: translate(0, 0);
+                filter: none;
             }
-            98% {
-                text-shadow: 2px 0 #ef4444, -2px 0 #a855f7;
-                transform: none;
+            99% {
+                transform: translate(-0.8px, 0.5px);
+                box-shadow: 0 0 12px rgba(0, 255, 102, 0.35);
             }
+        }
+
+        /* Smooth Overclocked Glitch on Button Hover */
+        .btn:hover, .btn-primary:hover, .btn-secondary:hover, .btn-cyber:hover,
+        .terminal-nav-btn:hover, .badge-action-btn:hover, .corrupted-hud-btn:hover,
+        .counter-attack-btn:hover, .cheat-chip:hover, .sync-skin-btn:hover,
+        .badge-export-actions button:hover, .id-preset-btn:hover, .id-btn-primary:hover, .id-btn-secondary:hover {
+            text-shadow: 1.5px 0 #00ff66, -1.5px 0 #00f0ff !important;
+            animation: cyberButtonHoverVibe 0.25s infinite alternate ease-in-out !important;
+        }
+
+        @keyframes cyberButtonHoverVibe {
+            0% {
+                transform: translateY(-2px);
+                box-shadow: 0 0 15px rgba(0, 255, 102, 0.35);
+            }
+            100% {
+                transform: translateY(-2px);
+                box-shadow: 0 0 25px rgba(0, 255, 102, 0.55), 0 0 10px rgba(0, 240, 255, 0.3);
+                border-color: #00ff66;
+            }
+        }
+
+        /* 2. TEXTS & PARAGRAPHS GLITCH */
+        .hero-desc, .bento-desc, .blog-card-excerpt, .step-card p,
+        .hof-card-rec, .faq-answer, .tech-pill, .chip-name, .badge-stat-box,
+        .chip-label, .id-field label, .id-class-card-desc, .badge-role-tag,
+        .id-deck-sub, .nav-status-capsule span, .footer-col p {
+            position: relative;
+            animation: cyberTextMicroGlitch 9s infinite ease-in-out;
+        }
+
+        .bento-desc, .blog-card-excerpt { animation-delay: 3s; }
+        .step-card p, .tech-pill { animation-delay: 6s; }
+
+        @keyframes cyberTextMicroGlitch {
+            0%, 98.5%, 100% {
+                text-shadow: none;
+                transform: translate(0, 0);
+            }
+            99% {
+                text-shadow: 1px 0 #00ff66, -1px 0 #00f0ff;
+                transform: translate(0.5px, 0);
+            }
+        }
+
+        /* 3. CARDS & CONTAINERS GLITCH & BORDER PULSE ("UND MEHR") */
+        body.world-corrupted-active .bento-card,
+        body.world-corrupted-active .blog-card,
+        body.world-corrupted-active .hof-card,
+        body.world-corrupted-active .step-card,
+        body.world-corrupted-active .id-builder-card,
+        body.world-corrupted-active .terminal-window,
+        body.world-corrupted-active .mockup-wrapper {
+            position: relative;
+            animation: cyberCardPulseBorder 9s infinite ease-in-out;
+        }
+
+        @keyframes cyberCardPulseBorder {
+            0%, 100% {
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 255, 102, 0.12);
+            }
+            50% {
+                box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 255, 102, 0.28);
+                border-color: rgba(0, 255, 102, 0.3);
+            }
+        }
+
+        /* 4. INSTANT CLICK IMPULSE SHOCKWAVE */
+        body.cyber-click-glitch {
+            filter: contrast(1.1) brightness(1.03);
+        }
+
+        .cyber-clicked-glitch {
+            transform: scale(0.97) translate(1px, -1px) !important;
+            text-shadow: 2px 0 #00ff66, -2px 0 #00f0ff !important;
+            filter: contrast(1.2) !important;
+            clip-path: polygon(0 3%, 100% 0%, 100% 97%, 0% 100%) !important;
         }
 
         body.world-corrupted-active .hero-badge {
-            background: rgba(239, 68, 68, 0.15) !important;
-            border-color: #ef4444 !important;
-            color: #fca5a5 !important;
-            box-shadow: 0 0 25px rgba(239, 68, 68, 0.35) !important;
+            background: rgba(0, 255, 102, 0.12) !important;
+            border-color: #00ff66 !important;
+            color: #bbf7d0 !important;
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.25) !important;
         }
 
         body.world-corrupted-active .status-corrupted {
-            background: rgba(239, 68, 68, 0.25) !important;
-            border: 1px solid #ef4444 !important;
-            color: #ef4444 !important;
-            box-shadow: 0 0 25px rgba(239, 68, 68, 0.5) !important;
+            background: rgba(0, 255, 102, 0.15) !important;
+            border: 1px solid #00ff66 !important;
+            color: #00ff66 !important;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.35) !important;
         }
 
         body.world-corrupted-active .status-pulse-dot {
-            background: #ef4444 !important;
-            box-shadow: 0 0 12px #ef4444 !important;
+            background: #00ff66 !important;
+            box-shadow: 0 0 12px #00ff66 !important;
         }
 
-        /* ☠️ CORRUPTED HUD BADGE */
+        /* 🛡️ 98% RESTORED HUD BADGE */
         .corrupted-hud-badge {
             position: fixed;
             bottom: 24px;
             right: 24px;
-            background: rgba(18, 4, 8, 0.94);
-            border: 1.5px solid #ef4444;
-            box-shadow: 0 0 35px rgba(239, 68, 68, 0.5), inset 0 0 20px rgba(239, 68, 68, 0.2);
+            background: rgba(6, 15, 10, 0.95);
+            border: 1.5px solid #00ff66;
+            box-shadow: 0 0 35px rgba(0, 255, 102, 0.35), inset 0 0 20px rgba(0, 255, 102, 0.15);
             border-radius: 16px;
             padding: 10px 18px;
             display: flex;
@@ -3068,6 +3176,86 @@
             z-index: 9999;
             backdrop-filter: blur(12px);
             animation: corruptedSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+            border-radius: 16px;
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            z-index: 9999;
+            backdrop-filter: blur(12px);
+            animation: corruptedSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .corrupted-hud-badge.counter-attack-active {
+            border: 1.5px solid #00ff66 !important;
+            box-shadow: 0 0 35px rgba(0, 255, 102, 0.35), 0 0 20px rgba(239, 68, 68, 0.35) !important;
+            background: linear-gradient(135deg, rgba(20, 5, 10, 0.96) 0%, rgba(5, 18, 12, 0.96) 100%) !important;
+        }
+
+        .hud-dual-pulse {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-shrink: 0;
+        }
+
+        .pulse-red {
+            width: 10px;
+            height: 10px;
+            background: #ef4444;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ef4444;
+            animation: corruptedPulse 1s infinite ease-in-out;
+        }
+
+        .pulse-green {
+            width: 10px;
+            height: 10px;
+            background: #00ff66;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #00ff66;
+            animation: corruptedPulse 1s infinite ease-in-out 0.5s;
+        }
+
+        .hud-clash-bar {
+            display: inline-block;
+            width: 65px;
+            height: 6px;
+            background: rgba(239, 68, 68, 0.5);
+            border-radius: 99px;
+            overflow: hidden;
+            vertical-align: middle;
+            margin: 0 6px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .clash-green {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #00ff66);
+            border-radius: 99px;
+            box-shadow: 0 0 8px #00ff66;
+            animation: clashPulseAnim 2.2s infinite alternate ease-in-out;
+        }
+
+        @keyframes clashPulseAnim {
+            0% { width: 97%; }
+            100% { width: 98%; }
+        }
+
+        .counter-attack-btn {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(0, 255, 102, 0.2)) !important;
+            border-color: #00ff66 !important;
+            color: #bbf7d0 !important;
+            font-weight: 800 !important;
+        }
+
+        .counter-attack-btn:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.5), rgba(0, 255, 102, 0.35)) !important;
+            box-shadow: 0 0 18px rgba(0, 255, 102, 0.6) !important;
+            color: #fff !important;
+            transform: scale(1.04);
         }
 
         @keyframes corruptedSlideUp {
@@ -4056,6 +4244,7 @@
 <body class="world-corrupted-active">
     <div class="ambient-glow-1"></div>
     <div class="ambient-glow-2"></div>
+    <canvas id="cyberWarfareCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; opacity: 0.55;"></canvas>
     <canvas id="voidParticleCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9998;"></canvas>
 
     <!-- 📢 GLOBALER EILMELDUNGS-BANNER -->
@@ -5053,16 +5242,24 @@ oder klicke oben auf <strong style="color:#00f0ff; text-decoration:underline; cu
 
     
     
-    <!-- ☠️ CORRUPTED WORLD / NULLPUNKT EVENT HUD BADGE -->
-    <div id="corruptedHudBadge" class="corrupted-hud-badge">
-        <div class="corrupted-pulse-dot"></div>
+    <!-- 🛡️ ANTI-VIRUS 98% RESTORATION HUD BADGE -->
+    <div id="corruptedHudBadge" class="corrupted-hud-badge counter-attack-active">
+        <div class="hud-dual-pulse">
+            <span class="pulse-red" style="opacity: 0.3; transform: scale(0.75);" title="Entity 0xNULL Virus (Restbestand: 2%)"></span>
+            <span class="pulse-green" title="Cheat Motor Anti-Virus (98% Wiederhergestellt)"></span>
+        </div>
         <div class="corrupted-hud-content">
-            <div class="corrupted-hud-title">☠️ LORE-EVENT: NULLPUNKT GEKAPERT</div>
-            <div class="corrupted-hud-sub">Entity 0xNULL Infiltration • Tippe 'hack_status' im Terminal</div>
+            <div class="corrupted-hud-title" style="color: #00ff66;">🛡️ SYSTEM-WIEDERHERSTELLUNG: 98% BEREINIGT</div>
+            <div class="corrupted-hud-sub">
+                <span style="color:#ef4444; font-weight:700; opacity: 0.7;">VIRUS 2%</span>
+                <span class="hud-clash-bar"><span class="clash-green" style="width: 98%;"></span></span>
+                <span style="color:#00ff66; font-weight:800;">ANTI-VIRUS 98%</span>
+            </div>
         </div>
         <div class="corrupted-hud-actions" style="display: flex; gap: 8px; align-items: center;">
-            <button class="corrupted-hud-btn" onclick="openTerminalWithCode('hack_status')">💻 Terminal</button>
-            <span style="font-size: 10px; color: #ef4444; font-weight: 800; letter-spacing: 0.5px; background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; padding: 2px 8px; border-radius: 4px;">🔒 DAUERHAFT</span>
+            <button class="corrupted-hud-btn counter-attack-btn" onclick="triggerCounterAttackWave()" title="Säubert die verbleibenden 2% Restspuren">⚡ 100% Säubern</button>
+            <button class="corrupted-hud-btn" onclick="openTerminalWithCode('counter_attack')">💻 Terminal</button>
+            <span style="font-size: 10px; color: #00ff66; font-weight: 800; letter-spacing: 0.5px; background: rgba(0, 255, 102, 0.2); border: 1px solid #00ff66; padding: 2px 8px; border-radius: 4px;">🛡️ 98% SECURE</span>
         </div>
     </div>
 
@@ -5667,20 +5864,20 @@ Tippe erneut 'code_1' ein, um X-Ray wieder auszuschalten.</span>
             const bannerMsg = document.getElementById("announcementMessageText");
 
             if (active) {
-                if (heroBadgeText) heroBadgeText.textContent = "☠️ SYSTEM COMPROMISED • ENTITY 0xNULL AKTIV";
-                if (statusTag) statusTag.textContent = "☠️ GEKAPERT";
-                if (liveStatusBar) liveStatusBar.className = "status-bar status-corrupted nav-status-capsule";
+                if (heroBadgeText) heroBadgeText.textContent = "🛡️ ANTI-VIRUS 98% AKTIV • 0xNULL ZURÜCKGEDRÄNGT • SYSTEM FAST NORMAL";
+                if (statusTag) statusTag.textContent = "🛡️ 98% BEREINIGT";
+                if (liveStatusBar) liveStatusBar.className = "status-bar status-online nav-status-capsule";
                 if (rpmVal) {
-                    rpmVal.textContent = "9.999 RPM [OVERHEAT]";
-                    rpmVal.style.color = "#ef4444";
+                    rpmVal.textContent = "8.500 RPM [NORMAL]";
+                    rpmVal.style.color = "#00ff66";
                 }
                 if (latencyVal) {
-                    latencyVal.textContent = "ERR: 666 ms [VOID]";
-                    latencyVal.style.color = "#ef4444";
+                    latencyVal.textContent = "< 0.38 ms [DMA OK]";
+                    latencyVal.style.color = "#00ff66";
                 }
                 if (banner && bannerMsg && !localStorage.getItem("schnitzelmod_banner_msg")) {
                     banner.classList.add("active");
-                    bannerMsg.textContent = "🚨 ALARMSTUFE OMEGA: Der Server-Nullpunkt wurde gehackt! Entity 0xNULL hat die Realität verzerrt.";
+                    bannerMsg.textContent = "🛡️ ANTI-VIRUS ERFOLG: 98% der Sektoren bereinigt! Fast alle Systeme laufen wieder stabil im Normalzustand.";
                 }
             } else {
                 if (heroBadgeText) heroBadgeText.textContent = "Minecraft 1.20.1 Ready • Fabric, Forge & TLauncher";
@@ -6504,6 +6701,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
   <span style="color:#c084fc; font-weight:bold;">code_2</span>        - 🌀 GEHEIM-CHEAT: Nullpunkt Schwerelosigkeit (0.00 G)${lockNotice}
   <span style="color:#ef4444; font-weight:bold;">hack_status</span>   - ☠️ Infiltrations-Status von Entity 0xNULL${lockNotice}
   <span style="color:#ef4444; font-weight:bold;">secret_coords</span> - ⚡ Geheime Nether-Koordinaten entschlüsseln${lockNotice}
+  <span style="color:#00ff66; font-weight:bold;">counter_attack</span> - ⚔️ Cheat Motor Anti-Virus Gegenangriff starten!${lockNotice}
   <span style="color:#00f0ff; font-weight:bold;">testers</span>       - Zeigt die Hall of Fame der Beta-Crew (ASCII)
   <span style="color:#00f0ff; font-weight:bold;">download</span>      - Startet den Download von CheatMotor-v2.0.zip
   <span style="color:#00f0ff; font-weight:bold;">matrix</span>        - Schaltet den digitalen Matrix-Code-Regen um
@@ -6659,15 +6857,16 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 printTerminalLine(out);
             } else if (cmd === "hack_status" || cmd === "status_hack" || cmd === "infiltration") {
                 printTerminalLine(`
-<span style="color:#ef4444; font-weight:bold;">[☠️] ENTITY 0xNULL INFILTRATION SCAN:</span>
-  ├─ Status: <span style="color:#ef4444; font-weight:bold;">FEINDLICHE ÜBERNAHME PERMANENT</span>
-  ├─ Nullpunkt Kern: <span style="color:#ef4444; font-weight:bold;">100% KORRUMPIERT (Überhitzung 9.999 RPM)</span>
-  ├─ Infizierte Chunks: 89.4% aller Server-Sektoren
-  ├─ Signal-Ursprung: <span style="color:#c084fc; font-weight:bold;">X: 1337 / Y: 12 / Z: -420</span> (Nether-Riss)
-  ├─ Schutzschilde: <span style="color:#ef4444; font-weight:bold;">IRREVERSIBEL DURCHBROCHEN</span>
-  └─ Bedrohungsstufe: <span style="color:#ef4444; font-weight:bold;">OMEGA (Dauerhaft versiegelt)</span>
+<span style="color:#00ff66; font-weight:bold;">[🛡️] ANTI-VIRUS STATUS-SCAN (SYSTEM 98% BEREINIGT):</span>
+  ├─ Status: <span style="color:#00ff66; font-weight:bold;">ANTI-VIRUS ERFOLGREICH INJIZIERT (98.0%)</span>
+  ├─ Nullpunkt Kern: <span style="color:#00ff66; font-weight:bold;">8.500 RPM (Normalbetrieb stabilisiert)</span>
+  ├─ Gesäuberte Chunks: <span style="color:#00ff66; font-weight:bold;">98.0% aller Sektoren befreit</span>
+  ├─ Entity 0xNULL: <span style="color:#f59e0b; font-weight:bold;">2.0% Restfragmente (isoliert im Nether-Riss)</span>
+  ├─ Signal-Ursprung: <span style="color:#c084fc; font-weight:bold;">X: 1337 / Y: 12 / Z: -420</span> (Eingedämmt)
+  ├─ Schutzschilde: <span style="color:#00ff66; font-weight:bold;">DMA-KERNEL SHIELD AKTIV &amp; NORMAL</span>
+  └─ Bedrohungsstufe: <span style="color:#10b981; font-weight:bold;">MINIMAL // KONTROLLE ZURÜCKGEWONNEN</span>
 
-<span style="color:#f59e0b;">💡 Tippe 'secret_coords' für geheime Minecraft-Koordinaten!</span>
+<span style="color:#00f0ff;">💡 Tippe 'counter_attack' für die finale 100% Säuberungswelle!</span>
 `);
             } else if (cmd === "secret_coords" || cmd === "coords" || cmd === "koordinaten") {
                 printTerminalLine(`
@@ -6680,6 +6879,20 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
   └─ Belohnung auf dem Server: Exklusiver Götter-Loot &amp; Event-Titel
 
 <span style="color:#f59e0b;">Teile diese Koordinaten mit deiner Crew oder erforsche das Gebiet allein!</span>
+`);
+            } else if (cmd === "counter_attack" || cmd === "antivirus" || cmd === "gegenangriff" || cmd === "counter" || cmd === "hackback") {
+                if (typeof window.triggerCounterAttackWave === "function") {
+                    window.triggerCounterAttackWave();
+                }
+                printTerminalLine(`
+<span style="color:#00ff66; font-weight:bold;">[🛡️] CHEAT MOTOR ANTI-VIRUS RESTORATION // 98% -> 100%:</span>
+  ├─ Ziel: <span style="color:#00ff66; font-weight:bold;">Entity 0xNULL Rest-Prozesse (2%)</span>
+  ├─ DMA-Injektion: <span style="color:#00ff66; font-weight:bold;">BYPASS_OK (Memory Patcher v2.0)</span>
+  ├─ Grüne Code-Matrix: <span style="color:#00f0ff; font-weight:bold;">98% DER SYSTEME DAUERHAFT BEREINIGT</span>
+  ├─ Hintergrund: <span style="color:#00ff66; font-weight:bold;">Grüner Re-Sync Code überschreibt verbleibende Fragmente!</span>
+  └─ Status: <span style="color:#00ff66; font-weight:bold;">SYSTEM ERFOLGREICH NORMALISIERT (98% BEREINIGT)</span>
+
+<span style="color:#00f0ff;">✨ Fast alles läuft wieder normal! Das System ist zu 98% befreit.</span>
 `);
             } else if (cmd === "restore_core" || cmd === "code_null" || cmd === "event_corrupt" || cmd === "event_corrupt off" || cmd === "reset_event") {
                 printTerminalLine(`
@@ -7916,6 +8129,344 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             window.addEventListener("DOMContentLoaded", () => {
                 window.onStatChange();
                 updateUid("Entity_0xNULL");
+            });
+        })();
+
+        /* ==========================================================================
+           CYBER-WARFARE MATRIX ENGINE: RED (0xNULL VIRUS) VS GREEN (ANTI-VIRUS)
+           ========================================================================== */
+        (function initCyberWarfare() {
+            const canvas = document.getElementById("cyberWarfareCanvas");
+            if (!canvas) return;
+            const ctx = canvas.getContext("2d");
+            if (!ctx) return;
+
+            let width = (canvas.width = window.innerWidth);
+            let height = (canvas.height = window.innerHeight);
+
+            const fontSize = 15;
+            let columns = [];
+            const virusWords = ["0xNULL_2%", "CONTAINED", "VOID_ISOLATED", "TRACE_0x02", "CLEARED"];
+            const antiVirusWords = ["ANTIVIRUS_98%", "DMA_COUNTER_HACK", "RESTORE_OK", "PATCH_ROOT", "BYPASS_OK", "SYSTEM_RESTORED", "CLEANSE", "STAGE_3", "DMA_OK", "KERNEL_SHIELD", "SECURE_0x98"];
+            const glyphs = "0123456789ABCDEF!@#$%&*<>{}[]λψξΩ⚡✓";
+
+            // Spark particles created during code collision & overwrite
+            let sparks = [];
+
+            function createSparks(x, y, color) {
+                const count = 5 + Math.floor(Math.random() * 5);
+                for (let i = 0; i < count; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = 1.5 + Math.random() * 3.5;
+                    sparks.push({
+                        x: x,
+                        y: y,
+                        vx: Math.cos(angle) * speed,
+                        vy: Math.sin(angle) * speed,
+                        alpha: 1,
+                        size: 2 + Math.random() * 2,
+                        color: color || "#00ff66"
+                    });
+                }
+                if (sparks.length > 100) {
+                    sparks.splice(0, sparks.length - 100);
+                }
+            }
+
+            function initColumns() {
+                const colCount = Math.floor(width / fontSize);
+                columns = [];
+                for (let i = 0; i < colCount; i++) {
+                    // 98% Green (Anti-Virus) and only 2% Red residue
+                    const isRed = Math.random() < 0.02;
+                    columns.push({
+                        x: i * fontSize,
+                        y: Math.random() * -800,
+                        speed: 1.1 + Math.random() * 2.0,
+                        type: isRed ? "red" : "green",
+                        word: isRed ? virusWords[Math.floor(Math.random() * virusWords.length)] : antiVirusWords[Math.floor(Math.random() * antiVirusWords.length)],
+                        charIndex: 0,
+                        overwriteTimer: 0,
+                        flash: 0
+                    });
+                }
+            }
+
+            window.addEventListener("resize", () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+                initColumns();
+            });
+
+            initColumns();
+
+            // Screen shockwave / flash effect during counter-attack wave
+            let screenFlashAlpha = 0;
+
+            window.triggerCounterAttackWave = function() {
+                screenFlashAlpha = 0.4;
+                columns.forEach(col => {
+                    col.type = "green";
+                    col.word = antiVirusWords[Math.floor(Math.random() * antiVirusWords.length)];
+                    col.charIndex = 0;
+                    col.flash = 1.0;
+                    col.speed = 3.5 + Math.random() * 2.5; // Rapid green cascade
+                    createSparks(col.x, col.y > 0 ? col.y : 100, "#00ff66");
+                });
+
+                // Spawn screen-wide sparks
+                for (let i = 0; i < 35; i++) {
+                    createSparks(Math.random() * width, Math.random() * height, Math.random() > 0.5 ? "#00ff66" : "#00f0ff");
+                }
+
+                // Trigger title scrambler wave
+                if (window.scrambleAllTitles) {
+                    window.scrambleAllTitles();
+                }
+
+                if (typeof showCyberToast === "function") {
+                    showCyberToast("🛡️ <strong>ANTI-VIRUS 98% -> 100%:</strong> Sämtliche Restfragmente eliminiert! System läuft stabil im Normalbetrieb.");
+                }
+            };
+
+            function renderWarfare() {
+                requestAnimationFrame(renderWarfare);
+
+                // Semi-transparent fade trail for matrix rain
+                ctx.fillStyle = "rgba(6, 9, 19, 0.2)";
+                ctx.fillRect(0, 0, width, height);
+
+                // Screen Flash if active
+                if (screenFlashAlpha > 0.01) {
+                    ctx.fillStyle = `rgba(0, 255, 102, ${screenFlashAlpha})`;
+                    ctx.fillRect(0, 0, width, height);
+                    screenFlashAlpha *= 0.91;
+                }
+
+                ctx.font = "bold 13px 'JetBrains Mono', monospace";
+
+                for (let i = 0; i < columns.length; i++) {
+                    const col = columns[i];
+
+                    // Select character
+                    let char = "";
+                    if (Math.random() < 0.3 && col.word) {
+                        char = col.word[col.charIndex % col.word.length];
+                        col.charIndex++;
+                    } else {
+                        char = glyphs[Math.floor(Math.random() * glyphs.length)];
+                    }
+
+                    // Collision & Code Overwrite Logic:
+                    // Green anti-virus (98%) immediately overtakes and cleanses red virus columns!
+                    if (col.type === "red") {
+                        col.overwriteTimer++;
+                        // Fast conversion to green
+                        if (col.overwriteTimer > 35 && Math.random() < 0.25) {
+                            col.type = "green";
+                            col.word = antiVirusWords[Math.floor(Math.random() * antiVirusWords.length)];
+                            col.charIndex = 0;
+                            col.flash = 1.0;
+                            col.overwriteTimer = 0;
+                            createSparks(col.x, col.y, "#00ff66");
+                        }
+                    } else {
+                        // Suppressed: negligible chance for red glitch
+                        if (Math.random() < 0.0001) {
+                            col.type = "red";
+                            col.word = virusWords[Math.floor(Math.random() * virusWords.length)];
+                            col.charIndex = 0;
+                            col.overwriteTimer = 0;
+                        }
+                    }
+
+                    // Render lead glyph & text
+                    if (col.flash > 0.1) {
+                        ctx.fillStyle = `rgba(255, 255, 255, ${col.flash})`;
+                        ctx.shadowColor = "#00f0ff";
+                        ctx.shadowBlur = 12;
+                        ctx.fillText("[RESTORED]", col.x, col.y);
+                        col.flash *= 0.88;
+                    } else if (col.type === "red") {
+                        // Tiny isolated red residue
+                        ctx.fillStyle = "#ff4466";
+                        ctx.shadowColor = "#ff0033";
+                        ctx.shadowBlur = 6;
+                        ctx.fillText(char, col.x, col.y);
+
+                        ctx.fillStyle = "rgba(220, 50, 70, 0.35)";
+                        ctx.shadowBlur = 0;
+                        ctx.fillText(glyphs[Math.floor(Math.random() * glyphs.length)], col.x, col.y - fontSize);
+                    } else {
+                        // Dominant 98% Cheat Motor Anti-Virus Green Stream
+                        if (Math.random() < 0.2) {
+                            ctx.fillStyle = "#ffffff";
+                            ctx.shadowColor = "#00ff66";
+                            ctx.shadowBlur = 8;
+                        } else {
+                            ctx.fillStyle = "#00ff66";
+                            ctx.shadowColor = "#00ff66";
+                            ctx.shadowBlur = 5;
+                        }
+                        ctx.fillText(char, col.x, col.y);
+
+                        // Faded green tail
+                        ctx.fillStyle = "rgba(0, 220, 80, 0.35)";
+                        ctx.shadowBlur = 0;
+                        ctx.fillText(glyphs[Math.floor(Math.random() * glyphs.length)], col.x, col.y - fontSize);
+                    }
+
+                    ctx.shadowBlur = 0;
+
+                    // Advance drop
+                    col.y += fontSize * col.speed * 0.7;
+
+                    // Reset when reached bottom
+                    if (col.y > height + 50) {
+                        col.y = -Math.random() * 200;
+                        col.speed = 1.1 + Math.random() * 2.0;
+                        // 98% chance to respawn as green anti-virus, 2% hostile red residue
+                        col.type = Math.random() < 0.98 ? "green" : "red";
+                        col.word = col.type === "green" 
+                            ? antiVirusWords[Math.floor(Math.random() * antiVirusWords.length)]
+                            : virusWords[Math.floor(Math.random() * virusWords.length)];
+                        col.charIndex = 0;
+                        col.overwriteTimer = 0;
+                    }
+                }
+
+                // Render and update spark particles
+                for (let i = sparks.length - 1; i >= 0; i--) {
+                    const sp = sparks[i];
+                    sp.x += sp.vx;
+                    sp.y += sp.vy;
+                    sp.alpha -= 0.035;
+                    if (sp.alpha <= 0) {
+                        sparks.splice(i, 1);
+                        continue;
+                    }
+                    ctx.save();
+                    ctx.globalAlpha = sp.alpha;
+                    ctx.fillStyle = sp.color;
+                    ctx.shadowColor = sp.color;
+                    ctx.shadowBlur = 8;
+                    ctx.fillRect(sp.x, sp.y, sp.size, sp.size);
+                    ctx.restore();
+                }
+            }
+
+            requestAnimationFrame(renderWarfare);
+        })();
+
+        /* ==========================================================================
+           CYBERSCRAMBLER: TEXT & BUTTON GLITCH DECODER + CLICK SHOCKWAVE
+           ========================================================================== */
+        (function initCyberScrambler() {
+            const targets = document.querySelectorAll(`
+                .hero-title, .section-header h2, .logo-text, .id-deck-title h3, .bento-title,
+                .btn, .btn-primary, .btn-secondary, .terminal-nav-btn, .badge-action-btn,
+                .counter-attack-btn, .corrupted-hud-btn, .cheat-chip, .tech-pill,
+                .blog-card-title, .hof-card-name, .id-preset-btn, .sync-skin-btn
+            `);
+            const glyphs = "!<>-_\\/[]{}—=+*^?#0123456789";
+            const scramblerFns = [];
+
+            targets.forEach(el => {
+                const isButton = el.matches("button, .btn, .cheat-chip, .badge-action-btn, .counter-attack-btn, .corrupted-hud-btn, .terminal-nav-btn, .id-preset-btn, .sync-skin-btn");
+
+                let targetTextNode = null;
+                if (el.children.length > 0) {
+                    // Check direct text nodes first
+                    for (let node of el.childNodes) {
+                        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 1) {
+                            targetTextNode = node;
+                            break;
+                        }
+                    }
+                    // If not found, look into text spans inside buttons
+                    if (!targetTextNode) {
+                        const subText = el.querySelector(".btn-text span, .chip-name, span:not(.chip-icon):not(.btn-icon)");
+                        if (subText && subText.childNodes.length > 0) {
+                            for (let n of subText.childNodes) {
+                                if (n.nodeType === Node.TEXT_NODE && n.textContent.trim().length > 1) {
+                                    targetTextNode = n;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                const originalText = targetTextNode ? targetTextNode.textContent.trim() : el.innerText.trim();
+                if (!originalText || originalText.length <= 1) return;
+
+                let isScrambling = false;
+
+                function scramble() {
+                    if (isScrambling) return;
+                    isScrambling = true;
+
+                    let iteration = 0;
+                    const maxIterations = originalText.length;
+                    const step = isButton ? 1.0 : 0.5;
+                    const speed = isButton ? 20 : 35;
+
+                    const interval = setInterval(() => {
+                        const scrambled = originalText
+                            .split("")
+                            .map((char, index) => {
+                                if (char === " " || char === "\n") return char;
+                                if (index < iteration) {
+                                    return originalText[index];
+                                }
+                                return glyphs[Math.floor(Math.random() * glyphs.length)];
+                            })
+                            .join("");
+
+                        if (targetTextNode) {
+                            targetTextNode.textContent = (targetTextNode.textContent.startsWith(" ") ? " " : "") + scrambled + (targetTextNode.textContent.endsWith(" ") ? " " : "");
+                        } else {
+                            el.innerText = scrambled;
+                        }
+
+                        iteration += step;
+
+                        if (iteration >= maxIterations) {
+                            clearInterval(interval);
+                            if (targetTextNode) {
+                                targetTextNode.textContent = (targetTextNode.textContent.startsWith(" ") ? " " : "") + originalText + (targetTextNode.textContent.endsWith(" ") ? " " : "");
+                            } else {
+                                el.innerText = originalText;
+                            }
+                            isScrambling = false;
+                        }
+                    }, speed);
+                }
+
+                scramblerFns.push(scramble);
+
+                el.addEventListener("mouseenter", scramble);
+
+                // At 98% Anti-Virus restoration, texts stay normal and stable (scramble triggers on hover or counter-attack)
+            });
+
+            window.scrambleAllTitles = function() {
+                scramblerFns.forEach((fn, idx) => {
+                    setTimeout(() => fn(), idx * 45);
+                });
+            };
+
+            // Global Cyber Click Glitch Shockwave
+            document.addEventListener("click", (e) => {
+                const clickable = e.target.closest("button, .btn, .cheat-chip, .badge-action-btn, .corrupted-hud-btn, .terminal-nav-btn, .id-preset-btn, .nav-links a");
+                if (!clickable) return;
+
+                document.body.classList.add("cyber-click-glitch");
+                clickable.classList.add("cyber-clicked-glitch");
+                setTimeout(() => {
+                    document.body.classList.remove("cyber-click-glitch");
+                    clickable.classList.remove("cyber-clicked-glitch");
+                }, 120);
             });
         })();
     </script>
