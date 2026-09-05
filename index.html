@@ -2997,117 +2997,169 @@
         body.world-corrupted-active .cyber-nav,
         body.world-corrupted-active .bento-card,
         body.world-corrupted-active .blog-card,
+        /* ==========================================================================
+           HYPER-GLITCH SYSTEM: 99.9% ENTITY 0xNULL TOTAL INFECTION & KERNEL BREACH
+           ========================================================================== */
         body.world-corrupted-active .hof-card,
         body.world-corrupted-active .step-card,
         body.world-corrupted-active .mockup-wrapper {
-            border-color: rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 18px rgba(0, 255, 102, 0.12) !important;
+            border-color: rgba(255, 0, 51, 0.28) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75), 0 0 22px rgba(255, 0, 51, 0.25) !important;
         }
 
         body.world-corrupted-active .bento-card:hover,
         body.world-corrupted-active .blog-card:hover {
-            border-color: #00ff66 !important;
-            box-shadow: 0 0 35px rgba(0, 255, 102, 0.35) !important;
+            border-color: #ff0033 !important;
+            box-shadow: 0 0 42px rgba(255, 0, 51, 0.6), 0 0 20px rgba(168, 85, 247, 0.4) !important;
         }
 
+        /* 1. AGGRESSIVE CHROMATIC ABERRATION & SLICING ON TITLES */
         body.world-corrupted-active .hero-title,
         body.world-corrupted-active .section-header h2,
         body.world-corrupted-active .logo-text,
         body.world-corrupted-active .id-deck-title h3,
         .cyber-glitch-text {
-            animation: cyberWarfareGlitch 8s infinite ease-in-out;
+            animation: hyperWarfareGlitch 3.2s infinite ease-in-out;
             position: relative;
         }
 
-        @keyframes cyberWarfareGlitch {
-            0%, 98%, 100% {
-                text-shadow: none;
-                transform: translate(0);
+        @keyframes hyperWarfareGlitch {
+            0%, 100% {
+                text-shadow: 2.2px 0 #ff0033, -2.2px 0 #00f0ff;
+                transform: translate(0, 0) skew(0deg);
                 clip-path: none;
             }
-            99% {
-                text-shadow: 1.5px 0 #00ff66, -1.5px 0 #00f0ff;
-                transform: translate(-0.5px, 0.5px);
+            14% {
+                text-shadow: -2.8px 0 #ff0033, 2.8px 0 #bf00ff;
+                transform: translate(-1.6px, 0.8px) skew(-0.8deg);
+                clip-path: polygon(0 2%, 100% 0%, 100% 98%, 0% 100%);
+            }
+            16% {
+                text-shadow: 3.5px 0 #ff0033, -3.5px 0 #00f0ff;
+                transform: translate(2px, -1px) skew(1.2deg);
+                clip-path: polygon(0 15%, 100% 12%, 100% 35%, 0% 40%);
+            }
+            18% {
+                transform: translate(0, 0) skew(0deg);
+                clip-path: none;
+            }
+            52% {
+                text-shadow: -3.2px 0 #ff0033, 3.2px 0 #a855f7;
+                transform: translate(-1.2px, 1px);
+            }
+            54% {
+                text-shadow: 4px 0 #ff0033, -4px 0 #00f0ff;
+                transform: translate(1.6px, -1.2px) skew(-0.8deg);
+                clip-path: polygon(0 60%, 100% 55%, 100% 85%, 0% 90%);
+            }
+            56% {
+                transform: translate(0, 0) skew(0deg);
+                clip-path: none;
+            }
+            85% {
+                text-shadow: 2px 0 #ff0033, -2px 0 #00f0ff;
+                transform: translate(0.6px, -0.6px);
+            }
+            87% {
+                text-shadow: -4px 0 #ff0033, 4px 0 #00ffff;
+                transform: translate(-2px, 1px) skew(1.4deg);
+            }
+            89% {
+                transform: translate(0, 0) skew(0deg);
             }
         }
 
-        /* ==========================================================================
-           ALL-ELEMENTS CYBER-GLITCH ENGINE: BUTTONS, TEXTS, CARDS (98% NORMALISIERT)
-           ========================================================================== */
-
-        /* 1. BUTTONS & INTERACTIVE ELEMENTS GLITCH */
+        /* 2. AGGRESSIVE BUTTON & INTERACTIVE GLITCH JITTER */
         .btn, .btn-primary, .btn-secondary, .btn-cyber,
         .terminal-nav-btn, .badge-action-btn, .corrupted-hud-btn, .counter-attack-btn,
         .cheat-chip, .id-btn-primary, .id-btn-secondary, .sync-skin-btn, .id-preset-btn,
         .badge-export-actions button, .nav-status-capsule, .nav-links a {
             position: relative;
-            animation: cyberButtonJitter 8s infinite ease-in-out;
+            animation: hyperButtonJitter 4.2s infinite ease-in-out;
         }
 
-        /* Staggered button twitch delays */
         .btn:nth-child(2n), .cheat-chip:nth-child(2n), .badge-action-btn:nth-child(2n), .nav-links a:nth-child(2n) {
-            animation-delay: 2.5s;
+            animation-delay: 1.1s;
         }
         .btn:nth-child(3n), .cheat-chip:nth-child(3n), .badge-action-btn:nth-child(3n), .nav-links a:nth-child(3n) {
-            animation-delay: 5s;
+            animation-delay: 2.3s;
         }
 
-        @keyframes cyberButtonJitter {
-            0%, 98%, 100% {
+        @keyframes hyperButtonJitter {
+            0%, 93%, 100% {
                 transform: translate(0, 0);
                 filter: none;
             }
-            99% {
+            94% {
+                transform: translate(-1.6px, 0.9px) skew(-0.8deg);
+                box-shadow: 0 0 16px rgba(255, 0, 51, 0.6);
+            }
+            95% {
+                transform: translate(1.8px, -1px) skew(1deg);
+                box-shadow: 0 0 24px rgba(255, 0, 51, 0.8);
+            }
+            96% {
                 transform: translate(-0.8px, 0.5px);
-                box-shadow: 0 0 12px rgba(0, 255, 102, 0.35);
+            }
+            97% {
+                transform: translate(0, 0);
             }
         }
 
-        /* Smooth Overclocked Glitch on Button Hover */
+        /* Violent Crimson Overclock on Hover */
         .btn:hover, .btn-primary:hover, .btn-secondary:hover, .btn-cyber:hover,
         .terminal-nav-btn:hover, .badge-action-btn:hover, .corrupted-hud-btn:hover,
         .counter-attack-btn:hover, .cheat-chip:hover, .sync-skin-btn:hover,
         .badge-export-actions button:hover, .id-preset-btn:hover, .id-btn-primary:hover, .id-btn-secondary:hover {
-            text-shadow: 1.5px 0 #00ff66, -1.5px 0 #00f0ff !important;
-            animation: cyberButtonHoverVibe 0.25s infinite alternate ease-in-out !important;
+            text-shadow: 2px 0 #ff0033, -2px 0 #00f0ff !important;
+            animation: hyperButtonHoverVibe 0.16s infinite alternate ease-in-out !important;
+            border-color: #ff0033 !important;
         }
 
-        @keyframes cyberButtonHoverVibe {
+        @keyframes hyperButtonHoverVibe {
             0% {
-                transform: translateY(-2px);
-                box-shadow: 0 0 15px rgba(0, 255, 102, 0.35);
+                transform: translateY(-2px) skew(-0.5deg);
+                box-shadow: 0 0 18px rgba(255, 0, 51, 0.65), 0 0 8px rgba(168, 85, 247, 0.4);
             }
             100% {
-                transform: translateY(-2px);
-                box-shadow: 0 0 25px rgba(0, 255, 102, 0.55), 0 0 10px rgba(0, 240, 255, 0.3);
-                border-color: #00ff66;
+                transform: translateY(-2px) skew(0.5deg);
+                box-shadow: 0 0 32px rgba(255, 0, 51, 0.9), 0 0 16px rgba(0, 240, 255, 0.45);
+                border-color: #ff1744;
             }
         }
 
-        /* 2. TEXTS & PARAGRAPHS GLITCH */
+        /* 3. PARAGRAPHS & SMALL TEXTS AMBIENT MICRO-GLITCH */
         .hero-desc, .bento-desc, .blog-card-excerpt, .step-card p,
         .hof-card-rec, .faq-answer, .tech-pill, .chip-name, .badge-stat-box,
         .chip-label, .id-field label, .id-class-card-desc, .badge-role-tag,
         .id-deck-sub, .nav-status-capsule span, .footer-col p {
             position: relative;
-            animation: cyberTextMicroGlitch 9s infinite ease-in-out;
+            animation: hyperTextMicroGlitch 4.8s infinite ease-in-out;
         }
 
-        .bento-desc, .blog-card-excerpt { animation-delay: 3s; }
-        .step-card p, .tech-pill { animation-delay: 6s; }
+        .bento-desc, .blog-card-excerpt { animation-delay: 1.4s; }
+        .step-card p, .tech-pill { animation-delay: 2.8s; }
 
-        @keyframes cyberTextMicroGlitch {
-            0%, 98.5%, 100% {
+        @keyframes hyperTextMicroGlitch {
+            0%, 92%, 100% {
                 text-shadow: none;
                 transform: translate(0, 0);
             }
-            99% {
-                text-shadow: 1px 0 #00ff66, -1px 0 #00f0ff;
-                transform: translate(0.5px, 0);
+            93% {
+                text-shadow: 1.6px 0 #ff0033, -1.6px 0 #00f0ff;
+                transform: translate(-1.2px, 0.6px);
+            }
+            95% {
+                text-shadow: -2.2px 0 #ff0033, 2.2px 0 #a855f7;
+                transform: translate(1.1px, -0.6px);
+            }
+            96% {
+                transform: translate(0, 0);
+                text-shadow: none;
             }
         }
 
-        /* 3. CARDS & CONTAINERS GLITCH & BORDER PULSE ("UND MEHR") */
+        /* 4. CARDS & CONTAINERS CRIMSON-VOID BORDER PULSE */
         body.world-corrupted-active .bento-card,
         body.world-corrupted-active .blog-card,
         body.world-corrupted-active .hof-card,
@@ -3116,58 +3168,60 @@
         body.world-corrupted-active .terminal-window,
         body.world-corrupted-active .mockup-wrapper {
             position: relative;
-            animation: cyberCardPulseBorder 9s infinite ease-in-out;
+            animation: hyperCardPulseBorder 3.8s infinite ease-in-out;
         }
 
-        @keyframes cyberCardPulseBorder {
+        @keyframes hyperCardPulseBorder {
             0%, 100% {
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 255, 102, 0.12);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 16px rgba(255, 0, 51, 0.22);
+                border-color: rgba(255, 0, 51, 0.28);
             }
             50% {
-                box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 255, 102, 0.28);
-                border-color: rgba(0, 255, 102, 0.3);
+                box-shadow: 0 10px 35px rgba(0, 0, 0, 0.75), 0 0 35px rgba(255, 0, 51, 0.5), 0 0 18px rgba(168, 85, 247, 0.3);
+                border-color: rgba(255, 0, 51, 0.6);
             }
         }
 
-        /* 4. INSTANT CLICK IMPULSE SHOCKWAVE */
+        /* 5. INSTANT CLICK IMPULSE SHOCKWAVE */
         body.cyber-click-glitch {
-            filter: contrast(1.1) brightness(1.03);
+            filter: contrast(1.22) brightness(1.06) hue-rotate(-15deg);
         }
 
         .cyber-clicked-glitch {
-            transform: scale(0.97) translate(1px, -1px) !important;
-            text-shadow: 2px 0 #00ff66, -2px 0 #00f0ff !important;
-            filter: contrast(1.2) !important;
-            clip-path: polygon(0 3%, 100% 0%, 100% 97%, 0% 100%) !important;
+            transform: scale(0.96) translate(2px, -2px) skew(-1deg) !important;
+            text-shadow: 3.5px 0 #ff0033, -3.5px 0 #00f0ff !important;
+            filter: contrast(1.35) !important;
+            clip-path: polygon(0 4%, 100% 0%, 100% 96%, 0% 100%) !important;
+            box-shadow: 0 0 32px #ff0033 !important;
         }
 
         body.world-corrupted-active .hero-badge {
-            background: rgba(0, 255, 102, 0.12) !important;
-            border-color: #00ff66 !important;
-            color: #bbf7d0 !important;
-            box-shadow: 0 0 25px rgba(0, 255, 102, 0.25) !important;
+            background: rgba(255, 0, 51, 0.16) !important;
+            border-color: #ff0033 !important;
+            color: #fca5a5 !important;
+            box-shadow: 0 0 28px rgba(255, 0, 51, 0.4) !important;
         }
 
         body.world-corrupted-active .status-corrupted {
-            background: rgba(0, 255, 102, 0.15) !important;
-            border: 1px solid #00ff66 !important;
-            color: #00ff66 !important;
-            box-shadow: 0 0 20px rgba(0, 255, 102, 0.35) !important;
+            background: rgba(255, 0, 51, 0.2) !important;
+            border: 1px solid #ff0033 !important;
+            color: #ff4d6d !important;
+            box-shadow: 0 0 24px rgba(255, 0, 51, 0.5) !important;
         }
 
         body.world-corrupted-active .status-pulse-dot {
-            background: #00ff66 !important;
-            box-shadow: 0 0 12px #00ff66 !important;
+            background: #ff0033 !important;
+            box-shadow: 0 0 15px #ff0033 !important;
         }
 
-        /* 🛡️ 98% RESTORED HUD BADGE */
+        /* ☠️ 99.9% CRITICAL INFECTION HUD BADGE */
         .corrupted-hud-badge {
             position: fixed;
             bottom: 24px;
             right: 24px;
-            background: rgba(6, 15, 10, 0.95);
-            border: 1.5px solid #00ff66;
-            box-shadow: 0 0 35px rgba(0, 255, 102, 0.35), inset 0 0 20px rgba(0, 255, 102, 0.15);
+            background: rgba(18, 4, 8, 0.96);
+            border: 1.5px solid #ff0033;
+            box-shadow: 0 0 45px rgba(255, 0, 51, 0.55), inset 0 0 20px rgba(255, 0, 51, 0.22);
             border-radius: 16px;
             padding: 10px 18px;
             display: flex;
@@ -3175,22 +3229,24 @@
             gap: 14px;
             z-index: 9999;
             backdrop-filter: blur(12px);
-            animation: corruptedSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: corruptedSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1), hyperHudWarningPulse 2.4s infinite ease-in-out;
         }
-            border-radius: 16px;
-            padding: 10px 18px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            z-index: 9999;
-            backdrop-filter: blur(12px);
-            animation: corruptedSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+        @keyframes hyperHudWarningPulse {
+            0%, 100% {
+                border-color: #ff0033;
+                box-shadow: 0 0 32px rgba(255, 0, 51, 0.45), inset 0 0 15px rgba(255, 0, 51, 0.18);
+            }
+            50% {
+                border-color: #ff1744;
+                box-shadow: 0 0 55px rgba(255, 0, 51, 0.8), 0 0 22px rgba(168, 85, 247, 0.45), inset 0 0 26px rgba(255, 0, 51, 0.35);
+            }
         }
 
         .corrupted-hud-badge.counter-attack-active {
-            border: 1.5px solid #00ff66 !important;
-            box-shadow: 0 0 35px rgba(0, 255, 102, 0.35), 0 0 20px rgba(239, 68, 68, 0.35) !important;
-            background: linear-gradient(135deg, rgba(20, 5, 10, 0.96) 0%, rgba(5, 18, 12, 0.96) 100%) !important;
+            border: 1.5px solid #ff0033 !important;
+            box-shadow: 0 0 48px rgba(255, 0, 51, 0.6), 0 0 22px rgba(168, 85, 247, 0.45) !important;
+            background: linear-gradient(135deg, rgba(28, 5, 10, 0.98) 0%, rgba(12, 2, 8, 0.98) 100%) !important;
         }
 
         .hud-dual-pulse {
@@ -3201,61 +3257,62 @@
         }
 
         .pulse-red {
-            width: 10px;
-            height: 10px;
-            background: #ef4444;
+            width: 11px;
+            height: 11px;
+            background: #ff0033;
             border-radius: 50%;
-            box-shadow: 0 0 10px #ef4444;
-            animation: corruptedPulse 1s infinite ease-in-out;
+            box-shadow: 0 0 15px #ff0033;
+            animation: corruptedPulse 0.75s infinite ease-in-out;
         }
 
         .pulse-green {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             background: #00ff66;
             border-radius: 50%;
-            box-shadow: 0 0 12px #00ff66;
-            animation: corruptedPulse 1s infinite ease-in-out 0.5s;
+            box-shadow: 0 0 6px #00ff66;
+            opacity: 0.35;
+            animation: corruptedPulse 2.2s infinite ease-in-out 0.5s;
         }
 
         .hud-clash-bar {
             display: inline-block;
-            width: 65px;
-            height: 6px;
-            background: rgba(239, 68, 68, 0.5);
+            width: 72px;
+            height: 7px;
+            background: rgba(0, 255, 102, 0.2);
             border-radius: 99px;
             overflow: hidden;
             vertical-align: middle;
             margin: 0 6px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 0, 51, 0.35);
         }
 
-        .clash-green {
+        .clash-red {
             display: block;
             height: 100%;
-            background: linear-gradient(90deg, #10b981, #00ff66);
+            background: linear-gradient(90deg, #ff0033, #ff1744);
             border-radius: 99px;
-            box-shadow: 0 0 8px #00ff66;
-            animation: clashPulseAnim 2.2s infinite alternate ease-in-out;
+            box-shadow: 0 0 12px #ff0033;
+            animation: clashPulseRedAnim 1.6s infinite alternate ease-in-out;
         }
 
-        @keyframes clashPulseAnim {
-            0% { width: 97%; }
-            100% { width: 98%; }
+        @keyframes clashPulseRedAnim {
+            0% { width: 99.7%; }
+            100% { width: 99.9%; }
         }
 
         .counter-attack-btn {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(0, 255, 102, 0.2)) !important;
-            border-color: #00ff66 !important;
-            color: #bbf7d0 !important;
+            background: linear-gradient(135deg, rgba(255, 0, 51, 0.35), rgba(168, 85, 247, 0.25)) !important;
+            border-color: #ff0033 !important;
+            color: #ffe4e6 !important;
             font-weight: 800 !important;
         }
 
         .counter-attack-btn:hover {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.5), rgba(0, 255, 102, 0.35)) !important;
-            box-shadow: 0 0 18px rgba(0, 255, 102, 0.6) !important;
+            background: linear-gradient(135deg, rgba(255, 0, 51, 0.6), rgba(168, 85, 247, 0.45)) !important;
+            box-shadow: 0 0 28px rgba(255, 0, 51, 0.85) !important;
             color: #fff !important;
-            transform: scale(1.04);
+            transform: scale(1.05) skew(-1deg);
         }
 
         @keyframes corruptedSlideUp {
@@ -3266,23 +3323,24 @@
         .corrupted-pulse-dot {
             width: 12px;
             height: 12px;
-            background: #ef4444;
+            background: #ff0033;
             border-radius: 50%;
-            box-shadow: 0 0 12px #ef4444;
-            animation: corruptedPulse 1s infinite ease-in-out;
+            box-shadow: 0 0 15px #ff0033;
+            animation: corruptedPulse 0.85s infinite ease-in-out;
             flex-shrink: 0;
         }
 
         @keyframes corruptedPulse {
-            0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 12px #ef4444; }
-            50% { transform: scale(1.5); opacity: 0.4; box-shadow: 0 0 25px #ef4444; }
+            0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 12px #ff0033; }
+            50% { transform: scale(1.4); opacity: 0.5; box-shadow: 0 0 25px #ff0033; }
         }
 
         .corrupted-hud-title {
             font-size: 13px;
             font-weight: 900;
-            color: #ef4444;
+            color: #ff0033;
             letter-spacing: 0.5px;
+            text-shadow: 0 0 12px rgba(255, 0, 51, 0.6);
         }
 
         .corrupted-hud-sub {
@@ -3291,8 +3349,8 @@
         }
 
         .corrupted-hud-btn {
-            background: rgba(239, 68, 68, 0.2);
-            border: 1px solid #ef4444;
+            background: rgba(255, 0, 51, 0.2);
+            border: 1px solid #ff0033;
             color: #fff;
             font-size: 11px;
             font-weight: 800;
@@ -3303,9 +3361,9 @@
         }
 
         .corrupted-hud-btn:hover {
-            background: #ef4444;
-            color: #000;
-            box-shadow: 0 0 12px #ef4444;
+            background: #ff0033;
+            color: #fff;
+            box-shadow: 0 0 18px #ff0033;
         }
 
 
@@ -4686,7 +4744,1039 @@
             opacity: 1;
         }
 
-        /* Responsive Layout for ID-Section */
+        /* ==========================================================================
+           🖥️ CHEATOS 2.0 HACKER DESKTOP ENVIRONMENT & WINDOW MANAGER
+           ========================================================================== */
+        .cheatos-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, rgba(0, 255, 102, 0.18) 0%, rgba(0, 240, 255, 0.18) 100%);
+            border: 1px solid var(--emerald);
+            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 7px 15px;
+            border-radius: 999px;
+            cursor: pointer;
+            box-shadow: 0 0 16px rgba(0, 255, 102, 0.3);
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .cheatos-nav-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            background: linear-gradient(135deg, rgba(0, 255, 102, 0.35) 0%, rgba(0, 240, 255, 0.35) 100%);
+            box-shadow: 0 0 24px rgba(0, 255, 102, 0.6);
+            border-color: #00ff66;
+        }
+
+        /* Fullscreen Desktop Container */
+        .cheatos-desktop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #03060f;
+            z-index: 999999;
+            overflow: hidden;
+            user-select: none;
+            display: flex;
+            flex-direction: column;
+            animation: cheatosFadeIn 0.3s ease-out;
+        }
+        @keyframes cheatosFadeIn {
+            from { opacity: 0; transform: scale(1.02); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Boot Screen */
+        .cheatos-boot-screen {
+            position: absolute;
+            inset: 0;
+            background: #020408;
+            z-index: 1000000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            transition: opacity 0.5s ease;
+        }
+        .boot-logo {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: #00f0ff;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+        }
+        .boot-term-lines {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #10b981;
+            line-height: 1.6;
+            max-width: 600px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+        .boot-progress-bar {
+            width: 100%;
+            max-width: 600px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .boot-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #10b981, #00f0ff);
+            box-shadow: 0 0 10px #00f0ff;
+            transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* Desktop Wallpaper & Grid */
+        .cheatos-bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.6;
+            z-index: 1;
+        }
+        .cheatos-grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.08) 0%, transparent 70%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 36px 36px, 36px 36px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Desktop Icons Grid */
+        .cheatos-desktop-icons {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 10;
+        }
+        .cheatos-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 82px;
+            cursor: pointer;
+            padding: 8px 6px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .cheatos-icon:hover {
+            background: rgba(0, 240, 255, 0.12);
+            border-color: rgba(0, 240, 255, 0.35);
+            box-shadow: 0 0 16px rgba(0, 240, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        .icon-img-wrap {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+            margin-bottom: 6px;
+        }
+        .icon-glyph {
+            font-size: 26px;
+            filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.5));
+        }
+        .icon-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            color: #cbd5e1;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+            line-height: 1.2;
+            word-break: break-all;
+        }
+        .cheatos-icon.icon-exit .icon-img-wrap {
+            border-color: rgba(239, 68, 68, 0.4);
+            background: linear-gradient(135deg, rgba(30, 10, 20, 0.9) 0%, rgba(50, 15, 25, 0.9) 100%);
+        }
+
+        /* Windows Container & Window Styling */
+        .cheatos-windows-layer {
+            position: absolute;
+            inset: 0 0 48px 0;
+            pointer-events: none;
+            z-index: 50;
+        }
+        .cheatos-window {
+            position: absolute;
+            background: rgba(10, 16, 32, 0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1.5px solid rgba(0, 240, 255, 0.35);
+            border-radius: 14px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 240, 255, 0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            pointer-events: auto;
+            transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+            min-width: 320px;
+            min-height: 220px;
+        }
+        .cheatos-window.active {
+            border-color: #00f0ff;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95), 0 0 35px rgba(0, 240, 255, 0.35);
+        }
+        .cheatos-window.minimized {
+            display: none !important;
+        }
+        .cheatos-window.maximized {
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 0 !important;
+        }
+
+        /* Window Header */
+        .cheatos-win-header {
+            height: 38px;
+            background: linear-gradient(90deg, rgba(15, 23, 42, 0.95) 0%, rgba(10, 15, 30, 0.95) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+            cursor: move;
+            flex-shrink: 0;
+        }
+        .win-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .win-ico {
+            font-size: 15px;
+        }
+        .win-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .win-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05);
+            color: #cbd5e1;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .win-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+        .win-btn.win-close:hover {
+            background: #ef4444;
+            border-color: #ef4444;
+            color: #fff;
+        }
+
+        /* Window Body */
+        .cheatos-win-body {
+            flex: 1;
+            overflow: auto;
+            position: relative;
+            background: rgba(5, 8, 16, 0.85);
+            color: #cbd5e1;
+        }
+
+        /* Window 1: ID Card Studio inside CheatOS */
+        .cheatos-id-app-inner {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .cheatos-app-toolbar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .app-tool-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .app-tool-btn:hover {
+            background: rgba(0, 240, 255, 0.2);
+            border-color: #00f0ff;
+        }
+        .cheatos-id-preview-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .cheatos-id-hint {
+            font-size: 11px;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+        .cheatos-id-quick-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .id-quick-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .cheatos-id-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 8px;
+        }
+        .cheatos-cyber-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 8px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .cheatos-cyber-btn:hover {
+            background: rgba(0, 240, 255, 0.15);
+            border-color: var(--cyan);
+        }
+        .cheatos-link-btn {
+            display: inline-block;
+            color: var(--cyan);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* Window 2: Terminal inside CheatOS */
+        .cheatos-term-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            background: #050811;
+            padding: 14px;
+            font-family: 'JetBrains Mono', monospace;
+            box-sizing: border-box;
+        }
+        .cheatos-term-output {
+            flex: 1;
+            overflow-y: auto;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            padding-right: 6px;
+        }
+        .cheatos-term-input-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 6px;
+            padding: 6px 10px;
+        }
+        .cheatos-term-prompt {
+            color: #00f0ff;
+            font-weight: 800;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        .cheatos-term-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+        }
+
+        /* Window 3: Telemetry Monitor */
+        .telemetry-app-inner {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .telemetry-kpis {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .tel-kpi {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .kpi-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5px;
+            color: #94a3b8;
+            font-weight: 700;
+        }
+        .kpi-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 17px;
+            font-weight: 900;
+            color: #fff;
+        }
+        .kpi-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            font-weight: 800;
+        }
+        .telemetry-scope-container {
+            background: #02050e;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 10px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .scope-header {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 800;
+            color: #94a3b8;
+        }
+        .scope-status {
+            color: #10b981;
+        }
+        .telemetry-canvas {
+            width: 100%;
+            height: 160px;
+            display: block;
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .telemetry-details-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5px;
+            color: #64748b;
+        }
+
+        /* Window 4: Cheat-Editor & Notes */
+        .notes-app-inner {
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .notes-tabs {
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 8px;
+        }
+        .note-tab-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .note-tab-btn.active {
+            background: rgba(0, 240, 255, 0.15);
+            border-color: var(--cyan);
+            color: #fff;
+        }
+        .cheat-switch-card {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 10px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .cheat-info strong {
+            display: block;
+            color: #fff;
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+        .cheat-info p {
+            margin: 0;
+            font-size: 11px;
+            color: #94a3b8;
+        }
+        .badge-status-on {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid #10b981;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        .badge-status-opt {
+            background: rgba(0, 240, 255, 0.15);
+            color: var(--cyan);
+            border: 1px solid var(--cyan);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        .notes-hint-box {
+            font-size: 11px;
+            color: #cbd5e1;
+            background: rgba(15, 23, 42, 0.6);
+            border-left: 3px solid var(--cyan);
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .coords-box {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .coords-head {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 800;
+            color: #c084fc;
+        }
+        .coords-digits {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            font-weight: 900;
+            color: #00f0ff;
+            text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+            letter-spacing: 1px;
+        }
+        .btn-copy-coords {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.3) 0%, rgba(99, 102, 241, 0.3) 100%);
+            border: 1px solid #c084fc;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 7px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: fit-content;
+        }
+        .notes-textarea {
+            flex: 1;
+            width: 100%;
+            min-height: 200px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            resize: none;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .notes-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #64748b;
+        }
+        .btn-clear-notes {
+            background: transparent;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #ef4444;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Window 5: Audio Player */
+        .audio-app-inner {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .audio-track-info {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 10px 14px;
+        }
+        .track-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            color: #00f0ff;
+        }
+        .track-sub {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+        .audio-visualizer-wrap {
+            background: #02040a;
+            border: 1px solid rgba(0, 240, 255, 0.25);
+            border-radius: 8px;
+            padding: 8px;
+        }
+        .audio-visualizer-canvas {
+            width: 100%;
+            height: 90px;
+            display: block;
+        }
+        .audio-controls-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(15, 23, 42, 0.5);
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+        .audio-ctrl-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .audio-ctrl-btn:hover {
+            background: rgba(0, 240, 255, 0.25);
+            border-color: #00f0ff;
+        }
+        .btn-play-pause {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
+            border-color: #00f0ff;
+            color: #00f0ff;
+        }
+        .audio-volume-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+        }
+        .audio-vol-slider {
+            width: 80px;
+            accent-color: #00f0ff;
+        }
+        .audio-track-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .track-item {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 6px;
+            padding: 6px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .track-item:hover, .track-item.active {
+            background: rgba(0, 240, 255, 0.12);
+            border-color: rgba(0, 240, 255, 0.35);
+            color: #fff;
+        }
+        .track-item.active {
+            border-left: 3px solid #00f0ff;
+        }
+
+        /* Taskbar */
+        .cheatos-taskbar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 46px;
+            background: rgba(8, 12, 24, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            gap: 10px;
+            z-index: 1000;
+        }
+        .cheatos-start-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.25) 0%, rgba(16, 185, 129, 0.25) 100%);
+            border: 1px solid #00f0ff;
+            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 900;
+            padding: 6px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.35);
+            transition: all 0.2s;
+        }
+        .cheatos-start-btn:hover {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.45) 0%, rgba(16, 185, 129, 0.45) 100%);
+            box-shadow: 0 0 18px rgba(0, 240, 255, 0.6);
+        }
+        .cheatos-taskbar-tabs {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow-x: auto;
+        }
+        .cheatos-task-tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            max-width: 160px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .cheatos-task-tab.active {
+            background: rgba(0, 240, 255, 0.18);
+            border-color: #00f0ff;
+            color: #fff;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+        .cheatos-tray {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+        }
+        .tray-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .tray-dma {
+            color: #10b981;
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+        .tray-sec {
+            color: #00f0ff;
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+        .tray-mute-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        .cheatos-clock {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 0.5px;
+            padding: 0 4px;
+        }
+        .tray-web-exit-btn {
+            background: rgba(239, 68, 68, 0.18);
+            border: 1px solid rgba(239, 68, 68, 0.45);
+            color: #fca5a5;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tray-web-exit-btn:hover {
+            background: #ef4444;
+            color: #fff;
+            box-shadow: 0 0 14px rgba(239, 68, 68, 0.6);
+        }
+
+        /* Start Menu */
+        .cheatos-start-menu {
+            position: absolute;
+            bottom: 54px;
+            left: 10px;
+            width: 320px;
+            background: rgba(10, 15, 30, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 240, 255, 0.35);
+            border-radius: 14px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 240, 255, 0.25);
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 10001;
+            animation: startMenuPop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes startMenuPop {
+            from { opacity: 0; transform: translateY(10px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .start-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .start-logo {
+            font-size: 26px;
+            filter: drop-shadow(0 0 8px #00f0ff);
+        }
+        .start-sys {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 900;
+            color: #fff;
+        }
+        .start-user {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #94a3b8;
+        }
+        .start-user strong {
+            color: #10b981;
+        }
+        .start-items-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .start-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .start-item:hover {
+            background: rgba(0, 240, 255, 0.15);
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+        .start-item span {
+            font-size: 20px;
+        }
+        .start-item strong {
+            display: block;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            color: #fff;
+        }
+        .start-item small {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5px;
+            color: #94a3b8;
+        }
+        .start-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .start-btn-reboot, .start-btn-exit {
+            flex: 1;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .start-btn-reboot {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #cbd5e1;
+        }
+        .start-btn-reboot:hover {
+            background: rgba(0, 240, 255, 0.2);
+            color: #fff;
+        }
+        .start-btn-exit {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #fca5a5;
+        }
+        .start-btn-exit:hover {
+            background: #ef4444;
+            color: #fff;
+        }
+
+        /* Mobile Adjustments for CheatOS */
+        @media (max-width: 768px) {
+            .cheatos-desktop-icons {
+                top: 12px;
+                left: 12px;
+                gap: 10px;
+            }
+            .cheatos-icon {
+                width: 65px;
+            }
+            .icon-img-wrap {
+                width: 38px;
+                height: 38px;
+            }
+            .icon-glyph {
+                font-size: 18px;
+            }
+            .icon-label {
+                font-size: 8.5px;
+            }
+            .cheatos-window {
+                left: 10px !important;
+                right: 10px !important;
+                top: 10px !important;
+                width: calc(100vw - 20px) !important;
+                height: calc(100vh - 70px) !important;
+            }
+            .telemetry-kpis {
+                grid-template-columns: 1fr 1fr;
+            }
+            .cheatos-tray .tray-dma, .cheatos-tray .tray-sec {
+                display: none;
+            }
+        }
+
+
+                /* Responsive Layout for ID-Section */
         @media (max-width: 960px) {
             .id-generator-layout {
                 grid-template-columns: 1fr;
@@ -4738,6 +5828,7 @@
                             <span class="nav-arrow">▾</span>
                         </button>
                         <div class="nav-dropdown-menu" id="navMoreMenu">
+                            <a href="javascript:void(0);" onclick="openCheatOs(); closeNavDropdown();" style="color: #00ff66 !important; font-weight: 800 !important;">🖥️ CheatOS Desktop-Modus</a>
                             <a href="#hacker-id" onclick="closeNavDropdown()">🪪 ID-Karte Generator</a>
                             <a href="#stats" onclick="closeNavDropdown()">📊 Statistiken</a>
                             <a href="#anleitung" onclick="closeNavDropdown()">📖 Anleitung</a>
@@ -4758,6 +5849,7 @@
                         <span class="status-text" id="statusMessageText" style="display:none;">Alle Trainer-Funktionen betriebsbereit • Minecraft 1.20.1 aktiv</span>
                         <button class="admin-trigger-btn" id="openAdminBtn" title="Admin-Panel">⚙️</button>
                     </div>
+                    <button class="cheatos-nav-btn" id="openCheatOsBtn" onclick="openCheatOs()" title="Startet den Hacker Desktop-Modus (CheatOS 2.0)">🖥️ CheatOS</button>
                     <button class="terminal-nav-btn" id="openTerminalBtn">💻 Terminal</button>
                     <a href="https://github.com/Timluci09/Schnitzelmod/raw/main/CheatMotor-v2.0.zip" class="nav-btn" id="navDownloadBtn">⬇️ Download</a>
                 </div>
@@ -5843,24 +6935,24 @@ oder klicke oben auf <strong style="color:#00f0ff; text-decoration:underline; cu
 
     
     
-    <!-- 🛡️ ANTI-VIRUS 98% RESTORATION HUD BADGE -->
+    <!-- ☠️ TOTAL VIRUS INFECTION 99.9% HUD BADGE -->
     <div id="corruptedHudBadge" class="corrupted-hud-badge counter-attack-active">
         <div class="hud-dual-pulse">
-            <span class="pulse-red" style="opacity: 0.3; transform: scale(0.75);" title="Entity 0xNULL Virus (Restbestand: 2%)"></span>
-            <span class="pulse-green" title="Cheat Motor Anti-Virus (98% Wiederhergestellt)"></span>
+            <span class="pulse-red" title="Entity 0xNULL Total Infection (99.9% KERNEL BREACH)"></span>
+            <span class="pulse-green" title="Cheat Motor Anti-Virus (0.1% DYING RESIDUE)"></span>
         </div>
         <div class="corrupted-hud-content">
-            <div class="corrupted-hud-title" style="color: #00ff66;">🛡️ SYSTEM-WIEDERHERSTELLUNG: 98% BEREINIGT</div>
+            <div class="corrupted-hud-title" style="color: #ff0033;">☠️ KERNEL-BREACH: 99.9% INFIZIERT</div>
             <div class="corrupted-hud-sub">
-                <span style="color:#ef4444; font-weight:700; opacity: 0.7;">VIRUS 2%</span>
-                <span class="hud-clash-bar"><span class="clash-green" style="width: 98%;"></span></span>
-                <span style="color:#00ff66; font-weight:800;">ANTI-VIRUS 98%</span>
+                <span style="color:#ff0033; font-weight:800; text-shadow: 0 0 8px rgba(255,0,51,0.7);">VIRUS 99.9%</span>
+                <span class="hud-clash-bar"><span class="clash-red" style="width: 99.9%;"></span></span>
+                <span style="color:#10b981; font-weight:700; opacity: 0.35;">DEFENSE 0.1%</span>
             </div>
         </div>
         <div class="corrupted-hud-actions" style="display: flex; gap: 8px; align-items: center;">
-            <button class="corrupted-hud-btn counter-attack-btn" onclick="triggerCounterAttackWave()" title="Säubert die verbleibenden 2% Restspuren">⚡ 100% Säubern</button>
+            <button class="corrupted-hud-btn counter-attack-btn" onclick="triggerCounterAttackWave()" title="Startet einen verzweifelten Notfall-Gegenangriff">⚡ Notfall-Abwehr</button>
             <button class="corrupted-hud-btn" onclick="openTerminalWithCode('counter_attack')">💻 Terminal</button>
-            <span style="font-size: 10px; color: #00ff66; font-weight: 800; letter-spacing: 0.5px; background: rgba(0, 255, 102, 0.2); border: 1px solid #00ff66; padding: 2px 8px; border-radius: 4px;">🛡️ 98% SECURE</span>
+            <span style="font-size: 10px; color: #ff0033; font-weight: 800; letter-spacing: 0.5px; background: rgba(255, 0, 51, 0.22); border: 1px solid #ff0033; padding: 2px 8px; border-radius: 4px; animation: corruptedPulse 1s infinite alternate;">☠️ 99.9% BREACH</span>
         </div>
     </div>
 
@@ -6465,20 +7557,20 @@ Tippe erneut 'code_1' ein, um X-Ray wieder auszuschalten.</span>
             const bannerMsg = document.getElementById("announcementMessageText");
 
             if (active) {
-                if (heroBadgeText) heroBadgeText.textContent = "🛡️ ANTI-VIRUS 98% AKTIV • 0xNULL ZURÜCKGEDRÄNGT • SYSTEM FAST NORMAL";
-                if (statusTag) statusTag.textContent = "🛡️ 98% BEREINIGT";
-                if (liveStatusBar) liveStatusBar.className = "status-bar status-online nav-status-capsule";
+                if (heroBadgeText) heroBadgeText.textContent = "☠️ KERNEL COMPROMISED • ENTITY 0xNULL INFEKTION • 99.9% VOID";
+                if (statusTag) statusTag.textContent = "☠️ 99.9% INFIZIERT";
+                if (liveStatusBar) liveStatusBar.className = "status-bar status-corrupted nav-status-capsule";
                 if (rpmVal) {
-                    rpmVal.textContent = "8.500 RPM [NORMAL]";
-                    rpmVal.style.color = "#00ff66";
+                    rpmVal.textContent = "14.800 RPM [KERNEL MELTDOWN]";
+                    rpmVal.style.color = "#ff0033";
                 }
                 if (latencyVal) {
-                    latencyVal.textContent = "< 0.38 ms [DMA OK]";
-                    latencyVal.style.color = "#00ff66";
+                    latencyVal.textContent = "ERR_DMA [99.9% VOID]";
+                    latencyVal.style.color = "#ff0033";
                 }
                 if (banner && bannerMsg && !localStorage.getItem("schnitzelmod_banner_msg")) {
                     banner.classList.add("active");
-                    bannerMsg.textContent = "🛡️ ANTI-VIRUS ERFOLG: 98% der Sektoren bereinigt! Fast alle Systeme laufen wieder stabil im Normalzustand.";
+                    bannerMsg.textContent = "☠️ NOTFALL-ALARM: Entity 0xNULL bricht durch alle Firewalls! 99.9% des Systems korrumpiert – Hyper-Glitch aktiv!";
                 }
             } else {
                 if (heroBadgeText) heroBadgeText.textContent = "Minecraft 1.20.1 Ready • Fabric, Forge & TLauncher";
@@ -7456,18 +8548,19 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                     out += `     <em>"${escapeHtml(p.excerpt)}"</em>\n\n`;
                 });
                 printTerminalLine(out);
-            } else if (cmd === "hack_status" || cmd === "status_hack" || cmd === "infiltration") {
+            } else if (cmd === "hack_status" || cmd === "status_hack" || cmd === "infiltration" || cmd === "virus_status") {
                 printTerminalLine(`
-<span style="color:#00ff66; font-weight:bold;">[🛡️] ANTI-VIRUS STATUS-SCAN (SYSTEM 98% BEREINIGT):</span>
-  ├─ Status: <span style="color:#00ff66; font-weight:bold;">ANTI-VIRUS ERFOLGREICH INJIZIERT (98.0%)</span>
-  ├─ Nullpunkt Kern: <span style="color:#00ff66; font-weight:bold;">8.500 RPM (Normalbetrieb stabilisiert)</span>
-  ├─ Gesäuberte Chunks: <span style="color:#00ff66; font-weight:bold;">98.0% aller Sektoren befreit</span>
-  ├─ Entity 0xNULL: <span style="color:#f59e0b; font-weight:bold;">2.0% Restfragmente (isoliert im Nether-Riss)</span>
-  ├─ Signal-Ursprung: <span style="color:#c084fc; font-weight:bold;">X: 1337 / Y: 12 / Z: -420</span> (Eingedämmt)
-  ├─ Schutzschilde: <span style="color:#00ff66; font-weight:bold;">DMA-KERNEL SHIELD AKTIV &amp; NORMAL</span>
-  └─ Bedrohungsstufe: <span style="color:#10b981; font-weight:bold;">MINIMAL // KONTROLLE ZURÜCKGEWONNEN</span>
+<span style="color:#ff0033; font-weight:bold;">[☠️] KATASTROPHALER VIRUS STATUS-BERICHT (99.9% KORRUMPIERT):</span>
+  ├─ Infektions-Rate: <span style="color:#ff0033; font-weight:bold;">99.9% KERNEL COMPROMISED</span>
+  ├─ Bedrohung: <span style="color:#ff0033; font-weight:bold;">ENTITY 0xNULL (VOID ROOTKIT v4.2)</span>
+  ├─ Nullpunkt Kern: <span style="color:#ff0033; font-weight:bold;">14.800 RPM (Kernschmelze / Overheat)</span>
+  ├─ Befallene Chunks: <span style="color:#ff0033; font-weight:bold;">Sämtliche Ring-0 Sektoren besetzt</span>
+  ├─ Anti-Virus Status: <span style="color:#ef4444; font-weight:bold;">0.1% RESTSPUR (Zusammengebrochen)</span>
+  ├─ Signal-Ursprung: <span style="color:#bf00ff; font-weight:bold;">X: 1337 / Y: 12 / Z: -420 (Nether-Nullpunkt)</span>
+  ├─ Schutzschilde: <span style="color:#ff0033; font-weight:bold;">OFFLINE // FIREWALLS DURCHBROCHEN</span>
+  └─ Zustand: <span style="color:#ff0033; font-weight:bold;">TOTALER HYPER-GLITCH AUSBRUCH</span>
 
-<span style="color:#00f0ff;">💡 Tippe 'counter_attack' für die finale 100% Säuberungswelle!</span>
+<span style="color:#00f0ff;">💡 Tippe 'counter_attack', um einen verzweifelten Abwehrversuch zu starten!</span>
 `);
             } else if (cmd === "secret_coords" || cmd === "coords" || cmd === "koordinaten") {
                 printTerminalLine(`
@@ -7486,14 +8579,13 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                     window.triggerCounterAttackWave();
                 }
                 printTerminalLine(`
-<span style="color:#00ff66; font-weight:bold;">[🛡️] CHEAT MOTOR ANTI-VIRUS RESTORATION // 98% -> 100%:</span>
-  ├─ Ziel: <span style="color:#00ff66; font-weight:bold;">Entity 0xNULL Rest-Prozesse (2%)</span>
-  ├─ DMA-Injektion: <span style="color:#00ff66; font-weight:bold;">BYPASS_OK (Memory Patcher v2.0)</span>
-  ├─ Grüne Code-Matrix: <span style="color:#00f0ff; font-weight:bold;">98% DER SYSTEME DAUERHAFT BEREINIGT</span>
-  ├─ Hintergrund: <span style="color:#00ff66; font-weight:bold;">Grüner Re-Sync Code überschreibt verbleibende Fragmente!</span>
-  └─ Status: <span style="color:#00ff66; font-weight:bold;">SYSTEM ERFOLGREICH NORMALISIERT (98% BEREINIGT)</span>
+<span style="color:#ff0033; font-weight:bold;">[⚡] NOTFALL-GEGENANGRIFF INJIZIERT // SYSTEM-SCHOCKWELLE!</span>
+  ├─ DMA-Patcher: <span style="color:#ff0033; font-weight:bold;">FEHLGESCHLAGEN // KERNEL BLOCKIERT</span>
+  ├─ Warnung: <span style="color:#ff1744; font-weight:bold;">ENTITY 0xNULL ABSORBIERT DIE BEREINIGUNGSWELLE!</span>
+  ├─ Entity 0xNULL: <span style="color:#bf00ff; font-weight:bold;">"Eure Gegenwehr nährt mich nur! 99.9% gehören mir!"</span>
+  └─ Status: <span style="color:#ff0033; font-weight:bold;">SYSTEM VERBLEIBT IM HYPER-GLITCH MODUS (99.9% INFIZIERT)</span>
 
-<span style="color:#00f0ff;">✨ Fast alles läuft wieder normal! Das System ist zu 98% befreit.</span>
+<span style="color:#fca5a5;">⚠️ Der Virus wehrt die Injektion ab, aber die Seite bleibt weiterhin voll funktionsfähig!</span>
 `);
             } else if (cmd === "restore_core" || cmd === "code_null" || cmd === "event_corrupt" || cmd === "event_corrupt off" || cmd === "reset_event") {
                 printTerminalLine(`
@@ -9470,30 +10562,42 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
 
             const fontSize = 15;
             let columns = [];
-            const virusWords = ["0xNULL_2%", "CONTAINED", "VOID_ISOLATED", "TRACE_0x02", "CLEARED"];
-            const antiVirusWords = ["ANTIVIRUS_98%", "DMA_COUNTER_HACK", "RESTORE_OK", "PATCH_ROOT", "BYPASS_OK", "SYSTEM_RESTORED", "CLEANSE", "STAGE_3", "DMA_OK", "KERNEL_SHIELD", "SECURE_0x98"];
-            const glyphs = "0123456789ABCDEF!@#$%&*<>{}[]λψξΩ⚡✓";
+            const virusWords = [
+                "0xNULL_TOTAL_TAKEOVER",
+                "KERNEL_BREACH_99.9%",
+                "VOID_SPIKE",
+                "SYSTEM_HIJACKED",
+                "SEGFAULT_0x00",
+                "MEMORY_PURGE",
+                "CORRUPTED_SECTOR",
+                "RING0_ROOTKIT",
+                "ENTITY_0xNULL_REIGN",
+                "FATAL_0xDEAD",
+                "NULL_7331_DMA"
+            ];
+            const antiVirusWords = ["SHIELD_DOWN", "0.1%_SURVIVAL", "DEFENSE_FAIL", "ERR_RECOVERY", "RETRY_DMA"];
+            const glyphs = "0123456789ABCDEF!@#$%&*<>{}[]λψξΩ⚡☠️☣️";
 
             // Spark particles created during code collision & overwrite
             let sparks = [];
 
             function createSparks(x, y, color) {
-                const count = 5 + Math.floor(Math.random() * 5);
+                const count = 6 + Math.floor(Math.random() * 6);
                 for (let i = 0; i < count; i++) {
                     const angle = Math.random() * Math.PI * 2;
-                    const speed = 1.5 + Math.random() * 3.5;
+                    const speed = 2.0 + Math.random() * 4.5;
                     sparks.push({
                         x: x,
                         y: y,
                         vx: Math.cos(angle) * speed,
                         vy: Math.sin(angle) * speed,
                         alpha: 1,
-                        size: 2 + Math.random() * 2,
-                        color: color || "#00ff66"
+                        size: 2.5 + Math.random() * 2.5,
+                        color: color || "#ff0033"
                     });
                 }
-                if (sparks.length > 100) {
-                    sparks.splice(0, sparks.length - 100);
+                if (sparks.length > 120) {
+                    sparks.splice(0, sparks.length - 120);
                 }
             }
 
@@ -9501,12 +10605,12 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 const colCount = Math.floor(width / fontSize);
                 columns = [];
                 for (let i = 0; i < colCount; i++) {
-                    // 98% Green (Anti-Virus) and only 2% Red residue
-                    const isRed = Math.random() < 0.02;
+                    // 98% Red/Crimson/Void (Entity 0xNULL Virus) and only 2% Green residue
+                    const isRed = Math.random() < 0.98;
                     columns.push({
                         x: i * fontSize,
                         y: Math.random() * -800,
-                        speed: 1.1 + Math.random() * 2.0,
+                        speed: 1.4 + Math.random() * 2.8,
                         type: isRed ? "red" : "green",
                         word: isRed ? virusWords[Math.floor(Math.random() * virusWords.length)] : antiVirusWords[Math.floor(Math.random() * antiVirusWords.length)],
                         charIndex: 0,
@@ -9524,23 +10628,25 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
 
             initColumns();
 
-            // Screen shockwave / flash effect during counter-attack wave
+            // Screen shockwave / flash effect during counter-attack wave or glitch spikes
             let screenFlashAlpha = 0;
+            let screenFlashColor = "255, 0, 51";
 
             window.triggerCounterAttackWave = function() {
-                screenFlashAlpha = 0.4;
+                screenFlashAlpha = 0.55;
+                screenFlashColor = "255, 0, 51";
                 columns.forEach(col => {
-                    col.type = "green";
-                    col.word = antiVirusWords[Math.floor(Math.random() * antiVirusWords.length)];
+                    col.type = Math.random() < 0.85 ? "red" : "green";
+                    col.word = virusWords[Math.floor(Math.random() * virusWords.length)];
                     col.charIndex = 0;
                     col.flash = 1.0;
-                    col.speed = 3.5 + Math.random() * 2.5; // Rapid green cascade
-                    createSparks(col.x, col.y > 0 ? col.y : 100, "#00ff66");
+                    col.speed = 4.0 + Math.random() * 3.5;
+                    createSparks(col.x, col.y > 0 ? col.y : 100, Math.random() < 0.7 ? "#ff0033" : "#bf00ff");
                 });
 
                 // Spawn screen-wide sparks
-                for (let i = 0; i < 35; i++) {
-                    createSparks(Math.random() * width, Math.random() * height, Math.random() > 0.5 ? "#00ff66" : "#00f0ff");
+                for (let i = 0; i < 45; i++) {
+                    createSparks(Math.random() * width, Math.random() * height, Math.random() > 0.4 ? "#ff0033" : "#bf00ff");
                 }
 
                 // Trigger title scrambler wave
@@ -9549,22 +10655,22 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 }
 
                 if (typeof showCyberToast === "function") {
-                    showCyberToast("🛡️ <strong>ANTI-VIRUS 98% -> 100%:</strong> Sämtliche Restfragmente eliminiert! System läuft stabil im Normalbetrieb.");
+                    showCyberToast("☠️ <strong>NOTFALL-ABWEHR ABGEWEHRT:</strong> Entity 0xNULL bricht durch! System verbleibt bei 99.9% Infektion!");
                 }
             };
 
             function renderWarfare() {
                 requestAnimationFrame(renderWarfare);
 
-                // Semi-transparent fade trail for matrix rain
-                ctx.fillStyle = "rgba(6, 9, 19, 0.2)";
+                // Dark atmospheric void fade trail
+                ctx.fillStyle = "rgba(10, 2, 6, 0.22)";
                 ctx.fillRect(0, 0, width, height);
 
                 // Screen Flash if active
                 if (screenFlashAlpha > 0.01) {
-                    ctx.fillStyle = `rgba(0, 255, 102, ${screenFlashAlpha})`;
+                    ctx.fillStyle = `rgba(${screenFlashColor}, ${screenFlashAlpha})`;
                     ctx.fillRect(0, 0, width, height);
-                    screenFlashAlpha *= 0.91;
+                    screenFlashAlpha *= 0.89;
                 }
 
                 ctx.font = "bold 13px 'JetBrains Mono', monospace";
@@ -9572,9 +10678,8 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 for (let i = 0; i < columns.length; i++) {
                     const col = columns[i];
 
-                    // Select character
                     let char = "";
-                    if (Math.random() < 0.3 && col.word) {
+                    if (Math.random() < 0.35 && col.word) {
                         char = col.word[col.charIndex % col.word.length];
                         col.charIndex++;
                     } else {
@@ -9582,23 +10687,22 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                     }
 
                     // Collision & Code Overwrite Logic:
-                    // Green anti-virus (98%) immediately overtakes and cleanses red virus columns!
-                    if (col.type === "red") {
+                    // Hostile red virus columns (98%+) corrupt and consume remaining green residue!
+                    if (col.type === "green") {
                         col.overwriteTimer++;
-                        // Fast conversion to green
-                        if (col.overwriteTimer > 35 && Math.random() < 0.25) {
-                            col.type = "green";
-                            col.word = antiVirusWords[Math.floor(Math.random() * antiVirusWords.length)];
+                        if (col.overwriteTimer > 25 && Math.random() < 0.3) {
+                            col.type = "red";
+                            col.word = virusWords[Math.floor(Math.random() * virusWords.length)];
                             col.charIndex = 0;
                             col.flash = 1.0;
                             col.overwriteTimer = 0;
-                            createSparks(col.x, col.y, "#00ff66");
+                            createSparks(col.x, col.y, "#ff0033");
                         }
                     } else {
-                        // Suppressed: negligible chance for red glitch
-                        if (Math.random() < 0.0001) {
-                            col.type = "red";
-                            col.word = virusWords[Math.floor(Math.random() * virusWords.length)];
+                        // Negligible chance for a tiny green flicker
+                        if (Math.random() < 0.0002) {
+                            col.type = "green";
+                            col.word = antiVirusWords[Math.floor(Math.random() * antiVirusWords.length)];
                             col.charIndex = 0;
                             col.overwriteTimer = 0;
                         }
@@ -9607,53 +10711,54 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                     // Render lead glyph & text
                     if (col.flash > 0.1) {
                         ctx.fillStyle = `rgba(255, 255, 255, ${col.flash})`;
-                        ctx.shadowColor = "#00f0ff";
-                        ctx.shadowBlur = 12;
-                        ctx.fillText("[RESTORED]", col.x, col.y);
-                        col.flash *= 0.88;
-                    } else if (col.type === "red") {
-                        // Tiny isolated red residue
-                        ctx.fillStyle = "#ff4466";
                         ctx.shadowColor = "#ff0033";
-                        ctx.shadowBlur = 6;
-                        ctx.fillText(char, col.x, col.y);
-
-                        ctx.fillStyle = "rgba(220, 50, 70, 0.35)";
-                        ctx.shadowBlur = 0;
-                        ctx.fillText(glyphs[Math.floor(Math.random() * glyphs.length)], col.x, col.y - fontSize);
-                    } else {
-                        // Dominant 98% Cheat Motor Anti-Virus Green Stream
-                        if (Math.random() < 0.2) {
+                        ctx.shadowBlur = 14;
+                        ctx.fillText("[CORRUPTED]", col.x, col.y);
+                        col.flash *= 0.87;
+                    } else if (col.type === "red") {
+                        // Dominant Crimson-Red / Void-Purple Stream
+                        const isVoid = Math.random() < 0.25;
+                        const isWhiteLead = Math.random() < 0.15;
+                        if (isWhiteLead) {
                             ctx.fillStyle = "#ffffff";
-                            ctx.shadowColor = "#00ff66";
+                            ctx.shadowColor = "#ff0033";
+                            ctx.shadowBlur = 10;
+                        } else if (isVoid) {
+                            ctx.fillStyle = "#bf00ff";
+                            ctx.shadowColor = "#a855f7";
                             ctx.shadowBlur = 8;
                         } else {
-                            ctx.fillStyle = "#00ff66";
-                            ctx.shadowColor = "#00ff66";
-                            ctx.shadowBlur = 5;
+                            ctx.fillStyle = "#ff0033";
+                            ctx.shadowColor = "#ff1744";
+                            ctx.shadowBlur = 7;
                         }
                         ctx.fillText(char, col.x, col.y);
 
-                        // Faded green tail
-                        ctx.fillStyle = "rgba(0, 220, 80, 0.35)";
+                        // Corrupted tail
+                        ctx.fillStyle = isVoid ? "rgba(170, 40, 240, 0.35)" : "rgba(255, 0, 51, 0.35)";
                         ctx.shadowBlur = 0;
                         ctx.fillText(glyphs[Math.floor(Math.random() * glyphs.length)], col.x, col.y - fontSize);
+                    } else {
+                        // Dying weak green residue
+                        ctx.fillStyle = "rgba(0, 255, 102, 0.4)";
+                        ctx.shadowBlur = 0;
+                        ctx.fillText(char, col.x, col.y);
                     }
 
                     ctx.shadowBlur = 0;
 
                     // Advance drop
-                    col.y += fontSize * col.speed * 0.7;
+                    col.y += fontSize * col.speed * 0.78;
 
                     // Reset when reached bottom
                     if (col.y > height + 50) {
                         col.y = -Math.random() * 200;
-                        col.speed = 1.1 + Math.random() * 2.0;
-                        // 98% chance to respawn as green anti-virus, 2% hostile red residue
-                        col.type = Math.random() < 0.98 ? "green" : "red";
-                        col.word = col.type === "green" 
-                            ? antiVirusWords[Math.floor(Math.random() * antiVirusWords.length)]
-                            : virusWords[Math.floor(Math.random() * virusWords.length)];
+                        col.speed = 1.3 + Math.random() * 2.5;
+                        // 98% chance to respawn as hostile red virus
+                        col.type = Math.random() < 0.98 ? "red" : "green";
+                        col.word = col.type === "red" 
+                            ? virusWords[Math.floor(Math.random() * virusWords.length)]
+                            : antiVirusWords[Math.floor(Math.random() * antiVirusWords.length)];
                         col.charIndex = 0;
                         col.overwriteTimer = 0;
                     }
@@ -9771,7 +10876,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
 
                 el.addEventListener("mouseenter", scramble);
 
-                // At 98% Anti-Virus restoration, texts stay normal and stable (scramble triggers on hover or counter-attack)
+                // In 99.9% Hyper-Glitch Mode: hover triggers immediate scramble burst
             });
 
             window.scrambleAllTitles = function() {
@@ -9779,6 +10884,19 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                     setTimeout(() => fn(), idx * 45);
                 });
             };
+
+            // Periodischer autonomer Glitch-Chaos-Timer (alle 3.5 bis 5 Sekunden)
+            setInterval(() => {
+                if (scramblerFns.length === 0) return;
+                // Wähle 2-4 zufällige Elemente auf der Seite zum Glitchen aus
+                const count = 2 + Math.floor(Math.random() * 3);
+                for (let i = 0; i < count; i++) {
+                    const rndIdx = Math.floor(Math.random() * scramblerFns.length);
+                    setTimeout(() => {
+                        if (scramblerFns[rndIdx]) scramblerFns[rndIdx]();
+                    }, i * 180);
+                }
+            }, 3800);
 
             // Global Cyber Click Glitch Shockwave
             document.addEventListener("click", (e) => {
@@ -9794,6 +10912,958 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             });
         })();
     </script>
+    <!-- ==================================================== -->
+    <!-- 🖥️ CHEATOS 2.0 HACKER DESKTOP ENVIRONMENT -->
+    <!-- ==================================================== -->
+    <div class="cheatos-desktop" id="cheatOsDesktop" style="display: none;">
+        <!-- Boot Screen -->
+        <div class="cheatos-boot-screen" id="cheatosBootScreen">
+            <div class="boot-logo">⚙️ CHEAT MOTOR 2.0 // CHEATOS</div>
+            <div class="boot-term-lines" id="cheatosBootLines">
+                <div>[0.000000] Initializing CheatOS Ring-0 Kernel Architecture...</div>
+                <div>[0.042100] DMA Memory Bypass Engine: OK (Latenz &lt; 0.12ms)</div>
+                <div>[0.089400] Anti-Virus Subsystem: CRITICAL FAILURE // Entity 0xNULL Rootkit (99.9%)</div>
+                <div>[0.128000] Loading Desktop Window Manager v2.0...</div>
+                <div>[0.198000] Initializing Audio Synth Engine &amp; Canvas Oscilloscope...</div>
+                <div>[0.260000] Mounting Cheat Modules: [F1: Flug] [F2: Hunger] [F3: X-Ray]</div>
+                <div>[0.340000] SYSTEM READY // WELCOME AGENT</div>
+            </div>
+            <div class="boot-progress-bar"><div class="boot-progress-fill" id="cheatosBootProgress"></div></div>
+        </div>
+
+        <!-- Desktop Wallpaper Canvas -->
+        <canvas class="cheatos-bg-canvas" id="cheatosBgCanvas"></canvas>
+        <div class="cheatos-grid-overlay"></div>
+
+        <!-- Desktop Icons Grid -->
+        <div class="cheatos-desktop-icons">
+            <div class="cheatos-icon" onclick="cheatosOpenWindow('idCard')" title="Nullpunkt-Hacker-Ausweis Studio">
+                <div class="icon-img-wrap"><span class="icon-glyph">🪪</span></div>
+                <span class="icon-label">ID-Studio.exe</span>
+            </div>
+            <div class="cheatos-icon" onclick="cheatosOpenWindow('terminal')" title="Cyber Terminal Konsole">
+                <div class="icon-img-wrap"><span class="icon-glyph">💻</span></div>
+                <span class="icon-label">Terminal.sh</span>
+            </div>
+            <div class="cheatos-icon" onclick="cheatosOpenWindow('telemetry')" title="Live RAM &amp; DMA Telemetrie">
+                <div class="icon-img-wrap"><span class="icon-glyph">📈</span></div>
+                <span class="icon-label">Telemetry.bin</span>
+            </div>
+            <div class="cheatos-icon" onclick="cheatosOpenWindow('notes')" title="Cheat-Editor &amp; Server-Notizen">
+                <div class="icon-img-wrap"><span class="icon-glyph">📝</span></div>
+                <span class="icon-label">CheatNotes.txt</span>
+            </div>
+            <div class="cheatos-icon" onclick="cheatosOpenWindow('audio')" title="Synthwave &amp; Cyber Audio Player">
+                <div class="icon-img-wrap"><span class="icon-glyph">🎵</span></div>
+                <span class="icon-label">CyberAudio.wav</span>
+            </div>
+            <div class="cheatos-icon icon-exit" onclick="closeCheatOs()" title="CheatOS beenden und zurück zum Web-Modus">
+                <div class="icon-img-wrap"><span class="icon-glyph">🌐</span></div>
+                <span class="icon-label">Web-Modus.lnk</span>
+            </div>
+        </div>
+
+        <!-- Desktop Windows Container -->
+        <div class="cheatos-windows-layer" id="cheatosWindowsLayer">
+            <!-- Window 1: 🪪 ID-Card Studio Window -->
+            <div class="cheatos-window" id="cheatosWinIdCard" style="top: 35px; left: 120px; width: 620px; height: 550px;">
+                <div class="cheatos-win-header" onmousedown="cheatosStartDrag(event, 'idCard')" ontouchstart="cheatosStartDrag(event, 'idCard')">
+                    <div class="win-title"><span class="win-ico">🪪</span> NULLPUNKT-AUSWEIS STUDIO // KERNEL v2.0</div>
+                    <div class="win-controls">
+                        <button class="win-btn win-minimize" onclick="cheatosMinimizeWindow('idCard')">—</button>
+                        <button class="win-btn win-maximize" onclick="cheatosMaximizeWindow('idCard')">⛶</button>
+                        <button class="win-btn win-close" onclick="cheatosCloseWindow('idCard')">✕</button>
+                    </div>
+                </div>
+                <div class="cheatos-win-body">
+                    <div class="cheatos-id-app-inner">
+                        <div class="cheatos-app-toolbar">
+                            <button class="app-tool-btn" onclick="toggleBadgeFlip()"><span class="flip-icon">🔄</span> Karte umdrehen (3D-Flip)</button>
+                            <button class="app-tool-btn" onclick="downloadHackerCardPng('current')">📸 Seite herunterladen</button>
+                            <button class="app-tool-btn" onclick="downloadHackerCardPng('both')">🎴 Beide Seiten (2000px Poster)</button>
+                            <button class="app-tool-btn" onclick="copyDiscordBio()">📋 Discord-Bio</button>
+                        </div>
+                        <div class="cheatos-id-preview-box" id="cheatosIdMirrorBox">
+                            <div class="cheatos-id-hint">
+                                <span>💡 <strong>Live-Verknüpfung:</strong> Der 3D-Ausweis auf der Website ist in Echtzeit mit CheatOS synchronisiert. Nutze die Schnell-Aktionen oder springe direkt zum Web-Editor!</span>
+                            </div>
+                            <div class="cheatos-id-quick-stats">
+                                <div class="id-quick-row">
+                                    <span>Agent: <strong id="cheatosIdAgentDisp">Entity_0xNULL</strong></span>
+                                    <span>Division: <strong id="cheatosIdClassDisp" style="color:#00f0ff;">TURBO-PILOT</strong></span>
+                                    <span>Clearance: <strong style="color:#10b981;">LEVEL 5 ROOT</strong></span>
+                                </div>
+                                <div class="id-quick-row">
+                                    <span>Hardware: <strong>8.4 GHz Overclock</strong></span>
+                                    <span>Bypass: <strong>99.8% DMA</strong></span>
+                                    <span>Geheim-PIN: <strong style="color:#fbbf24; cursor:pointer;" onclick="copyOrUseSecretPin()" title="Klicken zum Einlösen">NULL-7331-DMA ⚡</strong></span>
+                                </div>
+                            </div>
+                            <div class="cheatos-id-actions-grid">
+                                <button class="cheatos-cyber-btn" onclick="window.applyHackerPreset('ben'); cheatosSyncIdStats();">🏎️ Ben Turbo</button>
+                                <button class="cheatos-cyber-btn" onclick="window.applyHackerPreset('tim'); cheatosSyncIdStats();">🕶️ Tim Architekt</button>
+                                <button class="cheatos-cyber-btn" onclick="window.applyHackerPreset('gideon'); cheatosSyncIdStats();">⚡ Gideon Zeph</button>
+                                <button class="cheatos-cyber-btn" onclick="window.applyHackerPreset('null'); cheatosSyncIdStats();">☣️ Entity 0xNULL</button>
+                                <button class="cheatos-cyber-btn" onclick="window.randomizeHackerId(); cheatosSyncIdStats();">🎲 Zufalls-Agent</button>
+                                <button class="cheatos-cyber-btn" onclick="window.boostBadgeOverclock(); cheatosSyncIdStats();" style="color:#fbbf24; border-color:#fbbf24;">⚡ 10.8 GHz Boost!</button>
+                            </div>
+                            <div class="cheatos-id-open-site-hint">
+                                <a href="#hacker-id" onclick="closeCheatOs()" class="cheatos-link-btn">👉 Zum interaktiven 3D-Ausweis im Web-Modus wechseln</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Window 2: 💻 Cyber-Terminal Window -->
+            <div class="cheatos-window" id="cheatosWinTerminal" style="top: 60px; left: 200px; width: 680px; height: 490px;">
+                <div class="cheatos-win-header" onmousedown="cheatosStartDrag(event, 'terminal')" ontouchstart="cheatosStartDrag(event, 'terminal')">
+                    <div class="win-title"><span class="win-ico">💻</span> CYBER-TERMINAL // CHEAT MOTOR RING-0 CONSOLE [TTY/1]</div>
+                    <div class="win-controls">
+                        <button class="win-btn win-minimize" onclick="cheatosMinimizeWindow('terminal')">—</button>
+                        <button class="win-btn win-maximize" onclick="cheatosMaximizeWindow('terminal')">⛶</button>
+                        <button class="win-btn win-close" onclick="cheatosCloseWindow('terminal')">✕</button>
+                    </div>
+                </div>
+                <div class="cheatos-win-body terminal-body-host">
+                    <div class="cheatos-term-container">
+                        <div class="cheatos-term-output" id="cheatosTermOutput">
+                            <div style="color: #00f0ff; font-weight: bold;">═══════════════════════════════════════════════════════════════════</div>
+                            <div style="color: #00f0ff; font-weight: bold;">⚙️ CHEAT MOTOR 2.0 // CHEATOS RING-0 INTEGRATED TERMINAL</div>
+                            <div style="color: #94a3b8; font-size: 11px;">Version 2.0.26-RELEASE (Universal DMA VirtualQueryEx Hook)</div>
+                            <div style="color: #00f0ff; font-weight: bold;">═══════════════════════════════════════════════════════════════════</div>
+                            <div style="color: #10b981; margin-top: 6px;">[✓] KERNEL AKTIV • DMA LATENZ: 0.12 ms • MC 1.20.1 HOOKED</div>
+                            <div style="color: #fbbf24;">Tippe <strong style="color:#00f0ff;">help</strong> für Befehle oder <strong style="color:#00f0ff;">null-7331-dma</strong> für den Geheim-PIN!</div>
+                            <div style="margin-top: 8px;"></div>
+                        </div>
+                        <div class="cheatos-term-input-row">
+                            <span class="cheatos-term-prompt" id="cheatosTermPrompt">root@cheatmotor:~$</span>
+                            <input type="text" class="cheatos-term-input" id="cheatosTermInput" autocomplete="off" spellcheck="false" placeholder="Befehl eingeben (help, status, tune, null-7331-dma)...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Window 3: 📈 Telemetrie & RAM-Monitor Window -->
+            <div class="cheatos-window" id="cheatosWinTelemetry" style="top: 85px; left: 280px; width: 620px; height: 460px;">
+                <div class="cheatos-win-header" onmousedown="cheatosStartDrag(event, 'telemetry')" ontouchstart="cheatosStartDrag(event, 'telemetry')">
+                    <div class="win-title"><span class="win-ico">📈</span> HARDWARE TELEMETRIE // RING-0 DMA MEMORY OSCILLOSCOPE</div>
+                    <div class="win-controls">
+                        <button class="win-btn win-minimize" onclick="cheatosMinimizeWindow('telemetry')">—</button>
+                        <button class="win-btn win-maximize" onclick="cheatosMaximizeWindow('telemetry')">⛶</button>
+                        <button class="win-btn win-close" onclick="cheatosCloseWindow('telemetry')">✕</button>
+                    </div>
+                </div>
+                <div class="cheatos-win-body">
+                    <div class="telemetry-app-inner">
+                        <div class="telemetry-kpis">
+                            <div class="tel-kpi">
+                                <span class="kpi-label">DMA LATENZ</span>
+                                <strong class="kpi-val" id="telKpiLatency">0.12 ms</strong>
+                                <small class="kpi-tag" style="color:#10b981;">OPTIMAL</small>
+                            </div>
+                            <div class="tel-kpi">
+                                <span class="kpi-label">RAM CLOCK</span>
+                                <strong class="kpi-val" id="telKpiClock">8.4 GHz</strong>
+                                <small class="kpi-tag" style="color:#00f0ff;">OVERCLOCKED</small>
+                            </div>
+                            <div class="tel-kpi">
+                                <span class="kpi-label">BYPASS RATE</span>
+                                <strong class="kpi-val" id="telKpiBypass">99.8%</strong>
+                                <small class="kpi-tag" style="color:#fbbf24;">UNTRACEABLE</small>
+                            </div>
+                            <div class="tel-kpi">
+                                <span class="kpi-label">CPU ZUSATZLAST</span>
+                                <strong class="kpi-val">0.00 %</strong>
+                                <small class="kpi-tag" style="color:#10b981;">ZERO OVERHEAD</small>
+                            </div>
+                        </div>
+                        <div class="telemetry-scope-container">
+                            <div class="scope-header">
+                                <span>DMA SIGNAL OSZILLOSKOP (ECHTZEIT-STREAM)</span>
+                                <span class="scope-status">● LIVE 60 FPS</span>
+                            </div>
+                            <canvas class="telemetry-canvas" id="telemetryCanvas" width="580" height="170"></canvas>
+                        </div>
+                        <div class="telemetry-details-bar">
+                            <span>Engine: Universal VirtualQueryEx 64-Bit</span>
+                            <span>•</span>
+                            <span>Minecraft 1.20.1 Hook: OK</span>
+                            <span>•</span>
+                            <span>Kernel: 99.9% Kompromittiert (Entity 0xNULL)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Window 4: 📝 Cheat-Editor & Server-Notes Window -->
+            <div class="cheatos-window" id="cheatosWinNotes" style="top: 110px; left: 360px; width: 560px; height: 460px;">
+                <div class="cheatos-win-header" onmousedown="cheatosStartDrag(event, 'notes')" ontouchstart="cheatosStartDrag(event, 'notes')">
+                    <div class="win-title"><span class="win-ico">📝</span> CHEAT-EDITOR &amp; NOTIZEN // NOTES.TXT</div>
+                    <div class="win-controls">
+                        <button class="win-btn win-minimize" onclick="cheatosMinimizeWindow('notes')">—</button>
+                        <button class="win-btn win-maximize" onclick="cheatosMaximizeWindow('notes')">⛶</button>
+                        <button class="win-btn win-close" onclick="cheatosCloseWindow('notes')">✕</button>
+                    </div>
+                </div>
+                <div class="cheatos-win-body">
+                    <div class="notes-app-inner">
+                        <div class="notes-tabs">
+                            <button class="note-tab-btn active" id="noteTabBtnCheats" onclick="cheatosSwitchNoteTab('cheats')">🎮 Cheats</button>
+                            <button class="note-tab-btn" id="noteTabBtnCoords" onclick="cheatosSwitchNoteTab('coords')">⚡ Nether-Koordinaten</button>
+                            <button class="note-tab-btn" id="noteTabBtnPad" onclick="cheatosSwitchNoteTab('pad')">📝 Notizblock</button>
+                        </div>
+                        <div class="note-tab-content active" id="noteTabCheats">
+                            <div class="cheat-switch-card">
+                                <div class="cheat-info">
+                                    <strong>[ F1 ] Flug-Modus (Doppel-Leertaste)</strong>
+                                    <p>Ermöglicht freies Schweben und High-Speed Flug ohne Hunger-Verbrauch.</p>
+                                </div>
+                                <span class="badge-status-on">AKTIV</span>
+                            </div>
+                            <div class="cheat-switch-card">
+                                <div class="cheat-info">
+                                    <strong>[ F2 ] No-Hunger / Sättigungs-Lock</strong>
+                                    <p>Verhindert Hungerbalken-Verlust beim Sprinten und Bauen.</p>
+                                </div>
+                                <span class="badge-status-opt">STUFE 2</span>
+                            </div>
+                            <div class="cheat-switch-card">
+                                <div class="cheat-info">
+                                    <strong>[ F3 ] Reines Erze X-Ray (Wireframe)</strong>
+                                    <p>Macht Stein und Netherrack durchsichtig für Diamanten &amp; Debris.</p>
+                                </div>
+                                <span class="badge-status-opt">HOTKEY READY</span>
+                            </div>
+                            <div class="notes-hint-box">
+                                💡 <em>Tipp: Im Terminal kannst du mit <strong>tune</strong> einen virtuellen RPM-Leistungsprüfstand starten!</em>
+                            </div>
+                        </div>
+                        <div class="note-tab-content" id="noteTabCoords" style="display: none;">
+                            <div class="coords-box">
+                                <div class="coords-head">
+                                    <span>🔥 NETHER RISS // ENTITY 0xNULL SIGNAL-QUELLE</span>
+                                    <span class="coords-ping" style="color:#ff0033;">☠️ 99.9% VOID INVASION</span>
+                                </div>
+                                <div class="coords-digits">X: 1337 | Y: 12 | Z: -420</div>
+                                <p>Ziel: Die brennende Nullpunkt-Festung im Nether. Sämtliche Schutzschilde sind zu 99.9% zusammengebrochen!</p>
+                                <button class="btn-copy-coords" onclick="navigator.clipboard.writeText('X: 1337 Y: 12 Z: -420'); showCyberToast('📋 Koordinaten X: 1337 Y: 12 Z: -420 kopiert!');">📋 Koordinaten kopieren</button>
+                            </div>
+                        </div>
+                        <div class="note-tab-content" id="noteTabPad" style="display: none;">
+                            <textarea class="notes-textarea" id="cheatosNotesTextarea" placeholder="Schreibe hier deine Server-Koordinaten, Seed-Notizen oder geheime Passwörter auf... (wird automatisch lokal gespeichert)"></textarea>
+                            <div class="notes-footer">
+                                <span id="notesSavedHint">✓ Automatisch gespeichert</span>
+                                <button class="btn-clear-notes" onclick="cheatosClearNotes()">Löschen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Window 5: 🎵 Cyber Audio Synthwave Player Window -->
+            <div class="cheatos-window" id="cheatosWinAudio" style="top: 135px; left: 440px; width: 500px; height: 420px;">
+                <div class="cheatos-win-header" onmousedown="cheatosStartDrag(event, 'audio')" ontouchstart="cheatosStartDrag(event, 'audio')">
+                    <div class="win-title"><span class="win-ico">🎵</span> CYBER AUDIO // SYNTHWAVE &amp; AMBIENT</div>
+                    <div class="win-controls">
+                        <button class="win-btn win-minimize" onclick="cheatosMinimizeWindow('audio')">—</button>
+                        <button class="win-btn win-maximize" onclick="cheatosMaximizeWindow('audio')">⛶</button>
+                        <button class="win-btn win-close" onclick="cheatosCloseWindow('audio')">✕</button>
+                    </div>
+                </div>
+                <div class="cheatos-win-body">
+                    <div class="audio-app-inner">
+                        <div class="audio-track-info">
+                            <div class="track-title" id="audioTrackTitle">Track 1: Nullpunkt 8-Bit Drift</div>
+                            <div class="track-sub" id="audioTrackSub">Procedural Cyber Chiptune • 128 BPM</div>
+                        </div>
+                        <div class="audio-visualizer-wrap">
+                            <canvas class="audio-visualizer-canvas" id="audioVisualizerCanvas" width="460" height="90"></canvas>
+                        </div>
+                        <div class="audio-controls-row">
+                            <button class="audio-ctrl-btn" onclick="cheatosPrevTrack()" title="Vorheriger Track">⏮</button>
+                            <button class="audio-ctrl-btn btn-play-pause" id="audioPlayPauseBtn" onclick="cheatosTogglePlay()" title="Abspielen / Pausieren">▶ PLAY</button>
+                            <button class="audio-ctrl-btn" onclick="cheatosNextTrack()" title="Nächster Track">⏭</button>
+                            <div class="audio-volume-wrap">
+                                <span>🔊</span>
+                                <input type="range" class="audio-vol-slider" id="audioVolSlider" min="0" max="100" value="70" oninput="cheatosSetVolume(this.value)">
+                            </div>
+                        </div>
+                        <div class="audio-track-list">
+                            <div class="track-item active" id="trackItem0" onclick="cheatosSelectTrack(0)">
+                                <span>1. Nullpunkt 8-Bit Drift</span>
+                                <small>Cyber Chiptune Arp</small>
+                            </div>
+                            <div class="track-item" id="trackItem1" onclick="cheatosSelectTrack(1)">
+                                <span>2. Deep Cyber Pulse</span>
+                                <small>Dark Synth Bass &amp; Drone</small>
+                            </div>
+                            <div class="track-item" id="trackItem2" onclick="cheatosSelectTrack(2)">
+                                <span>3. Entity 0xNULL Isolation</span>
+                                <small>Glitch Noise &amp; Sine Resonance</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desktop Taskbar -->
+        <div class="cheatos-taskbar" id="cheatosTaskbar">
+            <!-- Start Menu Popover -->
+            <div class="cheatos-start-menu" id="cheatosStartMenu" style="display: none;">
+                <div class="start-header">
+                    <span class="start-logo">⚙️</span>
+                    <div>
+                        <div class="start-sys">CHEAT MOTOR 2.0</div>
+                        <div class="start-user">Agent: <strong id="cheatosStartUser">Entity_0xNULL</strong></div>
+                    </div>
+                </div>
+                <div class="start-items-grid">
+                    <div class="start-item" onclick="cheatosOpenWindow('idCard'); cheatosToggleStartMenu();">
+                        <span>🪪</span>
+                        <div><strong>ID-Studio</strong><small>Hacker-Ausweis &amp; 3D-Flip</small></div>
+                    </div>
+                    <div class="start-item" onclick="cheatosOpenWindow('terminal'); cheatosToggleStartMenu();">
+                        <span>💻</span>
+                        <div><strong>Cyber-Terminal</strong><small>Befehle &amp; Root-Cheats</small></div>
+                    </div>
+                    <div class="start-item" onclick="cheatosOpenWindow('telemetry'); cheatosToggleStartMenu();">
+                        <span>📈</span>
+                        <div><strong>Telemetrie</strong><small>Echtzeit RAM-Oszilloskop</small></div>
+                    </div>
+                    <div class="start-item" onclick="cheatosOpenWindow('notes'); cheatosToggleStartMenu();">
+                        <span>📝</span>
+                        <div><strong>Cheat-Editor</strong><small>Notizen &amp; Koordinaten</small></div>
+                    </div>
+                    <div class="start-item" onclick="cheatosOpenWindow('audio'); cheatosToggleStartMenu();">
+                        <span>🎵</span>
+                        <div><strong>Cyber-Audio</strong><small>Synthwave Synthesizer</small></div>
+                    </div>
+                </div>
+                <div class="start-footer">
+                    <button class="start-btn-reboot" onclick="cheatosReboot(); cheatosToggleStartMenu();">🔄 Kernel Reboot</button>
+                    <button class="start-btn-exit" onclick="closeCheatOs(); cheatosToggleStartMenu();">✕ Web-Modus</button>
+                </div>
+            </div>
+
+            <!-- Start Button -->
+            <button class="cheatos-start-btn" id="cheatosStartBtn" onclick="cheatosToggleStartMenu()">
+                <span class="start-ico">⚙️</span> CHEATOS
+            </button>
+
+            <!-- Window Tabs Container -->
+            <div class="cheatos-taskbar-tabs" id="cheatosTaskbarTabs"></div>
+
+            <!-- System Tray -->
+            <div class="cheatos-tray" id="cheatosTray">
+                <div class="tray-badge tray-dma"><span>●</span> DMA OK</div>
+                <div class="tray-badge tray-sec" style="color: #ff0033; border-color: #ff0033; background: rgba(255, 0, 51, 0.18);"><span>☠️</span> 99.9% INFECTED</div>
+                <button class="tray-mute-btn" id="cheatosTrayMuteBtn" onclick="cheatosToggleMute()" title="Audio Stummschalten">🔊</button>
+                <div class="cheatos-clock" id="cheatosClock">14:40:00</div>
+                <button class="tray-web-exit-btn" onclick="closeCheatOs()" title="Zurück zur Website">✕ Web-Modus</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==========================================================================
+       🖥️ CHEATOS 2.0 FENSTERMANAGER & DESKTOP ENGINE
+       ========================================================================== -->
+    <script>
+    (function initCheatOsEngine() {
+        const desktop = document.getElementById("cheatOsDesktop");
+        const bootScreen = document.getElementById("cheatosBootScreen");
+        const bootProgress = document.getElementById("cheatosBootProgress");
+
+        // Window Registry
+        const WINDOWS = {
+            idCard: { el: document.getElementById("cheatosWinIdCard"), title: "ID-Studio", icon: "🪪", open: true, minimized: false, maximized: false },
+            terminal: { el: document.getElementById("cheatosWinTerminal"), title: "Terminal", icon: "💻", open: false, minimized: false, maximized: false },
+            telemetry: { el: document.getElementById("cheatosWinTelemetry"), title: "Telemetrie", icon: "📈", open: true, minimized: false, maximized: false },
+            notes: { el: document.getElementById("cheatosWinNotes"), title: "CheatNotes", icon: "📝", open: false, minimized: false, maximized: false },
+            audio: { el: document.getElementById("cheatosWinAudio"), title: "CyberAudio", icon: "🎵", open: false, minimized: false, maximized: false }
+        };
+
+        let topZIndex = 200;
+        let isCheatOsOpen = false;
+
+        // Open CheatOS Desktop
+        window.openCheatOs = function() {
+            if (!desktop) return;
+            desktop.style.display = "flex";
+            isCheatOsOpen = true;
+
+            // Run boot sequence on first open or reboot
+            if (bootScreen) {
+                bootScreen.style.display = "flex";
+                bootScreen.style.opacity = "1";
+                if (bootProgress) bootProgress.style.width = "0%";
+
+                setTimeout(() => { if (bootProgress) bootProgress.style.width = "100%"; }, 50);
+                setTimeout(() => {
+                    bootScreen.style.opacity = "0";
+                    setTimeout(() => { bootScreen.style.display = "none"; }, 500);
+                }, 750);
+            }
+
+            cheatosSyncIdStats();
+            cheatosUpdateTaskbar();
+            cheatosFocusWindow('idCard');
+            startClock();
+            startTelemetryOscilloscope();
+            initAudioVisualizer();
+
+            if (typeof showCyberToast === "function") {
+                showCyberToast("🖥️ <strong>CheatOS 2.0</strong> gestartet! Drücke [Esc] oder klicke rechts unten für Web-Modus.");
+            }
+        };
+
+        // Close CheatOS and return to web page
+        window.closeCheatOs = function() {
+            if (!desktop) return;
+            desktop.style.display = "none";
+            isCheatOsOpen = false;
+            cheatosStopAudio();
+            if (typeof showCyberToast === "function") {
+                showCyberToast("🌐 Zurück im <strong>Cheat Motor Web-Modus</strong>.");
+            }
+        };
+
+        window.toggleCheatOs = function() {
+            if (isCheatOsOpen) window.closeCheatOs();
+            else window.openCheatOs();
+        };
+
+        window.cheatosReboot = function() {
+            if (bootScreen) {
+                bootScreen.style.display = "flex";
+                bootScreen.style.opacity = "1";
+                if (bootProgress) bootProgress.style.width = "0%";
+                setTimeout(() => { if (bootProgress) bootProgress.style.width = "100%"; }, 50);
+                setTimeout(() => {
+                    bootScreen.style.opacity = "0";
+                    setTimeout(() => { bootScreen.style.display = "none"; }, 500);
+                }, 750);
+            }
+            showCyberToast("🔄 CheatOS Kernel erfolgreich neu gestartet!");
+        };
+
+        // Window Controls
+        window.cheatosOpenWindow = function(key) {
+            const win = WINDOWS[key];
+            if (!win || !win.el) return;
+            win.open = true;
+            win.minimized = false;
+            win.el.style.display = "flex";
+            win.el.classList.remove("minimized");
+            cheatosFocusWindow(key);
+            cheatosUpdateTaskbar();
+        };
+
+        window.cheatosCloseWindow = function(key) {
+            const win = WINDOWS[key];
+            if (!win || !win.el) return;
+            win.open = false;
+            win.el.style.display = "none";
+            cheatosUpdateTaskbar();
+        };
+
+        window.cheatosMinimizeWindow = function(key) {
+            const win = WINDOWS[key];
+            if (!win || !win.el) return;
+            win.minimized = true;
+            win.el.classList.add("minimized");
+            win.el.classList.remove("active");
+            cheatosUpdateTaskbar();
+        };
+
+        window.cheatosMaximizeWindow = function(key) {
+            const win = WINDOWS[key];
+            if (!win || !win.el) return;
+            win.maximized = !win.maximized;
+            win.el.classList.toggle("maximized", win.maximized);
+            cheatosFocusWindow(key);
+        };
+
+        window.cheatosFocusWindow = function(key) {
+            const win = WINDOWS[key];
+            if (!win || !win.el) return;
+            topZIndex += 2;
+            win.el.style.zIndex = topZIndex;
+
+            Object.keys(WINDOWS).forEach(k => {
+                if (WINDOWS[k].el) WINDOWS[k].el.classList.remove("active");
+            });
+            win.el.classList.add("active");
+            cheatosUpdateTaskbar();
+        };
+
+        // Taskbar Management
+        function cheatosUpdateTaskbar() {
+            const tabsContainer = document.getElementById("cheatosTaskbarTabs");
+            if (!tabsContainer) return;
+            tabsContainer.innerHTML = "";
+
+            Object.keys(WINDOWS).forEach(key => {
+                const win = WINDOWS[key];
+                if (!win.open) return;
+
+                const tab = document.createElement("div");
+                tab.className = "cheatos-task-tab" + (win.el.classList.contains("active") && !win.minimized ? " active" : "");
+                tab.innerHTML = `<span>${win.icon}</span> ${win.title}`;
+                tab.onclick = () => {
+                    if (win.minimized) {
+                        win.minimized = false;
+                        win.el.classList.remove("minimized");
+                        cheatosFocusWindow(key);
+                    } else if (win.el.classList.contains("active")) {
+                        cheatosMinimizeWindow(key);
+                    } else {
+                        cheatosFocusWindow(key);
+                    }
+                };
+                tabsContainer.appendChild(tab);
+            });
+        }
+
+        // Start Menu Toggle
+        window.cheatosToggleStartMenu = function() {
+            const menu = document.getElementById("cheatosStartMenu");
+            if (!menu) return;
+            const isShown = menu.style.display === "flex";
+            menu.style.display = isShown ? "none" : "flex";
+
+            // Update user in start menu
+            const userEl = document.getElementById("cheatosStartUser");
+            const name = (document.getElementById("idPlayerName") && document.getElementById("idPlayerName").value.trim()) || "Entity_0xNULL";
+            if (userEl) userEl.textContent = name;
+        };
+
+        // Window Dragging Engine
+        let activeDrag = null;
+        window.cheatosStartDrag = function(e, key) {
+            const win = WINDOWS[key];
+            if (!win || !win.el || win.maximized) return;
+            if (e.target.closest(".win-controls")) return;
+
+            cheatosFocusWindow(key);
+
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            const rect = win.el.getBoundingClientRect();
+
+            activeDrag = {
+                winEl: win.el,
+                offsetX: clientX - rect.left,
+                offsetY: clientY - rect.top
+            };
+
+            document.addEventListener("mousemove", onDragMove);
+            document.addEventListener("mouseup", onDragEnd);
+            document.addEventListener("touchmove", onDragMove, { passive: false });
+            document.addEventListener("touchend", onDragEnd);
+        };
+
+        function onDragMove(e) {
+            if (!activeDrag) return;
+            if (e.preventDefault && e.cancelable) e.preventDefault();
+
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            let newX = clientX - activeDrag.offsetX;
+            let newY = clientY - activeDrag.offsetY;
+
+            // Bounds check
+            newX = Math.max(0, Math.min(window.innerWidth - 80, newX));
+            newY = Math.max(0, Math.min(window.innerHeight - 80, newY));
+
+            activeDrag.winEl.style.left = newX + "px";
+            activeDrag.winEl.style.top = newY + "px";
+        }
+
+        function onDragEnd() {
+            activeDrag = null;
+            document.removeEventListener("mousemove", onDragMove);
+            document.removeEventListener("mouseup", onDragEnd);
+            document.removeEventListener("touchmove", onDragMove);
+            document.removeEventListener("touchend", onDragEnd);
+        }
+
+        // Attach focus listener on all window clicks
+        Object.keys(WINDOWS).forEach(key => {
+            const win = WINDOWS[key];
+            if (win.el) {
+                win.el.addEventListener("mousedown", () => cheatosFocusWindow(key));
+                win.el.addEventListener("touchstart", () => cheatosFocusWindow(key), { passive: true });
+            }
+        });
+
+        // Sync ID Stats in CheatOS ID Studio window
+        window.cheatosSyncIdStats = function() {
+            const name = (document.getElementById("idPlayerName") && document.getElementById("idPlayerName").value.trim()) || "Entity_0xNULL";
+            const classIco = document.getElementById("badgeClassIco") ? document.getElementById("badgeClassIco").textContent : "🏎️";
+            const className = document.getElementById("badgeClassName") ? document.getElementById("badgeClassName").textContent : "TURBO-PILOT";
+
+            const agentDisp = document.getElementById("cheatosIdAgentDisp");
+            const classDisp = document.getElementById("cheatosIdClassDisp");
+            if (agentDisp) agentDisp.textContent = name;
+            if (classDisp) classDisp.textContent = `${classIco} ${className}`;
+
+            // Telemetry KPIs sync
+            const clock = document.getElementById("dispClock") ? document.getElementById("dispClock").textContent : "8.4 GHz";
+            const bypass = document.getElementById("dispBypass") ? document.getElementById("dispBypass").textContent : "99.8%";
+            const telClock = document.getElementById("telKpiClock");
+            const telBypass = document.getElementById("telKpiBypass");
+            if (telClock) telClock.textContent = clock;
+            if (telBypass) telBypass.textContent = bypass;
+        };
+
+        // Digital Clock in Taskbar
+        function startClock() {
+            function update() {
+                const clockEl = document.getElementById("cheatosClock");
+                if (clockEl) {
+                    const now = new Date();
+                    clockEl.textContent = now.toTimeString().split(" ")[0];
+                }
+            }
+            update();
+            setInterval(update, 1000);
+        }
+
+        // Notes Tab Switcher & Persistence
+        window.cheatosSwitchNoteTab = function(tabKey) {
+            const tabs = ["cheats", "coords", "pad"];
+            tabs.forEach(t => {
+                const btn = document.getElementById("noteTabBtn" + t.charAt(0).toUpperCase() + t.slice(1));
+                const content = document.getElementById("noteTab" + t.charAt(0).toUpperCase() + t.slice(1));
+                if (btn && content) {
+                    const isActive = (t === tabKey);
+                    btn.classList.toggle("active", isActive);
+                    content.style.display = isActive ? "block" : "none";
+                }
+            });
+        };
+
+        const notesArea = document.getElementById("cheatosNotesTextarea");
+        if (notesArea) {
+            notesArea.value = localStorage.getItem("cheatmotor_cheatos_notes") || `• Koordinaten: X: 1337 Y: 12 Z: -420 (Nether-Riss)
+• Cheat-Motor Hotkeys: F1 Flug, F2 No-Hunger, F3 X-Ray
+• Ausweis Geheim-Code: NULL-7331-DMA
+`;
+            notesArea.addEventListener("input", () => {
+                localStorage.setItem("cheatmotor_cheatos_notes", notesArea.value);
+                const hint = document.getElementById("notesSavedHint");
+                if (hint) {
+                    hint.textContent = "✓ Gespeichert um " + new Date().toLocaleTimeString();
+                }
+            });
+        }
+
+        window.cheatosClearNotes = function() {
+            if (notesArea) {
+                notesArea.value = "";
+                localStorage.removeItem("cheatmotor_cheatos_notes");
+                showCyberToast("📝 Notizen geleert.");
+            }
+        };
+
+        // Embedded Terminal in CheatOS
+        const termInput = document.getElementById("cheatosTermInput");
+        const termOutput = document.getElementById("cheatosTermOutput");
+
+        if (termInput && termOutput) {
+            termInput.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") {
+                    const cmd = termInput.value.trim();
+                    if (!cmd) return;
+
+                    termOutput.innerHTML += `<div style="margin-top: 6px;"><span style="color:#00f0ff;">root@cheatmotor:~$</span> <span style="color:#fff;">${escapeHtml(cmd)}</span></div>`;
+
+                    // Execute command via main handleCommand
+                    if (typeof handleCommand === "function") {
+                        // Capture lines by hooking into open terminal or running handleCommand
+                        handleCommand(cmd.toLowerCase());
+                    }
+
+                    // Print feedback directly inside CheatOS terminal
+                    if (cmd.toLowerCase() === "null-7331-dma" || cmd.toLowerCase() === "7331") {
+                        termOutput.innerHTML += `<div style="color:#fbbf24; font-weight:bold;">[🔓] PIN ENTSCHLÜSSELT! Overclock auf 10.8 GHz / 100% DMA Bypass maximiert!</div>`;
+                    } else if (cmd.toLowerCase() === "help") {
+                        termOutput.innerHTML += `
+<div style="color:#f59e0b;">VERFÜGBARE BEFEHLE:</div>
+  • <span style="color:#00f0ff;">status</span>        - RAM-Engine Diagnostics
+  • <span style="color:#00f0ff;">tune</span>          - RPM Motortest
+  • <span style="color:#00f0ff;">counter_attack</span> - Anti-Virus 100% Säuberung
+  • <span style="color:#00f0ff;">null-7331-dma</span>  - Geheim-PIN Overclock
+  • <span style="color:#00f0ff;">secret_coords</span>  - Nether-Koordinaten
+  • <span style="color:#00f0ff;">godmode</span>        - Ring-0 Schaden blockieren
+  • <span style="color:#00f0ff;">clear</span>          - Bildschirm leeren
+  • <span style="color:#00f0ff;">exit</span>           - Web-Modus
+`;
+                    } else if (cmd.toLowerCase() === "clear") {
+                        termOutput.innerHTML = "";
+                    } else if (cmd.toLowerCase() === "exit") {
+                        closeCheatOs();
+                    } else if (cmd.toLowerCase() === "status") {
+                        termOutput.innerHTML += `<div style="color:#10b981;">[✓] CHEAT MOTOR KERNEL: 100% ACTIVE (Latenz: 0.12ms)</div>`;
+                    }
+
+                    termOutput.scrollTop = termOutput.scrollHeight;
+                    termInput.value = "";
+                }
+            });
+        }
+
+        // Telemetry Oscilloscope Canvas Engine
+        let telAnimId = null;
+        function startTelemetryOscilloscope() {
+            const canvas = document.getElementById("telemetryCanvas");
+            if (!canvas) return;
+            const ctx = canvas.getContext("2d");
+            if (!ctx) return;
+
+            let phase = 0;
+            function render() {
+                if (!isCheatOsOpen) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Grid lines
+                ctx.strokeStyle = "rgba(0, 240, 255, 0.08)";
+                ctx.lineWidth = 1;
+                for (let x = 0; x < canvas.width; x += 30) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, canvas.height);
+                    ctx.stroke();
+                }
+                for (let y = 0; y < canvas.height; y += 30) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(canvas.width, y);
+                    ctx.stroke();
+                }
+
+                // Wave 1: Cyan DMA Latency Stream
+                ctx.save();
+                ctx.strokeStyle = "#00f0ff";
+                ctx.lineWidth = 2;
+                ctx.shadowColor = "#00f0ff";
+                ctx.shadowBlur = 8;
+                ctx.beginPath();
+                for (let x = 0; x < canvas.width; x++) {
+                    const y = (canvas.height / 2) + Math.sin((x * 0.035) + phase) * 35 + Math.sin((x * 0.08) - phase * 0.8) * 15;
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                ctx.restore();
+
+                // Wave 2: Green Anti-Virus Harmony Stream
+                ctx.save();
+                ctx.strokeStyle = "#10b981";
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                for (let x = 0; x < canvas.width; x += 2) {
+                    const y = (canvas.height / 2) + Math.cos((x * 0.02) - phase * 1.2) * 22;
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                ctx.restore();
+
+                phase += 0.06;
+                telAnimId = requestAnimationFrame(render);
+            }
+            if (telAnimId) cancelAnimationFrame(telAnimId);
+            render();
+        }
+
+        // Procedural Cyberpunk Audio Synthwave Engine (Web Audio API)
+        let audioCtx = null;
+        let isPlaying = false;
+        let synthInterval = null;
+        let currentTrack = 0;
+        let masterGain = null;
+
+        const TRACKS = [
+            { name: "Track 1: Nullpunkt 8-Bit Drift", sub: "Procedural Cyber Chiptune • 128 BPM", type: "chip" },
+            { name: "Track 2: Deep Cyber Pulse", sub: "Dark Synth Bass & Drone • 90 BPM", type: "bass" },
+            { name: "Track 3: Entity 0xNULL Isolation", sub: "Glitch Noise & Sine Resonance", type: "glitch" }
+        ];
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioClass) {
+                    audioCtx = new AudioClass();
+                    masterGain = audioCtx.createGain();
+                    masterGain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                    masterGain.connect(audioCtx.destination);
+                }
+            }
+            if (audioCtx && audioCtx.state === "suspended") {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        window.cheatosTogglePlay = function() {
+            if (isPlaying) {
+                cheatosStopAudio();
+            } else {
+                cheatosStartAudio();
+            }
+        };
+
+        function cheatosStartAudio() {
+            const ctx = getAudioContext();
+            if (!ctx) return;
+            isPlaying = true;
+            const btn = document.getElementById("audioPlayPauseBtn");
+            if (btn) btn.textContent = "⏸ PAUSE";
+
+            // Arp scale notes in Hz
+            const notes8Bit = [261.63, 311.13, 392.00, 466.16, 523.25, 622.25]; // C, D#, G, A#, C, D#
+            const bassNotes = [65.41, 77.78, 87.31, 98.00]; // C2, D#2, F2, G2
+
+            let step = 0;
+            clearInterval(synthInterval);
+            synthInterval = setInterval(() => {
+                if (!isPlaying || !audioCtx) return;
+                try {
+                    const osc = audioCtx.createOscillator();
+                    const noteGain = audioCtx.createGain();
+
+                    const tr = TRACKS[currentTrack];
+                    if (tr.type === "chip") {
+                        osc.type = "square";
+                        osc.frequency.value = notes8Bit[step % notes8Bit.length];
+                        noteGain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                        noteGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+                        osc.connect(noteGain);
+                        noteGain.connect(masterGain);
+                        osc.start();
+                        osc.stop(audioCtx.currentTime + 0.13);
+                    } else if (tr.type === "bass") {
+                        osc.type = "sawtooth";
+                        osc.frequency.value = bassNotes[step % bassNotes.length];
+                        noteGain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                        noteGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.28);
+                        osc.connect(noteGain);
+                        noteGain.connect(masterGain);
+                        osc.start();
+                        osc.stop(audioCtx.currentTime + 0.3);
+                    } else {
+                        osc.type = "sine";
+                        osc.frequency.value = 220 + (Math.sin(step) * 140);
+                        noteGain.gain.setValueAtTime(0.09, audioCtx.currentTime);
+                        noteGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+                        osc.connect(noteGain);
+                        noteGain.connect(masterGain);
+                        osc.start();
+                        osc.stop(audioCtx.currentTime + 0.22);
+                    }
+                    step++;
+                } catch(e) {}
+            }, 140);
+        }
+
+        function cheatosStopAudio() {
+            isPlaying = false;
+            clearInterval(synthInterval);
+            const btn = document.getElementById("audioPlayPauseBtn");
+            if (btn) btn.textContent = "▶ PLAY";
+        }
+
+        window.cheatosSelectTrack = function(idx) {
+            currentTrack = idx;
+            document.querySelectorAll(".track-item").forEach((el, i) => {
+                el.classList.toggle("active", i === idx);
+            });
+            const tr = TRACKS[idx];
+            const titleEl = document.getElementById("audioTrackTitle");
+            const subEl = document.getElementById("audioTrackSub");
+            if (titleEl) titleEl.textContent = tr.name;
+            if (subEl) subEl.textContent = tr.sub;
+
+            if (isPlaying) {
+                cheatosStartAudio();
+            }
+        };
+
+        window.cheatosNextTrack = function() {
+            currentTrack = (currentTrack + 1) % TRACKS.length;
+            cheatosSelectTrack(currentTrack);
+        };
+
+        window.cheatosPrevTrack = function() {
+            currentTrack = (currentTrack - 1 + TRACKS.length) % TRACKS.length;
+            cheatosSelectTrack(currentTrack);
+        };
+
+        window.cheatosSetVolume = function(val) {
+            if (masterGain && audioCtx) {
+                masterGain.gain.setValueAtTime((val / 100) * 0.4, audioCtx.currentTime);
+            }
+        };
+
+        let isMuted = false;
+        window.cheatosToggleMute = function() {
+            isMuted = !isMuted;
+            if (masterGain && audioCtx) {
+                masterGain.gain.setValueAtTime(isMuted ? 0 : 0.3, audioCtx.currentTime);
+            }
+            const btn = document.getElementById("cheatosTrayMuteBtn");
+            if (btn) btn.textContent = isMuted ? "🔇" : "🔊";
+            showCyberToast(isMuted ? "🔇 Audio stummgeschaltet." : "🔊 Audio aktiviert.");
+        };
+
+        // Audio Visualizer Canvas
+        function initAudioVisualizer() {
+            const canvas = document.getElementById("audioVisualizerCanvas");
+            if (!canvas) return;
+            const ctx = canvas.getContext("2d");
+
+            function draw() {
+                if (!isCheatOsOpen) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                const barCount = 28;
+                const barWidth = Math.floor(canvas.width / barCount) - 3;
+
+                for (let i = 0; i < barCount; i++) {
+                    const h = isPlaying 
+                        ? Math.floor(Math.sin((Date.now() * 0.008) + i * 0.4) * 35 + 40 + (Math.random() * 15)) 
+                        : 4;
+                    const x = i * (barWidth + 3);
+                    const y = canvas.height - h;
+
+                    const grad = ctx.createLinearGradient(0, y, 0, canvas.height);
+                    grad.addColorStop(0, "#00f0ff");
+                    grad.addColorStop(1, "#10b981");
+
+                    ctx.fillStyle = grad;
+                    ctx.fillRect(x, y, barWidth, h);
+                }
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        // Global Shortcut: Esc closes CheatOS
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && isCheatOsOpen) {
+                closeCheatOs();
+            } else if (e.key === "F8") {
+                toggleCheatOs();
+            }
+        });
+    })();
+    </script>
+
 </body>
 </html>
 
