@@ -3764,33 +3764,494 @@
         }
 
         .id-card-viewport {
-            perspective: 1200px;
+            perspective: 1400px;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 10px 0 20px;
+            padding: 10px 0 15px;
+            width: 100%;
         }
 
         .cyber-id-badge {
             --card-accent: #00f0ff;
             --card-glow: rgba(0, 240, 255, 0.35);
             width: 100%;
-            max-width: 480px;
-            min-height: 290px;
+            max-width: 490px;
+            min-height: 310px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.65s cubic-bezier(0.2, 0.85, 0.4, 1.15), border-color 0.4s ease, box-shadow 0.4s ease;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        /* 3D Card Faces */
+        .badge-face {
+            width: 100%;
+            min-height: 310px;
             background: linear-gradient(145deg, rgba(10, 16, 32, 0.96) 0%, rgba(5, 8, 18, 0.98) 100%);
             border: 2px solid var(--card-accent);
             border-radius: 20px;
-            padding: 24px;
+            padding: 22px 24px;
             position: relative;
             overflow: hidden;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
             box-shadow: 
                 0 25px 60px rgba(0, 0, 0, 0.85),
                 0 0 35px var(--card-glow),
                 inset 0 0 20px rgba(255, 255, 255, 0.03);
-            transform-style: preserve-3d;
-            transition: transform 0.15s ease-out, border-color 0.4s ease, box-shadow 0.4s ease;
-            user-select: none;
+            box-sizing: border-box;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .badge-front {
+            transform: rotateY(0deg);
+            z-index: 2;
+        }
+
+        .badge-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: rotateY(180deg);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 16px 20px 18px;
+            background: linear-gradient(145deg, rgba(8, 12, 24, 0.98) 0%, rgba(3, 5, 12, 0.99) 100%);
+        }
+
+        /* Flip Control Bar */
+        .id-card-flip-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 490px;
+            margin-bottom: 12px;
+            padding: 0 4px;
+        }
+
+        .id-card-side-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .id-side-pill {
+            color: #64748b;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .id-side-pill.active {
+            color: var(--cyan);
+            background: rgba(0, 240, 255, 0.12);
+            border-color: rgba(0, 240, 255, 0.35);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+        }
+
+        .id-side-sep {
+            color: #475569;
+        }
+
+        .id-flip-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%);
+            border: 1px solid var(--card-accent);
+            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 999px;
             cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+        }
+
+        .id-flip-btn:hover {
+            transform: translateY(-2px) scale(1.04);
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.3) 0%, rgba(16, 185, 129, 0.3) 100%);
+            box-shadow: 0 6px 20px var(--card-glow);
+        }
+
+        .id-flip-btn .flip-icon {
+            font-size: 14px;
+            transition: transform 0.6s ease;
+        }
+
+        .id-flip-btn:hover .flip-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Back Face Magnetic Stripe */
+        .badge-magstripe {
+            width: calc(100% + 40px);
+            margin: -16px -20px 10px -20px;
+            background: #090d16;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.9);
+            padding: 7px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .magstripe-track {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.14);
+            white-space: nowrap;
+            overflow: hidden;
+            user-select: none;
+            line-height: 1;
+        }
+
+        .magstripe-micro {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7px;
+            color: rgba(0, 240, 255, 0.4);
+            letter-spacing: 1px;
+            margin-top: 2px;
+            text-transform: uppercase;
+        }
+
+        .badge-back-row-security {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: #64748b;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 10px;
+        }
+
+        .security-chip-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .security-chip-label .sec-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--card-accent);
+            border-radius: 50%;
+            box-shadow: 0 0 6px var(--card-accent);
+        }
+
+        .security-chip-label strong {
+            color: #fff;
+        }
+
+        /* Interactive Back Grid: Signature & Scratch-Off */
+        .badge-back-interactive-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .badge-sign-box, .badge-scratch-box {
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 8px 10px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .badge-sign-header, .badge-scratch-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .sign-label, .scratch-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5px;
+            font-weight: 800;
+            color: #cbd5e1;
+            letter-spacing: 0.3px;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .sign-label small, .scratch-label small {
+            font-size: 7px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .badge-sign-clear-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #cbd5e1;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .badge-sign-clear-btn:hover {
+            background: rgba(239, 68, 68, 0.25);
+            border-color: #ef4444;
+            color: #fff;
+        }
+
+        .badge-scratch-status {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.5px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .badge-scratch-status.unlocked {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border-color: #10b981;
+        }
+
+        .badge-sign-canvas-wrap {
+            position: relative;
+            width: 100%;
+            height: 52px;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px dashed rgba(0, 240, 255, 0.35);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .badge-sign-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            cursor: crosshair;
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge-sign-watermark {
+            position: absolute;
+            bottom: 2px;
+            right: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 6px;
+            color: rgba(255, 255, 255, 0.15);
+            pointer-events: none;
+            letter-spacing: 0.5px;
+            z-index: 1;
+        }
+
+        .badge-scratch-canvas-wrap {
+            position: relative;
+            width: 100%;
+            height: 52px;
+            background: #020617;
+            border: 1px dashed rgba(251, 191, 36, 0.4);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .badge-secret-code-underlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, rgba(16, 185, 129, 0.25) 0%, rgba(2, 6, 23, 0.95) 90%);
+            cursor: pointer;
+            z-index: 1;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .badge-secret-code-underlay:hover {
+            background: radial-gradient(circle at center, rgba(16, 185, 129, 0.4) 0%, rgba(2, 6, 23, 0.95) 90%);
+        }
+
+        .secret-pin-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7px;
+            font-weight: 700;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+        }
+
+        .secret-pin-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 900;
+            color: #00f0ff;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+            margin: 1px 0;
+        }
+
+        .secret-pin-hint {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 6.5px;
+            color: #10b981;
+            font-weight: 700;
+        }
+
+        .badge-scratch-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            cursor: grab;
+            z-index: 3;
+        }
+
+        .badge-scratch-canvas:active {
+            cursor: grabbing;
+        }
+
+        /* Back Footer */
+        .badge-back-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .badge-holo-seal {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            position: relative;
+            background: conic-gradient(from 0deg, #94a3b8, #f8fafc, #cbd5e1, #64748b, #f8fafc, #94a3b8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+            border: 1px solid #cbd5e1;
+            animation: holoShine 8s linear infinite;
+        }
+
+        @keyframes holoShine {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .holo-seal-ring {
+            position: absolute;
+            inset: 3px;
+            border: 1px dashed rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+        }
+
+        .holo-seal-core {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            z-index: 1;
+        }
+
+        .holo-seal-core span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 6px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: 0.5px;
+        }
+
+        .holo-seal-core strong {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 900;
+            color: #047857;
+        }
+
+        .holo-seal-core small {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 5px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .badge-back-disclaimer {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .badge-back-disclaimer p {
+            font-size: 7.5px;
+            line-height: 1.25;
+            color: #64748b;
+            margin: 0 0 4px 0;
+        }
+
+        .disclaimer-codes {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.5px;
+            color: #94a3b8;
+            font-weight: 700;
+        }
+
+        .badge-back-qr-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .badge-back-qr-wrap:hover {
+            transform: scale(1.08);
+        }
+
+        .badge-back-qr {
+            display: block;
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            border-radius: 4px;
+            box-shadow: 0 0 8px rgba(0, 240, 255, 0.25);
+        }
+
+        .qr-sub {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 6.5px;
+            color: var(--cyan);
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-top: 2px;
         }
 
         /* Class-specific Badge Glows */
@@ -4718,8 +5179,11 @@
 
                     <!-- Actions -->
                     <div class="id-actions-bar">
-                        <button type="button" class="id-btn id-btn-primary" onclick="downloadHackerCardPng()">
-                            <span>📸</span> Ausweis herunterladen (PNG)
+                        <button type="button" class="id-btn id-btn-primary" onclick="downloadHackerCardPng('current')" id="btnDownloadCard" title="Lädt die aktuell sichtbare Seite herunter">
+                            <span>📸</span> <span id="btnDownloadCardText">Ausweis herunterladen (PNG)</span>
+                        </button>
+                        <button type="button" class="id-btn id-btn-secondary" onclick="downloadHackerCardPng('both')" title="Speichert beide Seiten nebeneinander als Sammler-Poster (2000px)">
+                            <span>🎴</span> Beide Seiten (PNG)
                         </button>
                         <button type="button" class="id-btn id-btn-secondary" onclick="copyDiscordBio()">
                             <span>📋</span> Discord-Bio kopieren
@@ -4732,100 +5196,237 @@
 
                 <!-- Right: 3D Hologram Badge Card -->
                 <div class="id-card-display">
+                    <!-- Flip Control Bar -->
+                    <div class="id-card-flip-bar">
+                        <div class="id-card-side-indicator">
+                            <span class="id-side-pill active" id="idSidePillFront">VORDERSEITE</span>
+                            <span class="id-side-sep">/</span>
+                            <span class="id-side-pill" id="idSidePillBack">RÜCKSEITE</span>
+                        </div>
+                        <button type="button" class="id-flip-btn" id="btnFlipBadge" onclick="toggleBadgeFlip()" title="Ausweis umdrehen (3D-Flip)">
+                            <span class="flip-icon">🔄</span> <span id="btnFlipText">Rückseite ansehen</span>
+                        </button>
+                    </div>
+
                     <div class="id-card-viewport" id="idCardViewport">
                         <div class="cyber-id-badge" id="cyberIdBadge" data-class="turbo">
-                            <div class="badge-holo-glare" id="badgeHoloGlare"></div>
-                            <div class="badge-scanlines"></div>
-                            <div class="badge-bg-pattern"></div>
+                            <!-- FRONT FACE -->
+                            <div class="badge-face badge-front" id="badgeFrontFace">
+                                <div class="badge-holo-glare" id="badgeHoloGlare"></div>
+                                <div class="badge-scanlines"></div>
+                                <div class="badge-bg-pattern"></div>
 
-                            <!-- Badge Top Bar -->
-                            <div class="badge-top-row">
-                                <div class="badge-brand">
-                                    <span class="badge-logo-icon">⚙️</span>
-                                    <div>
-                                        <div class="badge-sys-title">CHEAT MOTOR 2.0</div>
-                                        <div class="badge-sys-sub">NULLPUNKT SPECIAL OPERATIONS</div>
+                                <!-- Badge Top Bar -->
+                                <div class="badge-top-row">
+                                    <div class="badge-brand">
+                                        <span class="badge-logo-icon">⚙️</span>
+                                        <div>
+                                            <div class="badge-sys-title">CHEAT MOTOR 2.0</div>
+                                            <div class="badge-sys-sub">NULLPUNKT SPECIAL OPERATIONS</div>
+                                        </div>
+                                    </div>
+                                    <div class="badge-chip">
+                                        <div class="chip-pin pin-1"></div>
+                                        <div class="chip-pin pin-2"></div>
+                                        <div class="chip-core"></div>
                                     </div>
                                 </div>
-                                <div class="badge-chip">
-                                    <div class="chip-pin pin-1"></div>
-                                    <div class="chip-pin pin-2"></div>
-                                    <div class="chip-core"></div>
+
+                                <!-- Badge Main Body -->
+                                <div class="badge-agent-row">
+                                    <div class="badge-skin-wrap">
+                                        <div class="badge-skin-ring"></div>
+                                        <img id="badgeSkinImg" class="badge-skin-img" src="https://mc-heads.net/avatar/Entity_0xNULL/128" alt="Skin" crossorigin="anonymous">
+                                        <span class="badge-clearance-tag" id="badgeClearanceTag">LEVEL 5</span>
+                                    </div>
+                                    <div class="badge-agent-info">
+                                        <div class="badge-serial-line">
+                                            <span class="badge-uid" id="badgeUid">UID: 0xNULL-9842</span>
+                                            <span class="badge-live-dot"></span>
+                                            <span class="badge-live-text">DMA OK</span>
+                                        </div>
+                                        <div class="badge-name" id="badgeName">Entity_0xNULL</div>
+                                        <div class="badge-callsign" id="badgeCallsign">"NULLPUNKT PROTOCOL OPERATIVE"</div>
+                                        <div class="badge-class-pill" id="badgeClassPill">
+                                            <span class="pill-ico" id="badgeClassIco">🏎️</span>
+                                            <span class="pill-name" id="badgeClassName">TURBO-PILOT</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Badge Telemetry / Stats -->
+                                <div class="badge-stats-grid">
+                                    <div class="badge-stat-box">
+                                        <div class="stat-top">
+                                            <span>SPEED</span>
+                                            <strong id="badgeStatSpeed">420 km/h</strong>
+                                        </div>
+                                        <div class="stat-bar"><div class="stat-fill" id="badgeBarSpeed" style="width: 52%;"></div></div>
+                                    </div>
+                                    <div class="badge-stat-box">
+                                        <div class="stat-top">
+                                            <span>RESIST</span>
+                                            <strong id="badgeStatResist">98%</strong>
+                                        </div>
+                                        <div class="stat-bar"><div class="stat-fill" id="badgeBarResist" style="width: 98%;"></div></div>
+                                    </div>
+                                    <div class="badge-stat-box">
+                                        <div class="stat-top">
+                                            <span>OVERCLOCK</span>
+                                            <strong id="badgeStatClock">8.4 GHz</strong>
+                                        </div>
+                                        <div class="stat-bar"><div class="stat-fill" id="badgeBarClock" style="width: 84%;"></div></div>
+                                    </div>
+                                    <div class="badge-stat-box">
+                                        <div class="stat-top">
+                                            <span>BYPASS</span>
+                                            <strong id="badgeStatBypass">99.8%</strong>
+                                        </div>
+                                        <div class="stat-bar"><div class="stat-fill" id="badgeBarBypass" style="width: 99%;"></div></div>
+                                    </div>
+                                </div>
+
+                                <!-- Badge Bottom Bar -->
+                                <div class="badge-bottom-row">
+                                    <div class="badge-barcode-wrap">
+                                        <div class="badge-barcode"></div>
+                                        <div class="badge-barcode-val" id="badgeBarcodeVal">0x7F91 4821 0041 8492</div>
+                                    </div>
+                                    <div class="badge-stamp">
+                                        <div class="stamp-box">
+                                            <span>VERIFIED</span>
+                                            <strong>DMA ROOT</strong>
+                                            <small>2026 REV 2</small>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Badge Main Body -->
-                            <div class="badge-agent-row">
-                                <div class="badge-skin-wrap">
-                                    <div class="badge-skin-ring"></div>
-                                    <img id="badgeSkinImg" class="badge-skin-img" src="https://mc-heads.net/avatar/Entity_0xNULL/128" alt="Skin" crossorigin="anonymous">
-                                    <span class="badge-clearance-tag" id="badgeClearanceTag">LEVEL 5</span>
-                                </div>
-                                <div class="badge-agent-info">
-                                    <div class="badge-serial-line">
-                                        <span class="badge-uid" id="badgeUid">UID: 0xNULL-9842</span>
-                                        <span class="badge-live-dot"></span>
-                                        <span class="badge-live-text">DMA OK</span>
-                                    </div>
-                                    <div class="badge-name" id="badgeName">Entity_0xNULL</div>
-                                    <div class="badge-callsign" id="badgeCallsign">"NULLPUNKT PROTOCOL OPERATIVE"</div>
-                                    <div class="badge-class-pill" id="badgeClassPill">
-                                        <span class="pill-ico" id="badgeClassIco">🏎️</span>
-                                        <span class="pill-name" id="badgeClassName">TURBO-PILOT</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- BACK FACE -->
+                            <div class="badge-face badge-back" id="badgeBackFace">
+                                <div class="badge-scanlines"></div>
+                                <div class="badge-bg-pattern"></div>
 
-                            <!-- Badge Telemetry / Stats -->
-                            <div class="badge-stats-grid">
-                                <div class="badge-stat-box">
-                                    <div class="stat-top">
-                                        <span>SPEED</span>
-                                        <strong id="badgeStatSpeed">420 km/h</strong>
+                                <!-- Magnetic Stripe -->
+                                <div class="badge-magstripe">
+                                    <div class="magstripe-track">
+                                        <span>||| | | |||| || | || |||| | ||| ||||| || | |||| |||| || | ||| |||| |</span>
                                     </div>
-                                    <div class="stat-bar"><div class="stat-fill" id="badgeBarSpeed" style="width: 52%;"></div></div>
+                                    <div class="magstripe-micro">NULLPUNKT // DMA ENCRYPTED TRACK 2 // REV 2026 // DISCONNECT AT RISK</div>
                                 </div>
-                                <div class="badge-stat-box">
-                                    <div class="stat-top">
-                                        <span>RESIST</span>
-                                        <strong id="badgeStatResist">98%</strong>
-                                    </div>
-                                    <div class="stat-bar"><div class="stat-fill" id="badgeBarResist" style="width: 98%;"></div></div>
-                                </div>
-                                <div class="badge-stat-box">
-                                    <div class="stat-top">
-                                        <span>OVERCLOCK</span>
-                                        <strong id="badgeStatClock">8.4 GHz</strong>
-                                    </div>
-                                    <div class="stat-bar"><div class="stat-fill" id="badgeBarClock" style="width: 84%;"></div></div>
-                                </div>
-                                <div class="badge-stat-box">
-                                    <div class="stat-top">
-                                        <span>BYPASS</span>
-                                        <strong id="badgeStatBypass">99.8%</strong>
-                                    </div>
-                                    <div class="stat-bar"><div class="stat-fill" id="badgeBarBypass" style="width: 99%;"></div></div>
-                                </div>
-                            </div>
 
-                            <!-- Badge Bottom Bar -->
-                            <div class="badge-bottom-row">
-                                <div class="badge-barcode-wrap">
-                                    <div class="badge-barcode"></div>
-                                    <div class="badge-barcode-val" id="badgeBarcodeVal">0x7F91 4821 0041 8492</div>
+                                <!-- Back Header / Security Strip -->
+                                <div class="badge-back-row-security">
+                                    <div class="security-chip-label">
+                                        <span class="sec-dot"></span>
+                                        <span>CHIP-ID: <strong id="badgeBackChipId">CM2-SEC-9842</strong></span>
+                                    </div>
+                                    <div class="security-iso-label">
+                                        <span>ISO/IEC 7810 ID-1 • SECURE HARDWARE TOKEN</span>
+                                    </div>
                                 </div>
-                                <div class="badge-stamp">
-                                    <div class="stamp-box">
-                                        <span>VERIFIED</span>
-                                        <strong>DMA ROOT</strong>
-                                        <small>2026 REV 2</small>
+
+                                <!-- Interactive Signature & Scratch Zone -->
+                                <div class="badge-back-interactive-grid">
+                                    <!-- 1. Signature Pad -->
+                                    <div class="badge-sign-box">
+                                        <div class="badge-sign-header">
+                                            <div class="sign-label">
+                                                <span>✍️ UNTERSCHRIFT</span>
+                                                <small>(Zeichne mit der Maus)</small>
+                                            </div>
+                                            <button type="button" class="badge-sign-clear-btn" onclick="clearBadgeSignature(event)" title="Unterschrift löschen und neu zeichnen">
+                                                🗑️ Neu
+                                            </button>
+                                        </div>
+                                        <div class="badge-sign-canvas-wrap">
+                                            <canvas id="badgeSignPad" width="220" height="52" class="badge-sign-canvas"></canvas>
+                                            <div class="badge-sign-watermark">NULLPUNKT OPERATIVE SIGNATURE</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 2. Scratch-off Secret Code Pad -->
+                                    <div class="badge-scratch-box">
+                                        <div class="badge-scratch-header">
+                                            <div class="scratch-label">
+                                                <span>🪙 FREIRUBBEL-FELD</span>
+                                                <small>(Rubbeln für Root-PIN)</small>
+                                            </div>
+                                            <span class="badge-scratch-status" id="badgeScratchStatus">VERSIEGELT</span>
+                                        </div>
+                                        <div class="badge-scratch-canvas-wrap">
+                                            <!-- Secret PIN Underneath -->
+                                            <div class="badge-secret-code-underlay" id="badgeScratchSecret" onclick="copyOrUseSecretPin()" title="Klicke zum automatischen Übertragen ins Terminal!">
+                                                <span class="secret-pin-label">TERMINAL PIN:</span>
+                                                <span class="secret-pin-code" id="secretPinCodeText">NULL-7331-DMA</span>
+                                                <span class="secret-pin-hint">⚡ Klick zum Einlösen</span>
+                                            </div>
+                                            <!-- Scratch Canvas Foil -->
+                                            <canvas id="badgeScratchPad" width="170" height="52" class="badge-scratch-canvas"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Back Footer: Hologram Seal, Disclaimer, Security QR -->
+                                <div class="badge-back-footer">
+                                    <div class="badge-holo-seal">
+                                        <div class="holo-seal-ring"></div>
+                                        <div class="holo-seal-core">
+                                            <span>GENUINE</span>
+                                            <strong>DMA</strong>
+                                            <small>SECURED</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="badge-back-disclaimer">
+                                        <p>Eigentum des Cheat Motor 2.0 Nullpunkt-Forschungsnetzwerks. Missbrauch der Ring-0 DMA Bypass-Engine wird mit permanentem Void-Bann bestraft.</p>
+                                        <div class="disclaimer-codes">
+                                            <span>REV 2.0</span>
+                                            <span>•</span>
+                                            <span id="badgeBackUid">UID: 0xNULL-9842</span>
+                                            <span>•</span>
+                                            <span>ROOT DMA OK</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="badge-back-qr-wrap" onclick="toggleBadgeFlip()" title="Ausweis umdrehen">
+                                        <svg class="badge-back-qr" viewBox="0 0 45 45" width="44" height="44">
+                                            <rect width="45" height="45" fill="#03050a" rx="4"/>
+                                            <rect x="3" y="3" width="13" height="13" fill="#00f0ff" rx="2"/>
+                                            <rect x="5" y="5" width="9" height="9" fill="#03050a"/>
+                                            <rect x="7" y="7" width="5" height="5" fill="#00f0ff"/>
+                                            <rect x="29" y="3" width="13" height="13" fill="#00f0ff" rx="2"/>
+                                            <rect x="31" y="5" width="9" height="9" fill="#03050a"/>
+                                            <rect x="33" y="7" width="5" height="5" fill="#00f0ff"/>
+                                            <rect x="3" y="29" width="13" height="13" fill="#00f0ff" rx="2"/>
+                                            <rect x="5" y="31" width="9" height="9" fill="#03050a"/>
+                                            <rect x="7" y="33" width="5" height="5" fill="#00f0ff"/>
+                                            <rect x="19" y="4" width="3" height="3" fill="#00f0ff"/>
+                                            <rect x="23" y="4" width="3" height="3" fill="#00f0ff"/>
+                                            <rect x="19" y="10" width="7" height="3" fill="#00f0ff"/>
+                                            <rect x="4" y="19" width="3" height="7" fill="#00f0ff"/>
+                                            <rect x="10" y="19" width="3" height="3" fill="#00f0ff"/>
+                                            <rect x="16" y="16" width="4" height="4" fill="#00f0ff"/>
+                                            <rect x="22" y="16" width="7" height="3" fill="#00f0ff"/>
+                                            <rect x="16" y="23" width="3" height="6" fill="#00f0ff"/>
+                                            <rect x="22" y="22" width="4" height="4" fill="#00f0ff"/>
+                                            <rect x="28" y="20" width="3" height="6" fill="#00f0ff"/>
+                                            <rect x="34" y="19" width="7" height="3" fill="#00f0ff"/>
+                                            <rect x="38" y="25" width="3" height="7" fill="#00f0ff"/>
+                                            <rect x="19" y="32" width="7" height="3" fill="#00f0ff"/>
+                                            <rect x="19" y="38" width="3" height="3" fill="#00f0ff"/>
+                                            <rect x="25" y="38" width="4" height="3" fill="#00f0ff"/>
+                                            <rect x="32" y="34" width="9" height="3" fill="#00f0ff"/>
+                                            <rect x="34" y="40" width="7" height="2" fill="#00f0ff"/>
+                                        </svg>
+                                        <div class="qr-sub">VERIFY</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="id-tilt-hint">
-                        <span>✨ Bewege die Maus über die Karte für 3D-Hologramm &amp; Reflexion</span>
+                        <span>✨ Klicke auf <strong>[ 🔄 Rückseite ansehen ]</strong> zum Umdrehen • Bewege die Maus für 3D-Reflexion</span>
                     </div>
                 </div>
             </div>
@@ -6900,6 +7501,30 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
 <span style="color:#fca5a5;">Entity 0xNULL: "Ihr dachtet, ihr könnt mich entfernen? Das System gehört jetzt mir. Für immer!"</span>
 <span style="color:#94a3b8;">(Dieser Zustand ist vom Server-Administrator dauerhaft aktiviert.)</span>
 `);
+            } else if (cmd === "null-7331-dma" || cmd === "7331" || cmd === "null7331dma" || cmd === "secret_pin") {
+                // Secret Code from scratch pad on back of badge
+                terminalAuthState.isAuthenticated = true;
+                terminalAuthState.clearanceLevel = 5;
+                try {
+                    sessionStorage.setItem("cheatmotor_terminal_auth", JSON.stringify(terminalAuthState));
+                } catch(e) {}
+                updateTerminalAuthUI();
+
+                printTerminalLine(`
+<span style="color:#fbbf24; font-weight:bold;">[🔓] GEHEIMER AUSWEIS-PIN ENTSCHLÜSSELT: 'NULL-7331-DMA'</span>
+<span style="color:#00f0ff; font-weight:bold;">═══════════════════════════════════════════════════════════════════</span>
+<span style="color:#10b981; font-weight:bold;">[✓] KERNEL OVERCLOCK LEVEL 5+ FREIGESCHALTET!</span>
+  ├─ Hardware Hook: <span style="color:#fff;">Direct Memory Architecture (Ring-0)</span>
+  ├─ Clock Boost: <span style="color:#00f0ff; font-weight:bold;">+2.4 GHz Extreme Burst (10.8 GHz Peak)</span>
+  ├─ Clearance Bonus: <span style="color:#10b981; font-weight:bold;">OMNIPOTENT ROOT OVERRIDE</span>
+  ├─ Bypass Rate: <span style="color:#fbbf24; font-weight:bold;">100.0% UNTRACEABLE DMA STREAM</span>
+  └─ Agent Status: <span style="color:#c084fc; font-weight:bold;">MEISTER-AGENT // DER NULLPUNKT GEHORCHT DIR</span>
+
+<span style="color:#00ff66;">✨ Die Werte wurden automatisch in deinen Ausweis übertragen!</span>
+`);
+                if (typeof window.boostBadgeOverclock === "function") {
+                    window.boostBadgeOverclock();
+                }
             } else if (cmd === "code_1" || cmd === "code1" || cmd === "code 1" || cmd === "xray" || cmd === "wireframe") {
                 toggleWebXRayMode();
             } else if (cmd === "code_2" || cmd === "code2" || cmd === "code 2" || cmd === "antigravity" || cmd === "gravity" || cmd === "zerog") {
@@ -7473,12 +8098,17 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             let currentClass = "turbo";
             let skinDebounceTimer = null;
 
-            // DOM Elements
+                        // DOM Elements
             const cardEl = document.getElementById("cyberIdBadge");
             const glareEl = document.getElementById("badgeHoloGlare");
             const viewportEl = document.getElementById("idCardViewport");
             const skinImg = document.getElementById("badgeSkinImg");
             const skinHint = document.getElementById("skinHint");
+
+            // 3D Flip & Interactive Back State
+            let isBadgeFlipped = false;
+            let userHasCustomSignature = false;
+            let scratchUnlocked = false;
 
             // Toast Helper
             window.showCyberToast = function(msg) {
@@ -7497,6 +8127,41 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 }, 3500);
             };
 
+            // Flip Card Function
+            window.toggleBadgeFlip = function(targetSide) {
+                if (targetSide === 'front') isBadgeFlipped = false;
+                else if (targetSide === 'back') isBadgeFlipped = true;
+                else isBadgeFlipped = !isBadgeFlipped;
+
+                if (cardEl) {
+                    cardEl.classList.toggle("is-flipped", isBadgeFlipped);
+                    cardEl.style.transform = isBadgeFlipped 
+                        ? "perspective(1400px) rotateX(0deg) rotateY(180deg) scale3d(1, 1, 1)" 
+                        : "perspective(1400px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+                }
+
+                // Update indicators and buttons
+                const pillFront = document.getElementById("idSidePillFront");
+                const pillBack = document.getElementById("idSidePillBack");
+                const btnText = document.getElementById("btnFlipText");
+                const dlText = document.getElementById("btnDownloadCardText");
+
+                if (pillFront && pillBack) {
+                    pillFront.classList.toggle("active", !isBadgeFlipped);
+                    pillBack.classList.toggle("active", isBadgeFlipped);
+                }
+                if (btnText) {
+                    btnText.textContent = isBadgeFlipped ? "Vorderseite ansehen" : "Rückseite ansehen";
+                }
+                if (dlText) {
+                    dlText.textContent = isBadgeFlipped ? "Rückseite herunterladen (PNG)" : "Ausweis herunterladen (PNG)";
+                }
+
+                showCyberToast(isBadgeFlipped 
+                    ? "🔄 <strong>Rückseite</strong> des Ausweises sichtbar! (Signatur &amp; Freirubbel-Code)" 
+                    : "🔄 <strong>Vorderseite</strong> des Ausweises sichtbar!");
+            };
+
             // Username Change Handler
             window.onUsernameChange = function(val) {
                 const cleanName = val.trim() || "Unbekannt";
@@ -7509,6 +8174,10 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 skinDebounceTimer = setTimeout(() => {
                     fetchMinecraftSkin(cleanName);
                 }, 400);
+
+                if (!userHasCustomSignature) {
+                    initBadgeSignaturePad();
+                }
             };
 
             window.reloadMinecraftSkin = function() {
@@ -7529,7 +8198,6 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                     if (skinHint) skinHint.textContent = "✓ Skin aktiv";
                 };
                 testImg.onerror = function() {
-                    // Fallback to stylized dark cyber avatar
                     skinImg.src = "https://mc-heads.net/avatar/MHF_Steve/128";
                     if (skinHint) skinHint.textContent = "✓ Standard-Skin";
                 };
@@ -7636,6 +8304,12 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 // Barcode Hash
                 const barHash = `0x7F91 ${hex} 0041 ${Math.abs(hash * 3).toString(16).toUpperCase().padStart(4, "0").substring(0, 4)}`;
                 document.getElementById("badgeBarcodeVal").textContent = barHash;
+
+                // Back Face Elements
+                const backUid = document.getElementById("badgeBackUid");
+                if (backUid) backUid.textContent = uid;
+                const backChip = document.getElementById("badgeBackChipId");
+                if (backChip) backChip.textContent = `CM2-SEC-${hex}`;
             }
 
             // Presets
@@ -7718,7 +8392,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 const rndName = randomNames[Math.floor(Math.random() * randomNames.length)];
                 const rndCallsign = randomCallsigns[Math.floor(Math.random() * randomCallsigns.length)];
                 const rndClass = classKeys[Math.floor(Math.random() * classKeys.length)];
-                const rndClearance = String(Math.floor(Math.random() * 3) + 3); // Level 3-5
+                const rndClearance = String(Math.floor(Math.random() * 3) + 3);
 
                 const rndSpeed = Math.floor(Math.random() * 600) + 150;
                 const rndResist = Math.floor(Math.random() * 30) + 70;
@@ -7755,12 +8429,14 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                     const normX = (x - centerX) / centerX;
                     const normY = (y - centerY) / centerY;
 
-                    const rotY = normX * 12;
-                    const rotX = -normY * 12;
+                    const baseRotY = isBadgeFlipped ? 180 : 0;
+                    const tiltFactorY = isBadgeFlipped ? -1 : 1;
+                    const rotY = baseRotY + (normX * 12 * tiltFactorY);
+                    const rotX = isBadgeFlipped ? (normY * 12) : (-normY * 12);
 
-                    cardEl.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+                    cardEl.style.transform = `perspective(1400px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
 
-                    if (glareEl) {
+                    if (glareEl && !isBadgeFlipped) {
                         glareEl.style.setProperty("--glare-x", `${((normX + 1) * 50).toFixed(1)}%`);
                         glareEl.style.setProperty("--glare-y", `${((normY + 1) * 50).toFixed(1)}%`);
                         glareEl.style.opacity = "0.9";
@@ -7768,14 +8444,24 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 });
 
                 viewportEl.addEventListener("mouseleave", () => {
-                    cardEl.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+                    cardEl.style.transform = isBadgeFlipped 
+                        ? "perspective(1400px) rotateX(0deg) rotateY(180deg) scale3d(1, 1, 1)" 
+                        : "perspective(1400px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
                     if (glareEl) {
                         glareEl.style.opacity = "0.3";
                     }
                 });
 
                 viewportEl.addEventListener("mouseenter", () => {
-                    if (glareEl) glareEl.style.opacity = "0.9";
+                    if (glareEl && !isBadgeFlipped) glareEl.style.opacity = "0.9";
+                });
+
+                // Click on card background toggles flip (unless interactive)
+                cardEl.addEventListener("click", (e) => {
+                    if (e.target.closest("button") || e.target.closest("canvas") || e.target.closest(".badge-secret-code-underlay") || e.target.closest("a")) {
+                        return;
+                    }
+                    window.toggleBadgeFlip();
                 });
             }
 
@@ -7792,7 +8478,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 const uid = document.getElementById("badgeUid").textContent;
 
                 const discordText = 
-`\`\`\`asciidoc
+```asciidoc
 ╔══════════════════════════════════════════════════════╗
 ║ 🪪 CHEAT MOTOR 2.0 // NULLPUNKT-HACKER-AUSWEIS       ║
 ╠══════════════════════════════════════════════════════╣
@@ -7805,7 +8491,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
 ║ 🕶️ DMA Bypass: ${bypass}
 ║ 🔐 UID: ${uid} • [DMA-VERIFIED]
 ╚══════════════════════════════════════════════════════╝
-\`\`\``;
+```;
 
                 navigator.clipboard.writeText(discordText).then(() => {
                     showCyberToast("📋 <strong>Discord-Ausweis</strong> in die Zwischenablage kopiert!");
@@ -7814,28 +8500,314 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 });
             };
 
-            // High-Resolution PNG Canvas Export
-            window.downloadHackerCardPng = function() {
-                showCyberToast("📸 Rendere hochauflösenden Ausweis (PNG)...");
-
-                const canvas = document.createElement("canvas");
-                canvas.width = 1000;
-                canvas.height = 600;
+            // ==========================================
+            // ✍️ SIGNATURE PAD ENGINE
+            // ==========================================
+            function initBadgeSignaturePad() {
+                const canvas = document.getElementById("badgeSignPad");
+                if (!canvas) return;
                 const ctx = canvas.getContext("2d");
 
-                const name = document.getElementById("idPlayerName").value.trim() || "Agent";
-                const callsign = document.getElementById("idCallsign").value.trim() || "NULLPUNKT OPERATIVE";
-                const info = HACKER_CLASSES[currentClass] || HACKER_CLASSES.turbo;
-                const clearanceTag = document.getElementById("badgeClearanceTag").textContent;
-                const speed = document.getElementById("dispSpeed").textContent;
-                const resist = document.getElementById("dispResist").textContent;
-                const clock = document.getElementById("dispClock").textContent;
-                const bypass = document.getElementById("dispBypass").textContent;
-                const uid = document.getElementById("badgeUid").textContent;
-                const barcodeHash = document.getElementById("badgeBarcodeVal").textContent;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                // 1. Background Card Shape
-                ctx.save();
+                // Security Guilloche Background Lines
+                ctx.strokeStyle = "rgba(0, 240, 255, 0.09)";
+                ctx.lineWidth = 1;
+                for (let y = 10; y < canvas.height; y += 8) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    for (let x = 0; x < canvas.width; x += 12) {
+                        ctx.lineTo(x, y + Math.sin(x * 0.18) * 3);
+                    }
+                    ctx.stroke();
+                }
+
+                // If user has not drawn custom signature, draw stylized cursive default
+                if (!userHasCustomSignature) {
+                    const name = (document.getElementById("idPlayerName") && document.getElementById("idPlayerName").value.trim()) || "Entity_0xNULL";
+                    ctx.save();
+                    ctx.strokeStyle = "#00f0ff";
+                    ctx.fillStyle = "#00f0ff";
+                    ctx.shadowColor = "rgba(0, 240, 255, 0.45)";
+                    ctx.shadowBlur = 3;
+                    ctx.font = "italic 700 15px 'Plus Jakarta Sans', cursive, sans-serif";
+                    ctx.fillText(`~ ${name} ~`, 18, 30);
+
+                    // Signature flourish
+                    ctx.beginPath();
+                    ctx.lineWidth = 1.6;
+                    ctx.lineCap = "round";
+                    ctx.moveTo(14, 38);
+                    ctx.bezierCurveTo(60, 46, 140, 30, 195, 38);
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            }
+
+            window.clearBadgeSignature = function(e) {
+                if (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
+                const canvas = document.getElementById("badgeSignPad");
+                if (!canvas) return;
+                userHasCustomSignature = true;
+                const ctx = canvas.getContext("2d");
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Re-draw background guilloche
+                ctx.strokeStyle = "rgba(0, 240, 255, 0.09)";
+                ctx.lineWidth = 1;
+                for (let y = 10; y < canvas.height; y += 8) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    for (let x = 0; x < canvas.width; x += 12) {
+                        ctx.lineTo(x, y + Math.sin(x * 0.18) * 3);
+                    }
+                    ctx.stroke();
+                }
+
+                showCyberToast("✍️ Signatur gelöscht! Zeichne jetzt deine eigene Unterschrift mit Maus oder Finger.");
+            };
+
+            function bindBadgeSignaturePad() {
+                const canvas = document.getElementById("badgeSignPad");
+                if (!canvas) return;
+                const ctx = canvas.getContext("2d");
+
+                let isDrawing = false;
+                let lastX = 0;
+                let lastY = 0;
+
+                function getCoords(e) {
+                    const rect = canvas.getBoundingClientRect();
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                    return {
+                        x: (clientX - rect.left) * (canvas.width / rect.width),
+                        y: (clientY - rect.top) * (canvas.height / rect.height)
+                    };
+                }
+
+                function startDraw(e) {
+                    e.stopPropagation();
+                    isDrawing = true;
+                    userHasCustomSignature = true;
+                    const coords = getCoords(e);
+                    lastX = coords.x;
+                    lastY = coords.y;
+                }
+
+                function drawMove(e) {
+                    if (!isDrawing) return;
+                    e.stopPropagation();
+                    if (e.preventDefault && e.cancelable) e.preventDefault();
+                    const coords = getCoords(e);
+
+                    ctx.save();
+                    ctx.strokeStyle = "#00f0ff";
+                    ctx.lineWidth = 2.2;
+                    ctx.lineCap = "round";
+                    ctx.lineJoin = "round";
+                    ctx.shadowColor = "#00f0ff";
+                    ctx.shadowBlur = 4;
+
+                    ctx.beginPath();
+                    ctx.moveTo(lastX, lastY);
+                    ctx.lineTo(coords.x, coords.y);
+                    ctx.stroke();
+                    ctx.restore();
+
+                    lastX = coords.x;
+                    lastY = coords.y;
+                }
+
+                function endDraw(e) {
+                    if (isDrawing) {
+                        if (e) e.stopPropagation();
+                        isDrawing = false;
+                    }
+                }
+
+                canvas.addEventListener("mousedown", startDraw);
+                canvas.addEventListener("mousemove", drawMove);
+                window.addEventListener("mouseup", endDraw);
+
+                canvas.addEventListener("touchstart", startDraw, { passive: false });
+                canvas.addEventListener("touchmove", drawMove, { passive: false });
+                window.addEventListener("touchend", endDraw);
+            }
+
+            // ==========================================
+            // 🪙 SCRATCH-OFF SECRET PIN ENGINE
+            // ==========================================
+            function initBadgeScratchPad() {
+                const canvas = document.getElementById("badgeScratchPad");
+                if (!canvas) return;
+                const ctx = canvas.getContext("2d");
+
+                scratchUnlocked = false;
+                canvas.style.pointerEvents = "auto";
+                canvas.style.opacity = "1";
+
+                // Silver foil gradient
+                const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                grad.addColorStop(0, "#94a3b8");
+                grad.addColorStop(0.2, "#e2e8f0");
+                grad.addColorStop(0.4, "#64748b");
+                grad.addColorStop(0.6, "#cbd5e1");
+                grad.addColorStop(0.8, "#475569");
+                grad.addColorStop(1, "#94a3b8");
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Scratch texture pattern
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.35)";
+                ctx.lineWidth = 1;
+                for (let x = -10; x < canvas.width; x += 6) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x + 15, canvas.height);
+                    ctx.stroke();
+                }
+
+                // Shimmer text
+                ctx.fillStyle = "#0f172a";
+                ctx.font = "900 10px 'JetBrains Mono', monospace";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText("🪙 RUBBELN FÜR PIN", canvas.width / 2, canvas.height / 2 - 6);
+
+                ctx.fillStyle = "#1e293b";
+                ctx.font = "700 8px 'JetBrains Mono', monospace";
+                ctx.fillText("[ SCRATCH HERE ]", canvas.width / 2, canvas.height / 2 + 8);
+
+                const statusEl = document.getElementById("badgeScratchStatus");
+                if (statusEl) {
+                    statusEl.textContent = "VERSIEGELT";
+                    statusEl.classList.remove("unlocked");
+                }
+            }
+
+            function bindBadgeScratchPad() {
+                const canvas = document.getElementById("badgeScratchPad");
+                if (!canvas) return;
+                const ctx = canvas.getContext("2d");
+
+                let isScratching = false;
+                let scratchCount = 0;
+
+                function getCoords(e) {
+                    const rect = canvas.getBoundingClientRect();
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                    return {
+                        x: (clientX - rect.left) * (canvas.width / rect.width),
+                        y: (clientY - rect.top) * (canvas.height / rect.height)
+                    };
+                }
+
+                function scratchAt(x, y) {
+                    ctx.globalCompositeOperation = "destination-out";
+                    ctx.beginPath();
+                    ctx.arc(x, y, 12, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    scratchCount++;
+                    if (scratchCount % 10 === 0 && !scratchUnlocked) {
+                        checkScratchPercent();
+                    }
+                }
+
+                function checkScratchPercent() {
+                    try {
+                        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                        let transparent = 0;
+                        const totalSamples = imgData.data.length / 16;
+                        for (let i = 3; i < imgData.data.length; i += 16) {
+                            if (imgData.data[i] < 100) transparent++;
+                        }
+                        const pct = (transparent / totalSamples) * 100;
+                        if (pct >= 40 && !scratchUnlocked) {
+                            scratchUnlocked = true;
+                            canvas.style.pointerEvents = "none";
+                            canvas.style.transition = "opacity 0.6s ease";
+                            canvas.style.opacity = "0";
+
+                            const statusEl = document.getElementById("badgeScratchStatus");
+                            if (statusEl) {
+                                statusEl.textContent = "ENTHÜLLT";
+                                statusEl.classList.add("unlocked");
+                            }
+
+                            showCyberToast("🎉 <strong>Geheimcode freigerubbelt:</strong> NULL-7331-DMA! Klicke auf den Code oder tippe ihn ins Terminal!");
+                        }
+                    } catch(e) {}
+                }
+
+                function startScratch(e) {
+                    if (scratchUnlocked) return;
+                    e.stopPropagation();
+                    isScratching = true;
+                    const c = getCoords(e);
+                    scratchAt(c.x, c.y);
+                }
+
+                function scratchMove(e) {
+                    if (!isScratching || scratchUnlocked) return;
+                    e.stopPropagation();
+                    if (e.preventDefault && e.cancelable) e.preventDefault();
+                    const c = getCoords(e);
+                    scratchAt(c.x, c.y);
+                }
+
+                function endScratch(e) {
+                    if (isScratching) {
+                        if (e) e.stopPropagation();
+                        isScratching = false;
+                        if (!scratchUnlocked) checkScratchPercent();
+                    }
+                }
+
+                canvas.addEventListener("mousedown", startScratch);
+                canvas.addEventListener("mousemove", scratchMove);
+                window.addEventListener("mouseup", endScratch);
+
+                canvas.addEventListener("touchstart", startScratch, { passive: false });
+                canvas.addEventListener("touchmove", scratchMove, { passive: false });
+                window.addEventListener("touchend", endScratch);
+            }
+
+            window.copyOrUseSecretPin = function() {
+                const pin = "NULL-7331-DMA";
+                navigator.clipboard.writeText(pin).then(() => {
+                    showCyberToast(`📋 Code <strong>${pin}</strong> kopiert! Übertrage ins Terminal...`);
+                }).catch(() => {});
+
+                if (typeof openTerminalWithCode === "function") {
+                    setTimeout(() => {
+                        openTerminalWithCode("null-7331-dma");
+                    }, 400);
+                }
+            };
+
+            window.boostBadgeOverclock = function() {
+                document.getElementById("sliderClock").value = 108; // 10.8 GHz
+                document.getElementById("sliderBypass").value = 1000; // 100.0%
+                document.getElementById("sliderSpeed").value = 880; // 880 km/h
+                document.getElementById("sliderResist").value = 100; // 100%
+                document.getElementById("idClearance").value = "5";
+
+                window.onClearanceChange("5");
+                window.onStatChange();
+
+                showCyberToast("🚀 <strong>KERNEL OVERCLOCK AKTIV!</strong> 10.8 GHz / 100.0% DMA Bypass maximiert!");
+            };
+
+            // ==========================================
+            // 📸 HIGH-RESOLUTION PNG CANVAS EXPORT
+            // ==========================================
+            function drawBadgeCardFront(ctx, ox, oy, name, callsign, info, clearanceTag, speed, resist, clock, bypass, uid, barcodeHash, skinImg) {
                 function roundRect(ctx, x, y, w, h, r) {
                     ctx.beginPath();
                     ctx.moveTo(x + r, y);
@@ -7850,49 +8822,50 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                     ctx.closePath();
                 }
 
-                roundRect(ctx, 30, 30, 940, 540, 32);
+                // 1. Background Card Shape
+                ctx.save();
+                roundRect(ctx, ox + 30, oy + 30, 940, 540, 32);
                 ctx.clip();
 
-                // Dark Cyber Gradient Background
-                const bgGrad = ctx.createLinearGradient(30, 30, 970, 570);
+                const bgGrad = ctx.createLinearGradient(ox + 30, oy + 30, ox + 970, oy + 570);
                 bgGrad.addColorStop(0, "#0a1020");
                 bgGrad.addColorStop(0.5, "#060914");
                 bgGrad.addColorStop(1, "#03050a");
                 ctx.fillStyle = bgGrad;
-                ctx.fillRect(30, 30, 940, 540);
+                ctx.fillRect(ox + 30, oy + 30, 940, 540);
 
-                // Ambient Radial Glow
-                const glowGrad = ctx.createRadialGradient(850, 100, 10, 850, 100, 450);
+                const glowGrad = ctx.createRadialGradient(ox + 850, oy + 100, 10, ox + 850, oy + 100, 450);
                 glowGrad.addColorStop(0, info.glow);
                 glowGrad.addColorStop(1, "transparent");
                 ctx.fillStyle = glowGrad;
-                ctx.fillRect(30, 30, 940, 540);
+                ctx.fillRect(ox + 30, oy + 30, 940, 540);
 
                 // Grid pattern
                 ctx.strokeStyle = "rgba(255, 255, 255, 0.03)";
                 ctx.lineWidth = 1;
-                for (let x = 30; x < 970; x += 40) {
+                for (let x = ox + 30; x < ox + 970; x += 40) {
                     ctx.beginPath();
-                    ctx.moveTo(x, 30);
-                    ctx.lineTo(x, 570);
+                    ctx.moveTo(x, oy + 30);
+                    ctx.lineTo(x, oy + 570);
                     ctx.stroke();
                 }
-                for (let y = 30; y < 570; y += 40) {
+                for (let y = oy + 30; y < oy + 570; y += 40) {
                     ctx.beginPath();
-                    ctx.moveTo(30, y);
-                    ctx.lineTo(970, y);
+                    ctx.moveTo(ox + 30, y);
+                    ctx.lineTo(ox + 970, y);
                     ctx.stroke();
                 }
 
                 // Watermark text in background
                 ctx.fillStyle = "rgba(255, 255, 255, 0.025)";
                 ctx.font = "900 48px 'JetBrains Mono', monospace";
-                ctx.fillText("NULLPUNKT // DEPT OF COLLAPSE", 120, 320);
+                ctx.fillText("NULLPUNKT // DEPT OF COLLAPSE", ox + 120, oy + 320);
+
+                ctx.restore();
 
                 // Border Outline
-                ctx.restore();
                 ctx.save();
-                roundRect(ctx, 30, 30, 940, 540, 32);
+                roundRect(ctx, ox + 30, oy + 30, 940, 540, 32);
                 ctx.strokeStyle = info.color;
                 ctx.lineWidth = 4;
                 ctx.shadowColor = info.color;
@@ -7904,14 +8877,14 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 ctx.save();
                 ctx.fillStyle = "#ffffff";
                 ctx.font = "800 24px 'Plus Jakarta Sans', sans-serif";
-                ctx.fillText("⚙️ CHEAT MOTOR 2.0", 70, 85);
+                ctx.fillText("⚙️ CHEAT MOTOR 2.0", ox + 70, oy + 85);
 
                 ctx.fillStyle = info.color;
                 ctx.font = "700 13px 'JetBrains Mono', monospace";
-                ctx.fillText("NULLPUNKT SPECIAL OPERATIONS // DIVISION 0xNULL", 72, 108);
+                ctx.fillText("NULLPUNKT SPECIAL OPERATIONS // DIVISION 0xNULL", ox + 72, oy + 108);
 
                 // Cyber Chip (Gold)
-                const chipX = 860, chipY = 60, chipW = 75, chipH = 55;
+                const chipX = ox + 860, chipY = oy + 60, chipW = 75, chipH = 55;
                 ctx.fillStyle = "#d97706";
                 roundRect(ctx, chipX, chipY, chipW, chipH, 8);
                 ctx.fill();
@@ -7928,14 +8901,14 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
                 ctx.lineWidth = 1;
                 ctx.beginPath();
-                ctx.moveTo(70, 135);
-                ctx.lineTo(930, 135);
+                ctx.moveTo(ox + 70, oy + 135);
+                ctx.lineTo(ox + 930, oy + 135);
                 ctx.stroke();
                 ctx.restore();
 
                 // 3. Avatar Section
                 ctx.save();
-                const avX = 70, avY = 165, avSize = 135;
+                const avX = ox + 70, avY = oy + 165, avSize = 135;
                 roundRect(ctx, avX, avY, avSize, avSize, 20);
                 ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
                 ctx.fill();
@@ -7946,7 +8919,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 ctx.stroke();
                 ctx.restore();
 
-                // Draw Avatar Image if loaded
+                // Draw Avatar Image
                 try {
                     if (skinImg && skinImg.complete && skinImg.naturalWidth > 0) {
                         ctx.save();
@@ -7958,7 +8931,6 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                         throw new Error("fallback");
                     }
                 } catch(e) {
-                    // Fallback stylized icon
                     ctx.save();
                     ctx.fillStyle = info.color;
                     ctx.font = "60px sans-serif";
@@ -7982,31 +8954,27 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
 
                 // 4. Identity Info
                 ctx.save();
-                const infoX = 235;
-                // UID & DMA Badge
+                const infoX = ox + 235;
                 ctx.fillStyle = "#94a3b8";
                 ctx.font = "700 15px 'JetBrains Mono', monospace";
-                ctx.fillText(uid, infoX, 185);
+                ctx.fillText(uid, infoX, oy + 185);
 
                 ctx.fillStyle = "#10b981";
                 ctx.font = "800 13px 'JetBrains Mono', monospace";
-                ctx.fillText("● DMA OK", infoX + 260, 185);
+                ctx.fillText("● DMA OK", infoX + 260, oy + 185);
 
-                // Name
                 ctx.fillStyle = "#ffffff";
                 ctx.font = "900 36px 'Plus Jakarta Sans', sans-serif";
                 ctx.shadowColor = info.color;
                 ctx.shadowBlur = 14;
-                ctx.fillText(name, infoX, 230);
+                ctx.fillText(name, infoX, oy + 230);
                 ctx.shadowBlur = 0;
 
-                // Callsign
                 ctx.fillStyle = "#cbd5e1";
                 ctx.font = "italic 16px 'Plus Jakarta Sans', sans-serif";
-                ctx.fillText('"' + callsign + '"', infoX, 260);
+                ctx.fillText('"' + callsign + '"', infoX, oy + 260);
 
-                // Class Pill
-                roundRect(ctx, infoX, 276, 220, 32, 16);
+                roundRect(ctx, infoX, oy + 276, 220, 32, 16);
                 ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
                 ctx.fill();
                 ctx.strokeStyle = info.color;
@@ -8015,12 +8983,12 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
 
                 ctx.fillStyle = "#ffffff";
                 ctx.font = "800 14px 'JetBrains Mono', monospace";
-                ctx.fillText(`${info.icon} ${info.name}`, infoX + 16, 298);
+                ctx.fillText(`${info.icon} ${info.name}`, infoX + 16, oy + 298);
                 ctx.restore();
 
                 // 5. Stats Matrix Container
                 ctx.save();
-                const boxX = 70, boxY = 330, boxW = 860, boxH = 120;
+                const boxX = ox + 70, boxY = oy + 330, boxW = 860, boxH = 120;
                 roundRect(ctx, boxX, boxY, boxW, boxH, 16);
                 ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
                 ctx.fill();
@@ -8049,12 +9017,10 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                     ctx.fillText(st.val, colX + 180, colY);
                     ctx.textAlign = "left";
 
-                    // Progress Track
                     roundRect(ctx, colX, colY + 12, 180, 8, 4);
                     ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
                     ctx.fill();
 
-                    // Progress Fill
                     const fillW = Math.max(10, Math.round((st.pct / 100) * 180));
                     roundRect(ctx, colX, colY + 12, fillW, 8, 4);
                     ctx.fillStyle = info.color;
@@ -8065,10 +9031,9 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 });
                 ctx.restore();
 
-                // 6. Barcode & Official Seal
+                // 6. Barcode & Seal
                 ctx.save();
-                // Barcode simulation
-                const bX = 70, bY = 480;
+                const bX = ox + 70, bY = oy + 480;
                 ctx.fillStyle = "#ffffff";
                 let currBX = bX;
                 const barPattern = [3, 2, 5, 2, 1, 4, 2, 6, 3, 2, 4, 1, 3, 5, 2, 4, 2, 1, 5, 3, 2, 6, 2, 3, 4, 2];
@@ -8082,8 +9047,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 ctx.font = "600 13px 'JetBrains Mono', monospace";
                 ctx.fillText(barcodeHash, bX, bY + 52);
 
-                // Official Seal Stamp
-                const stampX = 760, stampY = 475;
+                const stampX = ox + 760, stampY = oy + 475;
                 ctx.save();
                 ctx.translate(stampX + 75, stampY + 28);
                 ctx.rotate(-4 * Math.PI / 180);
@@ -8108,17 +9072,373 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 ctx.restore();
 
                 ctx.restore();
+            }
 
-                // Export to PNG & Trigger Download
+            function drawBadgeCardBack(ctx, ox, oy, name, info, uid, signCanvas, isScratched) {
+                function roundRect(ctx, x, y, w, h, r) {
+                    ctx.beginPath();
+                    ctx.moveTo(x + r, y);
+                    ctx.lineTo(x + w - r, y);
+                    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+                    ctx.lineTo(x + w, y + h - r);
+                    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+                    ctx.lineTo(x + r, y + h);
+                    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+                    ctx.lineTo(x, y + r);
+                    ctx.quadraticCurveTo(x, y, x + r, y);
+                    ctx.closePath();
+                }
+
+                // 1. Background Card Shape
+                ctx.save();
+                roundRect(ctx, ox + 30, oy + 30, 940, 540, 32);
+                ctx.clip();
+
+                const bgGrad = ctx.createLinearGradient(ox + 30, oy + 30, ox + 970, oy + 570);
+                bgGrad.addColorStop(0, "#080c18");
+                bgGrad.addColorStop(0.5, "#040710");
+                bgGrad.addColorStop(1, "#020308");
+                ctx.fillStyle = bgGrad;
+                ctx.fillRect(ox + 30, oy + 30, 940, 540);
+
+                // Subtle back ambient glow
+                const glowGrad = ctx.createRadialGradient(ox + 200, oy + 300, 10, ox + 200, oy + 300, 450);
+                glowGrad.addColorStop(0, info.glow);
+                glowGrad.addColorStop(1, "transparent");
+                ctx.fillStyle = glowGrad;
+                ctx.fillRect(ox + 30, oy + 30, 940, 540);
+
+                // Grid pattern
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.02)";
+                ctx.lineWidth = 1;
+                for (let x = ox + 30; x < ox + 970; x += 40) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, oy + 30);
+                    ctx.lineTo(x, oy + 570);
+                    ctx.stroke();
+                }
+                for (let y = oy + 30; y < oy + 570; y += 40) {
+                    ctx.beginPath();
+                    ctx.moveTo(ox + 30, y);
+                    ctx.lineTo(ox + 970, y);
+                    ctx.stroke();
+                }
+
+                // 2. Magnetic Stripe across the top
+                ctx.fillStyle = "#090d16";
+                ctx.fillRect(ox + 30, oy + 55, 940, 68);
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+                ctx.lineWidth = 1;
+                ctx.strokeRect(ox + 30, oy + 55, 940, 68);
+
+                // Magnetic Data Track
+                ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+                ctx.font = "600 13px 'JetBrains Mono', monospace";
+                ctx.fillText("||| | | |||| || | || |||| | ||| ||||| || | |||| |||| || | ||| |||| ||||| | | |||| || | ||", ox + 50, oy + 88);
+
+                ctx.fillStyle = "rgba(0, 240, 255, 0.4)";
+                ctx.font = "800 8.5px 'JetBrains Mono', monospace";
+                ctx.fillText("NULLPUNKT // DMA ENCRYPTED TRACK 2 // ISO/IEC 7810 ID-1 // DISCONNECT AT RISK", ox + 50, oy + 106);
+
+                // Watermark in background
+                ctx.fillStyle = "rgba(255, 255, 255, 0.02)";
+                ctx.font = "900 38px 'JetBrains Mono', monospace";
+                ctx.fillText("DMA HARDWARE SECURE TOKEN", ox + 150, oy + 320);
+
+                ctx.restore();
+
+                // Border Outline
+                ctx.save();
+                roundRect(ctx, ox + 30, oy + 30, 940, 540, 32);
+                ctx.strokeStyle = info.color;
+                ctx.lineWidth = 4;
+                ctx.shadowColor = info.color;
+                ctx.shadowBlur = 24;
+                ctx.stroke();
+                ctx.restore();
+
+                // 3. Chip ID & Hardware Info Line
+                ctx.save();
+                ctx.fillStyle = "#94a3b8";
+                ctx.font = "700 12px 'JetBrains Mono', monospace";
+                const chipId = document.getElementById("badgeBackChipId") ? document.getElementById("badgeBackChipId").textContent : "CM2-SEC-9842";
+                ctx.fillText(`● CHIP-ID: ${chipId}`, ox + 70, oy + 155);
+
+                ctx.textAlign = "right";
+                ctx.fillStyle = "#64748b";
+                ctx.font = "600 11px 'JetBrains Mono', monospace";
+                ctx.fillText("ISO/IEC 7810 ID-1 • 85.60 × 53.98 mm • 2026 REV 2", ox + 930, oy + 155);
+                ctx.textAlign = "left";
+                ctx.restore();
+
+                // 4. Interactive Grid on Back
+                // Box Left: Signature
+                const signX = ox + 70, signY = oy + 175, signW = 460, signH = 175;
+                ctx.save();
+                roundRect(ctx, signX, signY, signW, signH, 16);
+                ctx.fillStyle = "rgba(0, 0, 0, 0.45)";
+                ctx.fill();
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                ctx.fillStyle = "#cbd5e1";
+                ctx.font = "800 12px 'JetBrains Mono', monospace";
+                ctx.fillText("✍️ UNTERSCHRIFT DES AGENTEN", signX + 16, signY + 28);
+                ctx.fillStyle = "#64748b";
+                ctx.font = "600 10px 'JetBrains Mono', monospace";
+                ctx.fillText("(AUTHORIZED OPERATIVE SIGNATURE)", signX + 16, signY + 44);
+
+                // Draw user signature onto canvas
+                const innerSignX = signX + 16, innerSignY = signY + 54, innerSignW = signW - 32, innerSignH = signH - 68;
+                roundRect(ctx, innerSignX, innerSignY, innerSignW, innerSignH, 8);
+                ctx.fillStyle = "rgba(15, 23, 42, 0.85)";
+                ctx.fill();
+                ctx.strokeStyle = "rgba(0, 240, 255, 0.3)";
+                ctx.setLineDash([4, 4]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                if (signCanvas) {
+                    ctx.drawImage(signCanvas, innerSignX + 4, innerSignY + 4, innerSignW - 8, innerSignH - 8);
+                }
+                ctx.restore();
+
+                // Box Right: Scratch-Off Secret PIN
+                const scratchX = ox + 550, scratchY = oy + 175, scratchW = 380, scratchH = 175;
+                ctx.save();
+                roundRect(ctx, scratchX, scratchY, scratchW, scratchH, 16);
+                ctx.fillStyle = "rgba(0, 0, 0, 0.45)";
+                ctx.fill();
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                ctx.fillStyle = "#cbd5e1";
+                ctx.font = "800 12px 'JetBrains Mono', monospace";
+                ctx.fillText("🪙 FREIRUBBEL-GEHEIMCODE", scratchX + 16, scratchY + 28);
+
+                ctx.fillStyle = isScratched ? "#10b981" : "#fbbf24";
+                ctx.font = "800 11px 'JetBrains Mono', monospace";
+                ctx.textAlign = "right";
+                ctx.fillText(isScratched ? "● ENTHÜLLT" : "● VERSIEGELT", scratchX + scratchW - 16, scratchY + 28);
+                ctx.textAlign = "left";
+
+                const innerScratchX = scratchX + 16, innerScratchY = scratchY + 54, innerScratchW = scratchW - 32, innerScratchH = scratchH - 68;
+                roundRect(ctx, innerScratchX, innerScratchY, innerScratchW, innerScratchH, 8);
+
+                if (isScratched) {
+                    // Revealed Secret Code in full glory
+                    ctx.fillStyle = "#020617";
+                    ctx.fill();
+                    ctx.strokeStyle = "#10b981";
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+
+                    ctx.fillStyle = "#94a3b8";
+                    ctx.font = "700 11px 'JetBrains Mono', monospace";
+                    ctx.textAlign = "center";
+                    ctx.fillText("TERMINAL PIN:", innerScratchX + innerScratchW / 2, innerScratchY + 28);
+
+                    ctx.fillStyle = "#00f0ff";
+                    ctx.font = "900 24px 'JetBrains Mono', monospace";
+                    ctx.shadowColor = "#00f0ff";
+                    ctx.shadowBlur = 12;
+                    ctx.fillText("NULL-7331-DMA", innerScratchX + innerScratchW / 2, innerScratchY + 58);
+                    ctx.shadowBlur = 0;
+
+                    ctx.fillStyle = "#10b981";
+                    ctx.font = "800 10px 'JetBrains Mono', monospace";
+                    ctx.fillText("✓ ROOT OVERCLOCK AKTIV", innerScratchX + innerScratchW / 2, innerScratchY + 84);
+                    ctx.textAlign = "left";
+                } else {
+                    // Scratch Foil simulation
+                    const foilGrad = ctx.createLinearGradient(innerScratchX, innerScratchY, innerScratchX + innerScratchW, innerScratchY + innerScratchH);
+                    foilGrad.addColorStop(0, "#94a3b8");
+                    foilGrad.addColorStop(0.3, "#cbd5e1");
+                    foilGrad.addColorStop(0.7, "#64748b");
+                    foilGrad.addColorStop(1, "#475569");
+                    ctx.fillStyle = foilGrad;
+                    ctx.fill();
+                    ctx.strokeStyle = "rgba(255, 255, 255, 0.4)";
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+
+                    ctx.fillStyle = "#0f172a";
+                    ctx.font = "900 14px 'JetBrains Mono', monospace";
+                    ctx.textAlign = "center";
+                    ctx.fillText("🪙 RUBBELN FÜR PIN", innerScratchX + innerScratchW / 2, innerScratchY + 45);
+
+                    ctx.fillStyle = "#334155";
+                    ctx.font = "700 11px 'JetBrains Mono', monospace";
+                    ctx.fillText("[ SCRATCH ON SITE ]", innerScratchX + innerScratchW / 2, innerScratchY + 68);
+                    ctx.textAlign = "left";
+                }
+                ctx.restore();
+
+                // 5. Back Footer: Hologram Seal, Disclaimer, Security QR
+                ctx.save();
+                // Hologram Seal Circle
+                const sealX = ox + 115, sealY = oy + 445, sealR = 38;
+                const holoGrad = ctx.createRadialGradient(sealX, sealY, 5, sealX, sealY, sealR);
+                holoGrad.addColorStop(0, "#f8fafc");
+                holoGrad.addColorStop(0.5, "#94a3b8");
+                holoGrad.addColorStop(1, "#475569");
+                ctx.beginPath();
+                ctx.arc(sealX, sealY, sealR, 0, Math.PI * 2);
+                ctx.fillStyle = holoGrad;
+                ctx.fill();
+                ctx.strokeStyle = "#cbd5e1";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(sealX, sealY, sealR - 6, 0, Math.PI * 2);
+                ctx.strokeStyle = "rgba(0, 0, 0, 0.4)";
+                ctx.setLineDash([3, 3]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                ctx.fillStyle = "#0f172a";
+                ctx.font = "900 9px 'JetBrains Mono', monospace";
+                ctx.textAlign = "center";
+                ctx.fillText("GENUINE", sealX, sealY - 10);
+                ctx.fillStyle = "#047857";
+                ctx.font = "900 15px 'JetBrains Mono', monospace";
+                ctx.fillText("DMA", sealX, sealY + 5);
+                ctx.fillStyle = "#0f172a";
+                ctx.font = "800 8px 'JetBrains Mono', monospace";
+                ctx.fillText("SECURED", sealX, sealY + 18);
+                ctx.textAlign = "left";
+
+                // Disclaimer Text
+                const discX = ox + 180, discY = oy + 425;
+                ctx.fillStyle = "#64748b";
+                ctx.font = "10.5px 'Plus Jakarta Sans', sans-serif";
+                ctx.fillText("Eigentum des Cheat Motor 2.0 Nullpunkt-Forschungsnetzwerks. Missbrauch der", discX, discY);
+                ctx.fillText("Ring-0 DMA Bypass-Engine wird mit permanentem Void-Bann bestraft.", discX, discY + 18);
+
+                ctx.fillStyle = "#94a3b8";
+                ctx.font = "700 11px 'JetBrains Mono', monospace";
+                ctx.fillText(`REV 2.0 • ${uid} • ROOT DMA OK • AUTHORIZED HARDWARE`, discX, discY + 44);
+
+                // Back Cyber QR Code
+                const qrX = ox + 860, qrY = oy + 410, qrS = 70;
+                roundRect(ctx, qrX, qrY, qrS, qrS, 8);
+                ctx.fillStyle = "#03050a";
+                ctx.fill();
+                ctx.strokeStyle = "rgba(0, 240, 255, 0.4)";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Draw QR Pattern
+                ctx.fillStyle = "#00f0ff";
+                // Corners
+                ctx.fillRect(qrX + 6, qrY + 6, 18, 18);
+                ctx.clearRect(qrX + 9, qrY + 9, 12, 12);
+                ctx.fillRect(qrX + 11, qrY + 11, 8, 8);
+
+                ctx.fillRect(qrX + qrS - 24, qrY + 6, 18, 18);
+                ctx.clearRect(qrX + qrS - 21, qrY + 9, 12, 12);
+                ctx.fillRect(qrX + qrS - 19, qrY + 11, 8, 8);
+
+                ctx.fillRect(qrX + 6, qrY + qrS - 24, 18, 18);
+                ctx.clearRect(qrX + 9, qrY + qrS - 21, 12, 12);
+                ctx.fillRect(qrX + 11, qrY + qrS - 19, 8, 8);
+
+                // Small data bits
+                ctx.fillRect(qrX + 30, qrY + 8, 6, 6);
+                ctx.fillRect(qrX + 38, qrY + 16, 6, 6);
+                ctx.fillRect(qrX + 30, qrY + 28, 12, 12);
+                ctx.fillRect(qrX + 10, qrY + 30, 8, 6);
+                ctx.fillRect(qrX + 48, qrY + 32, 14, 6);
+                ctx.fillRect(qrX + 32, qrY + 48, 8, 14);
+                ctx.fillRect(qrX + 46, qrY + 44, 16, 8);
+
+                ctx.fillStyle = "#00f0ff";
+                ctx.font = "800 9px 'JetBrains Mono', monospace";
+                ctx.textAlign = "center";
+                ctx.fillText("VERIFY", qrX + qrS / 2, qrY + qrS + 14);
+                ctx.textAlign = "left";
+
+                ctx.restore();
+            }
+
+            window.downloadHackerCardPng = function(mode) {
+                const effectiveMode = (mode === 'front' || mode === 'back' || mode === 'both') 
+                    ? mode 
+                    : (isBadgeFlipped ? 'back' : 'front');
+
+                showCyberToast(`📸 Rendere Ausweis (${effectiveMode.toUpperCase()}) als High-Res PNG...`);
+
+                const name = (document.getElementById("idPlayerName") && document.getElementById("idPlayerName").value.trim()) || "Agent";
+                const callsign = (document.getElementById("idCallsign") && document.getElementById("idCallsign").value.trim()) || "NULLPUNKT OPERATIVE";
+                const info = HACKER_CLASSES[currentClass] || HACKER_CLASSES.turbo;
+                const clearanceTag = document.getElementById("badgeClearanceTag") ? document.getElementById("badgeClearanceTag").textContent : "LEVEL 5";
+                const speed = document.getElementById("dispSpeed") ? document.getElementById("dispSpeed").textContent : "420 km/h";
+                const resist = document.getElementById("dispResist") ? document.getElementById("dispResist").textContent : "98%";
+                const clock = document.getElementById("dispClock") ? document.getElementById("dispClock").textContent : "8.4 GHz";
+                const bypass = document.getElementById("dispBypass") ? document.getElementById("dispBypass").textContent : "99.8%";
+                const uid = document.getElementById("badgeUid") ? document.getElementById("badgeUid").textContent : "UID: 0xNULL-9842";
+                const barcodeHash = document.getElementById("badgeBarcodeVal") ? document.getElementById("badgeBarcodeVal").textContent : "0x7F91 4821 0041 8492";
+
+                const signCanvas = document.getElementById("badgeSignPad");
+
+                const canvas = document.createElement("canvas");
+                let fileName = "";
+
+                if (effectiveMode === 'both') {
+                    // Widescreen Collector Edition Poster
+                    canvas.width = 2000;
+                    canvas.height = 600;
+                    const ctx = canvas.getContext("2d");
+
+                    // Background fill
+                    ctx.fillStyle = "#020409";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    // Draw Front at 0, 0
+                    drawBadgeCardFront(ctx, 0, 0, name, callsign, info, clearanceTag, speed, resist, clock, bypass, uid, barcodeHash, skinImg);
+
+                    // Draw Back at 1000, 0
+                    drawBadgeCardBack(ctx, 1000, 0, name, info, uid, signCanvas, scratchUnlocked);
+
+                    fileName = `Nullpunkt-Hacker-Card-Complete-${name.replace(/[^a-zA-Z0-9_-]/g, "_")}.png`;
+                } else if (effectiveMode === 'back') {
+                    canvas.width = 1000;
+                    canvas.height = 600;
+                    const ctx = canvas.getContext("2d");
+
+                    ctx.fillStyle = "#020409";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    drawBadgeCardBack(ctx, 0, 0, name, info, uid, signCanvas, scratchUnlocked);
+
+                    fileName = `Nullpunkt-ID-Back-${name.replace(/[^a-zA-Z0-9_-]/g, "_")}.png`;
+                } else {
+                    // Front side
+                    canvas.width = 1000;
+                    canvas.height = 600;
+                    const ctx = canvas.getContext("2d");
+
+                    ctx.fillStyle = "#020409";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    drawBadgeCardFront(ctx, 0, 0, name, callsign, info, clearanceTag, speed, resist, clock, bypass, uid, barcodeHash, skinImg);
+
+                    fileName = `Nullpunkt-ID-Front-${name.replace(/[^a-zA-Z0-9_-]/g, "_")}.png`;
+                }
+
+                // Trigger Download
                 try {
                     const dataUrl = canvas.toDataURL("image/png");
                     const a = document.createElement("a");
                     a.href = dataUrl;
-                    a.download = `Nullpunkt-ID-${name.replace(/[^a-zA-Z0-9_-]/g, "_")}.png`;
+                    a.download = fileName;
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
-                    showCyberToast(`📸 Ausweis für <strong>${name}</strong> erfolgreich als PNG gespeichert!`);
+                    showCyberToast(`📸 Ausweis (<strong>${effectiveMode.toUpperCase()}</strong>) für ${name} erfolgreich gespeichert!`);
                 } catch(err) {
                     console.error("Canvas export error:", err);
                     showCyberToast("Fehler beim Erzeugen des PNG-Bildes.");
@@ -8129,6 +9449,10 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             window.addEventListener("DOMContentLoaded", () => {
                 window.onStatChange();
                 updateUid("Entity_0xNULL");
+                initBadgeSignaturePad();
+                bindBadgeSignaturePad();
+                initBadgeScratchPad();
+                bindBadgeScratchPad();
             });
         })();
 
