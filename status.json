@@ -43,6 +43,16 @@
   ],
   "blogPosts": [
     {
+      "id": "post-1788611492910",
+      "title": "Anpassung am Ausweis",
+      "category": "🛠️ Update / Devlog",
+      "author": "Ben (Story-Director)",
+      "date": "05. Sept 2026",
+      "imageUrl": "https://cdn.discordapp.com/attachments/1363537082114642032/1545773105073492049/Nullpunkt-Hacker-Card-Complete-Entity_0xNULL.png?ex=6a9d5ce3&is=6a9c0b63&hm=303081140a099488bbf8e37a960b8f716c71a6409748f1c6dc4faced407525bf&",
+      "excerpt": "Es gibt nun eine rückseite",
+      "content": "**Es gibt nun eine rückseite mit vielen coolen sachen**"
+    },
+    {
       "id": "post-1788561482375",
       "title": "Die Rückkehr",
       "category": "⚡ Live-Event",
