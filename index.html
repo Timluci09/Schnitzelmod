@@ -5032,12 +5032,12 @@
         /* Desktop Icons Grid */
         .cheatos-desktop-icons {
             position: absolute;
-            top: 24px;
-            left: 24px;
+            top: 48px;
+            left: 80px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            z-index: 10;
+            gap: 14px;
+            z-index: 15;
         }
         .cheatos-icon {
             display: flex;
@@ -5790,8 +5790,9 @@
         /* Start Menu */
         .cheatos-start-menu {
             position: absolute;
-            bottom: 54px;
+            top: 36px;
             left: 10px;
+            bottom: auto;
             width: 320px;
             background: rgba(10, 15, 30, 0.98);
             backdrop-filter: blur(20px);
@@ -5953,6 +5954,392 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ==========================================================================
+           🐧 1:1 LINUX DESKTOP ENVIRONMENT (CHEATLINUX // KALI & UBUNTU EDITION)
+           ========================================================================== */
+        /* Top Bar (GNOME / Kali Panel) */
+        .linux-top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 32px;
+            background: rgba(12, 16, 24, 0.94);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+            z-index: 500;
+            user-select: none;
+            backdrop-filter: blur(12px);
+            font-size: 12.5px;
+            color: #f8fafc;
+        }
+
+        .linux-top-left, .linux-top-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .linux-panel-btn {
+            background: transparent;
+            border: none;
+            color: #e2e8f0;
+            font-weight: 600;
+            font-size: 12.5px;
+            cursor: pointer;
+            padding: 3px 8px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.15s;
+        }
+
+        .linux-panel-btn:hover, .linux-panel-btn.active {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+
+        .linux-active-app-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--cyan);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            padding-left: 10px;
+        }
+
+        .linux-top-clock {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 700;
+            font-size: 12.5px;
+            color: #f1f5f9;
+            cursor: pointer;
+            padding: 3px 10px;
+            border-radius: 6px;
+        }
+
+        .linux-top-clock:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Distro Switcher Pill */
+        .distro-switcher-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 240, 255, 0.12);
+            border: 1px solid rgba(0, 240, 255, 0.35);
+            color: var(--cyan);
+            font-weight: 700;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 99px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .distro-switcher-pill:hover {
+            background: var(--cyan);
+            color: #030712;
+            box-shadow: 0 0 12px var(--cyan);
+        }
+
+        /* Power & System Indicators */
+        .linux-sys-icons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        /* Linux Left Dash / Dock (Ubuntu / Kali Style) */
+        
+        /* Hide Windows Taskbar in 1:1 Linux Desktop Mode */
+        .cheatos-desktop .cheatos-taskbar {
+            display: none !important;
+        }
+
+        /* Adjust Windows Layer for 1:1 Linux Desktop */
+        .cheatos-windows-layer {
+            position: absolute;
+            top: 32px;
+            left: 68px;
+            right: 0;
+            bottom: 6px;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .linux-dock {
+            position: absolute;
+            top: 40px;
+            bottom: 12px;
+            left: 8px;
+            width: 58px;
+            background: rgba(10, 15, 24, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 0;
+            gap: 6px;
+            z-index: 450;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .dock-item {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            user-select: none;
+        }
+
+        .dock-item:hover {
+            transform: scale(1.15) translateX(2px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .dock-item.active {
+            background: rgba(0, 240, 255, 0.16);
+        }
+
+        /* Running Indicator Dot (Ubuntu style) */
+        .dock-running-dot {
+            position: absolute;
+            left: -4px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            background: #e95420;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #e95420;
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .dock-item.has-running .dock-running-dot {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.5);
+        }
+
+        .dock-separator {
+            width: 32px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 4px 0;
+        }
+
+        /* Adjust Windows Layer for Top Bar & Dock */
+        .cheatos-windows-layer {
+            position: absolute;
+            top: 32px;
+            left: 68px;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* 1:1 Linux Window Titlebars */
+        .cheatos-window {
+            position: absolute;
+            background: rgba(14, 20, 32, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            pointer-events: auto;
+            backdrop-filter: blur(18px);
+        }
+
+        .cheatos-win-header {
+            height: 36px;
+            background: rgba(18, 26, 42, 0.98);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+            cursor: move;
+            user-select: none;
+        }
+
+        .win-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #f1f5f9;
+            font-family: 'JetBrains Mono', monospace;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Linux Window Control Buttons (Round Dots or Flat GNOME buttons) */
+        .win-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .win-btn {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.15s;
+        }
+
+        .win-btn.win-close:hover {
+            background: #ef4444;
+            color: #fff;
+        }
+
+        .win-btn.win-maximize:hover {
+            background: #10b981;
+            color: #030712;
+        }
+
+        .win-btn.win-minimize:hover {
+            background: #f59e0b;
+            color: #030712;
+        }
+
+        /* Distro Themes (Kali Linux vs. Ubuntu) */
+        #cheatOsDesktop.distro-kali {
+            --linux-accent: #00f0ff;
+            --dock-dot: #00f0ff;
+        }
+
+        #cheatOsDesktop.distro-ubuntu {
+            --linux-accent: #e95420;
+            --dock-dot: #e95420;
+        }
+        #cheatOsDesktop.distro-ubuntu .linux-dock .dock-running-dot {
+            background: #e95420;
+            box-shadow: 0 0 6px #e95420;
+        }
+        #cheatOsDesktop.distro-ubuntu .cheatos-win-header {
+            background: rgba(44, 0, 30, 0.95);
+            border-bottom: 1px solid rgba(233, 84, 32, 0.3);
+        }
+
+        /* Nautilus File Manager Styling */
+        .nautilus-window-layout {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            height: 100%;
+            background: rgba(10, 16, 26, 0.98);
+        }
+
+        .nautilus-sidebar {
+            background: rgba(6, 10, 18, 0.85);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 12px 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nautilus-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 10px;
+            border-radius: 8px;
+            color: #cbd5e1;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .nautilus-nav-item:hover, .nautilus-nav-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .nautilus-content-area {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .nautilus-path-bar {
+            height: 38px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 14px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            color: #94a3b8;
+            background: rgba(15, 23, 42, 0.4);
+        }
+
+        .nautilus-files-grid {
+            padding: 16px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 14px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .nautilus-file-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 6px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.15s, transform 0.15s;
+        }
+
+        .nautilus-file-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .nautilus-file-icon {
+            font-size: 32px;
+            margin-bottom: 6px;
+        }
+
+        .nautilus-file-name {
+            font-size: 11px;
+            color: #f1f5f9;
+            word-break: break-word;
+            line-height: 1.2;
+        }
+
     </style>
 </head>
 
@@ -8860,6 +9247,90 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                     out += `     <em>"${escapeHtml(p.excerpt)}"</em>\n\n`;
                 });
                 printTerminalLine(out);
+            } else if (cmd === "neofetch" || cmd === "fetch") {
+                printTerminalLine(`
+<span style="color:#00f0ff; font-weight:bold;">       ./o.                  </span><span style="color:#10b981; font-weight:bold;">agent</span>@<span style="color:#00f0ff; font-weight:bold;">cheatlinux</span>
+<span style="color:#00f0ff; font-weight:bold;">     ./sssso-                </span>----------------
+<span style="color:#00f0ff; font-weight:bold;">   .:osssssss+-              </span><span style="color:#f59e0b; font-weight:bold;">OS:</span> CheatLinux 6.8.0-kali-amd64 x86_64
+<span style="color:#00f0ff; font-weight:bold;"> .:+sssssssssso/.            </span><span style="color:#f59e0b; font-weight:bold;">Host:</span> Minecraft Workstation (DMA Overclocked)
+<span style="color:#00f0ff; font-weight:bold;">.-/ossssssssssssso/.          </span><span style="color:#f59e0b; font-weight:bold;">Kernel:</span> 6.8.0-26-generic
+<span style="color:#00f0ff; font-weight:bold;">.-/+sssssssssssssssso+:.        </span><span style="color:#f59e0b; font-weight:bold;">Uptime:</span> 3 hours, 42 mins
+<span style="color:#00f0ff; font-weight:bold;">.-:/+sssssssssssssssssso+/.       </span><span style="color:#f59e0b; font-weight:bold;">Shell:</span> bash 5.2.21
+<span style="color:#00f0ff; font-weight:bold;">..://+ssssssssssssssssssso++-       </span><span style="color:#f59e0b; font-weight:bold;">DE:</span> CheatGNOME 46.0 (1:1 Linux Edition)
+<span style="color:#00f0ff; font-weight:bold;">.://++ssssssssssssssssssssso++-      </span><span style="color:#f59e0b; font-weight:bold;">WM:</span> Mutter (Hardware Accelerated)
+<span style="color:#00f0ff; font-weight:bold;">./+++ssssssssssssssssssssssso++:      </span><span style="color:#f59e0b; font-weight:bold;">Theme:</span> Kali-Dark &amp; Yaru [GTK3]
+<span style="color:#00f0ff; font-weight:bold;">./+++ssssssssssssssssssssssssso++:     </span><span style="color:#f59e0b; font-weight:bold;">Icons:</span> Papirus-Dark
+<span style="color:#00f0ff; font-weight:bold;">./+++ssssssssssssssssssssssssssso++:    </span><span style="color:#f59e0b; font-weight:bold;">CPU:</span> AMD Ryzen 9 7950X (32) @ 5.700GHz
+<span style="color:#00f0ff; font-weight:bold;">.+++ssssssssssssssssssssssssssssso++:    </span><span style="color:#f59e0b; font-weight:bold;">GPU:</span> NVIDIA GeForce RTX 4090 (24GB VRAM)
+<span style="color:#00f0ff; font-weight:bold;">.+++ssssssssssssssssssssssssssssso++:    </span><span style="color:#f59e0b; font-weight:bold;">Memory:</span> 1.42 GiB / 31.25 GiB (100% DMA OK)
+<span style="color:#00f0ff; font-weight:bold;"> .:++ssssssssssssssssssssssssssso++:     </span><span style="color:#10b981; font-weight:bold;">Anti-Virus:</span> 100% Bereinigt &amp; Sicher
+`);
+            } else if (cmd === "htop" || cmd === "top") {
+                printTerminalLine(`
+<span style="color:#00f0ff;">CPU[|||||||||||||||||||||||||||||||||||||||||||| 4.2%]</span>   Tasks: 148, 1 running
+<span style="color:#10b981;">Mem[||||||||||||||                           1.42G/31.2G]</span>   Swp: 0K/0K
+<span style="color:#94a3b8;">═══════════════════════════════════════════════════════════════════════════</span>
+<span style="color:#fff; font-weight:bold;">  PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND</span>
+ 1337 agent     20   0 1482920 128400  42100 S   2.8   1.4   2:14.20 cheatmotor.sh
+ 1420 agent     20   0 4892100 892000  89100 S   1.4   3.2   5:42.18 java -jar mc.jar
+ 2048 root      20   0  540200  84100  32400 S   0.3   0.8   0:45.12 gnome-shell
+ 3012 agent     20   0  182000  28400  18900 R   0.1   0.3   0:02.10 htop
+<span style="color:#94a3b8;">═══════════════════════════════════════════════════════════════════════════</span>
+<span style="color:#10b981;">[✓] Alle Linux Ring-0 Kernel Prozesse laufen im optimalen Normalbetrieb!</span>
+`);
+            } else if (cmd === "ls" || cmd === "ls -la" || cmd === "ll" || cmd === "dir") {
+                printTerminalLine(`
+<span style="color:#94a3b8;">total 48</span>
+drwxr-xr-x 5 agent agent 4096 Sep  5 16:55 <span style="color:#00f0ff; font-weight:bold;">.</span>
+drwxr-xr-x 3 root  root  4096 Sep  5 12:00 <span style="color:#00f0ff; font-weight:bold;">..</span>
+-rwxr-xr-x 1 agent agent 1337 Sep  5 16:50 <span style="color:#10b981; font-weight:bold;">start-cheatmotor.sh</span>
+-rw-r--r-- 1 agent agent  420 Sep  5 16:52 dorf_koordinaten.txt
+-rw-r--r-- 1 agent agent 1024 Sep  5 16:54 minimap_radar.cfg
+-rwxr-xr-x 1 agent agent 2048 Sep  5 16:48 <span style="color:#10b981; font-weight:bold;">neofetch</span>
+drwxr-xr-x 2 agent agent 4096 Sep  5 16:45 <span style="color:#00f0ff; font-weight:bold;">minecraft_saves</span>
+drwxr-xr-x 2 agent agent 4096 Sep  5 16:40 <span style="color:#00f0ff; font-weight:bold;">trainer_mods</span>
+`);
+            } else if (cmd === "pwd") {
+                printTerminalLine(`<span style="color:#00f0ff;">/home/agent/nullpunkt</span>`);
+            } else if (cmd.startsWith("cat ")) {
+                const f = cmd.split(" ")[1];
+                if (f === "dorf_koordinaten.txt" || f === "koordinaten.txt") {
+                    printTerminalLine(`
+<span style="color:#10b981; font-weight:bold;">=== DORF-MINIMAP NULLPUNKT KOORDINATEN ===</span>
+- Nullpunkt-Brunnen:   X: 0   | Y: 64 | Z: 0
+- Schmiede &amp; Waffen:   X: -24 | Y: 65 | Z: -8
+- Nord-Hafen Dock:     X: 4   | Y: 63 | Z: -48
+- Hängebrücke Markt:   X: 38  | Y: 64 | Z: 12
+- Süd-Labor Pier:      X: 12  | Y: 64 | Z: 46
+`);
+                } else if (f === "start-cheatmotor.sh") {
+                    printTerminalLine(`
+<span style="color:#94a3b8;">#!/bin/bash</span>
+<span style="color:#10b981;">echo "Starting Cheat Motor v2.0 for Linux..."</span>
+<span style="color:#00f0ff;">mono CheatMotor.exe --dma-bypass --ring0</span>
+`);
+                } else {
+                    printTerminalLine(`<span style="color:#94a3b8;">Datei '${escapeHtml(f)}' gelesen (Status: 100% Bereinigt).</span>`);
+                }
+            } else if (cmd === "uname -a" || cmd === "uname") {
+                printTerminalLine(`<span style="color:#f8fafc;">Linux cheatlinux 6.8.0-26-generic #28-Ubuntu SMP PREEMPT_DYNAMIC x86_64 GNU/Linux</span>`);
+            } else if (cmd === "whoami") {
+                printTerminalLine(`<span style="color:#10b981; font-weight:bold;">agent (uid=1000 gid=1000 groups=sudo,cheatmotor,docker)</span>`);
+            } else if (cmd === "sudo apt update" || cmd === "apt update" || cmd === "apt") {
+                printTerminalLine(`
+<span style="color:#10b981;">Hit:1</span> http://archive.ubuntu.com/ubuntu noble InRelease
+<span style="color:#00f0ff;">Get:2</span> http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+<span style="color:#10b981;">Hit:3</span> https://http.kali.org/kali kali-rolling InRelease
+<span style="color:#10b981;">Reading package lists... Done</span>
+<span style="color:#10b981; font-weight:bold;">All packages are up to date. Cheat Motor Kernel Shield v2.0 is current.</span>
+`);
+            } else if (cmd === "./start-cheatmotor.sh" || cmd === "start.sh") {
+                printTerminalLine(`
+<span style="color:#10b981; font-weight:bold;">[🚀] STARTE CHEAT MOTOR v2.0 LINUX DAEMON...</span>
+<span style="color:#00f0ff;">[✓] Universal VirtualQueryEx Memory Hook: ATTACHED</span>
+<span style="color:#10b981;">[✓] Anti-Virus Subsystem: 100% OK</span>
+<span style="color:#fbbf24;">[!] Minecraft Hook bereit: F1 Flug, F2 No-Hunger, F3 X-Ray aktiv!</span>
+`);
             } else if (cmd === "hack_status" || cmd === "status_hack" || cmd === "infiltration" || cmd === "virus_status" || cmd === "security") {
                 printTerminalLine(`
 <span style="color:#00ff66; font-weight:bold;">[🛡️] SYSTEM-SICHERHEITSBERICHT // 100.0% ANTI-VIRUS SCHUTZ:</span>
@@ -11219,7 +11690,118 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
     <!-- ==================================================== -->
     <!-- 🖥️ CHEATOS 2.0 HACKER DESKTOP ENVIRONMENT -->
     <!-- ==================================================== -->
-    <div class="cheatos-desktop" id="cheatOsDesktop" style="display: none;">
+    <div class="cheatos-desktop distro-kali" id="cheatOsDesktop" style="display: none;">
+        <!-- 🐧 LINUX TOP BAR (GNOME / KALI STATUS BAR) -->
+        <div class="linux-top-bar" id="linuxTopBar">
+            <div class="linux-top-left">
+                <button class="linux-panel-btn" id="linuxAppMenuBtn" onclick="cheatosToggleStartMenu()">
+                    <span>🐧 Anwendungen</span>
+                    <span style="font-size: 10px; opacity: 0.7;">▾</span>
+                </button>
+                <div class="linux-active-app-label" id="linuxActiveAppLabel">💻 Terminal</div>
+            </div>
+
+            <!-- Center Clock -->
+            <div class="linux-top-clock" id="linuxTopClock" onclick="cheatosOpenWindow('telemetry')" title="System-Zeit &amp; Kalender">
+                Sa. 5. Sep 16:55
+            </div>
+
+            <!-- Right System Indicators -->
+            <div class="linux-top-right">
+                <div class="distro-switcher-pill" id="distroSwitcherPill" onclick="toggleDistroTheme()" title="Klicken: Zwischen Kali Linux und Ubuntu wechseln">
+                    <span id="distroIcon">🐉</span> <span id="distroName">Kali Linux</span>
+                </div>
+                <div class="linux-sys-icons">
+                    <span title="Netzwerk: DMA Ethernet 10 Gbit/s Verbunden">🖧</span>
+                    <button class="linux-panel-btn" onclick="cheatosToggleMute()" id="linuxVolBtn" title="Lautstärke" style="padding: 2px 4px;">🔊</button>
+                    <span style="color: #10b981; font-weight: 700; font-size: 11px;" title="Anti-Virus: 100% Sicher">🛡️ 100%</span>
+                </div>
+                <button class="linux-panel-btn" onclick="closeCheatOs()" title="Desktop verlassen (Zurück zum Web-Modus)" style="color: #f87171;">
+                    <span>⏻</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 🐧 LINUX APPLICATIONS DROPDOWN MENU -->
+        <div class="cheatos-start-menu" id="cheatosStartMenu" style="display: none;">
+                <div class="start-header">
+                    <span class="start-logo">🐧</span>
+                    <div>
+                        <div class="start-sys">CHEATLINUX // ANWENDUNGEN</div>
+                        <div class="start-user">Kernel: <strong id="cheatosStartUser">Linux 6.8.0-kali</strong></div>
+                    </div>
+                </div>
+                <div class="start-items-grid">
+                    <div class="start-item" onclick="cheatosOpenWindow('idCard'); cheatosToggleStartMenu();">
+                        <span>🪪</span>
+                        <div><strong>ID-Studio</strong><small>Hacker-Ausweis &amp; 3D-Flip</small></div>
+                    </div>
+                    <div class="start-item" onclick="cheatosOpenWindow('terminal'); cheatosToggleStartMenu();">
+                        <span>💻</span>
+                        <div><strong>Cyber-Terminal</strong><small>Befehle &amp; Root-Cheats</small></div>
+                    </div>
+                    <div class="start-item" onclick="cheatosOpenWindow('telemetry'); cheatosToggleStartMenu();">
+                        <span>📈</span>
+                        <div><strong>Telemetrie</strong><small>Echtzeit RAM-Oszilloskop</small></div>
+                    </div>
+                    <div class="start-item" onclick="cheatosOpenWindow('notes'); cheatosToggleStartMenu();">
+                        <span>📝</span>
+                        <div><strong>Cheat-Editor</strong><small>Notizen &amp; Koordinaten</small></div>
+                    </div>
+                    <div class="start-item" onclick="cheatosOpenWindow('audio'); cheatosToggleStartMenu();">
+                        <span>🎵</span>
+                        <div><strong>Cyber-Audio</strong><small>Synthwave Synthesizer</small></div>
+                    </div>
+                    <div class="start-item" onclick="cheatosOpenWindow('minimap'); cheatosToggleStartMenu();">
+                        <span>🗺️</span>
+                        <div><strong>Dorf-Minimap</strong><small>Nullpunkt &amp; Gebäude</small></div>
+                    </div>
+                </div>
+                <div class="start-footer">
+                    <button class="start-btn-reboot" onclick="cheatosReboot(); cheatosToggleStartMenu();">🔄 Kernel Reboot</button>
+                    <button class="start-btn-exit" onclick="closeCheatOs(); cheatosToggleStartMenu();">✕ Web-Modus</button>
+                </div>
+            </div>
+
+        <!-- 🐧 LINUX LEFT DASH / DOCK (UBUNTU & KALI STYLE) -->
+        <div class="linux-dock" id="linuxDock">
+            <div class="dock-item" id="dockItemFiles" onclick="cheatosToggleWindow('files')" title="Dateien (Nautilus Dateimanager)">
+                <div class="dock-running-dot"></div>
+                <span>📁</span>
+            </div>
+            <div class="dock-item has-running active" id="dockItemTerminal" onclick="cheatosToggleWindow('terminal')" title="Terminal (Bash 5.2)">
+                <div class="dock-running-dot"></div>
+                <span>💻</span>
+            </div>
+            <div class="dock-item" id="dockItemMinimap" onclick="cheatosToggleWindow('minimap')" title="Dorf-Minimap (Nullpunkt GPS)">
+                <div class="dock-running-dot"></div>
+                <span>🗺️</span>
+            </div>
+            <div class="dock-item has-running" id="dockItemIdCard" onclick="cheatosToggleWindow('idCard')" title="Hacker-Ausweis Studio">
+                <div class="dock-running-dot"></div>
+                <span>🪪</span>
+            </div>
+            <div class="dock-item" id="dockItemTelemetry" onclick="cheatosToggleWindow('telemetry')" title="System-Monitor (Htop &amp; Telemetrie)">
+                <div class="dock-running-dot"></div>
+                <span>📈</span>
+            </div>
+            <div class="dock-item" id="dockItemNotes" onclick="cheatosToggleWindow('notes')" title="Text-Editor (Gedit &amp; Notizen)">
+                <div class="dock-running-dot"></div>
+                <span>📝</span>
+            </div>
+            <div class="dock-item" id="dockItemAudio" onclick="cheatosToggleWindow('audio')" title="Musik-Player (Rhythmbox / CyberSynth)">
+                <div class="dock-running-dot"></div>
+                <span>🎵</span>
+            </div>
+            <div class="dock-separator"></div>
+            <div class="dock-item" onclick="toggleDistroTheme()" title="Distro wechseln (Kali / Ubuntu)">
+                <span id="dockDistroIcon">🐉</span>
+            </div>
+            <div class="dock-item" onclick="closeCheatOs()" title="Web-Modus (Desktop beenden)" style="color: #f87171;">
+                <span>🌐</span>
+            </div>
+        </div>
+
         <!-- Boot Screen -->
         <div class="cheatos-boot-screen" id="cheatosBootScreen">
             <div class="boot-logo">⚙️ CHEAT MOTOR 2.0 // CHEATOS</div>
@@ -11241,40 +11823,101 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
 
         <!-- Desktop Icons Grid -->
         <div class="cheatos-desktop-icons">
-            <div class="cheatos-icon" onclick="cheatosOpenWindow('idCard')" title="Nullpunkt-Hacker-Ausweis Studio">
-                <div class="icon-img-wrap"><span class="icon-glyph">🪪</span></div>
-                <span class="icon-label">ID-Studio.exe</span>
+            <div class="cheatos-icon" onclick="cheatosToggleWindow('files')" title="Nautilus Dateimanager">
+                <div class="icon-img-wrap"><span class="icon-glyph">📁</span></div>
+                <span class="icon-label">Dateien</span>
             </div>
-            <div class="cheatos-icon" onclick="cheatosOpenWindow('terminal')" title="Cyber Terminal Konsole">
+            <div class="cheatos-icon" onclick="cheatosToggleWindow('terminal')" title="Bash Terminal Konsole">
                 <div class="icon-img-wrap"><span class="icon-glyph">💻</span></div>
-                <span class="icon-label">Terminal.sh</span>
+                <span class="icon-label">Terminal</span>
             </div>
-            <div class="cheatos-icon" onclick="cheatosOpenWindow('telemetry')" title="Live RAM &amp; DMA Telemetrie">
-                <div class="icon-img-wrap"><span class="icon-glyph">📈</span></div>
-                <span class="icon-label">Telemetry.bin</span>
+            <div class="cheatos-icon" onclick="cheatosToggleWindow('idCard')" title="Nullpunkt-Hacker-Ausweis Studio">
+                <div class="icon-img-wrap"><span class="icon-glyph">🪪</span></div>
+                <span class="icon-label">Ausweis.desktop</span>
             </div>
-            <div class="cheatos-icon" onclick="cheatosOpenWindow('notes')" title="Cheat-Editor &amp; Server-Notizen">
-                <div class="icon-img-wrap"><span class="icon-glyph">📝</span></div>
-                <span class="icon-label">CheatNotes.txt</span>
-            </div>
-            <div class="cheatos-icon" onclick="cheatosOpenWindow('audio')" title="Synthwave &amp; Cyber Audio Player">
-                <div class="icon-img-wrap"><span class="icon-glyph">🎵</span></div>
-                <span class="icon-label">CyberAudio.wav</span>
-            </div>
-                        <div class="cheatos-icon" onclick="cheatosOpenWindow('minimap')" title="Dorf-Minimap // Nullpunkt-Navigator">
+            <div class="cheatos-icon" onclick="cheatosToggleWindow('minimap')" title="Dorf-Minimap // Nullpunkt-Navigator">
                 <div class="icon-img-wrap"><span class="icon-glyph">🗺️</span></div>
-                <span class="icon-label">Minimap.exe</span>
+                <span class="icon-label">Minimap.desktop</span>
             </div>
-            <div class="cheatos-icon icon-exit" onclick="closeCheatOs()" title="CheatOS beenden und zurück zum Web-Modus">
-                <div class="icon-img-wrap"><span class="icon-glyph">🌐</span></div>
-                <span class="icon-label">Web-Modus.lnk</span>
+            <div class="cheatos-icon" onclick="cheatosToggleWindow('telemetry')" title="Htop System-Monitor &amp; Telemetrie">
+                <div class="icon-img-wrap"><span class="icon-glyph">📈</span></div>
+                <span class="icon-label">htop.desktop</span>
+            </div>
+            <div class="cheatos-icon" onclick="cheatosToggleWindow('notes')" title="Gedit &amp; Koordinaten-Notizen">
+                <div class="icon-img-wrap"><span class="icon-glyph">📝</span></div>
+                <span class="icon-label">Notizen.txt</span>
+            </div>
+            <div class="cheatos-icon" onclick="cheatosToggleWindow('audio')" title="Synthwave Cyber Audio Player">
+                <div class="icon-img-wrap"><span class="icon-glyph">🎵</span></div>
+                <span class="icon-label">CyberAudio.desktop</span>
             </div>
         </div>
 
         <!-- Desktop Windows Container -->
         <div class="cheatos-windows-layer" id="cheatosWindowsLayer">
+            <!-- Window 0: 📁 Nautilus Dateimanager -->
+            <div class="cheatos-window" id="cheatosWinFiles" style="top: 35px; left: 90px; width: 680px; height: 460px; display: none;">
+                <div class="cheatos-win-header" onmousedown="cheatosStartDrag(event, 'files')" ontouchstart="cheatosStartDrag(event, 'files')">
+                    <div class="win-title"><span class="win-ico">📁</span> DATEIEN // NAUTILUS 46.0 [~ / nullpunkt]</div>
+                    <div class="win-controls">
+                        <button class="win-btn win-minimize" onclick="cheatosMinimizeWindow('files')">—</button>
+                        <button class="win-btn win-maximize" onclick="cheatosMaximizeWindow('files')">⛶</button>
+                        <button class="win-btn win-close" onclick="cheatosCloseWindow('files')">✕</button>
+                    </div>
+                </div>
+                <div class="cheatos-win-body" style="height: calc(100% - 36px);">
+                    <div class="nautilus-window-layout">
+                        <!-- Sidebar Places -->
+                        <div class="nautilus-sidebar">
+                            <div class="nautilus-nav-item active" onclick="nautilusNavigate('home')">🏠 Persönlicher Ordner</div>
+                            <div class="nautilus-nav-item" onclick="nautilusNavigate('documents')">📁 Dokumente</div>
+                            <div class="nautilus-nav-item" onclick="nautilusNavigate('downloads')">⬇️ Downloads</div>
+                            <div class="nautilus-nav-item" onclick="nautilusNavigate('nullpunkt')">🗺️ Nullpunkt-Sektor</div>
+                            <div class="nautilus-nav-item" onclick="nautilusNavigate('root')">💻 Dateisystem (/)</div>
+                        </div>
+
+                        <!-- Content Area -->
+                        <div class="nautilus-content-area">
+                            <div class="nautilus-path-bar">
+                                <span>📁 /home/agent/nullpunkt/</span>
+                            </div>
+                            <div class="nautilus-files-grid" id="nautilusFilesGrid">
+                                <div class="nautilus-file-item" onclick="cheatosOpenWindow('minimap')">
+                                    <span class="nautilus-file-icon">🗺️</span>
+                                    <span class="nautilus-file-name">dorf_minimap.png</span>
+                                </div>
+                                <div class="nautilus-file-item" onclick="cheatosOpenWindow('notes')">
+                                    <span class="nautilus-file-icon">📄</span>
+                                    <span class="nautilus-file-name">koordinaten.txt</span>
+                                </div>
+                                <div class="nautilus-file-item" onclick="cheatosOpenWindow('terminal'); cheatosRunTermCmd('neofetch');">
+                                    <span class="nautilus-file-icon">⚙️</span>
+                                    <span class="nautilus-file-name">neofetch.sh</span>
+                                </div>
+                                <div class="nautilus-file-item" onclick="cheatosOpenWindow('terminal'); cheatosRunTermCmd('htop');">
+                                    <span class="nautilus-file-icon">📈</span>
+                                    <span class="nautilus-file-name">htop.bin</span>
+                                </div>
+                                <div class="nautilus-file-item" onclick="cheatosOpenWindow('idCard')">
+                                    <span class="nautilus-file-icon">🪪</span>
+                                    <span class="nautilus-file-name">agent_id.dat</span>
+                                </div>
+                                <div class="nautilus-file-item" onclick="cheatosOpenWindow('audio')">
+                                    <span class="nautilus-file-icon">🎵</span>
+                                    <span class="nautilus-file-name">synthwave.wav</span>
+                                </div>
+                                <div class="nautilus-file-item" onclick="cheatosOpenWindow('terminal'); cheatosRunTermCmd('./start-cheatmotor.sh');">
+                                    <span class="nautilus-file-icon">🚀</span>
+                                    <span class="nautilus-file-name">start.sh</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Window 1: 🪪 ID-Card Studio Window -->
-            <div class="cheatos-window" id="cheatosWinIdCard" style="top: 35px; left: 120px; width: 620px; height: 550px;">
+            <div class="cheatos-window" id="cheatosWinIdCard" style="top: 45px; left: 760px; width: 620px; height: 550px;">
                 <div class="cheatos-win-header" onmousedown="cheatosStartDrag(event, 'idCard')" ontouchstart="cheatosStartDrag(event, 'idCard')">
                     <div class="win-title"><span class="win-ico">🪪</span> NULLPUNKT-AUSWEIS STUDIO // KERNEL v2.0</div>
                     <div class="win-controls">
@@ -11324,7 +11967,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             </div>
 
             <!-- Window 2: 💻 Cyber-Terminal Window -->
-            <div class="cheatos-window" id="cheatosWinTerminal" style="top: 60px; left: 200px; width: 680px; height: 490px;">
+            <div class="cheatos-window active" id="cheatosWinTerminal" style="top: 45px; left: 84px; width: 660px; height: 460px;">
                 <div class="cheatos-win-header" onmousedown="cheatosStartDrag(event, 'terminal')" ontouchstart="cheatosStartDrag(event, 'terminal')">
                     <div class="win-title"><span class="win-ico">💻</span> CYBER-TERMINAL // CHEAT MOTOR RING-0 CONSOLE [TTY/1]</div>
                     <div class="win-controls">
@@ -11353,7 +11996,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             </div>
 
             <!-- Window 3: 📈 Telemetrie & RAM-Monitor Window -->
-            <div class="cheatos-window" id="cheatosWinTelemetry" style="top: 85px; left: 280px; width: 620px; height: 460px;">
+            <div class="cheatos-window" id="cheatosWinTelemetry" style="top: 85px; left: 280px; width: 620px; height: 460px; display: none;">
                 <div class="cheatos-win-header" onmousedown="cheatosStartDrag(event, 'telemetry')" ontouchstart="cheatosStartDrag(event, 'telemetry')">
                     <div class="win-title"><span class="win-ico">📈</span> HARDWARE TELEMETRIE // RING-0 DMA MEMORY OSCILLOSCOPE</div>
                     <div class="win-controls">
@@ -11405,7 +12048,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             </div>
 
             <!-- Window 4: 📝 Cheat-Editor & Server-Notes Window -->
-            <div class="cheatos-window" id="cheatosWinNotes" style="top: 110px; left: 360px; width: 560px; height: 460px;">
+            <div class="cheatos-window" id="cheatosWinNotes" style="top: 110px; left: 360px; width: 560px; height: 460px; display: none;">
                 <div class="cheatos-win-header" onmousedown="cheatosStartDrag(event, 'notes')" ontouchstart="cheatosStartDrag(event, 'notes')">
                     <div class="win-title"><span class="win-ico">📝</span> CHEAT-EDITOR &amp; NOTIZEN // NOTES.TXT</div>
                     <div class="win-controls">
@@ -11470,7 +12113,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             </div>
 
             <!-- Window 5: 🎵 Cyber Audio Synthwave Player Window -->
-            <div class="cheatos-window" id="cheatosWinAudio" style="top: 135px; left: 440px; width: 500px; height: 420px;">
+            <div class="cheatos-window" id="cheatosWinAudio" style="top: 135px; left: 440px; width: 500px; height: 420px; display: none;">
                 <div class="cheatos-win-header" onmousedown="cheatosStartDrag(event, 'audio')" ontouchstart="cheatosStartDrag(event, 'audio')">
                     <div class="win-title"><span class="win-ico">🎵</span> CYBER AUDIO // SYNTHWAVE &amp; AMBIENT</div>
                     <div class="win-controls">
@@ -11548,45 +12191,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
         <!-- Desktop Taskbar -->
         <div class="cheatos-taskbar" id="cheatosTaskbar">
             <!-- Start Menu Popover -->
-            <div class="cheatos-start-menu" id="cheatosStartMenu" style="display: none;">
-                <div class="start-header">
-                    <span class="start-logo">⚙️</span>
-                    <div>
-                        <div class="start-sys">CHEAT MOTOR 2.0</div>
-                        <div class="start-user">Agent: <strong id="cheatosStartUser">Entity_0xNULL</strong></div>
-                    </div>
-                </div>
-                <div class="start-items-grid">
-                    <div class="start-item" onclick="cheatosOpenWindow('idCard'); cheatosToggleStartMenu();">
-                        <span>🪪</span>
-                        <div><strong>ID-Studio</strong><small>Hacker-Ausweis &amp; 3D-Flip</small></div>
-                    </div>
-                    <div class="start-item" onclick="cheatosOpenWindow('terminal'); cheatosToggleStartMenu();">
-                        <span>💻</span>
-                        <div><strong>Cyber-Terminal</strong><small>Befehle &amp; Root-Cheats</small></div>
-                    </div>
-                    <div class="start-item" onclick="cheatosOpenWindow('telemetry'); cheatosToggleStartMenu();">
-                        <span>📈</span>
-                        <div><strong>Telemetrie</strong><small>Echtzeit RAM-Oszilloskop</small></div>
-                    </div>
-                    <div class="start-item" onclick="cheatosOpenWindow('notes'); cheatosToggleStartMenu();">
-                        <span>📝</span>
-                        <div><strong>Cheat-Editor</strong><small>Notizen &amp; Koordinaten</small></div>
-                    </div>
-                    <div class="start-item" onclick="cheatosOpenWindow('audio'); cheatosToggleStartMenu();">
-                        <span>🎵</span>
-                        <div><strong>Cyber-Audio</strong><small>Synthwave Synthesizer</small></div>
-                    </div>
-                    <div class="start-item" onclick="cheatosOpenWindow('minimap'); cheatosToggleStartMenu();">
-                        <span>🗺️</span>
-                        <div><strong>Dorf-Minimap</strong><small>Nullpunkt &amp; Gebäude</small></div>
-                    </div>
-                </div>
-                <div class="start-footer">
-                    <button class="start-btn-reboot" onclick="cheatosReboot(); cheatosToggleStartMenu();">🔄 Kernel Reboot</button>
-                    <button class="start-btn-exit" onclick="closeCheatOs(); cheatosToggleStartMenu();">✕ Web-Modus</button>
-                </div>
-            </div>
+            
 
             <!-- Start Button -->
             <button class="cheatos-start-btn" id="cheatosStartBtn" onclick="cheatosToggleStartMenu()">
@@ -11612,16 +12217,74 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
        🖥️ CHEATOS 2.0 FENSTERMANAGER & DESKTOP ENGINE
        ========================================================================== -->
     <script>
+
+        // Linux Distro Theme Toggle (Kali vs. Ubuntu)
+        window.currentDistro = 'kali';
+        window.toggleDistroTheme = function() {
+            const dt = document.getElementById("cheatOsDesktop");
+            const pill = document.getElementById("distroSwitcherPill");
+            const icon = document.getElementById("distroIcon");
+            const name = document.getElementById("distroName");
+            const dockIcon = document.getElementById("dockDistroIcon");
+
+            if (!dt) return;
+            if (window.currentDistro === 'kali') {
+                window.currentDistro = 'ubuntu';
+                dt.classList.remove('distro-kali');
+                dt.classList.add('distro-ubuntu');
+                if (icon) icon.textContent = "🟠";
+                if (name) name.textContent = "Ubuntu GNOME";
+                if (dockIcon) dockIcon.textContent = "🟠";
+                if (typeof showCyberToast === "function") {
+                    showCyberToast("🟠 <strong>Ubuntu GNOME Theme</strong> aktiviert!");
+                }
+            } else {
+                window.currentDistro = 'kali';
+                dt.classList.remove('distro-ubuntu');
+                dt.classList.add('distro-kali');
+                if (icon) icon.textContent = "🐉";
+                if (name) name.textContent = "Kali Linux";
+                if (dockIcon) dockIcon.textContent = "🐉";
+                if (typeof showCyberToast === "function") {
+                    showCyberToast("🐉 <strong>Kali Linux Theme</strong> aktiviert!");
+                }
+            }
+        };
+
+        // Nautilus Navigation
+        window.nautilusNavigate = function(folder) {
+            document.querySelectorAll('.nautilus-nav-item').forEach(it => it.classList.remove('active'));
+            if (event && event.currentTarget) event.currentTarget.classList.add('active');
+            const pathSpan = document.querySelector('.nautilus-path-bar span');
+            if (pathSpan) {
+                if (folder === 'home') pathSpan.textContent = "📁 /home/agent/";
+                else if (folder === 'documents') pathSpan.textContent = "📁 /home/agent/Dokumente/";
+                else if (folder === 'downloads') pathSpan.textContent = "📁 /home/agent/Downloads/";
+                else if (folder === 'nullpunkt') pathSpan.textContent = "📁 /home/agent/nullpunkt/";
+                else if (folder === 'root') pathSpan.textContent = "📁 /";
+            }
+        };
+
+        // Quick terminal command runner from Nautilus or dock
+        window.cheatosRunTermCmd = function(cmd) {
+            const input = document.getElementById("cheatosTermInput");
+            if (input) {
+                input.value = cmd;
+                cheatosTermSubmit();
+            }
+        };
+
     (function initCheatOsEngine() {
         const desktop = document.getElementById("cheatOsDesktop");
         const bootScreen = document.getElementById("cheatosBootScreen");
         const bootProgress = document.getElementById("cheatosBootProgress");
 
-        // Window Registry
+        // Window Registry (1:1 Linux Desktop Managed Windows)
         const WINDOWS = {
+            terminal: { el: document.getElementById("cheatosWinTerminal"), title: "Terminal", icon: "💻", open: true, minimized: false, maximized: false },
             idCard: { el: document.getElementById("cheatosWinIdCard"), title: "ID-Studio", icon: "🪪", open: true, minimized: false, maximized: false },
-            terminal: { el: document.getElementById("cheatosWinTerminal"), title: "Terminal", icon: "💻", open: false, minimized: false, maximized: false },
-            telemetry: { el: document.getElementById("cheatosWinTelemetry"), title: "Telemetrie", icon: "📈", open: true, minimized: false, maximized: false },
+            files: { el: document.getElementById("cheatosWinFiles"), title: "Dateien", icon: "📁", open: false, minimized: false, maximized: false },
+            telemetry: { el: document.getElementById("cheatosWinTelemetry"), title: "Telemetrie", icon: "📈", open: false, minimized: false, maximized: false },
             notes: { el: document.getElementById("cheatosWinNotes"), title: "CheatNotes", icon: "📝", open: false, minimized: false, maximized: false },
             audio: { el: document.getElementById("cheatosWinAudio"), title: "CyberAudio", icon: "🎵", open: false, minimized: false, maximized: false },
             minimap: { el: document.getElementById("cheatosWinMinimap"), title: "Minimap", icon: "🗺️", open: false, minimized: false, maximized: false }
@@ -11651,7 +12314,8 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
 
             cheatosSyncIdStats();
             cheatosUpdateTaskbar();
-            cheatosFocusWindow('idCard');
+            cheatosFocusWindow('terminal');
+            cheatosUpdateDockState('terminal');
             startClock();
             startTelemetryOscilloscope();
             initAudioVisualizer();
@@ -11691,7 +12355,24 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             showCyberToast("🔄 CheatOS Kernel erfolgreich neu gestartet!");
         };
 
-        // Window Controls
+        // 🐧 1:1 Linux Dash & Window Controls
+        window.cheatosToggleWindow = function(key) {
+            const win = WINDOWS[key];
+            if (!win || !win.el) return;
+            if (!win.open) {
+                cheatosOpenWindow(key);
+            } else if (win.minimized) {
+                win.minimized = false;
+                win.el.classList.remove("minimized");
+                win.el.style.display = "flex";
+                cheatosFocusWindow(key);
+            } else if (win.el.classList.contains("active")) {
+                cheatosMinimizeWindow(key);
+            } else {
+                cheatosFocusWindow(key);
+            }
+        };
+
         window.cheatosOpenWindow = function(key) {
             const win = WINDOWS[key];
             if (!win || !win.el) return;
@@ -11701,6 +12382,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             win.el.classList.remove("minimized");
             cheatosFocusWindow(key);
             cheatosUpdateTaskbar();
+            cheatosUpdateDockState(key);
         };
 
         window.cheatosCloseWindow = function(key) {
@@ -11708,7 +12390,9 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             if (!win || !win.el) return;
             win.open = false;
             win.el.style.display = "none";
+            win.el.classList.remove("active");
             cheatosUpdateTaskbar();
+            cheatosFindAndFocusTopWindow();
         };
 
         window.cheatosMinimizeWindow = function(key) {
@@ -11718,6 +12402,7 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             win.el.classList.add("minimized");
             win.el.classList.remove("active");
             cheatosUpdateTaskbar();
+            cheatosFindAndFocusTopWindow();
         };
 
         window.cheatosMaximizeWindow = function(key) {
@@ -11738,8 +12423,73 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
                 if (WINDOWS[k].el) WINDOWS[k].el.classList.remove("active");
             });
             win.el.classList.add("active");
+
+            // Sync Top Panel Active App Title
+            const activeLabel = document.getElementById("linuxActiveAppLabel");
+            if (activeLabel) {
+                activeLabel.innerHTML = '<span>' + win.icon + '</span> ' + win.title;
+            }
+
+            // Sync Dock Active Indicator
+            cheatosUpdateDockState(key);
             cheatosUpdateTaskbar();
         };
+
+        // Find and focus the topmost open window
+        function cheatosFindAndFocusTopWindow() {
+            let maxZ = -1;
+            let bestKey = null;
+            Object.keys(WINDOWS).forEach(k => {
+                const w = WINDOWS[k];
+                if (w.open && !w.minimized && w.el) {
+                    const z = parseInt(w.el.style.zIndex || "0", 10);
+                    if (z > maxZ) {
+                        maxZ = z;
+                        bestKey = k;
+                    }
+                }
+            });
+
+            if (bestKey) {
+                cheatosFocusWindow(bestKey);
+            } else {
+                const activeLabel = document.getElementById("linuxActiveAppLabel");
+                if (activeLabel) activeLabel.innerHTML = '<span>🐧</span> CheatLinux';
+                cheatosUpdateDockState(null);
+            }
+        }
+
+        // Synchronize Left Dock Running Dots and Active Highlight
+        function cheatosUpdateDockState(focusedKey) {
+            const dockMap = {
+                files: "dockItemFiles",
+                terminal: "dockItemTerminal",
+                minimap: "dockItemMinimap",
+                idCard: "dockItemIdCard",
+                telemetry: "dockItemTelemetry",
+                notes: "dockItemNotes",
+                audio: "dockItemAudio"
+            };
+
+            Object.keys(dockMap).forEach(k => {
+                const dockId = dockMap[k];
+                const el = document.getElementById(dockId);
+                if (!el) return;
+
+                const win = WINDOWS[k];
+                if (win && win.open) {
+                    el.classList.add("has-running");
+                } else {
+                    el.classList.remove("has-running");
+                }
+
+                if (k === focusedKey && win && win.open && !win.minimized) {
+                    el.classList.add("active");
+                } else {
+                    el.classList.remove("active");
+                }
+            });
+        }
 
         // Taskbar Management
         function cheatosUpdateTaskbar() {
@@ -11862,13 +12612,24 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             if (telBypass) telBypass.textContent = bypass;
         };
 
-        // Digital Clock in Taskbar
+        // Digital Clock in Taskbar & GNOME Center Top Bar
         function startClock() {
             function update() {
+                const now = new Date();
                 const clockEl = document.getElementById("cheatosClock");
                 if (clockEl) {
-                    const now = new Date();
                     clockEl.textContent = now.toTimeString().split(" ")[0];
+                }
+                const linuxClock = document.getElementById("linuxTopClock");
+                if (linuxClock) {
+                    const days = ["So.", "Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa."];
+                    const months = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
+                    const dayName = days[now.getDay()];
+                    const dayNum = now.getDate();
+                    const monthName = months[now.getMonth()];
+                    const hours = String(now.getHours()).padStart(2, '0');
+                    const minutes = String(now.getMinutes()).padStart(2, '0');
+                    linuxClock.textContent = dayName + " " + dayNum + ". " + monthName + " " + hours + ":" + minutes;
                 }
             }
             update();
