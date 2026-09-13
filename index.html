@@ -441,6 +441,261 @@
             transform: rotate(45deg);
         }
 
+        /* -------------------------------------------------------------
+           Minecraft Server Live Status Card (Dropdown)
+           ------------------------------------------------------------- */
+        .nav-status-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .nav-status-capsule {
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .status-players-badge {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 1px 5px;
+            font-size: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: #ffffff;
+            margin-left: 2px;
+        }
+
+        .mc-server-card-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            width: 320px;
+            background: #181818;
+            border: 3px solid #333333;
+            box-shadow: inset 2px 2px 0 #3a3a3a, inset -2px -2px 0 #101010, 0 12px 30px rgba(0, 0, 0, 0.9);
+            color: #e0e0e0;
+            font-family: var(--mc-font-pixel), 'Segoe UI', monospace;
+            z-index: 99999;
+            padding: 14px;
+            text-align: left;
+        }
+
+        .mc-server-card-dropdown.active {
+            display: block !important;
+            animation: mcCardPop 0.15s ease-out;
+        }
+
+        @keyframes mcCardPop {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mc-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #2a2a2a;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .mc-card-title-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mc-card-icon {
+            font-size: 22px;
+        }
+
+        .mc-card-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .mc-card-sub {
+            font-size: 9px;
+            color: #38bdf8;
+            letter-spacing: 0.3px;
+        }
+
+        .mc-card-status-badge {
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: bold;
+            border: 1px solid #333;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mc-card-status-badge.online {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: #10b981;
+            color: #55ff55;
+        }
+
+        .mc-card-status-badge.offline {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #ff5555;
+        }
+
+        .mc-card-status-badge.loading {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: #f59e0b;
+            color: #f59e0b;
+        }
+
+        .mc-ip-box {
+            background: #111111;
+            border: 2px solid #2d2d2d;
+            padding: 8px 10px;
+            margin-bottom: 12px;
+        }
+
+        .mc-ip-label {
+            font-size: 9px;
+            color: #888888;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+
+        .mc-ip-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .mc-ip-code {
+            font-size: 11px;
+            color: #55ffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            word-break: break-all;
+        }
+
+        .mc-ip-copy-btn {
+            background: #3c8527;
+            border: 2px solid #1e4514;
+            color: #ffffff;
+            padding: 5px 10px;
+            font-size: 10px;
+            font-weight: bold;
+            font-family: inherit;
+            cursor: pointer;
+            white-space: nowrap;
+            box-shadow: inset 1px 1px 0 #55aa3a, inset -1px -1px 0 #18330d;
+            transition: all 0.1s ease;
+        }
+
+        .mc-ip-copy-btn:hover {
+            background: #49a230;
+        }
+
+        .mc-ip-copy-btn.copied {
+            background: #10b981;
+            color: #000;
+        }
+
+        .mc-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .mc-stat-item {
+            background: #141414;
+            border: 1px solid #2a2a2a;
+            padding: 6px;
+            text-align: center;
+        }
+
+        .mc-stat-label {
+            font-size: 8px;
+            color: #888;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .mc-stat-val {
+            font-size: 11px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* 5 Signal Bars */
+        .mc-ping-bars {
+            display: inline-flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 12px;
+        }
+
+        .mc-ping-bars .bar {
+            width: 2.5px;
+            background: #444;
+        }
+        .mc-ping-bars .bar-1 { height: 3px; }
+        .mc-ping-bars .bar-2 { height: 5px; }
+        .mc-ping-bars .bar-3 { height: 7px; }
+        .mc-ping-bars .bar-4 { height: 9px; }
+        .mc-ping-bars .bar-5 { height: 12px; }
+
+        .mc-ping-bars.online .bar { background: #55ff55; }
+        .mc-ping-bars.offline .bar { background: #ff5555; opacity: 0.4; }
+
+        .mc-motd-box {
+            background: #0d0d0d;
+            border: 1px solid #252525;
+            padding: 8px;
+            margin-bottom: 12px;
+            font-size: 10px;
+            line-height: 1.4;
+            min-height: 40px;
+        }
+
+        .mc-motd-line1 {
+            color: #ffff55;
+            font-weight: bold;
+        }
+
+        .mc-motd-line2 {
+            color: #aaaaaa;
+        }
+
+        .mc-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #252525;
+            padding-top: 8px;
+            font-size: 9px;
+            color: #777;
+        }
+
+        .mc-refresh-btn {
+            background: #252525;
+            border: 1px solid #3a3a3a;
+            color: #ccc;
+            font-family: inherit;
+            font-size: 9px;
+            padding: 3px 6px;
+            cursor: pointer;
+        }
+
+        .mc-refresh-btn:hover {
+            background: #333;
+            color: #fff;
+        }
+
         .terminal-nav-btn {
             background: rgba(0, 240, 255, 0.12);
             border: 1px solid var(--cyan);
@@ -9138,11 +9393,83 @@
 
                 <div class="nav-actions">
                     <!-- Status Capsule & Admin Login Trigger -->
-                    <div class="status-bar status-online nav-status-capsule" id="liveStatusBar" title="Server-Status (Klick für Admin-Panel)">
-                        <span class="status-pulse-dot" id="statusPulseDot"></span>
-                        <span class="status-tag" id="statusTag">ONLINE</span>
-                        <span class="status-text" id="statusMessageText" style="display:none;">Alle Systeme betriebsbereit • Minecraft 1.21.1</span>
-                        <button class="admin-trigger-btn" id="openAdminBtn" title="Admin-Panel">⚙️</button>
+                    <div class="nav-status-wrapper" id="navStatusWrapper">
+                        <!-- Status Capsule & Admin Login Trigger -->
+                        <div class="status-bar status-online nav-status-capsule" id="liveStatusBar" onclick="toggleMcServerCard(event)" title="Blockstorm Server-Status (Klicken für Server-Details)">
+                            <span class="status-pulse-dot" id="statusPulseDot"></span>
+                            <span class="status-tag" id="statusTag">PRÜFE...</span>
+                            <span class="status-players-badge" id="statusPlayersBadge" style="display:none;">0/20</span>
+                            <span class="status-text" id="statusMessageText" style="display:none;">Blockstorm.exaroton.me:17030</span>
+                            <button class="admin-trigger-btn" id="openAdminBtn" title="Admin-Panel" onclick="event.stopPropagation(); openModal();">⚙️</button>
+                        </div>
+
+                        <!-- Minecraft Server Dropdown Card -->
+                        <div class="mc-server-card-dropdown" id="mcServerDropdownCard">
+                            <div class="mc-card-header">
+                                <div class="mc-card-title-group">
+                                    <span class="mc-card-icon">⛏️</span>
+                                    <div>
+                                        <div class="mc-card-title">Blockstorm</div>
+                                        <div class="mc-card-sub">Exaroton Cloud Server</div>
+                                    </div>
+                                </div>
+                                <div class="mc-card-status-badge offline" id="mcCardStatusPill">
+                                    <span class="status-pulse-dot" id="mcCardPulseDot"></span>
+                                    <span id="mcCardStatusText">PRÜFE...</span>
+                                </div>
+                            </div>
+                            <div class="mc-card-body">
+                                <div class="mc-ip-box">
+                                    <div class="mc-ip-label">SERVER-ADRESSE (PORT 17030):</div>
+                                    <div class="mc-ip-row">
+                                        <code class="mc-ip-code" id="mcServerIpDisplay">Blockstorm.exaroton.me:17030</code>
+                                        <button type="button" class="mc-ip-copy-btn" id="btnCopyServerIp" onclick="copyMinecraftServerIp()" title="IP in Zwischenablage kopieren">
+                                            📋 KOPIEREN
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="mc-stats-grid">
+                                    <div class="mc-stat-item">
+                                        <span class="mc-stat-label">👥 SPIELER</span>
+                                        <span class="mc-stat-val" id="mcCardPlayersVal">-- / --</span>
+                                    </div>
+                                    <div class="mc-stat-item">
+                                        <span class="mc-stat-label">📦 VERSION</span>
+                                        <span class="mc-stat-val" id="mcCardVersionVal">1.20.1</span>
+                                    </div>
+                                    <div class="mc-stat-item">
+                                        <span class="mc-stat-label">📶 SIGNAL</span>
+                                        <span class="mc-stat-val">
+                                            <span class="mc-ping-bars offline" id="mcCardPingBars" title="Signalstärke">
+                                                <span class="bar bar-1"></span>
+                                                <span class="bar bar-2"></span>
+                                                <span class="bar bar-3"></span>
+                                                <span class="bar bar-4"></span>
+                                                <span class="bar bar-5"></span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="mc-player-list-box" id="mcCardPlayerListBox" style="display: none; background: #111111; border: 1px solid #2a2a2a; padding: 6px 8px; margin-bottom: 10px; font-size: 10px;">
+                                    <div style="color: #55ff55; font-weight: bold; margin-bottom: 2px;">🟢 ONLINE SPIELER:</div>
+                                    <div id="mcCardPlayerListNames" style="color: #ffffff; line-height: 1.4;"></div>
+                                </div>
+
+                                <div class="mc-motd-box" id="mcCardMotdBox">
+                                    <div class="mc-motd-line1" id="mcCardMotdLine1">Server wird abgefragt...</div>
+                                    <div class="mc-motd-line2" id="mcCardMotdLine2">Blockstorm • WeMod 2.0 &amp; CheatMotor Ready</div>
+                                </div>
+
+                                <div class="mc-card-footer">
+                                    <button type="button" class="mc-refresh-btn" id="btnRefreshServerStatus" onclick="checkMinecraftServerLive(true)" title="Status jetzt aktualisieren">
+                                        🔄 Aktualisieren
+                                    </button>
+                                    <span class="mc-last-check-text" id="mcLastCheckText">Gerade eben</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <button class="wix-trigger-btn" id="btnToggleWixEditor" onclick="toggleWixEditorMode()" title="Wix-Editor deaktiviert" style="display: none !important;" disabled>✏️ Wix</button>
                     <button class="cheatos-nav-btn" id="openCheatOsBtn" onclick="openCheatOs()" title="Startet die Linux Workstation (CraftOS 2.0)">🖥️ CheatOS</button>
@@ -10244,6 +10571,19 @@
                             </label>
                         </div>
                     </div>
+                    <!-- ECHTER MINECRAFT-SERVER CHECKER CONFIG -->
+                    <div class="form-group" style="background: #181818; border: 2px solid #3c8527; padding: 14px; margin-top: 16px;">
+                        <label style="color: #55ff55; font-weight: bold; display: flex; align-items: center; justify-content: space-between;">
+                            <span>⛏️ Echter Minecraft-Server (Live-Checker):</span>
+                            <span class="badge-status-opt" style="background: #3c8527; color: #fff;">LIVE API</span>
+                        </label>
+                        <span style="font-size: 11px; color: #aaa; display: block; margin-top: 2px; margin-bottom: 8px;">Fragt den echten Minecraft-Server automatisch via REST-API ab.</span>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="text" id="adminServerIpInput" class="admin-input" value="Blockstorm.exaroton.me:17030" placeholder="Host:Port">
+                            <button type="button" class="btn-modal-save" style="white-space: nowrap; padding: 8px 14px;" onclick="testAdminServerPing()">📡 Ping Testen</button>
+                        </div>
+                        <div id="adminPingResult" style="font-size: 11px; margin-top: 8px; color: #aaa; font-family: monospace;"></div>
+                    </div>
                     <button type="button" class="btn-modal-save" style="width: 100%; margin-top: 14px;" onclick="saveAllAdminSettings()">💾 Status, Event &amp; Banner speichern</button>
                     </div>
                 </div>
@@ -11156,6 +11496,14 @@ function renderBlogPosts() {
             if (confirm("Beitrag '" + postTitle + "' wirklich unwiderruflich löschen?")) {
                 currentBlogPosts.splice(idx, 1);
                 localStorage.setItem("cheatmotor_blog_posts", JSON.stringify(currentBlogPosts));
+            const ipInputToSave = document.getElementById("adminServerIpInput");
+            if (ipInputToSave && ipInputToSave.value.trim()) {
+                mcServerAddress = ipInputToSave.value.trim();
+                localStorage.setItem("schnitzelmod_mc_server_ip", mcServerAddress);
+                const display = document.getElementById("mcServerIpDisplay");
+                if (display) display.textContent = mcServerAddress;
+                checkMinecraftServerLive(false);
+            }
             const eventChkVal = document.getElementById("corruptedEventCheckbox");
             if (eventChkVal) {
                 worldCorruptedActive = eventChkVal.checked;
@@ -11505,6 +11853,252 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
         const customInput = document.getElementById("customStatusInput");
 
         let selectedStatus = currentStatus;
+        let mcServerAddress = localStorage.getItem("schnitzelmod_mc_server_ip") || "Blockstorm.exaroton.me:17030";
+        let lastServerData = null;
+
+        async function checkMinecraftServerLive(isManual) {
+            const statusTag = document.getElementById("statusTag");
+            const playersBadge = document.getElementById("statusPlayersBadge");
+            const refreshBtn = document.getElementById("btnRefreshServerStatus");
+            const cardBadge = document.getElementById("mcCardStatusPill");
+            const cardStatusText = document.getElementById("mcCardStatusText");
+            const cardPlayers = document.getElementById("mcCardPlayersVal");
+            const cardVersion = document.getElementById("mcCardVersionVal");
+            const cardPingBars = document.getElementById("mcCardPingBars");
+            const cardMotd1 = document.getElementById("mcCardMotdLine1");
+            const cardMotd2 = document.getElementById("mcCardMotdLine2");
+            const lastCheckText = document.getElementById("mcLastCheckText");
+            const playerListBox = document.getElementById("mcCardPlayerListBox");
+            const playerListNames = document.getElementById("mcCardPlayerListNames");
+            const liveBar = document.getElementById("liveStatusBar");
+
+            if (refreshBtn && isManual) {
+                refreshBtn.textContent = "⏳ Prüfe...";
+            }
+
+            try {
+                // 1. Host & Port aufteilen
+                let addr = (mcServerAddress || "Blockstorm.exaroton.me:17030").trim();
+                let host = addr;
+                let port = "25565";
+                if (addr.includes(":")) {
+                    const parts = addr.split(":");
+                    host = parts[0];
+                    port = parts[1] || "25565";
+                }
+
+                // 2. Exaroton DynDNS zu echter IP auflösen für zuverlässigen Ping
+                let targetIp = host;
+                if (!/^(\d{1,3}\.){3}\d{1,3}$/.test(host)) {
+                    try {
+                        const dnsRes = await fetch("https://dns.google/resolve?name=" + encodeURIComponent(host));
+                        if (dnsRes.ok) {
+                            const dnsData = await dnsRes.json();
+                            if (dnsData.Answer && dnsData.Answer.length > 0) {
+                                targetIp = dnsData.Answer[dnsData.Answer.length - 1].data;
+                            }
+                        }
+                    } catch (e) {
+                        console.warn("DNS resolve fallback:", e);
+                    }
+                }
+
+                // 3. Status über mcstatus.io (mit IP:Port) abfragen
+                let data = null;
+                try {
+                    const res = await fetch("https://api.mcstatus.io/v2/status/java/" + targetIp + ":" + port);
+                    if (res.ok) {
+                        data = await res.json();
+                    }
+                } catch (e) {
+                    console.warn("mcstatus.io failed, trying fallback:", e);
+                }
+
+                // Fallback zu mcsrvstat.us falls nötig
+                if (!data || data.online === undefined) {
+                    const fbRes = await fetch("https://api.mcsrvstat.us/3/" + targetIp + ":" + port);
+                    if (fbRes.ok) {
+                        const fbData = await fbRes.json();
+                        data = {
+                            online: fbData.online,
+                            players: {
+                                online: fbData.players ? fbData.players.online : 0,
+                                max: fbData.players ? fbData.players.max : 20,
+                                list: (fbData.players && fbData.players.list) ? fbData.players.list.map(n => ({ name_clean: n })) : []
+                            },
+                            version: {
+                                name_clean: fbData.version || "1.20.1"
+                            },
+                            motd: {
+                                clean: (fbData.motd && fbData.motd.clean) ? fbData.motd.clean.join(" ") : "Blockstorm"
+                            }
+                        };
+                    }
+                }
+
+                lastServerData = data;
+                const isOnline = data && data.online === true;
+                const nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+                if (lastCheckText) lastCheckText.textContent = "Zuletzt: " + nowTime;
+
+                if (isOnline) {
+                    const currentPlayers = (data.players && typeof data.players.online === 'number') ? data.players.online : 0;
+                    const maxPlayers = (data.players && typeof data.players.max === 'number') ? data.players.max : 20;
+                    const versionStr = (data.version && (data.version.name_clean || data.version.name_raw)) ? (data.version.name_clean || data.version.name_raw) : "Paper 1.20.1";
+
+                    // Navbar Capsule
+                    if (liveBar) liveBar.className = "status-bar status-online nav-status-capsule";
+                    if (statusTag) statusTag.textContent = "ONLINE";
+                    if (playersBadge) {
+                        playersBadge.textContent = currentPlayers + "/" + maxPlayers;
+                        playersBadge.style.display = "inline-block";
+                    }
+
+                    // Dropdown Card
+                    if (cardBadge) cardBadge.className = "mc-card-status-badge online";
+                    if (cardStatusText) cardStatusText.textContent = "ONLINE";
+                    if (cardPlayers) cardPlayers.textContent = currentPlayers + " / " + maxPlayers;
+                    if (cardVersion) cardVersion.textContent = versionStr;
+                    if (cardPingBars) cardPingBars.className = "mc-ping-bars online";
+
+                    // Player names list
+                    if (playerListBox && playerListNames) {
+                        if (data.players && data.players.list && data.players.list.length > 0) {
+                            const names = data.players.list.map(p => p.name_clean || p.name || p).join(", ");
+                            playerListNames.textContent = names;
+                            playerListBox.style.display = "block";
+                        } else if (currentPlayers > 0) {
+                            playerListNames.textContent = currentPlayers + " Spieler im Spiel aktiv";
+                            playerListBox.style.display = "block";
+                        } else {
+                            playerListBox.style.display = "none";
+                        }
+                    }
+
+                    // MOTD
+                    let motdClean = (data.motd && typeof data.motd.clean === 'string') ? data.motd.clean : "Storm";
+                    if (cardMotd1) cardMotd1.textContent = "⚡ MOTD: " + (motdClean || "Blockstorm Server Online");
+                    if (cardMotd2) cardMotd2.textContent = "CheatMotor 2.0 & WeMod bereit • Willkommen!";
+                } else {
+                    // Server offline / asleep
+                    if (liveBar) liveBar.className = "status-bar status-stoerung nav-status-capsule";
+                    if (statusTag) statusTag.textContent = "OFFLINE";
+                    if (playersBadge) playersBadge.style.display = "none";
+
+                    if (cardBadge) cardBadge.className = "mc-card-status-badge offline";
+                    if (cardStatusText) cardStatusText.textContent = "OFFLINE";
+                    if (cardPlayers) cardPlayers.textContent = "0 / 0";
+                    if (cardVersion) cardVersion.textContent = "Exaroton Cloud";
+                    if (cardPingBars) cardPingBars.className = "mc-ping-bars offline";
+                    if (playerListBox) playerListBox.style.display = "none";
+
+                    if (cardMotd1) cardMotd1.textContent = "Server schläft / offline";
+                    if (cardMotd2) cardMotd2.textContent = "Exaroton-Server startet bei Bedarf oder durch Admin.";
+                }
+            } catch (err) {
+                console.warn("Minecraft Server Check failed:", err);
+                if (liveBar) liveBar.className = "status-bar status-wartung nav-status-capsule";
+                if (statusTag) statusTag.textContent = "OFFLINE";
+                if (playersBadge) playersBadge.style.display = "none";
+                if (cardBadge) cardBadge.className = "mc-card-status-badge offline";
+                if (cardStatusText) cardStatusText.textContent = "OFFLINE";
+                if (cardMotd1) cardMotd1.textContent = "Server offline oder nicht erreichbar";
+                if (cardMotd2) cardMotd2.textContent = "Host: " + mcServerAddress;
+                if (playerListBox) playerListBox.style.display = "none";
+            } finally {
+                if (refreshBtn && isManual) {
+                    refreshBtn.textContent = "🔄 Aktualisieren";
+                }
+            }
+        }
+
+        window.copyMinecraftServerIp = function() {
+            const btn = document.getElementById("btnCopyServerIp");
+            const ip = mcServerAddress || "Blockstorm.exaroton.me:17030";
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(ip).then(() => {
+                    if (btn) {
+                        const old = btn.textContent;
+                        btn.textContent = "✓ KOPIERT!";
+                        btn.classList.add("copied");
+                        playMinecraftClickSound();
+                        setTimeout(() => {
+                            btn.textContent = old;
+                            btn.classList.remove("copied");
+                        }, 2000);
+                    }
+                });
+            } else {
+                const ta = document.createElement("textarea");
+                ta.value = ip;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand("copy");
+                document.body.removeChild(ta);
+                if (btn) {
+                    btn.textContent = "✓ KOPIERT!";
+                    btn.classList.add("copied");
+                    playMinecraftClickSound();
+                    setTimeout(() => {
+                        btn.textContent = "📋 KOPIEREN";
+                        btn.classList.remove("copied");
+                    }, 2000);
+                }
+            }
+        };
+
+        window.toggleMcServerCard = function(e) {
+            if (e) e.stopPropagation();
+            const card = document.getElementById("mcServerDropdownCard");
+            if (!card) return;
+            const isActive = card.classList.contains("active");
+            if (isActive) {
+                card.classList.remove("active");
+            } else {
+                card.classList.add("active");
+                playMinecraftClickSound();
+                checkMinecraftServerLive(false);
+            }
+        };
+
+        document.addEventListener("click", function(e) {
+            const card = document.getElementById("mcServerDropdownCard");
+            const wrapper = document.getElementById("navStatusWrapper");
+            if (card && card.classList.contains("active")) {
+                if (wrapper && !wrapper.contains(e.target)) {
+                    card.classList.remove("active");
+                }
+            }
+        });
+
+        window.testAdminServerPing = async function() {
+            const resBox = document.getElementById("adminPingResult");
+            const input = document.getElementById("adminServerIpInput");
+            if (input && input.value.trim()) {
+                mcServerAddress = input.value.trim();
+                localStorage.setItem("schnitzelmod_mc_server_ip", mcServerAddress);
+                const display = document.getElementById("mcServerIpDisplay");
+                if (display) display.textContent = mcServerAddress;
+            }
+            if (resBox) resBox.textContent = "⏳ Pinge " + mcServerAddress + "...";
+            await checkMinecraftServerLive(true);
+            if (resBox) {
+                if (lastServerData && lastServerData.online) {
+                    const pl = (lastServerData.players && typeof lastServerData.players.online === 'number') ? lastServerData.players.online : 0;
+                    const maxPl = (lastServerData.players && typeof lastServerData.players.max === 'number') ? lastServerData.players.max : 20;
+                    resBox.innerHTML = "<span style='color:#55ff55;'>✓ ONLINE</span> • " + pl + "/" + maxPl + " Spieler • Version: " + (lastServerData.version || "1.20.1");
+                } else {
+                    resBox.innerHTML = "<span style='color:#ff5555;'>✗ OFFLINE</span> • Server schläft oder antwortet nicht (Exaroton).";
+                }
+            }
+        };
+
+        // Init Minecraft Server Poll
+        setTimeout(() => {
+            checkMinecraftServerLive(false);
+            setInterval(() => checkMinecraftServerLive(false), 60000);
+        }, 1200);
 
         window.openModal = function openModal() {
             overlay.classList.add("active");
@@ -11563,6 +12157,8 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             document.getElementById("maintenanceTimeInput").value = currentMaintenanceEstimatedTime;
             const eventChk = document.getElementById("corruptedEventCheckbox");
             if (eventChk) eventChk.checked = worldCorruptedActive;
+            const ipInput = document.getElementById("adminServerIpInput");
+            if (ipInput) ipInput.value = mcServerAddress;
             renderAdminTesterList();
         }
 
