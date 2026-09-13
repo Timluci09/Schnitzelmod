@@ -9261,7 +9261,7 @@
                         </div>
 
                         <!-- Feature 1: F1 -->
-                        <div class="cheat-preview-card active-card">
+                        <div class="cheat-preview-card active-card" onclick="toggleHeroCheatCard(this)" style="cursor: pointer;" title="Klicke zum Umschalten">
                             <div class="cheat-info">
                                 <h3>Flug-Modus (Creative Flight) <span class="cheat-key">F1</span></h3>
                                 <p>Echtes Fliegen (Doppel-Leertaste) direkt im Abenteuer freigeschaltet.</p>
@@ -9287,6 +9287,28 @@
                                 <p>Voxel-Radar für Diamanten, Smaragde &amp; antike Trümmer.</p>
                             </div>
                             <div class="badge-status badge-red" style="background: rgba(0, 240, 255, 0.15); color: #00f0ff; border: 1px solid rgba(0, 240, 255, 0.3);">✓ Bereit</div>
+                        </div>
+
+                        <!-- Feature 4: F4 -->
+                        <div class="cheat-preview-card active-card" onclick="toggleHeroCheatCard(this)" style="cursor: pointer;" title="Klicke zum Umschalten">
+                            <div class="cheat-info">
+                                <h3>💡 FullBright (Nachtsicht) <span class="cheat-key" style="background: #eab308; color: #000;">F4</span></h3>
+                                <p>Höhlen, Tiefsee &amp; Nether zu 100% taghell erleuchtet.</p>
+                            </div>
+                            <div class="toggle-switch-demo active-toggle">
+                                <div class="toggle-knob"></div>
+                            </div>
+                        </div>
+
+                        <!-- Feature 5: F5 -->
+                        <div class="cheat-preview-card active-card" onclick="toggleHeroCheatCard(this)" style="cursor: pointer;" title="Klicke zum Umschalten">
+                            <div class="cheat-info">
+                                <h3>🎣 Auto-Fisher (Angel-Bot) <span class="cheat-key" style="background: #38bdf8; color: #000;">F5</span></h3>
+                                <p>Automatisches Einholen bei Biss &amp; Schätze fischen im AFK-Modus.</p>
+                            </div>
+                            <div class="toggle-switch-demo active-toggle">
+                                <div class="toggle-knob"></div>
+                            </div>
                         </div>
 
                         <!-- Live Telemetry Bar -->
@@ -12196,9 +12218,11 @@ Tippe erneut 'code_2' ein, um die Schwerkraft wiederherzustellen.</span>
             } else if (cmd === "cheats") {
                 printTerminalLine(`
 <span style="color:#00f0ff; font-weight:bold;">AKTIVE HOTKEY CHEATS (Cheat Motor v2.0):</span>
-  [ F1 ] Flug-Modus        - AKTIV (Doppel-Leertaste zum Fliegen)
-  [ F2 ] No Hunger         - 🔧 Wird noch verbessert
-  [ F3 ] Reines Erze-X-Ray - ⚠️ BUG — BALD KOMMT ES!
+  [ F1 ] Flug-Modus        - 🟢 AKTIV (Doppel-Leertaste zum Fliegen)
+  [ F2 ] Sättigungs-Lock   - 🟢 AKTIV (Kein Hungerverlust im Abenteuer)
+  [ F3 ] Erze-Highlight    - 💎 BEREIT (Voxel-Radar für Diamanten & Debris)
+  [ F4 ] FullBright        - 💡 AKTIV (Taghelle Höhlen & Meere ohne Fackeln)
+  [ F5 ] Auto-Fisher       - 🎣 AKTIV (Automatischer Angel-Bot für Schätze)
 `);
             } else if (cmd === "blog" || cmd === "story" || cmd === "news") {
                 let out = `\n<span style="color:#c084fc; font-weight:bold;">📖 AKTUELLE STORY- &amp; NULLPUNKT-BEITRÄGE:</span>\n`;
@@ -15111,6 +15135,20 @@ drwxr-xr-x 2 agent agent 4096 Sep  5 16:40 <span style="color:#00f0ff; font-weig
                                 </div>
                                 <span class="badge-status-opt">HOTKEY READY</span>
                             </div>
+                            <div class="cheat-switch-card">
+                                <div class="cheat-info">
+                                    <strong>[ F4 ] 💡 FullBright / Nachtsicht (Gamma Max)</strong>
+                                    <p>Taghelle Sicht in Höhlen, Ozeanen &amp; im Nether ohne Fackeln.</p>
+                                </div>
+                                <span class="badge-status-on">AKTIV</span>
+                            </div>
+                            <div class="cheat-switch-card">
+                                <div class="cheat-info">
+                                    <strong>[ F5 ] 🎣 Auto-Fisher / Automatischer Angel-Bot</strong>
+                                    <p>Erkennt den Wasser-Biss-Trigger und zieht automatisch seltene Schätze ein.</p>
+                                </div>
+                                <span class="badge-status-on">AKTIV</span>
+                            </div>
                             <div class="notes-hint-box">
                                 💡 <em>Tipp: Im Terminal kannst du mit <strong>tune</strong> einen virtuellen RPM-Leistungsprüfstand starten!</em>
                             </div>
@@ -17598,6 +17636,29 @@ drwxr-xr-x 2 agent agent 4096 Sep  5 16:40 <span style="color:#00f0ff; font-weig
         if (document.readyState === "interactive" || document.readyState === "complete") {
             loadWixEdits();
         }
+
+        
+        // Interactive Toggle for Hero HUD Cheat Cards
+        window.toggleHeroCheatCard = function(card) {
+            if (window.playMinecraftSound) window.playMinecraftSound('click');
+            const toggle = card.querySelector('.toggle-switch-demo');
+            const badge = card.querySelector('.badge-status');
+            if (toggle) {
+                toggle.classList.toggle('active-toggle');
+            } else if (badge) {
+                if (badge.textContent.includes('Aktiv') || badge.textContent.includes('Bereit')) {
+                    badge.textContent = '✕ Inaktiv';
+                    badge.style.background = 'rgba(239, 68, 68, 0.15)';
+                    badge.style.color = '#ef4444';
+                    badge.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+                } else {
+                    badge.textContent = '✓ Aktiv';
+                    badge.style.background = 'rgba(16, 185, 129, 0.15)';
+                    badge.style.color = '#10b981';
+                    badge.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+                }
+            }
+        };
 
         // Global Keyboard Shortcut: Alt+E toggles Wix Editor Mode
         window.addEventListener("keydown", (e) => {
