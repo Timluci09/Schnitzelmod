@@ -1,10 +1,10 @@
 {
-  "status": "online",
-  "tag": "ONLINE",
-  "message": "Alle Trainer-Funktionen betriebsbereit • Minecraft 1.20.1 aktiv",
-  "bannerActive": false,
+  "status": "wartung",
+  "tag": "WARTUNG",
+  "message": "Wartungsarbeiten: Neues Cheat-Motor-Update wird vorbereitet!",
+  "bannerActive": true,
   "bannerMessage": "🔥 WICHTIG: Neues Cheat Motor Update in Vorbereitung!",
-  "downloadEnabled": true,
+  "downloadEnabled": false,
   "downloadDisabledReason": "Wartungsarbeiten / Update wird hochgeladen",
   "maintenanceMode": false,
   "maintenanceMessage": "Cheat Motor Boxenstopp: Wir führen gerade Tuning- und System-Upgrades durch. Gleich wieder online!",
@@ -72,6 +72,5 @@
       "excerpt": "Gewaltige Blitze haben den Bergkamm gespalten. Die ersten Götter-Artefakte wurden im Survival-Modus gesichtet.",
       "content": "Zephyrus hat seine Donnerklinge in den Fels geschlagen. Wer sich der Fraktion der Stürme anschließt, erhält göttliche Sprungkraft und Kettenblitze.\n\nWir testen aktuell die neuen Fähigkeiten im Survival – erste Videos und Gameplay-Ausschnitte folgen in Kürze!"
     }
-  ],
-  "corruptedEvent": true
+  ]
 }
